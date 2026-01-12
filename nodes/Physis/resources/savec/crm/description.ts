@@ -1,0 +1,161 @@
+import { INodeProperties } from 'n8n-workflow';
+
+export const crmOperations: INodeProperties[] = [
+    {
+        displayName: 'Operación',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        displayOptions: { show: { service: ['savec'], resource: ['crm'] } },
+        options: [
+
+            { name: 'Listar Actividades', value: 'getActivities', description: 'GET Obtiene actividades (filtro por Evento/Detalle).' },
+            { name: 'Crear Actividad', value: 'createActivity', description: 'POST Crea una nueva actividad.' },
+            { name: 'Actualizar Actividad', value: 'updateActivity', description: 'PUT Actualiza una actividad existente.' },
+            { name: 'Eliminar Actividad', value: 'deleteActivity', description: 'DELETE Elimina una actividad.' },
+            { name: 'Listar Contactos', value: 'getContacts', description: 'GET Lista todos los contactos.' },
+            { name: 'Crear/Actualizar Contacto', value: 'upsertContact', description: 'POST Inserta o actualiza un contacto.' },
+            { name: 'Listar Clientes', value: 'getClients', description: 'GET Lista básica de clientes.' },
+            { name: 'Listar Negocios', value: 'getDeals', description: 'GET Lista negocios con múltiples filtros.' },
+            { name: 'Detalle Negocio y Actividades', value: 'getDealDetail', description: 'GET Obtiene un negocio y sus actividades.' },
+            { name: 'Negocios por Cliente', value: 'getDealsByClient', description: 'GET Negocios asociados a un cliente específico.' },
+            { name: 'Crear Negocio', value: 'createDeal', description: 'POST Inserta un negocio y su actividad inicial.' },
+            { name: 'Actualizar Negocio', value: 'updateDeal', description: 'PUT Actualiza datos de un negocio.' },
+            { name: 'Eliminar Negocio', value: 'deleteDeal', description: 'DELETE Elimina un negocio y sus actividades.' },
+            { name: 'Listar Archivos (Negocio)', value: 'getDocuments', description: 'GET Lista archivos adjuntos a un negocio.' },
+            { name: 'Subir Archivos', value: 'uploadDocuments', description: 'POST Adjunta archivos a un negocio.' },
+            { name: 'Obtener Metadatos Archivo', value: 'getDocumentMeta', description: 'GET Obtiene nombre y extensión de un archivo.' },
+            { name: 'Descargar Archivo', value: 'downloadDocument', description: 'GET Descarga el contenido del archivo.' },
+            { name: 'Eliminar Archivo', value: 'deleteDocument', description: 'DELETE Elimina un archivo adjunto.' },
+        ],
+        default: 'getDeals',
+    },
+];
+
+export const crmFields: INodeProperties[] = [
+
+    {
+        displayName: 'ID Negocio / Evento',
+        name: 'idNegocio',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm'],
+                operation: [
+                    'deleteActivity', 
+                    'getDealDetail', 
+                    'deleteDeal',
+                    'getDocuments',
+                    'uploadDocuments',
+                    'getDocumentMeta',
+                    'downloadDocument',
+                    'deleteDocument'
+                ] 
+            } 
+        },
+        description: 'Identificador del Negocio (o Evento).',
+    },
+    {
+        displayName: 'ID Actividad',
+        name: 'idActividad',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm'], 
+                operation: ['deleteActivity'] 
+            } 
+        },
+        description: 'Identificador de la actividad a eliminar.',
+    },
+    {
+        displayName: 'ID Auxi (Cliente)',
+        name: 'idAuxi',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm'], 
+                operation: ['getDealsByClient'] 
+            } 
+        },
+        description: 'ID Auxiliar del cliente.',
+    },
+    {
+        displayName: 'ID Cta Auxi (Cliente)',
+        name: 'idCtaAuxi',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm'], 
+                operation: ['getDealsByClient'] 
+            } 
+        },
+        description: 'Código de cuenta auxiliar del cliente.',
+    },
+    {
+        displayName: 'ID Documento',
+        name: 'idDocumento',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm'], 
+                operation: ['getDocumentMeta', 'downloadDocument', 'deleteDocument'] 
+            } 
+        },
+        description: 'Identificador del documento/archivo.',
+    },
+    {
+        displayName: 'Nombre Archivo',
+        name: 'nombreArchivo',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm'], 
+                operation: ['deleteDocument'] 
+            } 
+        },
+        description: 'Nombre del archivo a eliminar (requerido por la API).',
+    },
+    {
+        displayName: 'JSON Body / Filtros',
+        name: 'jsonBody',
+        type: 'json',
+        default: '{}',
+        displayOptions: { 
+            show: { 
+                service: ['savec'], 
+                resource: ['crm']
+            },
+            hide: {
+                operation: [
+                    'getClients', 
+                    'deleteActivity', 
+                    'deleteDeal', 
+                    'getDealsByClient',
+                    'getDocuments',
+                    'getDocumentMeta',
+                    'downloadDocument',
+                    'deleteDocument'
+                ]
+            }
+        },
+        description: 'Cuerpo para Crear/Actualizar (Actividades, Contactos, Negocios) o Filtros para Listados (Negocios, Actividades, Contactos).',
+    },
+];
