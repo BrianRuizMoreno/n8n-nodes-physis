@@ -64,6 +64,11 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
                 endpoint = '/phy2service/api/sacer/sucursales';
             }
             break;
+        case 'tipoTercero':
+            if (operation === 'getTercero') {
+                endpoint = '/phy2service/api/sacer/tipos-tercero';
+            }
+            break;
 
         default:
             throw new Error(`El recurso SACER "${resource}" no está manejado en varios/handlers.ts`);

@@ -58,6 +58,17 @@ export const variosOperations: INodeProperties[] = [
         ],
         default: 'getAll',
     },
+    {
+        displayName: 'Operación',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        displayOptions: { show: { service: ['sacer'], resource: ['tipoTercero'] } },
+        options: [
+            { name: 'Tipos Tercero', value: 'getTercero', description: 'GET Devuelve todas las tarifas de Tercero'}
+        ],
+        default: 'getTercero',
+    },
 ];
 
 
