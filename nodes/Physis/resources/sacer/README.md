@@ -1,67 +1,69 @@
 # Módulo SACER (Acopio y Logística)
 
-El módulo **SACER** es el corazón operativo para empresas de acopio de cereales. Gestiona el ciclo de vida completo del grano: desde que se define el campo de origen, pasando por el transporte (Carta de Porte) y su ingreso a planta, hasta la liquidación y análisis de calidad.
+El módulo **SACER** es el núcleo operativo para la gestión de acopio de cereales. Administra el ciclo físico del grano: desde la definición del origen (campo), su transporte y recepción en planta, hasta el análisis de calidad y la gestión de contratos.
 
-Este módulo expone **22 recursos** divididos en 5 áreas funcionales para controlar cada aspecto del negocio.
+Este módulo expone **24 recursos** diseñados para controlar la trazabilidad y la administración granaria.
 
 ---
 
 ## 🚜 1. Gestión de Origen y Campo
-Recursos dedicados a la trazabilidad del lugar físico de producción.
+Recursos para modelar la estructura productiva y la procedencia de la mercadería.
 
 | Recurso | Descripción Breve | Documentación |
 | :--- | :--- | :---: |
-| **Campo** | Gestiona la estructura jerárquica de producción (*Zona > Establecimiento > Campo > Lote*). Fundamental para la trazabilidad. | [Ver detalle](./campo/README.md) |
-| **Establecimiento** | Administra las unidades productivas o "estancias" asociadas a un productor (Tercero). | [Ver detalle](./establecimiento/README.md) |
-| **Lote** | (Accesible vía *Campo* o *Varios*) Define las parcelas específicas de siembra dentro de un campo. | [Ver detalle](./lote/README.md) |
-| **Suelo** | Configuración de tipos de suelo para clasificación agronómica de los lotes. | [Ver detalle](./suelo/README.md) |
+| **Campo** | Gestiona la jerarquía productiva (*Zona > Establecimiento > Campo > Lote*). | [Ver detalle](./campo/README.md) |
+| **Establecimiento** | Administra las unidades productivas o "estancias" asociadas a un productor. | [Ver detalle](./establecimiento/README.md) |
+| **Suelo** | Catálogo de tipos de suelo para la clasificación agronómica de los lotes. | [Ver detalle](./suelo/README.md) |
+| **Tercero** | Maestro de entidades (Productores, Clientes, Proveedores) que interactúan con el sistema. | [Ver detalle](./tercero/README.md) |
 
-## 🚚 2. Logística y Documentación
-Control del movimiento físico y transporte de la mercadería.
-
-| Recurso | Descripción Breve | Documentación |
-| :--- | :--- | :---: |
-| **Carta de Porte** | Gestión integral de CPG (Cartas de Porte de Granos). Permite buscar, crear y descargar PDFs de los documentos de tránsito. | [Ver detalle](./cartaPorte/README.md) |
-| **Logística** | Administración de **Conductores** (Choferes) y su relación con transportistas. | [Ver detalle](./logistica/README.md) |
-| **Tarifa Flete** | Tablas de precios de transporte por kilómetro o zona. | [Ver detalle](./tarifaFlete/README.md) |
-| **Motivo Retiro / Venta a Campo** | Gestión de movimientos directos o retiros de mercadería sin paso por planta. | [Ver detalle](./motivoRetiro/README.md) |
-
-## 🏭 3. Infraestructura y Planta
-Administración de los activos físicos de acopio.
+## 🚚 2. Logística y Acopio
+Control del flujo físico, transporte e infraestructura de almacenamiento.
 
 | Recurso | Descripción Breve | Documentación |
 | :--- | :--- | :---: |
-| **Infraestructura** | Gestión de **Plantas** (Centros de acopio) y **Silos** (Celdas de almacenaje físico). Control de stock físico. | [Ver detalle](./infraestructura/README.md) |
-| **Numerador** | Configuración de secuencias y puntos de venta para la emisión de documentos en cada planta. | [Ver detalle](./numerador/README.md) |
-| **Formatos** | Definición de los formatos de impresión y tipos de comprobantes habilitados. | [Ver detalle](./formato/README.md) |
+| **Carta de Porte** | Gestión integral de CPG (Cartas de Porte de Granos). Búsqueda, creación y descarga de PDF. | [Ver detalle](./cartaPorte/README.md) |
+| **Logística** | Administración de choferes, camiones y empresas de transporte. | [Ver detalle](./logistica/README.md) |
+| **Tarifa Flete** | Tablas de costos de transporte (por Km o tarifa plana). | [Ver detalle](./tarifaFlete/README.md) |
+| **Infraestructura** | Gestión de Plantas, Silos y Celdas. Control de capacidad y stock físico. | [Ver detalle](./infraestructura/README.md) |
+| **Numerador** | Configuración de puntos de venta y secuencias de numeración para comprobantes. | [Ver detalle](./numerador/README.md) |
 
-## 🌾 4. Comercial y Contratos
-Gestión de los acuerdos comerciales y la cuenta corriente granaria.
+## 🌾 3. Comercial y Contratos
+Gestión de acuerdos comerciales y seguimiento de saldos físicos.
 
 | Recurso | Descripción Breve | Documentación |
 | :--- | :--- | :---: |
 | **Contrato** | Administración de contratos de compra-venta, canje y consignación. | [Ver detalle](./contrato/README.md) |
-| **Fijación** | Operaciones de fijación de precio sobre contratos a fijar. | [Ver detalle](./fijacion/README.md) |
-| **Cuenta Corriente Granos** | Consulta del estado de cuenta físico del productor (Entregado vs. Liquidado/Retirado). | [Ver detalle](./cuentaCorrienteGranos/README.md) |
-| **Campaña** | Definición de ciclos agrícolas (ej: *Trigo 23/24*) para segmentar la operación. | [Ver detalle](./campania/README.md) |
+| **Tipo de Contrato** | Definición de modalidades de contratación y sus reglas de negocio. | [Ver detalle](./tipoContrato/README.md) |
+| **Fijación** | Operaciones de fijación de precio para contratos "A Fijar". | [Ver detalle](./fijacion/README.md) |
+| **Cta. Cte. Granos** | Consulta del "Libro Mayor" físico del productor (Entregado vs. Liquidado). | [Ver detalle](./cuentaCorrienteGranos/README.md) |
+| **Campaña** | Definición de los ciclos agrícolas (ej: *Trigo 23/24*). | [Ver detalle](./campania/README.md) |
 
-## 🧪 5. Calidad y Definiciones
-Parámetros técnicos y maestros del sistema.
+## 🧪 4. Calidad y Laboratorio
+Definición de productos y parámetros analíticos.
 
 | Recurso | Descripción Breve | Documentación |
 | :--- | :--- | :---: |
-| **Cereal** | Maestro de especies (Trigo, Soja, Maíz, etc.) y sus configuraciones base. | [Ver detalle](./cereal/README.md) |
-| **Variedad** | Sub-tipos o variedades específicas dentro de cada cereal. | [Ver detalle](./variedad/README.md) |
-| **Calidad** | Definición de rubros de calidad (Proteína, Materia Grasa, Dañados) para los análisis de laboratorio. | [Ver detalle](./calidad/README.md) |
-| **Humedad** | Tablas de merma por humedad para el cálculo de peso neto. | [Ver detalle](./humedad/README.md) |
-| **Imputación IVA** | Configuración contable para la correcta alícuota de impuestos en las operaciones. | [Ver detalle](./imputacionIVA/README.md) |
-| **Forma de Pago** | Condiciones de pago habilitadas para las transacciones comerciales. | [Ver detalle](./formaPago/README.md) |
-| **Varios** | Utilidades diversas: Descarga de **Liquidaciones (PDF)**, consulta de **Muestras**, Localidades y Sucursales. | [Ver detalle](./varios/README.md) |
+| **Cereal** | Maestro de especies (Trigo, Soja, Maíz) y configuraciones base. | [Ver detalle](./cereal/README.md) |
+| **Variedad** | Sub-clasificaciones genéticas o comerciales dentro de cada cereal. | [Ver detalle](./variedad/README.md) |
+| **Calidad** | Rubros de análisis (Proteína, Dañados) y tablas de bonificación/rebaja. | [Ver detalle](./calidad/README.md) |
+| **Humedad** | Tablas de merma por humedad para el cálculo de peso neto seco. | [Ver detalle](./humedad/README.md) |
+
+## 📊 5. Administrativo y Contable
+Configuraciones impositivas y de emisión de documentos.
+
+| Recurso | Descripción Breve | Documentación |
+| :--- | :--- | :---: |
+| **Imputación IVA** | Tasas y alícuotas de IVA aplicables a los distintos conceptos. | [Ver detalle](./imputacionIVA/README.md) |
+| **Imput. Contables** | Mapeo de cuentas contables para la generación automática de asientos. | [Ver detalle](./imputacionesContable/README.md) |
+| **Forma de Pago** | Condiciones financieras habilitadas (Contado, 30 días, etc.). | [Ver detalle](./formaPago/README.md) |
+| **Formato** | Definición de diseños de impresión para los comprobantes. | [Ver detalle](./formato/README.md) |
+| **Tipo de Formato** | Clasificación y reglas de comportamiento para los formatos de impresión. | [Ver detalle](./tipoFormato/README.md) |
+| **Varios** | Utilidades generales: Localidades, Sucursales y Consultas auxiliares. | [Ver detalle](./varios/README.md) |
 
 ---
 
 ### ¿Por dónde empezar?
-Si estás automatizando la **entrada de camiones**, comienza por [Carta de Porte](./cartaPorte/README.md).
-Si necesitas sincronizar **datos maestros**, revisa [Campo](./campo/README.md) y [Cereal](./cereal/README.md).
 
-Si necesitas ayuda para comenzar, contáctanos!
+* **Para Operativa Diaria**: Comienza por [Carta de Porte](./cartaPorte/README.md) (ingresos) y [Contrato](./contrato/README.md) (comercial).
+* **Para Configuración Inicial**: Define primero [Cereal](./cereal/README.md), [Campaña](./campania/README.md) e [Infraestructura](./infraestructura/README.md).
+* **Para Integración Contable**: Revisa [Imputaciones Contables](./imputacionesContable/README.md) y [Tercero](./tercero/README.md).

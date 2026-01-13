@@ -88,7 +88,15 @@ import * as sueloHandler from './suelo/handlers';
 import * as numerador from './numerador/description';
 import * as numeradorHandler from './numerador/handlers';
 
-//22. Varios
+//22. Tercero
+import * as tercero from './tercero/description';
+import * as terceroHandler from './tercero/handlers';
+
+//23. Imputaciones Contable
+import * as imputacionesContable from './imputacionesContable/description';
+import * as imputacionesContableHandler from './imputacionesContable/handlers';
+
+//24. Varios
 import * as varios from './varios/description';
 import * as variosHandler from './varios/handlers';
 
@@ -118,6 +126,8 @@ export const sacerDescriptions: INodeProperties[] = [
     ...tarifaFlete.tarifaFleteOperations, ...tarifaFlete.tarifaFleteFields,
     ...suelo.sueloOperations, ...suelo.sueloFields,
     ...numerador.numeradorOperations, ...numerador.numeradorFields,
+    ...tercero.terceroOperations, ...tercero.terceroFields,
+    ...imputacionesContable.imputacionContableOperations, ...imputacionesContable.imputacionContableFields,
     ...varios.variosOperations, ...varios.variosFields,
 
 ];
@@ -170,6 +180,10 @@ export async function sacerRouter(context: IExecuteFunctions, index: number, res
             return await sueloHandler.execute.call(context, index);
         case 'numerador':
             return await numeradorHandler.execute.call(context, index);
+        case 'tercero':
+            return await terceroHandler.execute.call(context, index);
+        case 'imputacionesContable':
+            return await imputacionesContableHandler.execute.call(context, index);
         case 'varios':
             return await variosHandler.execute.call(context, index);
         

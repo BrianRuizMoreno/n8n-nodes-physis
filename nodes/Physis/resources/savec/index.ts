@@ -12,9 +12,9 @@ import * as contratoHandler from './contrato/handlers';
 import * as crm from './crm/description';
 import * as crmHandler from './crm/handlers';
 
-// 3. Definiciones
-import * as definicion from './definicion/description';
-import * as definicionHandler from './definicion/handlers';
+// 3. Tarifas
+import * as tarifas from './tarifas/description';
+import * as tarifasHandler from './tarifas/handlers';
 
 // 4. Ventas Campo
 import * as ventaCampo from './ventaCampo/description';
@@ -36,6 +36,12 @@ import * as tipoContratoHandler from './tipoContrato/handlers';
 import * as auxiliares from './auxiliar/description';
 import * as auxiliaresHandler from './auxiliar/handlers';
 
+//9. Tipos Formularios
+import * as tiposFormulario from './tiposFormulario/description';
+import * as tiposFormularioHandler from './tiposFormulario/handlers';
+
+
+
 // =====================================================================
 // EXPORTACIÓN DE PROPIEDADES 
 // =====================================================================
@@ -43,12 +49,13 @@ export const savecDescriptions: INodeProperties[] = [
 
     ...contrato.contratoOperations, ...contrato.contratoFields,
     ...crm.crmOperations, ...crm.crmFields,
-    ...definicion.definicionOperations, ...definicion.definicionFields,
+    ...tarifas.tarifasOperations, ...tarifas.tarifasFields,
     ...ventaCampo.ventaCampoOperations, ...ventaCampo.ventaCampoFields,
     ...concepto.conceptoOperations, ...concepto.conceptoFields,
     ...motivoRetiro.motivoRetiroOperations, ...motivoRetiro.motivoRetiroFields,
     ...tipoContrato.tipoContratoOperations, ...tipoContrato.tipoContratoFields,
     ...auxiliares.auxiliarOperations, ...auxiliares.auxiliarFields,
+    ...tiposFormulario.tiposFormularioOperations, ...tiposFormulario.tiposFormularioFields,
 ];
 
 
@@ -61,8 +68,8 @@ export async function savecRouter(context: IExecuteFunctions, index: number, res
             return await contratoHandler.execute.call(context, index);
         case 'crm':
             return await crmHandler.execute.call(context, index);
-        case 'definicion':
-            return await definicionHandler.execute.call(context, index);
+        case 'tarifas':
+            return await tarifasHandler.execute.call(context, index);
         case 'ventaCampo':
             return await ventaCampoHandler.execute.call(context, index);
         case 'concepto':
@@ -73,6 +80,8 @@ export async function savecRouter(context: IExecuteFunctions, index: number, res
             return await tipoContratoHandler.execute.call(context, index);
         case 'auxiliar':
             return await auxiliaresHandler.execute.call(context, index);
+        case 'tiposFormulario':
+            return await tiposFormularioHandler.execute.call(context, index);
         
         default:
             throw new Error(`El recurso SAVEC "${resource}" no está implementado en el router.`);
