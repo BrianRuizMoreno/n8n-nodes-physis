@@ -8,19 +8,78 @@ export const productoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['producto'] } },
         options: [
+            // --- CATÁLOGO Y BÚSQUEDA ---
+            { 
+                name: 'Listar (Búsqueda Rápida)', 
+                value: 'getAll', 
+                description: 'GET Búsqueda por texto. Filtros JSON: { "texto": "soja", "idDeposito": "CENTRAL", "soloDatosBasicos": true }.' 
+            },
+            { 
+                name: 'Consulta Avanzada (Grid)', 
+                value: 'getConsultaGrid', 
+                description: 'POST Consulta compleja. Body JSON: { "padre": "100", "colExistencia": true, "listaPrecio": "MAY" }.' 
+            },
+            { 
+                name: 'Listar Árbol', 
+                value: 'getArbol', 
+                description: 'GET Estructura jerárquica. Filtros JSON: { "cuentaPadre": "100", "imputables": true }.' 
+            },
+            { 
+                name: 'Obtener Estructura', 
+                value: 'getEstructura', 
+                description: 'GET Metadatos y estructura de la tabla de productos.' 
+            },
 
-			{ name: 'Listar (Búsqueda)', value: 'getAll', description: 'GET Buscar por texto/código. Filtros: { "texto": "soja", "pageSize": 10 }.' },
-            { name: 'Consulta Avanzada (Grid)', value: 'getConsultaGrid', description: 'POST Consulta compleja grid.' },
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura de árbol.' },
-            { name: 'Obtener Configuración', value: 'getSettings', description: 'GET Settings de un producto (ID).' },
-            { name: 'Stock: Por Depósito', value: 'getStock', description: 'GET Stock detallado por depósito para un producto.' },
-            { name: 'Stock: Disponible', value: 'getStockDisponible', description: 'GET Stock disponible calculado.' },
-            { name: 'Stock: Movimientos', value: 'getMovimientosStock', description: 'GET Historial de movimientos. Filtros: fechas, depósito.' },
-            { name: 'Stock: Registrar Movimiento', value: 'createMovimientoStock', description: 'POST Alta de movimiento o producto en depósito.' },
-            { name: 'Stock: Actualizar Movimiento', value: 'updateMovimientoStock', description: 'PATCH Actualiza parcialmente (ej: firma).' },
-            { name: 'Precios: Consultar', value: 'getPrecios', description: 'GET Precios vigentes del producto.' },
-            { name: 'Bloquear Pieza', value: 'blockProducto', description: 'POST Bloquea un producto/pieza temporalmente.' },
-            { name: 'Desbloquear Pieza', value: 'unblockProducto', description: 'POST Desbloquea un producto/pieza.' },
+            // --- STOCK Y EXISTENCIAS ---
+            { 
+                name: 'Stock: Saldos Detallados', 
+                value: 'getSaldos', 
+                description: 'GET Stock desglosado (Partidas, Lotes). Filtros JSON: { "idDeposito": "...", "conPartidas": true }.' 
+            },
+            { 
+                name: 'Stock: Disponible Simple', 
+                value: 'getStockDisponible', 
+                description: 'GET Stock disponible (Liviano). Filtros JSON: { "idDeposito": "..." }.' 
+            },
+            { 
+                name: 'Stock: Piezas/Pesos', 
+                value: 'getPesos', 
+                description: 'GET Existencia de piezas pesables. Filtros JSON: { "pesoDesde": 10, "pesoHasta": 20 }.' 
+            },
+
+            // --- PRECIOS ---
+            { 
+                name: 'Precios: Consultar por Producto', 
+                value: 'getPrecios', 
+                description: 'GET Precios vigentes del producto en listas. Filtros JSON: { "todasLasVigencias": true }.' 
+            },
+            { 
+                name: 'Precios: Informe Precios y Stock', 
+                value: 'getPreciosExistencia', 
+                description: 'GET Reporte combinado. Filtros JSON: { "idLista": "...", "idDeposito": "..." }.' 
+            },
+            { 
+                name: 'Precios: Actualizar Masivamente', 
+                value: 'updatePrecios', 
+                description: 'POST Modificar precios de un producto. Body JSON: Array de objetos precio.' 
+            },
+
+            // --- UTILIDADES ---
+            { 
+                name: 'Obtener Configuración', 
+                value: 'getSettings', 
+                description: 'GET Settings de un producto (ID).' 
+            },
+            { 
+                name: 'Bloquear Pieza', 
+                value: 'blockProducto', 
+                description: 'POST Bloquea un producto/pieza temporalmente. Body JSON: { "codigoPieza": "...", "minutos": 5 }.' 
+            },
+            { 
+                name: 'Desbloquear Pieza', 
+                value: 'unblockProducto', 
+                description: 'POST Desbloquea un producto/pieza.' 
+            },
         ],
         default: 'getAll',
     },
@@ -38,8 +97,12 @@ export const productoFields: INodeProperties[] = [
                 service: ['sifac'], 
                 resource: ['producto'], 
                 operation: [
-                    'getStock', 'getStockDisponible', 'getMovimientosStock',
-                    'getPrecios', 'getSettings'
+                    'getSaldos', 
+                    'getStockDisponible', 
+                    'getPesos',
+                    'getPrecios', 
+                    'updatePrecios',
+                    'getSettings'
                 ] 
             } 
         },
@@ -56,6 +119,6 @@ export const productoFields: INodeProperties[] = [
                 resource: ['producto'] 
             } 
         },
-        description: 'Cuerpo para POST/PATCH o Filtros para GET (ej: {"texto": "maiz"}, {"idDeposito": "DEP01"}).',
+        description: 'Cuerpo para POST (Body) o Filtros para GET (Query String). Consulte la descripción de la operación.',
     },
 ];

@@ -4,72 +4,115 @@ import { PhysisTransport } from '../../../transport/transport';
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
     const operation = this.getNodeParameter('operation', index) as string;
     const transport = new PhysisTransport(this);
+    
     let endpoint = '';
     let method = 'GET';
     let body: IDataObject = {};
     let qs: IDataObject = {};
     let id = '';
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['POST', 'PUT', 'PATCH'].includes(method) || 
-            ['getConsultaGrid', 'createMovimientoStock', 'updateMovimientoStock', 'blockProducto', 'unblockProducto'].includes(operation)) {
-            body = json;
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
-
-    // --- PRODUCTOS ---
-    if (operation === 'getAll') {
-        endpoint = '/phy2service/api/sifac/productos'; 
-    }
-    else if (operation === 'getConsultaGrid') {
-        endpoint = '/phy2service/api/sifac/productos/consultar';
-        method = 'POST'; 
-    }
-    else if (operation === 'getArbol') {
-        endpoint = '/phy2service/api/sifac/productos/arbol'; 
-    }
-    
-    // --- STOCK Y MOVIMIENTOS ---
-    else if (operation === 'getStock') {
-        endpoint = `/phy2service/api/sifac/productos/${id}/stock`;
-    }
-    else if (operation === 'getStockDisponible') {
-        endpoint = `/phy2service/api/sifac/productos/${id}/stock-disponible`; 
-    }
-    else if (operation === 'getMovimientosStock') {
-        endpoint = `/phy2service/api/sifac/productos/${id}/stock/movimientos`;
-    }
-    else if (operation === 'createMovimientoStock') {
-        endpoint = '/phy2service/api/sifac/productos/stock/movimientos';
-        method = 'POST';
-    }
-    else if (operation === 'updateMovimientoStock') {
-        endpoint = '/phy2service/api/sifac/productos/stock/movimientos';
-        method = 'PATCH';
+    try {
+        id = this.getNodeParameter('id', index) as string;
+    } catch (e) {
     }
 
-    // --- PRECIOS Y SETTINGS ---
-    else if (operation === 'getPrecios') {
-        endpoint = `/phy2service/api/sifac/precios/productos/${id}`; 
+    let jsonParameters: IDataObject = {};
+    try {
+        const jsonString = this.getNodeParameter('jsonBody', index) as string;
+        jsonParameters = JSON.parse(jsonString);
+    } catch (e) {
     }
-    else if (operation === 'getSettings') {
-        endpoint = `/phy2service/api/sifac/productos/${id}/settings`;
-    }
-    else if (operation === 'blockProducto') {
-        endpoint = '/phy2service/api/sifac/productos/piezas/bloqueo';
-        method = 'POST';
-    }
-    else if (operation === 'unblockProducto') {
-        endpoint = '/phy2service/api/sifac/productos/piezas/desbloqueo';
-        method = 'POST';
+
+    const baseUrl = '/phy2service/api/sifac';
+
+    switch (operation) {
+        // --- CATÁLOGO Y BÚSQUEDA ---
+        case 'getAll':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos`;
+            qs = jsonParameters; 
+            break;
+
+        case 'getArbol':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos/arbol`;
+            qs = jsonParameters; 
+            break;
+
+        case 'getConsultaGrid':
+            method = 'POST';
+            endpoint = `${baseUrl}/productos/consultar`;
+            body = jsonParameters; 
+            break;
+
+        case 'getEstructura':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos/estructura-de-productos`;
+            qs = jsonParameters;
+            break;
+
+        // --- STOCK Y EXISTENCIAS ---
+        case 'getStockDisponible':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos/${id}/stock-disponible`;
+            qs = jsonParameters;
+            break;
+
+        case 'getSaldos':
+            method = 'GET';
+            endpoint = `${baseUrl}/saldos/productos/${id}`;
+            qs = jsonParameters; 
+            break;
+
+        case 'getPesos':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos/${id}/pesos`;
+            qs = jsonParameters;
+            break;
+
+        // --- PRECIOS ---
+        case 'getPrecios':
+            method = 'GET';
+            endpoint = `${baseUrl}/precios/productos/${id}`;
+            qs = jsonParameters; 
+            break;
+
+        case 'updatePrecios':
+            method = 'POST';
+            endpoint = `${baseUrl}/productos/${id}/lista-precios`;
+            body = jsonParameters; 
+            break;
+
+        case 'getPreciosExistencia':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos/precios-existencia`;
+            qs = jsonParameters;
+            break;
+
+        // --- CONFIGURACIÓN Y BLOQUEOS ---
+        case 'getSettings':
+            method = 'GET';
+            endpoint = `${baseUrl}/productos/${id}/settings`;
+            break;
+
+        case 'blockProducto':
+            method = 'POST';
+            endpoint = `${baseUrl}/productos/piezas/bloqueo`;
+            body = jsonParameters;
+            break;
+
+        case 'unblockProducto':
+            method = 'POST';
+            endpoint = `${baseUrl}/productos/piezas/desbloqueo`;
+            body = jsonParameters;
+            break;
+
+        default:
+            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
     }
 
     const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+    
     const data = (response.Datos || response) as IDataObject | IDataObject[];
 
     return Array.isArray(data) 

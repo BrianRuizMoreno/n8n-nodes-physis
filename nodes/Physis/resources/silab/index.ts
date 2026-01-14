@@ -48,9 +48,21 @@ import * as ordenParteHandler from './ordenParte/handlers';
 import * as tambo from './tambo/description';
 import * as tamboHandler from './tambo/handlers';
 
-// 12. Recursos de Campo 
-import * as recursoCampo from './recursoCampo/description';
-import * as recursoCampoHandler from './recursoCampo/handlers';
+// 12. Tipos 
+import * as tipos from './tipos/description';
+import * as tiposHandler from './tipos/handlers';
+
+//13. Numerador
+import * as numerador from './numerador/description';
+import * as numeradorHandler from './numerador/handlers';
+
+//14. Dominio
+import * as dominio from './dominio/description';
+import * as dominioHandler from './dominio/handlers';
+
+//15. Varios
+import * as varios from './varios/description';
+import * as variosHandler from './varios/handlers';
 
 
 // =====================================================================
@@ -69,7 +81,10 @@ export const silabDescriptions: INodeProperties[] = [
     ...personal.personalOperations, ...personal.personalFields,
     ...ordenParte.ordenParteOperations, ...ordenParte.ordenParteFields,
     ...tambo.tamboOperations, ...tambo.tamboFields,
-    ...recursoCampo.recursoCampoOperations, ...recursoCampo.recursoCampoFields,
+    ...tipos.tiposOperations, ...tipos.tiposFields,
+    ...numerador.numeradorOperations, ...numerador.numeradorFields,
+    ...dominio.dominioOperations, ...dominio.dominioFields,
+    ...varios.variosOperations, ...varios.variosFields,
 ];
 
 
@@ -100,8 +115,14 @@ export async function silabRouter(context: IExecuteFunctions, index: number, res
             return await ordenParteHandler.execute.call(context, index);
         case 'tambo':
             return await tamboHandler.execute.call(context, index);
-        case 'recursoCampo':
-            return await recursoCampoHandler.execute.call(context, index);
+        case 'tipos':
+            return await tiposHandler.execute.call(context, index);
+        case 'numerador':
+            return await numeradorHandler.execute.call(context, index);
+        case 'dominio':
+            return await dominioHandler.execute.call(context, index);
+        case 'varios':
+            return await variosHandler.execute.call(context, index);
         
         default:
             throw new Error(`El recurso SILAB "${resource}" no está implementado en el router.`);

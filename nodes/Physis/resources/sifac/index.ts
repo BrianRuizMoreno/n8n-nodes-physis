@@ -108,6 +108,42 @@ import * as clienteInfoHandler from './clienteInfo/handlers';
 import * as auxiliarSifac from './auxiliarSifac/description';
 import * as auxiliarSifacHandler from './auxiliarSifac/handlers';
 
+//27. Conductores
+import * as conductores from './conductores/description';
+import * as conductoresHandler from './conductores/handlers';
+
+//28. Imágenes
+import * as imagenes from './imagenes/description';
+import * as imagenesHandler from './imagenes/handlers';
+
+//29. CC Insumos
+import * as ccInsumos from './ccInsumos/description';
+import * as ccInsumosHandler from './ccInsumos/handlers';
+
+//30. Grupos Productos
+import * as gruposProductos from './gruposProductos/description';
+import * as gruposProductosHandler from './gruposProductos/handlers';
+
+//31. Grupos Proveedores
+import * as gruposProveedores from './gruposProveedores/description';
+import * as gruposProveedoresHandler from './gruposProveedores/handlers';
+
+//32. Descuentos
+import * as descuentos from './descuentos/description';
+import * as descuentosHandler from './descuentos/handlers';
+
+//33. Observaciones
+import * as observaciones from './observaciones/description';
+import * as observacionesHandler from './observaciones/handlers';
+
+//34. Tipos de Comprobantes
+import * as tiposComprobante from './tiposComprobantes/description';
+import * as tiposComprobanteHandler from './tiposComprobantes/handlers';
+
+//35. Varios
+import * as varios from './varios/description';
+import * as variosHandler from './varios/handlers';
+
 // =====================================================================
 // EXPORTACIÓN DE PROPIEDADES (Para el Nodo Principal)
 // =====================================================================
@@ -139,6 +175,15 @@ export const sifacDescriptions: INodeProperties[] = [
     ...maestroGeneral.maestroGeneralOperations, ...maestroGeneral.maestroGeneralFields,
     ...clienteInfo.clienteInfoOperations, ...clienteInfo.clienteInfoFields,
     ...auxiliarSifac.auxiliarSifacOperations, ...auxiliarSifac.auxiliarSifacOperations,
+    ...conductores.conductorOperations, ...conductores.conductorFields,
+    ...imagenes.imagenOperations, ...imagenes.imagenFields,
+    ...ccInsumos.ccInsumosOperations, ...ccInsumos.ccInsumosFields,
+    ...gruposProductos.grupoPermisosOperations, ...gruposProductos.grupoPermisosFields,
+    ...gruposProveedores.grupoProveedoresOperations, ...gruposProveedores.grupoProveedoresFields,
+    ...descuentos.descuentosClientesOperations, ...descuentos.descuentosClientesFields,
+    ...observaciones.observacionesOperations, ...observaciones.observacionesFields,
+    ...tiposComprobante.tiposComprobanteOperations, ...tiposComprobante.tiposComprobanteFields,
+    ...varios.variosOperations, ...varios.variosFields,
 ];
 
 
@@ -199,6 +244,24 @@ export async function sifacRouter(context: IExecuteFunctions, index: number, res
             return await clienteInfoHandler.execute.call(context, index);
         case 'auxiliarSifac':
             return await auxiliarSifacHandler.execute.call(context, index);
+        case 'conductores':
+            return await conductoresHandler.execute.call(context, index);
+        case 'imagenes':
+            return await imagenesHandler.execute.call(context, index);
+        case 'ccInsumos':
+            return await ccInsumosHandler.execute.call(context, index);
+        case 'gruposProductos':
+            return await gruposProductosHandler.execute.call(context, index);
+        case 'gruposProveedores':
+            return await gruposProveedoresHandler.execute.call(context, index);
+        case 'descuentosClientes':
+            return await descuentosHandler.execute.call(context, index);
+        case 'observaciones':
+            return await observacionesHandler.execute.call(context, index);
+        case 'tiposComprobante':
+            return await tiposComprobanteHandler.execute.call(context, index);
+        case 'varios':
+            return await variosHandler.execute.call(context, index);
         
         default:
             throw new Error(`El recurso SIFAC "${resource}" no está implementado en el router.`);
