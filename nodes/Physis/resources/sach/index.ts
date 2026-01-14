@@ -88,21 +88,18 @@ import * as gastoHandler from './gasto/handlers';
 import * as emision from './emision/description';
 import * as emisionHandler from './emision/handlers';
 
-//22. Establecimiento Faenador
-import * as establecimientoFaenador from './establecimientoFaenador/description';
-import * as establecimientoFaenadorHandler from './establecimientoFaenador/handlers';
-
-//23. Establecimiento Agropecuario
-import * as establecimientoAgropecuario from './establecimientoAgropecuario/description';
-import * as establecimientoAgropecuarioHandler from './establecimientoAgropecuario/handlers';
-
-//24. Estado
+//23. Estado
 import * as estado from './estado/description';
 import * as estadoHandler from './estado/handlers';
 
-//25. Informe
+//24. Informe
 import * as informe from './informe/description';
 import * as informeHandler from './informe/handlers';
+
+//25. Imputaciones Contable
+import * as imputacionContable from './imputacionesContable/description';
+import * as imputacionContableHandler from './imputacionesContable/handlers';
+
 
 // =====================================================================
 // EXPORTACIÓN DE PROPIEDADES 
@@ -130,10 +127,9 @@ export const sachDescriptions: INodeProperties[] = [
     ...lugar.lugarOperations, ...lugar.lugarFields,
     ...gasto.gastoOperations, ...gasto.gastoFields,
     ...emision.emisionOperations, ...emision.emisionFields,
-    ...establecimientoFaenador.establecimientoFaenadorOperations, ...establecimientoFaenador.establecimientoFaenadorFields,
-    ...establecimientoAgropecuario.establecimientoAgropecuarioOperations, ...establecimientoAgropecuario.establecimientoAgropecuarioFields,
     ...estado.estadoOperations, ...estado.estadoFields,
     ...informe.informeOperations, ...informe.informeFields,
+    ...imputacionContable.imputacionContableOperations, ...imputacionContable.imputacionContableFields,
 ];
 
 
@@ -184,14 +180,12 @@ export async function sachRouter(context: IExecuteFunctions, index: number, reso
             return await gastoHandler.execute.call(context, index);
         case 'emision':
             return await emisionHandler.execute.call(context, index);
-        case 'establecimientoFaenador':
-            return await establecimientoFaenadorHandler.execute.call(context, index);
-        case 'establecimientoAgropecuario':
-            return await establecimientoAgropecuarioHandler.execute.call(context, index);
         case 'estado':
             return await estadoHandler.execute.call(context, index);
         case 'informe':
             return await informeHandler.execute.call(context, index);
+        case 'imputacionContable':
+            return await imputacionContableHandler.execute.call(context, index);
         
         default:
             throw new Error(`El recurso SACH "${resource}" no está implementado en el router.`);

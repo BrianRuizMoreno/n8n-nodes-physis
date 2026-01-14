@@ -22,6 +22,9 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
         else if (operation === 'searchV2') {
             qs.consulta = jsonString; 
         }
+        else if (['getCategoriasHacienda', 'getRenspa'].includes(operation)) {
+            qs = json as IDataObject;
+        }
     } catch (e) {}
 
     if (operation === 'getAll') {
@@ -42,6 +45,12 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     }
     else if (operation === 'searchV2') {
         endpoint = '/phy2service/api/sach/v2/tipos-hacienda';
+    }
+    else if (operation === 'getCategoriasHacienda') {
+        endpoint = '/phy2service/api/sach/categorias-hacienda';
+    }
+    else if (operation === 'getRenspa') {
+        endpoint = '/phy2service/api/sach/renspa';
     }
 
     const response = await transport.request(method, endpoint, body, qs) as IDataObject;
