@@ -9,10 +9,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 
     try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
 
-    if (operation === 'getAll') endpoint = '/phy2service/api/core/empresas';
-    else if (operation === 'get') endpoint = `/phy2service/api/core/empresas/${id}`;
-    else if (operation === 'getLogo') endpoint = `/phy2service/api/core/empresas/${id}/logo`;
-    else if (operation === 'getCurrent') endpoint = '/phy2service/api/siges/empresas';
+    if (operation === 'getCurrent') endpoint = '/phy2service/api/siges/empresas';
     else if (operation === 'getCurrentName') endpoint = '/phy2service/api/siges/empresas/nombre';
     else if (operation === 'getApps') endpoint = '/phy2service/api/siges/empresas/aplicaciones';
     else if (operation === 'getByCuit') endpoint = `/phy2service/api/siges/empresas/${id}`; 

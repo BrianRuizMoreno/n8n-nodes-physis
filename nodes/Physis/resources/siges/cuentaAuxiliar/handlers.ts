@@ -4,65 +4,76 @@ import { PhysisTransport } from '../../../transport/transport';
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
     const operation = this.getNodeParameter('operation', index) as string;
     const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/cuentas-auxi';
+    let endpoint = '';
     let method = 'GET';
     let body: IDataObject = {};
     let qs: IDataObject = {};
     let id = '';
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
+    try {
+        id = this.getNodeParameter('id', index) as string;
+    } catch (e) { }
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['create', 'update'].includes(operation)) {
-            body = json;
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
+    let jsonParameters: IDataObject = {};
+    try {
+        const jsonString = this.getNodeParameter('jsonBody', index) as string;
+        jsonParameters = JSON.parse(jsonString);
+    } catch (e) { }
 
-    if (operation === 'getAll') {
-    }
-    else if (operation === 'get') {
-        endpoint = `${endpoint}/${id}`;
-    }
-    else if (operation === 'create') {
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        method = 'DELETE';
-    }
+    const baseUrl = '/phy2service/api/siges';
 
-    else if (operation === 'getByPpal') {
-        endpoint = '/phy2service/api/siges/cuentas-auxiliares-ppal';
-    }
-    else if (operation === 'getByPlan') {
-        endpoint = `/phy2service/api/siges/planes-cuentas-auxi/${id}/cuentas`; 
-    }
-    else if (operation === 'getByPlanFiltered') {
-        endpoint = `/phy2service/api/siges/planes-ctas-auxiliares/${id}/cuentas`; 
-    }
-    else if (operation === 'getArbol') {
-        endpoint = '/phy2service/api/siges/cuentas-auxiliares/arbol';
-    }
-    else if (operation === 'getTreeList') {
-        endpoint = '/phy2service/api/siges/cuentas-auxiliares/treelist';
-    }
-    else if (operation === 'getNext') {
-        endpoint = `${endpoint}/siguiente`;
-    }
-    else if (operation === 'getTiposTercero') {
-        endpoint = `${endpoint}/TiposTercero`;
-    }
-    else if (operation === 'getTiposDomicilio') {
-        endpoint = `${endpoint}/tiposDomicilio`;
-    }
-    else if (operation === 'getCreditoRequisitos') {
-        endpoint = `${endpoint}/Credito-Requisitos`;
+    switch (operation) {
+        case 'getAll':
+            method = 'GET';
+            endpoint = `${baseUrl}/cuentas-auxi`;
+            break;
+
+        case 'get':
+            method = 'GET';
+            endpoint = `${baseUrl}/cuentas-auxi/${id}`;
+            break;
+
+        case 'getByPlan':
+            const idAuxi = this.getNodeParameter('idAuxi', index) as number;
+            method = 'GET';
+            endpoint = `${baseUrl}/planes-ctas-auxiliares/${idAuxi}/cuentas`;
+            qs = jsonParameters; 
+            break;
+
+        case 'getNextId':
+            method = 'GET';
+            endpoint = `${baseUrl}/cuentas-auxi/siguiente`;
+            qs = jsonParameters; 
+            break;
+        case 'create':
+            method = 'POST';
+            endpoint = `${baseUrl}/cuentas-auxi`;
+            body = jsonParameters; 
+            
+            qs = {
+                convenioMultilateral: this.getNodeParameter('convenioMultilateral', index, false),
+                obligadoDirecto: this.getNodeParameter('obligadoDirecto', index, false)
+            };
+            break;
+        case 'update':
+            method = 'PUT';
+            endpoint = `${baseUrl}/cuentas-auxi`;
+            body = jsonParameters;
+            break;
+
+        case 'delete':
+            method = 'DELETE';
+            endpoint = `${baseUrl}/cuentas-auxi`;
+            qs = jsonParameters; 
+            break;
+        case 'getTree':
+            method = 'GET';
+            endpoint = `${baseUrl}/cuentas-auxiliares/arbol`;
+            qs = jsonParameters;
+            break;
+
+        default:
+            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
     }
 
     const response = await transport.request(method, endpoint, body, qs) as IDataObject;

@@ -1,72 +1,106 @@
 import { INodeProperties } from 'n8n-workflow';
 
-export const planReagrupacionAuxiliarOperations: INodeProperties[] = [
+export const planReagrupacionAuxiOperations: INodeProperties[] = [
     {
         displayName: 'Operación',
         name: 'operation',
         type: 'options',
         noDataExpression: true,
-        displayOptions: { show: { service: ['siges'], resource: ['planReagrupacionAuxiliar'] } },
+        displayOptions: { show: { service: ['siges'], resource: ['planReagrupacionAuxi'] } },
         options: [
-
-			{ name: 'Obtener Plan', value: 'get', description: 'GET Datos de un plan. Req: idAuxi, idReagAuxi.' },
-            { name: 'Listar por Auxiliar', value: 'getByAuxi', description: 'GET Planes de reagrupación de un Plan Auxiliar (idAuxi).' },
-            { name: 'Crear Plan', value: 'create', description: 'POST Inserta un plan de reagrupación.' },
-            { name: 'Actualizar Plan', value: 'update', description: 'PUT Modifica un plan de reagrupación.' },
-            { name: 'Eliminar Plan', value: 'delete', description: 'DELETE Elimina un plan. Req: idReagAuxi, idAuxi.' },
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Árbol de planes de reagrupación.' },
-            { name: 'Ver Tamaño Total', value: 'getTamano', description: 'GET Tamaño total de cuentas. Req: idReagAuxi.' },
-            { name: 'Cuentas: Listar (por Reag)', value: 'getCuentasByReag', description: 'GET Cuentas de un plan de reagrupación (idReagAuxi).' },
-            { name: 'Cuentas: Listar (por Auxi+Reag)', value: 'getCuentasByAuxiReag', description: 'GET Cuentas por idAuxi e idReagAuxi.' },
-            { name: 'Cuentas: Detalle', value: 'getCuentaDetalle', description: 'GET Detalle de una cuenta reagrupada (idCtaReagAuxi).' },
-            { name: 'Cuentas: Auxiliares Asociadas', value: 'getAuxiliaresAsociadas', description: 'GET Cuentas auxiliares dentro de una reagrupación.' },
+            // --- DEFINICIÓN ---
+            { 
+                name: 'Listar Planes', 
+                value: 'getAll', 
+                description: 'GET Obtiene las definiciones de reagrupación (ej: Zonas, Canales) disponibles para un rubro.' 
+            },
+            { 
+                name: 'Obtener Definición', 
+                value: 'get', 
+                description: 'GET Recupera la configuración estructural de un plan de reagrupación.' 
+            },
+            { 
+                name: 'Consultar Tamaño Máscara', 
+                value: 'getTotalSize', 
+                description: 'GET Devuelve la longitud total del código configurada para este plan.' 
+            },
+            // --- CONTENIDO ---
+            { 
+                name: 'Listar Nodos (Cuentas)', 
+                value: 'getAccounts', 
+                description: 'GET Devuelve las categorías o nodos creados bajo este esquema (ej: Norte, Sur).' 
+            },
+            { 
+                name: 'Ver Terceros Asociados', 
+                value: 'getAssociatedAuxiliaries', 
+                description: 'GET Devuelve la lista de Clientes/Proveedores asignados a una categoría específica.' 
+            },
+            // --- GESTIÓN ---
+            { 
+                name: 'Crear Plan', 
+                value: 'create', 
+                description: 'POST Define una nueva estructura de clasificación.' 
+            },
+            { 
+                name: 'Actualizar Plan', 
+                value: 'update', 
+                description: 'PUT Modifica la definición de la reagrupación.' 
+            },
+            { 
+                name: 'Eliminar Plan', 
+                value: 'delete', 
+                description: 'DELETE Elimina una definición de reagrupación.' 
+            },
         ],
-        default: 'getArbol',
+        default: 'getAll',
     },
 ];
 
-export const planReagrupacionAuxiliarFields: INodeProperties[] = [
+export const planReagrupacionAuxiFields: INodeProperties[] = [
     {
-        displayName: 'ID Plan Auxiliar (idAuxi)',
+        displayName: 'ID Plan Reagrupación',
+        name: 'id',
+        type: 'number',
+        default: 0,
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['siges'], 
+                resource: ['planReagrupacionAuxi'], 
+                operation: ['get', 'delete', 'getAccounts', 'getAssociatedAuxiliaries', 'getTotalSize'] 
+            } 
+        },
+        description: 'Identificador del tipo de clasificación (ej: 1=Zonas).',
+    },
+    {
+        displayName: 'ID Plan Auxiliar (Rubro)',
         name: 'idAuxi',
-        type: 'string',
-        default: '',
+        type: 'number',
+        default: 0,
+        required: true,
         displayOptions: { 
             show: { 
                 service: ['siges'], 
-                resource: ['planReagrupacionAuxiliar'], 
-                operation: ['get', 'getByAuxi', 'delete', 'getTamano', 'getCuentasByAuxiReag'] 
+                resource: ['planReagrupacionAuxi'],
+                operation: ['getAll', 'get', 'delete', 'getTotalSize']
             } 
         },
-        description: 'Identificador del Plan de Cuentas Auxiliar.',
+        description: 'El plan base al que pertenece esta agrupación (ej: 100=Clientes).',
     },
     {
-        displayName: 'ID Plan Reagrupación (idReagAuxi)',
-        name: 'idReagAuxi',
-        type: 'string',
-        default: '',
-        displayOptions: { 
-            show: { 
-                service: ['siges'], 
-                resource: ['planReagrupacionAuxiliar'], 
-                operation: ['get', 'delete', 'getTamano', 'getCuentasByReag', 'getCuentasByAuxiReag', 'getCuentaDetalle', 'getAuxiliaresAsociadas'] 
-            } 
-        },
-        description: 'Identificador del Plan de Reagrupación.',
-    },
-    {
-        displayName: 'ID Cuenta Reagrupada (idCtaReagAuxi)',
+        displayName: 'ID Cuenta Reagrupación',
         name: 'idCtaReagAuxi',
         type: 'string',
         default: '',
+        required: true,
         displayOptions: { 
             show: { 
                 service: ['siges'], 
-                resource: ['planReagrupacionAuxiliar'], 
-                operation: ['getCuentaDetalle', 'getAuxiliaresAsociadas'] 
+                resource: ['planReagrupacionAuxi'],
+                operation: ['getAssociatedAuxiliaries']
             } 
         },
-        description: 'Código de la cuenta reagrupada.',
+        description: 'Código del nodo específico a consultar (ej: "ZN" para Zona Norte).',
     },
     {
         displayName: 'JSON Body',
@@ -76,10 +110,10 @@ export const planReagrupacionAuxiliarFields: INodeProperties[] = [
         displayOptions: { 
             show: { 
                 service: ['siges'], 
-                resource: ['planReagrupacionAuxiliar'], 
-                operation: ['create', 'update'] 
+                resource: ['planReagrupacionAuxi'],
+                operation: ['create', 'update', 'getAll']
             } 
         },
-        description: 'Objeto Plan para Crear/Actualizar.',
+        description: 'Estructura del plan o filtros adicionales.',
     },
 ];

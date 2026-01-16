@@ -8,7 +8,6 @@ export const autorizacionOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['autorizacion'] } },
         options: [
-            { name: 'Soy Autorizante', value: 'getMe', description: 'GET Verifica si el usuario actual es autorizante.' },
             { name: 'Listar Autorizantes', value: 'getAll', description: 'GET Lista todos los autorizantes del sistema.' },
             { name: 'Pases Pendientes', value: 'getPasesPendientes', description: 'GET Pases financieros pendientes.' },
             { name: 'Actualizar Pase (Patch)', value: 'updatePase', description: 'PATCH Autorizar/Desautorizar pase.' },
@@ -16,7 +15,7 @@ export const autorizacionOperations: INodeProperties[] = [
             { name: 'Listar Pases Afectables', value: 'getAfectaciones', description: 'POST Lista pases disponibles para afectar.' },
             { name: 'Pases Ref. Sin Afectar', value: 'getSinAfectar', description: 'GET Pases referenciados pendientes.' },
         ],
-        default: 'getMe',
+        default: 'getAll',
     },
 ];
 

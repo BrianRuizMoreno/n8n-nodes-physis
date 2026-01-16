@@ -8,65 +8,137 @@ export const terceroOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['tercero'] } },
         options: [
-
-			{ name: 'Buscar', value: 'search', description: 'GET Busca terceros por texto. Filtros: { texto: "..." }.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Detalle de tercero. Req: IdAuxi, IdCtaAuxi.' },
-            { name: 'Obtener Mi Perfil', value: 'getMe', description: 'GET Datos del usuario actual.' },
-            { name: 'Buscar por Nro Doc', value: 'getByNroDoc', description: 'GET Busca por documento. Filtros: { NroDoc: "..." }.' },
-            { name: 'Sin Usuario Asignado', value: 'getSinUsuario', description: 'GET Terceros sin usuario asignado. Req: IdAuxi.' },
-            { name: 'Domicilios: Listar', value: 'getDomicilios', description: 'GET Domicilios de un tercero.' },
-            { name: 'Domicilios: Guardar', value: 'saveDomicilio', description: 'POST Guarda nuevo domicilio.' },
-            { name: 'Cuentas Bancarias', value: 'getCuentasBancarias', description: 'GET Cuentas bancarias asociadas.' },
-            { name: 'Cuentas Bancarias (Detalle)', value: 'getCuentasBancariasDetalle', description: 'GET Detalle de una cuenta bancaria específica.' },
-            { name: 'Contactos Reagrupados', value: 'getContactosReagrupados', description: 'GET Contactos de una reagrupación.' },
-            { name: 'Consulta Tabla (Terceros)', value: 'tableSearch', description: 'POST Consulta avanzada con filtros, orden y paginado.' },
-            { name: 'Consulta Tabla (Cuentas)', value: 'tableSearchCuentas', description: 'POST Consulta avanzada sobre cuentas bancarias.' },
-            { name: 'Filtro CCB', value: 'getFiltroCCB', description: 'GET Búsqueda específica en CCB.' },
+            { 
+                name: 'Buscar (Autocomplete)', 
+                value: 'search', 
+                description: 'GET Busca terceros por nombre, código o documento.' 
+            },
+            { 
+                name: 'Obtener Detalle', 
+                value: 'get', 
+                description: 'GET Recupera los datos completos de un tercero específico.' 
+            },
+            { 
+                name: 'Buscar por Documento', 
+                value: 'getByDocument', 
+                description: 'GET Busca terceros coincidentes por CUIT o DNI.' 
+            },
+            { 
+                name: 'Consulta Avanzada', 
+                value: 'query', 
+                description: 'POST Ejecuta una consulta con filtros complejos, ordenamiento y paginación.' 
+            },
+            { 
+                name: 'Listar Domicilios', 
+                value: 'getAddresses', 
+                description: 'GET Obtiene las direcciones registradas de un tercero.' 
+            },
+            { 
+                name: 'Crear Domicilio', 
+                value: 'createAddress', 
+                description: 'POST Agrega una nueva dirección a un tercero.' 
+            },
+            { 
+                name: 'Listar Cuentas Bancarias', 
+                value: 'getBankAccounts', 
+                description: 'GET Devuelve las cuentas bancarias asociadas para transferencias.' 
+            },
+            { 
+                name: 'Listar Contactos', 
+                value: 'getContacts', 
+                description: 'GET Obtiene la lista de personas de contacto.' 
+            },
         ],
         default: 'search',
     },
 ];
 
 export const terceroFields: INodeProperties[] = [
+
     {
-        displayName: 'ID Auxi',
-        name: 'id',
+        displayName: 'ID Plan Auxiliar',
+        name: 'idAuxi',
+        type: 'number',
+        default: 0,
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['siges'], 
+                resource: ['tercero'], 
+                operation: ['get', 'getAddresses', 'createAddress'] 
+            } 
+        },
+        description: 'Identificador del rubro (ej: 100=Clientes).',
+    },
+    {
+        displayName: 'ID Cuenta Auxiliar',
+        name: 'idCtaAuxi',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['siges'], 
+                resource: ['tercero'], 
+                operation: ['get', 'getAddresses', 'createAddress'] 
+            } 
+        },
+        description: 'Código del tercero (ej: "CLI-001").',
+    },
+    {
+        displayName: 'Texto de Búsqueda',
+        name: 'texto',
         type: 'string',
         default: '',
         displayOptions: { 
             show: { 
                 service: ['siges'], 
                 resource: ['tercero'], 
-                operation: ['get', 'getSinUsuario', 'getDomicilios', 'saveDomicilio', 'getCuentasBancariasDetalle'] 
+                operation: ['search'] 
             } 
         },
-        description: 'Identificador numérico del tercero (Plan Auxiliar).',
+        description: 'Nombre, razón social o parte del documento a buscar.',
     },
     {
-        displayName: 'ID CtaAuxi',
-        name: 'idCta',
-        type: 'string',
-        default: '',
+        displayName: 'Filtro ID Plan (Opcional)',
+        name: 'idAuxiFilter',
+        type: 'number',
+        default: 0,
         displayOptions: { 
             show: { 
                 service: ['siges'], 
                 resource: ['tercero'], 
-                operation: ['get', 'getDomicilios', 'saveDomicilio'] 
+                operation: ['search'] 
             } 
         },
-        description: 'Código de cuenta del tercero.',
+        description: 'Restringe la búsqueda a un solo rubro (ej: Solo buscar en Clientes).',
     },
     {
-        displayName: 'JSON Body / Filtros',
+        displayName: 'Número de Documento',
+        name: 'nroDoc',
+        type: 'string',
+        default: '',
+        required: true,
+        displayOptions: { 
+            show: { 
+                service: ['siges'], 
+                resource: ['tercero'], 
+                operation: ['getByDocument'] 
+            } 
+        },
+        description: 'CUIT o DNI exacto a buscar.',
+    },
+    {
+        displayName: 'JSON Parámetros / Body',
         name: 'jsonBody',
         type: 'json',
         default: '{}',
         displayOptions: { 
             show: { 
                 service: ['siges'], 
-                resource: ['tercero'] 
+                resource: ['tercero']
             } 
         },
-        description: 'Filtros para búsqueda (texto, NroDoc) o Body para Guardar/Consulta Avanzada.',
+        description: 'Filtros adicionales, datos del domicilio o estructura de consulta avanzada.',
     },
 ];

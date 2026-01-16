@@ -15,8 +15,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
         else qs = json;
     } catch (e) {}
 
-    if (operation === 'getMe') endpoint = '/phy2service/api/siges/autorizadores/me';
-    else if (operation === 'getAll') endpoint = '/phy2service/api/siges/autorizantes';
+    if (operation === 'getAll') endpoint = '/phy2service/api/siges/autorizantes';
     else if (operation === 'getPasesPendientes') endpoint = '/phy2service/api/siges/pases/pendientes';
     else if (operation === 'updatePase') {
         endpoint = '/phy2service/api/siges/pases';

@@ -13,7 +13,6 @@ export const ejercicioOperations: INodeProperties[] = [
             { name: 'Obtener por ID', value: 'get', description: 'GET Datos de un ejercicio.' },
             { name: 'Crear', value: 'create', description: 'POST Crea un nuevo ejercicio.' },
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un ejercicio.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE (Deshabilitado según doc).' },
             { name: 'Ejercicio Actual (Get)', value: 'getActual', description: 'GET Ejercicio seleccionado por el usuario.' },
             { name: 'Ejercicio Actual (Set)', value: 'setActual', description: 'PUT Cambia el ejercicio actual del usuario.' },
             { name: 'Diarios: Parámetros', value: 'getDiariosParametros', description: 'GET Parámetros de libro diario.' },

@@ -65,6 +65,9 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     else if (operation === 'getCodigosOperacion') {
         endpoint = `${endpoint}/codigos-operacion`;
     }
+    else if (operation === 'getConFormatos'){
+        endpoint = `${endpoint}con-formatos-valores-electronicos`;
+    }
 
     // --- CUENTAS BANCARIAS TERCEROS ---
     else if (operation === 'getCuentaTercero') {

@@ -4,69 +4,88 @@ import { PhysisTransport } from '../../../transport/transport';
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
     const operation = this.getNodeParameter('operation', index) as string;
     const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/comprobantes';
+    let endpoint = '';
     let method = 'GET';
     let body: IDataObject = {};
     let qs: IDataObject = {};
-    let id = ''; let idEj = '';
+    let id = '';
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { idEj = this.getNodeParameter('idEjercicio', index) as string; } catch (e) {}
+    try {
+        id = this.getNodeParameter('id', index) as string;
+    } catch (e) { }
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['insert', 'update', 'calcRetenciones'].includes(operation)) {
-             qs.comprobante = JSON.stringify(json);
-        }
-        else if (operation === 'createOPMasivo') {
-            body = json; 
-        }
-        else {
-            qs = json;
-        }
-    } catch (e) {}
+    let jsonParameters: IDataObject = {};
+    try {
+        const jsonString = this.getNodeParameter('jsonBody', index) as string;
+        jsonParameters = JSON.parse(jsonString);
+    } catch (e) { }
 
-    if (operation === 'getAll') {
-    }
-    else if (operation === 'getAllPaginado') {
-        endpoint = '/phy2service/api/siges/comprobantes-all-paginados';
-    }
-    else if (operation === 'get') {
-        endpoint = `${endpoint}/${id}`; 
-        if (idEj) qs.idEjercicio = idEj;
-    }
-    else if (operation === 'insert') {
-        endpoint = '/phy2service/api/siges/comprobantes/insert';
-        endpoint = `${endpoint}/insert`; 
-    } 
-    else if (operation === 'update') {
-        endpoint = `${endpoint}/update`;
-    }
-    else if (operation === 'delete') {
-        method = 'DELETE';
-    }
-    else if (operation === 'anular') {
-        endpoint = `${endpoint}/anular`;
-    }
-    else if (operation === 'getCantidades') {
-        endpoint = `${endpoint}/cantidades`;
-    }
-    else if (operation === 'getPendientesPago') {
-        endpoint = `${endpoint}/pendientes_a_pagar`;
-    }
-    else if (operation === 'calcRetenciones') {
-        endpoint = `${endpoint}/RetencionesAutomaticas`;
-    }
-    else if (operation === 'getParametros') {
-        endpoint = `${endpoint}/${idEj}/${id}/parametros`;
-    }
-    else if (operation === 'getCertificados') {
-        endpoint = `${endpoint}/${idEj}/${id}/certificados`;
-    }
-    else if (operation === 'createOPMasivo') {
-        endpoint = `${endpoint}/OPMasivos`;
-        method = 'POST'; 
+    const baseUrl = '/phy2service/api/siges';
+
+    switch (operation) {
+        case 'getAll':
+            method = 'GET';
+            endpoint = `${baseUrl}/comprobantes`;
+            qs = jsonParameters; 
+            break;
+
+        case 'getAllPaginated':
+            method = 'GET';
+            endpoint = `${baseUrl}/comprobantes-all-paginados`;
+            qs = jsonParameters;
+            break;
+
+        case 'get':
+            method = 'GET';
+            if (!jsonParameters.idEjercicio) {
+                throw new Error('El campo "idEjercicio" es obligatorio en el JSON Body para obtener un comprobante.');
+            }
+            endpoint = `${baseUrl}/comprobantes/${id}`;
+            qs = { idEjercicio: jsonParameters.idEjercicio };
+            break;
+        case 'create':
+            method = 'POST';
+            endpoint = `${baseUrl}/comprobantes`;
+            body = jsonParameters;
+            
+            break;
+
+        case 'update':
+            method = 'PUT';
+            endpoint = `${baseUrl}/comprobantes`;
+            body = jsonParameters;
+            break;
+
+        case 'delete':
+            method = 'DELETE';
+            endpoint = `${baseUrl}/comprobantes`;
+            qs = { 
+                comprobante: JSON.stringify(jsonParameters),
+                advertencia: this.getNodeParameter('advertencia', index, false)
+            };
+            break;
+        case 'createOPMasivas':
+            method = 'POST'; 
+            endpoint = `${baseUrl}/comprobantes/OPMasivos`;
+            qs = {
+                IdUsuario: this.getNodeParameter('additionalField', index, 0), 
+                eProceso: 1 
+            };
+            body = jsonParameters; 
+            break;
+        case 'checkExternalExists':
+            method = 'GET';
+            endpoint = `${baseUrl}/comprobantes/ExisteComprobanteExterno`;
+            qs = jsonParameters;
+            break;
+        case 'getPendientesPago':
+            method = 'GET';
+            endpoint = `${baseUrl}/comprobantes/pendientes_a_pagar`;
+            qs = jsonParameters;
+            break;
+
+        default:
+            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
     }
 
     const response = await transport.request(method, endpoint, body, qs) as IDataObject;

@@ -16,6 +16,7 @@ export const bancoOperations: INodeProperties[] = [
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un banco.' },
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un banco.' },
             { name: 'Cuentas Corrientes (Medios)', value: 'getCCMedios', description: 'GET Cuentas por forma de pago. Filtro: { "IdFormaDePago": 1 }.' },
+            { name: 'Cuentas Corrientes (Formato)', value: 'getConFormatos', description: 'GET Filtra solo bancos con formatos de valores electronicos' },
             { name: 'Cuentas Corrientes (Electrónicos)', value: 'getCCElectronicos', description: 'GET Filtro: { "Electronica": true }.' },
             { name: 'Cuentas Caución', value: 'getCaucion', description: 'GET Cuentas principales en caución.' },
             { name: 'Bancos Exporta OP', value: 'getExportaOP', description: 'GET Bancos que exportan Órdenes de Pago.' },

@@ -4,66 +4,84 @@ import { PhysisTransport } from '../../../transport/transport';
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
     const operation = this.getNodeParameter('operation', index) as string;
     const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/planes-reagrupacion-auxi';
+    let endpoint = '';
     let method = 'GET';
     let body: IDataObject = {};
     let qs: IDataObject = {};
-    let idAuxi = '';
-    let idReagAuxi = '';
-    let idCtaReagAuxi = '';
+    let id = ''; 
 
-    try { idAuxi = this.getNodeParameter('idAuxi', index) as string; } catch (e) {}
-    try { idReagAuxi = this.getNodeParameter('idReagAuxi', index) as string; } catch (e) {}
-    try { idCtaReagAuxi = this.getNodeParameter('idCtaReagAuxi', index) as string; } catch (e) {}
+    try {
+        id = this.getNodeParameter('id', index) as string;
+    } catch (e) { }
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        if (['create', 'update'].includes(operation)) {
-            body = json;
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
-    
-    if (operation === 'get') {
-        if (idAuxi) qs.idAuxi = idAuxi;
-        if (idReagAuxi) qs.idReagAuxi = idReagAuxi;
-    }
-    else if (operation === 'getByAuxi') {
-        endpoint = `/phy2service/api/siges/planes-cuentas-auxi/${idAuxi}/reagrupaciones`;
-    }
-    else if (operation === 'create') {
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = `${endpoint}/${idReagAuxi}`;
-        method = 'DELETE';
-        if (idAuxi) qs.idAuxi = idAuxi;
-    }
-    else if (operation === 'getArbol') {
-        endpoint = `${endpoint}/arbol`;
-    }
-    else if (operation === 'getTamano') {
-        endpoint = `${endpoint}/${idReagAuxi}/tamaniototal`;
-        if (idAuxi) qs.idAuxi = idAuxi;
-    }    
-    else if (operation === 'getCuentasByReag') {
-        endpoint = `${endpoint}/${idReagAuxi}/cuentas`;
-    }
-    else if (operation === 'getCuentasByAuxiReag') {
-        endpoint = `/phy2service/api/siges/planes-cuentas-auxi/${idAuxi}/reagrupaciones/${idReagAuxi}/cuentas`;
-    }
-    else if (operation === 'getCuentaDetalle') {
-        endpoint = `${endpoint}/${idReagAuxi}/cuentas/${idCtaReagAuxi}`;
-    }
-    else if (operation === 'getAuxiliaresAsociadas') {
-        endpoint = `${endpoint}/${idReagAuxi}/cuentas/${idCtaReagAuxi}/auxiliares`;
+    let jsonParameters: IDataObject = {};
+    try {
+        const jsonString = this.getNodeParameter('jsonBody', index) as string;
+        jsonParameters = JSON.parse(jsonString);
+    } catch (e) { }
+
+    const baseUrl = '/phy2service/api/siges';
+
+    switch (operation) {
+        case 'getAll':
+            const idAuxiList = this.getNodeParameter('idAuxi', index, 0) as number;
+            if (idAuxiList > 0) {
+                method = 'GET';
+                endpoint = `${baseUrl}/planes-cuentas-auxi/${idAuxiList}/reagrupaciones`;
+            } else {
+                method = 'GET';
+                endpoint = `${baseUrl}/planes-reagrupacion-auxi`; 
+                qs = jsonParameters;
+            }
+            break;
+
+        case 'get':
+            method = 'GET';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi`;
+            qs = {
+                idReagAuxi: id,
+                idAuxi: this.getNodeParameter('idAuxi', index) as number
+            };
+            break;
+        case 'getTotalSize':
+            method = 'GET';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi/${id}/tamaniototal`;
+            qs = { idAuxi: this.getNodeParameter('idAuxi', index) as number };
+            break;
+        case 'getAccounts':
+            method = 'GET';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi/${id}/cuentas`;
+            break;
+
+        case 'getAssociatedAuxiliaries':
+            const idCtaReag = this.getNodeParameter('idCtaReagAuxi', index) as string;
+            method = 'GET';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi/${id}/cuentas/${idCtaReag}/auxiliares`;
+            break;
+        case 'create':
+            method = 'POST';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi`;
+            body = jsonParameters;
+            break;
+        case 'update':
+            method = 'PUT';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi`;
+            body = jsonParameters;
+            break;
+        case 'delete':
+            method = 'DELETE';
+            endpoint = `${baseUrl}/planes-reagrupacion-auxi/${id}`;
+            qs = {
+                idAuxi: this.getNodeParameter('idAuxi', index) as number,
+                idPpal: 1 
+            };
+            break;
+
+        default:
+            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
     }
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+    const response = await transport.request(method, endpoint, body, qs) as IDataObject; 
     const data = (response.Datos || response) as IDataObject | IDataObject[];
 
     return Array.isArray(data) 

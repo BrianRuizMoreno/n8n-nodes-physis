@@ -33,9 +33,6 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     else if (operation === 'update') {
         method = 'PUT';
     }
-    else if (operation === 'delete') {
-        method = 'DELETE'; 
-    }
         else if (operation === 'getActual') {
         endpoint = `${endpoint}/actual`;
     }

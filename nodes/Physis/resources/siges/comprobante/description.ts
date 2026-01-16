@@ -8,22 +8,57 @@ export const comprobanteOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['comprobante'] } },
         options: [
-
-			{ name: 'Listar', value: 'getAll', description: 'GET Lista comprobantes. Filtros: {idEjercicio, fechas}.' },
-            { name: 'Listar (Paginado)', value: 'getAllPaginado', description: 'GET Lista completa paginada.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Detalle completo con pases y retenciones.' },
-            { name: 'Obtener Cantidades', value: 'getCantidades', description: 'GET Resumen de cantidades por tipo.' },
-            { name: 'Obtener Parámetros', value: 'getParametros', description: 'GET Parámetros de un comprobante.' },
-            { name: 'Obtener Certificados', value: 'getCertificados', description: 'GET Certificados asociados.' },
-            { name: 'Pendientes a Pagar', value: 'getPendientesPago', description: 'GET Comprobantes pendientes de pago.' },
-            { name: 'Calcular Retenciones', value: 'calcRetenciones', description: 'GET Simula retenciones para una OP.' },
-            { name: 'Insertar', value: 'insert', description: 'GET/POST Inserta comprobante (JSON en query param).' },
-            { name: 'Actualizar', value: 'update', description: 'GET/PUT Modifica comprobante (JSON en query param).' },
-            { name: 'Anular', value: 'anular', description: 'GET Anula comprobante por ID.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Borra comprobante.' },
-            { name: 'OP Masiva', value: 'createOPMasivo', description: 'POST Genera órdenes de pago masivas.' },
+            // --- CONSULTAS ---
+            { 
+                name: 'Listar Todos', 
+                value: 'getAll', 
+                description: 'GET Listado general de comprobantes con filtros básicos.' 
+            },
+            { 
+                name: 'Listar Paginado', 
+                value: 'getAllPaginated', 
+                description: 'GET Listado optimizado para grandes volúmenes de datos.' 
+            },
+            { 
+                name: 'Obtener por ID', 
+                value: 'get', 
+                description: 'GET Recupera un comprobante completo (Requiere idEjercicio en JSON Body).' 
+            },
+            // --- GESTIÓN ---
+            { 
+                name: 'Crear Comprobante', 
+                value: 'create', 
+                description: 'POST Crea un nuevo comprobante completo (Factura, Recibo, etc.).' 
+            },
+            { 
+                name: 'Actualizar Comprobante', 
+                value: 'update', 
+                description: 'PUT Modifica un comprobante existente.' 
+            },
+            { 
+                name: 'Eliminar Comprobante', 
+                value: 'delete', 
+                description: 'DELETE Borra un comprobante (Requiere estructura mínima en JSON Body).' 
+            },
+            // --- TESORERÍA / PAGOS ---
+            { 
+                name: 'Generar OP Masivas', 
+                value: 'createOPMasivas', 
+                description: 'POST Genera Órdenes de Pago automáticas a partir de una lista de deudas.' 
+            },
+            { 
+                name: 'Pendientes de Pago', 
+                value: 'getPendientesPago', 
+                description: 'GET Lista comprobantes pendientes de cancelación.' 
+            },
+            // --- VALIDACIONES ---
+            { 
+                name: 'Validar Existencia Externa', 
+                value: 'checkExternalExists', 
+                description: 'GET Verifica si ya existe una factura externa (Duplicados).' 
+            },
         ],
-        default: 'getAll',
+        default: 'getAllPaginated',
     },
 ];
 
@@ -38,37 +73,36 @@ export const comprobanteFields: INodeProperties[] = [
             show: { 
                 service: ['siges'], 
                 resource: ['comprobante'], 
-                operation: ['get', 'getParametros', 'getCertificados'] 
+                operation: ['get'] 
             } 
         },
-        description: 'Identificador del comprobante.',
+        description: 'Número identificador del comprobante.',
     },
     {
-        displayName: 'ID Ejercicio',
-        name: 'idEjercicio',
-        type: 'string',
-        default: '',
-        required: true,
+        displayName: 'Advertencia (Force Delete)',
+        name: 'advertencia',
+        type: 'boolean',
+        default: false,
         displayOptions: { 
             show: { 
                 service: ['siges'], 
                 resource: ['comprobante'], 
-                operation: ['get', 'getParametros', 'getCertificados'] 
+                operation: ['delete'] 
             } 
         },
-        description: 'Ejercicio contable del comprobante.',
+        description: 'Si es True, fuerza el borrado ignorando advertencias no críticas.',
     },
     {
-        displayName: 'JSON Body / Filtros',
+        displayName: 'JSON Parámetros / Body',
         name: 'jsonBody',
         type: 'json',
         default: '{}',
         displayOptions: { 
             show: { 
                 service: ['siges'], 
-                resource: ['comprobante'] 
+                resource: ['comprobante']
             } 
         },
-        description: 'Objeto Comprobante (para Insert/Update/Calc) o Filtros (para Listar/Pendientes).',
+        description: 'Cuerpo de la solicitud o parámetros de filtrado (ej: idEjercicio, fechas, estructura del comprobante).',
     },
 ];

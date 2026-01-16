@@ -60,9 +60,9 @@ import * as monedaHandler from './moneda/handlers';
 import * as tercero from './tercero/description';
 import * as terceroHandler from './tercero/handlers';
 
-// 15. Tipo
-import * as tipo from './tipo/description';
-import * as tipoHandler from './tipo/handlers';
+// 15. Regimenes
+import * as regimenes from './regimenes/description';
+import * as regimenesHandler from './regimenes/handlers';
 
 // 16. Tipo Documento
 import * as tipoDocumento from './tipoDocumento/description';
@@ -136,9 +136,9 @@ import * as libroHandler from './libro/handlers';
 import * as pesaje from './pesajes/description';
 import * as pesajeHandler from './pesajes/handlers';
 
-// 34. Producto
-import * as producto from './producto/description';
-import * as productoHandler from './producto/handlers';
+// 34. Afectación
+import * as afectacion from './afectacion/description';
+import * as afectacionHandler from './afectacion/handlers';
 
 // 35. Reporte Definible
 import * as reporteDefinible from './reporteDefinible/description';
@@ -164,6 +164,85 @@ import * as cuentasReagrupacionPpalHandler from './cuentasReagrupacionPpal/handl
 import * as numeracion from './numeracion/description';
 import * as numeracionHandler from './numeracion/handlers';
 
+// 41. BI
+import * as BI from './BI/description';
+import * as BIHandler from './BI/handlers';
+
+// 42. Billeteras
+import * as billeteras from './billeteras/description';
+import * as billeterasHandler from './billeteras/handlers';
+
+// 43. Combos
+import * as combos from './combos/description';
+import * as combosHandler from './combos/handlers';
+
+// 44. Comprobantes Pendientes
+import * as comprobantePendiente from './comprobantesPendientes/description';   
+import * as comprobantePendienteHandler from './comprobantesPendientes/handlers';
+
+// 45. Tipos de Comprobantes AFIP
+import * as tiposComprobantesAfip from './tiposComprobantesAFIP/description';
+import * as tiposComprobantesAfipHandler from './tiposComprobantesAFIP/handlers';
+
+// 46. Control Diario
+import * as controlDiario from './controlDiario/description';
+import * as controlDiarioHandler from './controlDiario/handlers';
+
+// 47. Firmas
+import * as firmas from './firmas/description';
+import * as firmasHandler from './firmas/handlers';
+
+// 48. Tipos de Comprobantes
+import * as tiposComprobantes from './tiposComprobantes/description';
+import * as tiposComprobantesHandler from './tiposComprobantes/handlers';
+
+// 49. Valores
+import * as valores from './valores/description';
+import * as valoresHandler from './valores/handlers';
+
+// 50. Cuentas Temporales
+import * as cuentasTemp from './cuentasTemporales/description';
+import * as cuentasTempHandler from './cuentasTemporales/handlers';
+
+// 51. Conceptos IVA
+import * as conceptosIVA from './conceptosIVA/description';
+import * as conceptosIVAHandler from './conceptosIVA/handlers';
+
+// 52. Vencimientos
+import * as vencimientos from './vencimientos/description';
+import * as vencimientosHandler from './vencimientos/handlers';
+
+// 53. QR
+import * as qr from './qr/description';
+import * as qrHandler from './qr/handlers';
+
+// 54. Textos
+import * as textos from './textos/description';
+import * as textosHandler from './textos/handlers';
+
+// 55. Interdepósitos
+import * as interdepositos from './interdepositos/description';
+import * as interdepositosHandler from './interdepositos/handlers';
+
+// 56. Historia
+import * as historia from './historia/description';
+import * as historiaHandler from './historia/handlers';
+
+// 57. Modelos
+import * as modelos from './modelos/description';
+import * as modelosHandler from './modelos/handlers';
+
+// 58. Sistemas
+import * as sistemas from './sistemas/description';
+import * as sistemasHandler from './sistemas/handlers';
+
+// 59. Retenciones
+import * as retenciones from './retenciones/description';
+import * as retencionesHandler from './retenciones/handlers';
+
+// 60. Utilidades
+import * as utilidades from './utilidades/description';
+import * as utilidadesHandler from './utilidades/handlers';
 
 // =====================================================================
 // EXPORTACIÓN DE PROPIEDADES 
@@ -174,7 +253,7 @@ export const sigesDescriptions: INodeProperties[] = [
     ...chequera.chequeraOperations, ...chequera.chequeraFields,
     ...comprobante.comprobanteOperations, ...comprobante.comprobanteFields,
     ...credito.creditoOperations, ...credito.creditoFields,
-    ...cuentaAuxiliar.cuentaAuxiliarOperations, ...cuentaAuxiliar.cuentaAuxiliarFields,
+    ...cuentaAuxiliar.cuentasAuxiOperations, ...cuentaAuxiliar.cuentasAuxiFields,
     ...cuentaCorriente.cuentaCorrienteOperations, ...cuentaCorriente.cuentaCorrienteFields,
     ...cuentaPrincipal.cuentaPrincipalOperations, ...cuentaPrincipal.cuentaPrincipalFields,
     ...dominio.dominioOperations, ...dominio.dominioFields,
@@ -184,13 +263,13 @@ export const sigesDescriptions: INodeProperties[] = [
     ...mayor.mayorOperations, ...mayor.mayorFields,
     ...moneda.monedaOperations, ...moneda.monedaFields,
     ...tercero.terceroOperations, ...tercero.terceroFields,
-    ...tipo.tipoOperations, ...tipo.tipoFields,
+    ...regimenes.tipoOperations, ...regimenes.tipoFields,
     ...tipoDocumento.tipoDocumentoOperations, ...tipoDocumento.tipoDocumentoFields,
     ...usuario.usuarioOperations, ...usuario.usuarioFields,
     ...zona.zonaOperations, ...zona.zonaFields,
     ...planCuenta.planCuentaOperations, ...planCuenta.planCuentaFields,
     ...planCuentaAuxiliar.planCuentaAuxiliarOperations, ...planCuentaAuxiliar.planCuentaAuxiliarFields,
-    ...planReagrupacionAuxiliar.planReagrupacionAuxiliarOperations, ...planReagrupacionAuxiliar.planReagrupacionAuxiliarFields,
+    ...planReagrupacionAuxiliar.planReagrupacionAuxiOperations, ...planReagrupacionAuxiliar.planReagrupacionAuxiFields,
     ...planReagrupacionPrincipal.planReagrupacionPrincipalOperations, ...planReagrupacionPrincipal.planReagrupacionPrincipalFields,
     ...reagrupacionRelacionAuxiliar.reagrupacionRelacionAuxiliarOperations, ...reagrupacionRelacionAuxiliar.reagrupacionRelacionAuxiliarFields,
     ...reagrupacionRelacionPrincipal.reagrupacionRelacionPrincipalOperations, ...reagrupacionRelacionPrincipal.reagrupacionRelacionPrincipalFields,
@@ -203,13 +282,33 @@ export const sigesDescriptions: INodeProperties[] = [
     ...indicador.indicadorOperations, ...indicador.indicadorFields,
     ...libro.libroOperations, ...libro.libroFields,
     ...pesaje.pesajeOperations, ...pesaje.pesajeFields,
-    ...producto.productoOperations, ...producto.productoFields,
+    ...afectacion.afectacionOperations, ...afectacion.afectacionFields,
     ...reporteDefinible.reporteDefinibleOperations, ...reporteDefinible.reporteDefinibleFields,
     ...saldo.saldoOperations, ...saldo.saldoFields,
     ...cuentasReagrupacionAuxi.cuentasReagrupacionAuxiOperations, ...cuentasReagrupacionAuxi.cuentasReagrupacionAuxiFields,
     ...cuentasReagrupacionPpal.cuentasReagrupacionPpalOperations, ...cuentasReagrupacionPpal.cuentasReagrupacionPpalFields,
     ...numeracion.numeracionOperations, ...numeracion.numeracionFields,
     ...reporteCompartido.reporteCompartidoOperations, ...reporteCompartido.reporteCompartidoFields,
+    ...BI.biOperations, ...BI.biFields,
+    ...billeteras.billeterasOperations, ...billeteras.billeterasFields,
+    ...combos.combosOperations, ...combos.combosFields,
+    ...comprobantePendiente.comprobantePendienteOperations, ...comprobantePendiente.comprobantePendienteFields,
+    ...tiposComprobantesAfip.tiposComprobantesAfipOperations, ...tiposComprobantesAfip.tiposComprobantesAfipFields,
+    ...controlDiario.controlDiarioOperations, ...controlDiario.controlDiarioFields,
+    ...firmas.firmasOperations, ...firmas.firmasFields,
+    ...tiposComprobantes.tiposComprobanteOperations, ...tiposComprobantes.tiposComprobanteFields,
+    ...valores.valoresOperations, ...valores.valoresFields,
+    ...cuentasTemp.cuentasTempOperations, ...cuentasTemp.cuentasTempFields,
+    ...conceptosIVA.conceptosIVAOperations, ...conceptosIVA.conceptosIVAFields,
+    ...vencimientos.vencimientosOperations, ...vencimientos.vencimientosFields,
+    ...qr.qrOperations, ...qr.qrFields,
+    ...sistemas.sistemasOperations, ...sistemas.sistemasFields,
+    ...modelos.modeloOperations, ...modelos.modeloFields,
+    ...textos.textosOperations, ...textos.textosFields,
+    ...interdepositos.interdepositosOperations, ...interdepositos.interdepositosFields,
+    ...historia.historiaOperations, ...historia.historiaFields,
+    ...retenciones.retencionesOperations, ...retenciones.retencionesFields,
+    ...utilidades.utilidadesOperations, ...utilidades.utilidadesFields,
 
 ];
 
@@ -234,7 +333,7 @@ export async function sigesRouter(context: IExecuteFunctions, index: number, res
         case 'mayor': return await mayorHandler.execute.call(context, index);
         case 'moneda': return await monedaHandler.execute.call(context, index);
         case 'tercero': return await terceroHandler.execute.call(context, index);
-        case 'tipo': return await tipoHandler.execute.call(context, index);
+        case 'regimenes': return await regimenesHandler.execute.call(context, index);
         case 'tipoDocumento': return await tipoDocumentoHandler.execute.call(context, index);
         case 'usuario': return await usuarioHandler.execute.call(context, index);
         case 'zona': return await zonaHandler.execute.call(context, index);
@@ -253,13 +352,33 @@ export async function sigesRouter(context: IExecuteFunctions, index: number, res
         case 'indicador': return await indicadorHandler.execute.call(context, index);
         case 'libro': return await libroHandler.execute.call(context, index);
         case 'pesaje': return await pesajeHandler.execute.call(context, index);
-        case 'producto': return await productoHandler.execute.call(context, index);
+        case 'afectacion': return await afectacionHandler.execute.call(context, index);
         case 'reporteDefinible': return await reporteDefinibleHandler.execute.call(context, index);
         case 'saldo': return await saldoHandler.execute.call(context, index);
         case 'reagrupacionCuentaAuxi': return await cuentasReagrupacionAuxiHandler.execute.call(context, index);
         case 'reagrupacionCuentaPpal': return await cuentasReagrupacionPpalHandler.execute.call(context, index);
         case 'numeracion': return await numeracionHandler.execute.call(context, index);
         case 'reporteCompartido': return await reporteCompartidoHandler.execute.call(context, index);
+        case 'BI': return await BIHandler.execute.call(context, index);
+        case 'billeteras': return await billeterasHandler.execute.call(context, index);
+        case 'combos': return await combosHandler.execute.call(context, index);
+        case 'comprobantePendiente': return await comprobantePendienteHandler.execute.call(context, index);
+        case 'tiposComprobantesAfip': return await tiposComprobantesAfipHandler.execute.call(context, index);
+        case 'controlDiario': return await controlDiarioHandler.execute.call(context, index);
+        case 'firmas': return await firmasHandler.execute.call(context, index);
+        case 'tiposComprobantes': return await tiposComprobantesHandler.execute.call(context, index);
+        case 'valores': return await valoresHandler.execute.call(context, index);
+        case 'cuentasTemporales': return await cuentasTempHandler.execute.call(context, index);
+        case 'qr': return await qrHandler.execute.call(context, index);
+        case 'conceptosIVA': return await conceptosIVAHandler.execute.call(context, index);
+        case 'vencimientos': return await vencimientosHandler.execute.call(context, index);
+        case 'sistemas': return await sistemasHandler.execute.call(context, index);
+        case 'modelos': return await modelosHandler.execute.call(context, index);
+        case 'textos': return await textosHandler.execute.call(context, index);
+        case 'interdepositos': return await interdepositosHandler.execute.call(context, index);
+        case 'historia': return await historiaHandler.execute.call(context, index);
+        case 'retenciones': return await retencionesHandler.execute.call(context, index);
+        case 'utilidades': return await utilidadesHandler.execute.call(context, index);
 
         default:
             throw new Error(`El recurso SIGES "${resource}" no está implementado en el router.`);
