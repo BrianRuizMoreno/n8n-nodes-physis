@@ -8,9 +8,12 @@ export const remitoCompraOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['remitoCompra'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista remitos. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Detalle de un remito de compra (idCabecera).' },
-            { name: 'Crear', value: 'create', description: 'POST Crea un nuevo remito de compra.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista remitos. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.' 
+																																																					action: 'Listar Todos a remito compra',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de un remito de compra (idCabecera)' 
+																																																				action: 'Obtener por ID a remito compra',},
+            { name: 'Crear', value: 'create', description: 'POST Crea un nuevo remito de compra' 
+																																														action: 'Crear a remito compra',},
         ],
         default: 'getAll',
     },
@@ -30,7 +33,7 @@ export const remitoCompraFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador único de la cabecera del remito.',
+        description: 'Identificador único de la cabecera del remito',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -43,6 +46,6 @@ export const remitoCompraFields: INodeProperties[] = [
                 resource: ['remitoCompra'] 
             } 
         },
-        description: 'Cuerpo para Crear o Filtros para Listar (ej: {"top": 50}).',
+        description: 'Cuerpo para Crear o Filtros para Listar (ej: {"top": 50})',
     },
 ];

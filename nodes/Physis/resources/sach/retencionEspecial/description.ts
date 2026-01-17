@@ -9,16 +9,16 @@ export const retencionEspecialOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sach'], resource: ['retencionEspecial'] } },
         options: [
 
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista retenciones especiales (filtros opcionales).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene una retención específica.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta nueva retención especial.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una retención existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina retención (por ID o por Clave Compuesta).' },
-            { name: 'Consulta Avanzada (Retenciones)', value: 'search', description: 'POST Búsqueda avanzada de retenciones.' },
-            { name: 'Consulta Avanzada (Gastos)', value: 'searchGastos', description: 'POST Búsqueda avanzada de gastos asociados.' },
-            { name: 'Listar por Cliente', value: 'getByCliente', description: 'GET Retenciones aplicables a un cliente.' },
-            { name: 'Listar por Gasto', value: 'getByGasto', description: 'GET Retenciones filtradas por tipo de gasto.' },
-            { name: 'Listar por Gasto y Cliente', value: 'getByGastoCliente', description: 'GET Retenciones filtradas por gasto y rango de clientes.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista retenciones especiales (filtros opcionales)', action: 'Listar Todas a retencion especial',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una retención específica', action: 'Obtener por ID a retencion especial',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta nueva retención especial', action: 'Crear a retencion especial',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una retención existente', action: 'Actualizar a retencion especial',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina retención (por ID o por Clave Compuesta)', action: 'Eliminar a retencion especial',},
+            { name: 'Consulta Avanzada (Retenciones)', value: 'search', description: 'POST Búsqueda avanzada de retenciones', action: 'Consulta Avanzada (Retenciones) a retencion especial',},
+            { name: 'Consulta Avanzada (Gastos)', value: 'searchGastos', description: 'POST Búsqueda avanzada de gastos asociados', action: 'Consulta Avanzada (Gastos) a retencion especial',},
+            { name: 'Listar Por Cliente', value: 'getByCliente', description: 'GET Retenciones aplicables a un cliente', action: 'Listar por Cliente a retencion especial',},
+            { name: 'Listar Por Gasto', value: 'getByGasto', description: 'GET Retenciones filtradas por tipo de gasto', action: 'Listar por Gasto a retencion especial',},
+            { name: 'Listar Por Gasto Y Cliente', value: 'getByGastoCliente', description: 'GET Retenciones filtradas por gasto y rango de clientes', action: 'Listar por Gasto y Cliente a retencion especial',},
         ],
         default: 'getAll',
     },
@@ -38,7 +38,7 @@ export const retencionEspecialFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador numérico de la retención.',
+        description: 'Identificador numérico de la retención',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -51,6 +51,6 @@ export const retencionEspecialFields: INodeProperties[] = [
                 resource: ['retencionEspecial']
             } 
         },
-        description: 'Cuerpo para Create/Update/Search o Filtros Query String (IdGasto, IdCtaAuxi, modo delete, etc.).',
+        description: 'Cuerpo para Create/Update/Search o Filtros Query String (IdGasto, IdCtaAuxi, modo delete, etc.)',
     },
 ];

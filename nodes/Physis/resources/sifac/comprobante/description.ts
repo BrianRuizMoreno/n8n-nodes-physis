@@ -9,11 +9,16 @@ export const comprobanteSifacOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sifac'], resource: ['comprobante'] } },
         options: [
 
-			{ name: 'Listar Cabeceras', value: 'getCabeceras', description: 'GET Listado ligero. Filtros: fechaDesde, fechaHasta, subSistema.' },
-            { name: 'Consulta Avanzada (Grid)', value: 'getConsultaGrid', description: 'POST Consulta compleja con paginado y filtros.' },
-            { name: 'Crear Comprobante', value: 'create', description: 'POST Registra un nuevo comprobante completo.' },
-            { name: 'Autorización: Consultar', value: 'getAutorizacionGrid', description: 'POST Consulta ítems para autorización.' },
-            { name: 'Autorización: Actualizar', value: 'authorizeItem', description: 'PATCH Autoriza/Desautoriza un ítem específico.' },
+			{ name: 'Listar Cabeceras', value: 'getCabeceras', description: 'GET Listado ligero. Filtros: fechaDesde, fechaHasta, subSistema.' 
+																																																						action: 'Listar Cabeceras a comprobante',},
+            { name: 'Consulta Avanzada (Grid)', value: 'getConsultaGrid', description: 'POST Consulta compleja con paginado y filtros' 
+																																																																										action: 'Consulta Avanzada (Grid) a comprobante',},
+            { name: 'Crear Comprobante', value: 'create', description: 'POST Registra un nuevo comprobante completo' 
+																																																										action: 'Crear Comprobante a comprobante',},
+            { name: 'Autorización: Consultar', value: 'getAutorizacionGrid', description: 'POST Consulta ítems para autorización' 
+																																																																													action: 'Autorización: Consultar a comprobante',},
+            { name: 'Autorización: Actualizar', value: 'authorizeItem', description: 'PATCH Autoriza/Desautoriza un ítem específico' 
+																																																																								action: 'Autorización: Actualizar a comprobante',},
         ],
         default: 'getCabeceras',
     },
@@ -33,7 +38,7 @@ export const comprobanteSifacFields: INodeProperties[] = [
                 operation: ['authorizeItem'] 
             } 
         },
-        description: 'Identificador de la cabecera del comprobante.',
+        description: 'Identificador de la cabecera del comprobante',
     },
     {
         displayName: 'ID Movimiento',
@@ -48,7 +53,7 @@ export const comprobanteSifacFields: INodeProperties[] = [
                 operation: ['authorizeItem'] 
             } 
         },
-        description: 'Identificador del movimiento/ítem a autorizar.',
+        description: 'Identificador del movimiento/ítem a autorizar',
     },
     {
         displayName: 'JSON Body / Filtros',

@@ -9,9 +9,10 @@ export const qrOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['qr'] } },
         options: [
             { 
-                name: 'Leer QR de Comprobante', 
+                name: 'Leer QR De Comprobante', 
                 value: 'readQr', 
-                description: 'POST Sube un archivo (PDF/Imagen), detecta el QR de AFIP y devuelve los datos decodificados.' 
+                description: 'POST Sube un archivo (PDF/Imagen), detecta el QR de AFIP y devuelve los datos decodificados' 
+																action: 'Leer QR de Comprobante a qr',
             },
         ],
         default: 'readQr',
@@ -32,10 +33,10 @@ export const qrFields: INodeProperties[] = [
                 operation: ['readQr'] 
             } 
         },
-        description: 'Nombre del campo en el item de entrada que contiene el archivo de la factura.',
+        description: 'Nombre del campo en el item de entrada que contiene el archivo de la factura',
     },
     {
-        displayName: 'Nombre del Archivo (Opcional)',
+        displayName: 'Nombre Del Archivo (Opcional)',
         name: 'fileName',
         type: 'string',
         default: '',

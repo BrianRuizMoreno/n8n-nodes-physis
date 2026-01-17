@@ -11,7 +11,8 @@ export const vencimientosOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Vencimientos Reagrupados', 
                 value: 'getGroupedMaturities', 
-                description: 'GET Devuelve proyecciones de deuda agrupadas por criterios auxiliares (Zonas, Actividades).' 
+                description: 'GET Devuelve proyecciones de deuda agrupadas por criterios auxiliares (Zonas, Actividades)' 
+																action: 'Obtener Vencimientos Reagrupados a vencimientos',
             },
         ],
         default: 'getGroupedMaturities',
@@ -32,7 +33,7 @@ export const vencimientosFields: INodeProperties[] = [
                 operation: ['getGroupedMaturities'] 
             } 
         },
-        description: 'Plan sobre el cual analizar vencimientos (ej: 100=Clientes, 200=Proveedores).',
+        description: 'Plan sobre el cual analizar vencimientos (ej: 100=Clientes, 200=Proveedores)',
     },
     {
         displayName: 'ID Plan Reagrupación',
@@ -47,7 +48,7 @@ export const vencimientosFields: INodeProperties[] = [
                 operation: ['getGroupedMaturities'] 
             } 
         },
-        description: 'Criterio de agrupación (ej: 10=Zonas, 5=Rubros).',
+        description: 'Criterio de agrupación (ej: 10=Zonas, 5=Rubros)',
     },
     {
         displayName: 'Fecha Desde',
@@ -62,7 +63,7 @@ export const vencimientosFields: INodeProperties[] = [
                 operation: ['getGroupedMaturities'] 
             } 
         },
-        description: 'Fecha de corte inicial para el análisis.',
+        description: 'Fecha de corte inicial para el análisis',
     },
     {
         displayName: 'ID Cuenta Reagrupación (Opcional)',

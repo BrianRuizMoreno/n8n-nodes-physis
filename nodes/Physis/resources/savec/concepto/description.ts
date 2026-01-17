@@ -8,11 +8,11 @@ export const conceptoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['savec'], resource: ['concepto'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista conceptos (permite filtro por clase).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene un concepto específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo concepto.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un concepto existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un concepto.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista conceptos (permite filtro por clase)', action: 'Listar Todos a concepto',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un concepto específico', action: 'Obtener por ID a concepto',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo concepto', action: 'Crear a concepto',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un concepto existente', action: 'Actualizar a concepto',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un concepto', action: 'Eliminar a concepto',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const conceptoFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código numérico del concepto (codConcepto).',
+        description: 'Código numérico del concepto (codConcepto)',
     },
     {
         displayName: 'JSON Body / Filtros',

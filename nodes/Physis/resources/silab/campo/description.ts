@@ -9,19 +9,22 @@ export const campoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['campo'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de campos. Filtros: CodZona, formatoRespuesta.' 
+																action: 'Listar Todos a campo',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de un campo específico (CodCampo).' 
+                description: 'GET Datos de un campo específico (CodCampo)' 
+																action: 'Obtener por ID a campo',
             },
             { 
                 name: 'Obtener Depósitos', 
                 value: 'getDepositos', 
-                description: 'GET Lista de campos depósitos (Campos Lotes).' 
+                description: 'GET Lista de campos depósitos (Campos Lotes)' 
+																action: 'Obtener Depósitos a campo',
             },
         ],
         default: 'getAll',
@@ -42,7 +45,7 @@ export const campoFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Ingrese el CodCampo.',
+        description: 'Ingrese el CodCampo',
     },
     {
         displayName: 'Filtros (JSON)',

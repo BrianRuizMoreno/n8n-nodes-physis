@@ -13,12 +13,12 @@ export const terceroOperations: INodeProperties[] = [
 			},
 		},
 		options: [
-			{ name: 'Productores: Listar', value: 'getProductores', description: 'GET Devuelve lista de productores.' },
-			{ name: 'Corredores: Listar', value: 'getCorredores', description: 'GET Devuelve lista de corredores.' },
-			{ name: 'Transportistas: Listar', value: 'getTransportistas', description: 'GET Devuelve lista de transportistas.' },
-			{ name: 'Por Tipo: Listar', value: 'getByTipo', description: 'GET Obtiene terceros filtrando por tipo.' },
-			{ name: 'Domicilios: Listar', value: 'getDomicilios', description: 'GET Obtiene lista de domicilios de un tercero.' },
-			{ name: 'Domicilio: Detalle', value: 'getDomicilio', description: 'GET Obtiene un domicilio específico de un tercero.' },
+			{ name: 'Productores: Listar', value: 'getProductores', description: 'GET Devuelve lista de productores', action: 'Productores: Listar a tercero',},
+			{ name: 'Corredores: Listar', value: 'getCorredores', description: 'GET Devuelve lista de corredores', action: 'Corredores: Listar a tercero',},
+			{ name: 'Transportistas: Listar', value: 'getTransportistas', description: 'GET Devuelve lista de transportistas', action: 'Transportistas: Listar a tercero',},
+			{ name: 'Por Tipo: Listar', value: 'getByTipo', description: 'GET Obtiene terceros filtrando por tipo', action: 'Por Tipo: Listar a tercero',},
+			{ name: 'Domicilios: Listar', value: 'getDomicilios', description: 'GET Obtiene lista de domicilios de un tercero', action: 'Domicilios: Listar a tercero',},
+			{ name: 'Domicilio: Detalle', value: 'getDomicilio', description: 'GET Obtiene un domicilio específico de un tercero', action: 'Domicilio: Detalle a tercero',},
 		],
 		default: 'getProductores',
 	},
@@ -39,7 +39,7 @@ export const terceroFields: INodeProperties[] = [
 				operation: ['getByTipo'],
 			},
 		},
-		description: 'Código del tipo de tercero a listar.',
+		description: 'Código del tipo de tercero a listar',
 	},
 	{
 		displayName: 'ID Auxi (Titular)',
@@ -54,7 +54,7 @@ export const terceroFields: INodeProperties[] = [
 				operation: ['getDomicilios', 'getDomicilio'],
 			},
 		},
-		description: 'Identificador del tercero.',
+		description: 'Identificador del tercero',
 	},
 	{
 		displayName: 'ID Cta Auxi (Cuenta)',
@@ -69,7 +69,7 @@ export const terceroFields: INodeProperties[] = [
 				operation: ['getDomicilios', 'getDomicilio'],
 			},
 		},
-		description: 'Código de cuenta del tercero (Ej: PRO, CLI).',
+		description: 'Código de cuenta del tercero (Ej: PRO, CLI)',
 	},
 	{
 		displayName: 'Cod Domicilio',
@@ -84,6 +84,6 @@ export const terceroFields: INodeProperties[] = [
 				operation: ['getDomicilio'],
 			},
 		},
-		description: 'Código específico del domicilio.',
+		description: 'Código específico del domicilio',
 	},
 ];

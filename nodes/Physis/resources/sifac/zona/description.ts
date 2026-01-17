@@ -8,11 +8,16 @@ export const zonaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['zona'] } },
         options: [
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura de árbol de zonas.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Datos de una zona (idCtaReagAuxi).' },
-            { name: 'Crear', value: 'create', description: 'POST Crea una nueva zona.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una zona existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una zona por ID.' },
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura de árbol de zonas' 
+																																																							action: 'Listar Árbol a zona',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una zona (idCtaReagAuxi)' 
+																																																				action: 'Obtener por ID a zona',},
+            { name: 'Crear', value: 'create', description: 'POST Crea una nueva zona' 
+																																														action: 'Crear a zona',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una zona existente' 
+																																																			action: 'Actualizar a zona',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una zona por ID' 
+																																																	action: 'Eliminar a zona',},
         ],
         default: 'getArbol',
     },
@@ -32,7 +37,7 @@ export const zonaFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador único de la zona.',
+        description: 'Identificador único de la zona',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -45,6 +50,6 @@ export const zonaFields: INodeProperties[] = [
                 resource: ['zona'] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar, o Filtros para Árbol (ej: {"imputables": true}).',
+        description: 'Cuerpo para Crear/Actualizar, o Filtros para Árbol (ej: {"imputables": true})',
     },
 ];

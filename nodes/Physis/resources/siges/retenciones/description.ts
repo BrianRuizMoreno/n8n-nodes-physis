@@ -9,14 +9,16 @@ export const retencionesOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['retenciones'] } },
         options: [
             { 
-                name: 'Listar Regímenes de Retención', 
+                name: 'Listar Regímenes De Retención', 
                 value: 'getRegimes', 
-                description: 'GET Obtiene los regímenes fiscales configurados, opcionalmente filtrados por cuenta contable.' 
+                description: 'GET Obtiene los regímenes fiscales configurados, opcionalmente filtrados por cuenta contable' 
+																action: 'Listar Regímenes de Retención a retenciones',
             },
             { 
                 name: 'Verificar Estado Certificado', 
                 value: 'checkCertificateStatus', 
-                description: 'GET Consulta si el certificado de retención de un comprobante está emitido o anulado.' 
+                description: 'GET Consulta si el certificado de retención de un comprobante está emitido o anulado' 
+																action: 'Verificar Estado Certificado a retenciones',
             },
         ],
         default: 'getRegimes',
@@ -37,7 +39,7 @@ export const retencionesFields: INodeProperties[] = [
                 operation: ['getRegimes'] 
             } 
         },
-        description: 'Contexto del plan de cuentas (Generalmente 1).',
+        description: 'Contexto del plan de cuentas (Generalmente 1)',
     },
     {
         displayName: 'Cuenta Contable (Opcional)',
@@ -51,7 +53,7 @@ export const retencionesFields: INodeProperties[] = [
                 operation: ['getRegimes'] 
             } 
         },
-        description: 'Filtrar regímenes asociados a una cuenta contable específica (ej: "2.1.05").',
+        description: 'Filtrar regímenes asociados a una cuenta contable específica (ej: "2.1.05")',
     },
     {
         displayName: 'ID Ejercicio',
@@ -66,7 +68,7 @@ export const retencionesFields: INodeProperties[] = [
                 operation: ['checkCertificateStatus'] 
             } 
         },
-        description: 'Año contable del comprobante.',
+        description: 'Año contable del comprobante',
     },
     {
         displayName: 'ID Comprobante',
@@ -81,6 +83,6 @@ export const retencionesFields: INodeProperties[] = [
                 operation: ['checkCertificateStatus'] 
             } 
         },
-        description: 'Identificador del comprobante (Orden de Pago) que generó la retención.',
+        description: 'Identificador del comprobante (Orden de Pago) que generó la retención',
     },
 ];

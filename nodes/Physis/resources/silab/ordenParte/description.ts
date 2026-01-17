@@ -8,15 +8,24 @@ export const ordenParteOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['silab'], resource: ['ordenParte'] } },
         options: [
-            { name: 'Listar (Filtros)', value: 'getAll', description: 'GET Lista de órdenes con filtros opcionales.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Datos de una orden específica.' },
-            { name: 'Crear/Modificar', value: 'upsert', description: 'POST Crea o modifica una orden.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una orden.' },
-            { name: 'Listar PUMA', value: 'getPuma', description: 'GET Listado de partes PUMA.' },
-            { name: 'Listar Eliminados', value: 'getDeleted', description: 'GET Listado de partes eliminados.' },
-            { name: 'Items de Estados', value: 'itemsEstados', description: 'POST Modificación masiva de estados de items.' },
-            { name: 'Partes de un Empleado', value: 'getByPersonal', description: 'GET Partes asociados a un personal (requiere ID Personal).' },
-            { name: 'Items de Partes de un Empleado', value: 'getByItems', description: 'GET Items de partes de un personal (requiere ID Personal).' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista de órdenes con filtros opcionales' 
+																																																									action: 'Listar (Filtros) an orden parte',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una orden específica' 
+																																																				action: 'Obtener por ID an orden parte',},
+            { name: 'Create or Update', value: 'upsert', description: 'POST Crea o modifica una orden' 
+																																																								action: 'Crear/Modificar an orden parte',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una orden' 
+																																																	action: 'Eliminar an orden parte',},
+            { name: 'Listar PUMA', value: 'getPuma', description: 'GET Listado de partes PUMA' 
+																																																					action: 'Listar PUMA an orden parte',},
+            { name: 'Listar Eliminados', value: 'getDeleted', description: 'GET Listado de partes eliminados' 
+																																																														action: 'Listar Eliminados an orden parte',},
+            { name: 'Items De Estados', value: 'itemsEstados', description: 'POST Modificación masiva de estados de items' 
+																																																															action: 'Items de Estados an orden parte',},
+            { name: 'Partes De Un Empleado', value: 'getByPersonal', description: 'GET Partes asociados a un personal (requiere ID Personal)' 
+																																																																					action: 'Partes de un Empleado an orden parte',},
+            { name: 'Items De Partes De Un Empleado', value: 'getByItems', description: 'GET Items de partes de un personal (requiere ID Personal)' 
+																																																																											action: 'Items de Partes de un Empleado an orden parte',},
         ],
         default: 'getAll',
     },
@@ -35,7 +44,7 @@ export const ordenParteFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getByPersonal', 'getByItems'] 
             } 
         },
-        description: 'ID del recurso principal según la operación (Orden o Personal).',
+        description: 'ID del recurso principal según la operación (Orden o Personal)',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -49,6 +58,6 @@ export const ordenParteFields: INodeProperties[] = [
                 operation: ['getAll', 'upsert', 'delete', 'getPuma', 'getDeleted', 'itemsEstados'] 
             } 
         },
-        description: 'Cuerpo para POST (upsert) o Query Params para GET (filtros).',
+        description: 'Cuerpo para POST (upsert) o Query Params para GET (filtros)',
     },
 ];

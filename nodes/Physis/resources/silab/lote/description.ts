@@ -9,29 +9,34 @@ export const loteOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['lote'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de lotes. Filtros: CodCampo, formatoRespuesta.' 
+																action: 'Listar Todos a lote',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de un lote específico (CodLote).' 
+                description: 'GET Datos de un lote específico (CodLote)' 
+																action: 'Obtener por ID a lote',
             },
             { 
-                name: 'Lotes por Actividad', 
+                name: 'Lotes Por Actividad', 
                 value: 'getByActivity', 
                 description: 'GET Lotes asociados a una actividad. Filtros: CodCampania, CodCampo.' 
+																action: 'Lotes por Actividad a lote',
             },
             { 
                 name: 'Obtener Árbol', 
                 value: 'getTree', 
-                description: 'GET Estructura de árbol de lotes (sin parámetros).' 
+                description: 'GET Estructura de árbol de lotes (sin parámetros)' 
+																action: 'Obtener Árbol a lote',
             },
             { 
-                name: 'Obtener Árbol con Actividades', 
+                name: 'Obtener Árbol Con Actividades', 
                 value: 'getTreeActivities', 
                 description: 'GET Estructura de árbol con actividades asignadas. Filtro: CodCampania.' 
+																action: 'Obtener Árbol con Actividades a lote',
             },
         ],
         default: 'getAll',
@@ -52,7 +57,7 @@ export const loteFields: INodeProperties[] = [
                 operation: ['get', 'getByActivity'] 
             } 
         },
-        description: 'Ingrese el CodLote (para "Obtener por ID") o el IdActividad (para "Lotes por Actividad").',
+        description: 'Ingrese el CodLote (para "Obtener por ID") o el IdActividad (para "Lotes por Actividad")',
     },
     {
         displayName: 'Filtros (JSON)',
@@ -66,6 +71,6 @@ export const loteFields: INodeProperties[] = [
                 operation: ['getAll', 'getByActivity', 'getTreeActivities'] 
             } 
         },
-        description: 'Ejemplos: {"CodCampo": 1}, {"CodCampania": 2024}, {"formatoRespuesta": "CSV"}.',
+        description: 'Ejemplos: {"CodCampo": 1}, {"CodCampania": 2024}, {"formatoRespuesta": "CSV"}',
     },
 ];

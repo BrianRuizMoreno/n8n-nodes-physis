@@ -9,14 +9,16 @@ export const campaniaOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['campania'] } },
         options: [
             { 
-                name: 'Listar Todas', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de campañas. Filtro opcional: idUsuario.' 
+																action: 'Listar Todas a campania',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de una campaña específica (CodCampania).' 
+                description: 'GET Datos de una campaña específica (CodCampania)' 
+																action: 'Obtener por ID a campania',
             },
         ],
         default: 'getAll',
@@ -37,7 +39,7 @@ export const campaniaFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Ingrese el CodCampania.',
+        description: 'Ingrese el CodCampania',
     },
     {
         displayName: 'Filtros (JSON)',

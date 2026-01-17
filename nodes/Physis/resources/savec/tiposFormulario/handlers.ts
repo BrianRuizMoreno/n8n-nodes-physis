@@ -4,20 +4,13 @@ import { PhysisTransport } from '../../../transport/transport';
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
 	const operation = this.getNodeParameter('operation', index) as string;
 	const transport = new PhysisTransport(this);
+	
 	let endpoint = '/phy2service/api/savec/tipos-formulario';
 	let method = 'GET';
 	let body: IDataObject = {};
-	let qs: IDataObject = {};
-	let id = '';
+	let qs: IDataObject = {}; 
 
-	try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-
-	try { 
-		const json = JSON.parse(this.getNodeParameter('jsonBody', index, '{}') as string);
-		if (['create', 'update'].includes(operation)) {
-			body = json as IDataObject;
-		}
-	} catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
 	switch (operation) {
 		case 'getAll':
@@ -37,6 +30,22 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 			break;
 		default:
 			throw new Error(`Operación ${operation} no soportada.`);
+	}
+
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
 	}
 
 	const response = await transport.request(method, endpoint, body, qs) as IDataObject;

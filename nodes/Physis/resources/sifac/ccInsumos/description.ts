@@ -13,39 +13,46 @@ export const ccInsumosOperations: INodeProperties[] = [
                 name: 'Pedidos: Resumen', 
                 value: 'getPedidosResumen', 
                 description: 'GET Lista resumen de pedidos. Filtros JSON: { "idAuxi": 1, "idCtaAuxi": "C01", "fechaDesde": "...", "sSubSistema": "V" }.' 
+																action: 'Pedidos: Resumen a cc insumos',
             },
             { 
                 name: 'Pedidos: Detalle y Cumplimiento', 
                 value: 'getPedidosDetalle', 
-                description: 'GET Lista detallada de pedidos con estado de entrega.' 
+                description: 'GET Lista detallada de pedidos con estado de entrega' 
+																action: 'Pedidos: Detalle y Cumplimiento a cc insumos',
             },
             // --- REMITOS ---
             { 
                 name: 'Remitos: Resumen', 
                 value: 'getRemitosResumen', 
-                description: 'GET Lista resumen de remitos.' 
+                description: 'GET Lista resumen de remitos' 
+																action: 'Remitos: Resumen a cc insumos',
             },
             { 
                 name: 'Remitos: Detalle y Cumplimiento', 
                 value: 'getRemitosDetalle', 
-                description: 'GET Lista detallada de remitos con estado de facturación.' 
+                description: 'GET Lista detallada de remitos con estado de facturación' 
+																action: 'Remitos: Detalle y Cumplimiento a cc insumos',
             },
             // --- FACTURAS ---
             { 
                 name: 'Facturas: Resumen', 
                 value: 'getFacturasResumen', 
-                description: 'GET Lista resumen de facturas.' 
+                description: 'GET Lista resumen de facturas' 
+																action: 'Facturas: Resumen a cc insumos',
             },
             { 
                 name: 'Facturas: Detalle', 
                 value: 'getFacturasDetalle', 
-                description: 'GET Lista detallada de facturas.' 
+                description: 'GET Lista detallada de facturas' 
+																action: 'Facturas: Detalle a cc insumos',
             },
             // --- ESPECÍFICOS ---
             { 
                 name: 'Consultar Comprobante Único', 
                 value: 'getComprobanteCumplimiento', 
-                description: 'GET Detalle de cumplimientos de un comprobante específico (por ID Cabecera).' 
+                description: 'GET Detalle de cumplimientos de un comprobante específico (por ID Cabecera)' 
+																action: 'Consultar Comprobante Único a cc insumos',
             },
         ],
         default: 'getPedidosResumen',
@@ -68,7 +75,7 @@ export const ccInsumosFields: INodeProperties[] = [
                 ] 
             } 
         },
-        description: 'Identificador único del comprobante (idCabecera).',
+        description: 'Identificador único del comprobante (idCabecera)',
     },
     {
         displayName: 'JSON Filtros',

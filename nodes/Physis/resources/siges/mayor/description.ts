@@ -8,8 +8,10 @@ export const mayorOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['mayor'] } },
         options: [
-            { name: 'Consultar Mayor', value: 'getMayor', description: 'GET Devuelve el Libro Mayor. Filtros en JSON.' },
-            { name: 'Comprobantes Referenciados', value: 'getReferenciados', description: 'GET Devuelve comprobantes relacionados a una línea del mayor.' },
+            { name: 'Consultar Mayor', value: 'getMayor', description: 'GET Devuelve el Libro Mayor. Filtros en JSON.' 
+																																																										action: 'Consultar Mayor a mayor',},
+            { name: 'Comprobantes Referenciados', value: 'getReferenciados', description: 'GET Devuelve comprobantes relacionados a una línea del mayor' 
+																																																																													action: 'Comprobantes Referenciados a mayor',},
         ],
         default: 'getMayor',
     },
@@ -22,6 +24,6 @@ export const mayorFields: INodeProperties[] = [
         type: 'json',
         default: '{\n  "fechaDesde": "2024-01-01",\n  "fechaHasta": "2024-12-31",\n  "tipoInforme": 0,\n  "opciones": 0\n}',
         displayOptions: { show: { service: ['siges'], resource: ['mayor'] } },
-        description: 'Filtros de búsqueda (fechas, tipoInforme, cuentas, etc.) o parámetros de referencia.',
+        description: 'Filtros de búsqueda (fechas, tipoInforme, cuentas, etc.) o parámetros de referencia',
     },
 ];

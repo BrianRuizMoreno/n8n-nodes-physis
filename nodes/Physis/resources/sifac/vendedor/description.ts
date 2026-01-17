@@ -8,11 +8,16 @@ export const vendedorOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['vendedor'] } },
         options: [
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Lista jerárquica de vendedores.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene un vendedor específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo vendedor.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un vendedor existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un vendedor.' },
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Lista jerárquica de vendedores' 
+																																																							action: 'Listar Árbol a vendedor',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un vendedor específico' 
+																																																				action: 'Obtener por ID a vendedor',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo vendedor' 
+																																														action: 'Crear a vendedor',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un vendedor existente' 
+																																																			action: 'Actualizar a vendedor',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un vendedor' 
+																																																	action: 'Eliminar a vendedor',},
         ],
         default: 'getArbol',
     },
@@ -32,7 +37,7 @@ export const vendedorFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador (CtaReagAuxi) del vendedor.',
+        description: 'Identificador (CtaReagAuxi) del vendedor',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -45,6 +50,6 @@ export const vendedorFields: INodeProperties[] = [
                 resource: ['vendedor']
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar o Filtros (cuentaPadre, imputables) para el árbol.',
+        description: 'Cuerpo para Crear/Actualizar o Filtros (cuentaPadre, imputables) para el árbol',
     },
 ];

@@ -8,14 +8,14 @@ export const tipoHaciendaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['tipoHacienda'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista todos los tipos de hacienda.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene un tipo de hacienda específico.' },
-            { name: 'Consulta Avanzada (V2)', value: 'searchV2', description: 'GET Búsqueda avanzada con filtros (vía JSON).' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de hacienda.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de hacienda existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un tipo de hacienda.' },
-            { name: 'Listar Categorías de Hacienda', value: 'getCategoriasHacienda', description: 'GET Devuelve las categorías de hacienda filtradas por especie.' },
-            { name: 'Consultar RENSPA', value: 'getRenspa', description: 'GET Obtiene información de RENSPA.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los tipos de hacienda', action: 'Listar Todos a tipo hacienda',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un tipo de hacienda específico', action: 'Obtener por ID a tipo hacienda',},
+            { name: 'Consulta Avanzada (V2)', value: 'searchV2', description: 'GET Búsqueda avanzada con filtros (vía JSON)', action: 'Consulta Avanzada (V2) a tipo hacienda',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de hacienda', action: 'Crear a tipo hacienda',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de hacienda existente', action: 'Actualizar a tipo hacienda',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un tipo de hacienda', action: 'Eliminar a tipo hacienda',},
+            { name: 'Listar Categorías De Hacienda', value: 'getCategoriasHacienda', description: 'GET Devuelve las categorías de hacienda filtradas por especie', action: 'Listar Categorías de Hacienda a tipo hacienda',},
+            { name: 'Consultar RENSPA', value: 'getRenspa', description: 'GET Obtiene información de RENSPA', action: 'Consultar RENSPA a tipo hacienda',},
         ],
         default: 'getAll',
     },
@@ -35,7 +35,7 @@ export const tipoHaciendaFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador del tipo de hacienda (string).',
+        description: 'Código identificador del tipo de hacienda (string)',
     },
     {
         displayName: 'JSON Body / Parámetros',
@@ -49,6 +49,6 @@ export const tipoHaciendaFields: INodeProperties[] = [
                 operation: ['create', 'update', 'searchV2', 'getCategoriasHacienda', 'getRenspa']
             } 
         },
-        description: 'Cuerpo para Create/Update, Filtro para SearchV2, o Parámetros Query para consultas (ej: {"idEspecie": 1} o {"idAuxi": 123}).',
+        description: 'Cuerpo para Create/Update, Filtro para SearchV2, o Parámetros Query para consultas (ej: {"idEspecie": 1} o {"idAuxi": 123})',
     },
 ];

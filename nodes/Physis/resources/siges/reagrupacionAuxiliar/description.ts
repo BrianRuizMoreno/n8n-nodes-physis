@@ -10,46 +10,54 @@ export const planReagrupacionAuxiOperations: INodeProperties[] = [
         options: [
             // --- DEFINICIÓN ---
             { 
-                name: 'Listar Planes', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Obtiene las definiciones de reagrupación (ej: Zonas, Canales) disponibles para un rubro.' 
+                description: 'GET Obtiene las definiciones de reagrupación (ej: Zonas, Canales) disponibles para un rubro' 
+																action: 'Listar Planes a plan reagrupacion auxi',
             },
             { 
                 name: 'Obtener Definición', 
                 value: 'get', 
-                description: 'GET Recupera la configuración estructural de un plan de reagrupación.' 
+                description: 'GET Recupera la configuración estructural de un plan de reagrupación' 
+																action: 'Obtener Definición a plan reagrupacion auxi',
             },
             { 
                 name: 'Consultar Tamaño Máscara', 
                 value: 'getTotalSize', 
-                description: 'GET Devuelve la longitud total del código configurada para este plan.' 
+                description: 'GET Devuelve la longitud total del código configurada para este plan' 
+																action: 'Consultar Tamaño Máscara a plan reagrupacion auxi',
             },
             // --- CONTENIDO ---
             { 
                 name: 'Listar Nodos (Cuentas)', 
                 value: 'getAccounts', 
-                description: 'GET Devuelve las categorías o nodos creados bajo este esquema (ej: Norte, Sur).' 
+                description: 'GET Devuelve las categorías o nodos creados bajo este esquema (ej: Norte, Sur)' 
+																action: 'Listar Nodos (Cuentas) a plan reagrupacion auxi',
             },
             { 
                 name: 'Ver Terceros Asociados', 
                 value: 'getAssociatedAuxiliaries', 
-                description: 'GET Devuelve la lista de Clientes/Proveedores asignados a una categoría específica.' 
+                description: 'GET Devuelve la lista de Clientes/Proveedores asignados a una categoría específica' 
+																action: 'Ver Terceros Asociados a plan reagrupacion auxi',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Crear Plan', 
                 value: 'create', 
-                description: 'POST Define una nueva estructura de clasificación.' 
+                description: 'POST Define una nueva estructura de clasificación' 
+																action: 'Crear Plan a plan reagrupacion auxi',
             },
             { 
                 name: 'Actualizar Plan', 
                 value: 'update', 
-                description: 'PUT Modifica la definición de la reagrupación.' 
+                description: 'PUT Modifica la definición de la reagrupación' 
+																action: 'Actualizar Plan a plan reagrupacion auxi',
             },
             { 
                 name: 'Eliminar Plan', 
                 value: 'delete', 
-                description: 'DELETE Elimina una definición de reagrupación.' 
+                description: 'DELETE Elimina una definición de reagrupación' 
+																action: 'Eliminar Plan a plan reagrupacion auxi',
             },
         ],
         default: 'getAll',
@@ -70,7 +78,7 @@ export const planReagrupacionAuxiFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getAccounts', 'getAssociatedAuxiliaries', 'getTotalSize'] 
             } 
         },
-        description: 'Identificador del tipo de clasificación (ej: 1=Zonas).',
+        description: 'Identificador del tipo de clasificación (ej: 1=Zonas)',
     },
     {
         displayName: 'ID Plan Auxiliar (Rubro)',
@@ -85,7 +93,7 @@ export const planReagrupacionAuxiFields: INodeProperties[] = [
                 operation: ['getAll', 'get', 'delete', 'getTotalSize']
             } 
         },
-        description: 'El plan base al que pertenece esta agrupación (ej: 100=Clientes).',
+        description: 'El plan base al que pertenece esta agrupación (ej: 100=Clientes)',
     },
     {
         displayName: 'ID Cuenta Reagrupación',
@@ -100,7 +108,7 @@ export const planReagrupacionAuxiFields: INodeProperties[] = [
                 operation: ['getAssociatedAuxiliaries']
             } 
         },
-        description: 'Código del nodo específico a consultar (ej: "ZN" para Zona Norte).',
+        description: 'Código del nodo específico a consultar (ej: "ZN" para Zona Norte)',
     },
     {
         displayName: 'JSON Body',
@@ -114,6 +122,6 @@ export const planReagrupacionAuxiFields: INodeProperties[] = [
                 operation: ['create', 'update', 'getAll']
             } 
         },
-        description: 'Estructura del plan o filtros adicionales.',
+        description: 'Estructura del plan o filtros adicionales',
     },
 ];

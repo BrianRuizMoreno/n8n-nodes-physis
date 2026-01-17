@@ -9,20 +9,20 @@ export const logisticaOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sacer'], resource: ['logistica'] } },
         options: [
 
-			{ name: 'Conductores: Listar', value: 'getConductores', description: 'GET Lista de conductores. Filtro: {"sinTransportista": true}.' },
-            { name: 'Conductores: Listar (Grilla)', value: 'getConductoresGrid', description: 'GET Vista de grilla para conductores.' },
-            { name: 'Conductores: Obtener', value: 'getConductor', description: 'GET Datos de un conductor por código.' },
-            { name: 'Conductores: Por Transportista', value: 'getConductoresTransportista', description: 'GET Conductores asociados a un transportista (Req: ID Auxi/CtaAuxi).' },
-            { name: 'Conductores: Crear', value: 'createConductor', description: 'POST Crea un nuevo conductor.' },
-            { name: 'Conductores: Actualizar', value: 'updateConductor', description: 'PUT Actualiza datos de un conductor.' },
-            { name: 'Conductores: Eliminar', value: 'deleteConductor', description: 'DELETE Elimina un conductor por código.' },
-            { name: 'Tarifas: Listar', value: 'getTarifas', description: 'GET Listado de tarifas con filtros.' },
-            { name: 'Tarifas: Listar (Grilla)', value: 'getTarifasGrid', description: 'GET Vista de grilla para tarifas.' },
-            { name: 'Tarifas: Obtener', value: 'getTarifa', description: 'GET Detalle de una tarifa por código.' },
-            { name: 'Tarifas: Crear', value: 'createTarifa', description: 'POST Crea una nueva tarifa.' },
-            { name: 'Tarifas: Actualizar', value: 'updateTarifa', description: 'PUT Modifica una tarifa existente.' },
-            { name: 'Tarifas: Eliminar', value: 'deleteTarifa', description: 'DELETE Elimina una tarifa. Filtros opcionales en JSON (idAuxi).' },
-            { name: 'Tarifas: Imputaciones', value: 'getImputacionesTarifa', description: 'GET Imputaciones contables de una tarifa.' },
+			{ name: 'Conductores: Listar', value: 'getConductores', description: 'GET Lista de conductores. Filtro: {"sinTransportista": true}.', action: 'Conductores: Listar a logistica',},
+            { name: 'Conductores: Listar (Grilla)', value: 'getConductoresGrid', description: 'GET Vista de grilla para conductores', action: 'Conductores: Listar (Grilla) a logistica',},
+            { name: 'Conductores: Obtener', value: 'getConductor', description: 'GET Datos de un conductor por código', action: 'Conductores: Obtener a logistica',},
+            { name: 'Conductores: Por Transportista', value: 'getConductoresTransportista', description: 'GET Conductores asociados a un transportista (Req: ID Auxi/CtaAuxi)', action: 'Conductores: Por Transportista a logistica',},
+            { name: 'Conductores: Crear', value: 'createConductor', description: 'POST Crea un nuevo conductor', action: 'Conductores: Crear a logistica',},
+            { name: 'Conductores: Actualizar', value: 'updateConductor', description: 'PUT Actualiza datos de un conductor', action: 'Conductores: Actualizar a logistica',},
+            { name: 'Conductores: Eliminar', value: 'deleteConductor', description: 'DELETE Elimina un conductor por código', action: 'Conductores: Eliminar a logistica',},
+            { name: 'Tarifas: Listar', value: 'getTarifas', description: 'GET Listado de tarifas con filtros', action: 'Tarifas: Listar a logistica',},
+            { name: 'Tarifas: Listar (Grilla)', value: 'getTarifasGrid', description: 'GET Vista de grilla para tarifas', action: 'Tarifas: Listar (Grilla) a logistica',},
+            { name: 'Tarifas: Obtener', value: 'getTarifa', description: 'GET Detalle de una tarifa por código', action: 'Tarifas: Obtener a logistica',},
+            { name: 'Tarifas: Crear', value: 'createTarifa', description: 'POST Crea una nueva tarifa', action: 'Tarifas: Crear a logistica',},
+            { name: 'Tarifas: Actualizar', value: 'updateTarifa', description: 'PUT Modifica una tarifa existente', action: 'Tarifas: Actualizar a logistica',},
+            { name: 'Tarifas: Eliminar', value: 'deleteTarifa', description: 'DELETE Elimina una tarifa. Filtros opcionales en JSON (idAuxi).', action: 'Tarifas: Eliminar a logistica',},
+            { name: 'Tarifas: Imputaciones', value: 'getImputacionesTarifa', description: 'GET Imputaciones contables de una tarifa', action: 'Tarifas: Imputaciones a logistica',},
         ],
         default: 'getConductores',
     },
@@ -46,7 +46,7 @@ export const logisticaFields: INodeProperties[] = [
                 ] 
             } 
         },
-        description: 'Código de Conductor, Código de Tarifa, o ID Auxi de Transportista.',
+        description: 'Código de Conductor, Código de Tarifa, o ID Auxi de Transportista',
     },
     {
         displayName: 'ID Cta Auxi',
@@ -60,7 +60,7 @@ export const logisticaFields: INodeProperties[] = [
                 operation: ['getConductoresTransportista'] 
             } 
         },
-        description: 'Requerido para buscar conductores de un transportista.',
+        description: 'Requerido para buscar conductores de un transportista',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -79,6 +79,6 @@ export const logisticaFields: INodeProperties[] = [
                 ] 
             } 
         },
-        description: 'Cuerpo JSON para Crear/Actualizar, o Filtros para Listar (ej: {"sinTransportista": true} o {"CodCereal": 1}).',
+        description: 'Cuerpo JSON para Crear/Actualizar, o Filtros para Listar (ej: {"sinTransportista": true} o {"CodCereal": 1})',
     },
 ];

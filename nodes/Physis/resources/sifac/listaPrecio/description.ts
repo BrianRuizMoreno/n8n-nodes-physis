@@ -8,12 +8,18 @@ export const listaPrecioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['listaPrecio'] } },
         options: [
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica.' },
-            { name: 'Listar Planas', value: 'getAll', description: 'GET Listas de precios planas.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Una lista específica.' },
-            { name: 'Crear', value: 'create', description: 'POST Nueva lista de precios.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modificar lista existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Eliminar lista.' },
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica' 
+																																																							action: 'Listar Árbol a lista precio',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Listas de precios planas' 
+																																																						action: 'Listar Planas a lista precio',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Una lista específica' 
+																																																				action: 'Obtener por ID a lista precio',},
+            { name: 'Crear', value: 'create', description: 'POST Nueva lista de precios' 
+																																														action: 'Crear a lista precio',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modificar lista existente' 
+																																																			action: 'Actualizar a lista precio',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Eliminar lista' 
+																																																	action: 'Eliminar a lista precio',},
         ],
         default: 'getArbol',
     },
@@ -34,6 +40,6 @@ export const listaPrecioFields: INodeProperties[] = [
         type: 'json',
         default: '{}',
         displayOptions: { show: { service: ['sifac'], resource: ['listaPrecio'] } },
-        description: 'Cuerpo para POST/PUT o filtros para GET (cuentaPadre, imputables).',
+        description: 'Cuerpo para POST/PUT o filtros para GET (cuentaPadre, imputables)',
     },
 ];

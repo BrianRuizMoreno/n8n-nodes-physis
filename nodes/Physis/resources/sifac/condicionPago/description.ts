@@ -8,13 +8,20 @@ export const condicionPagoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['condicionPago'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista condiciones. Filtro opcional: { "obtenerTambienSoloLectura": true }.' },
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de condiciones.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Datos de una condición (idCtaReagAuxi).' },
-            { name: 'Vencimientos Manuales', value: 'getVencimientosManuales', description: 'GET Vencimientos. Req ID y { "idCabecera": 1 }.' },
-            { name: 'Crear', value: 'create', description: 'POST Crea una nueva condición de pago.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una condición existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una condición por ID.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista condiciones. Filtro opcional: { "obtenerTambienSoloLectura": true }.' 
+																																																					action: 'Listar Todas a condicion pago',},
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de condiciones' 
+																																																							action: 'Listar Árbol a condicion pago',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una condición (idCtaReagAuxi)' 
+																																																				action: 'Obtener por ID a condicion pago',},
+            { name: 'Vencimientos Manuales', value: 'getVencimientosManuales', description: 'GET Vencimientos. Req ID y { "idCabecera": 1 }.' 
+																																																																															action: 'Vencimientos Manuales a condicion pago',},
+            { name: 'Crear', value: 'create', description: 'POST Crea una nueva condición de pago' 
+																																														action: 'Crear a condicion pago',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una condición existente' 
+																																																			action: 'Actualizar a condicion pago',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una condición por ID' 
+																																																	action: 'Eliminar a condicion pago',},
         ],
         default: 'getAll',
     },
@@ -34,7 +41,7 @@ export const condicionPagoFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getVencimientosManuales'] 
             } 
         },
-        description: 'Identificador único de la condición de pago.',
+        description: 'Identificador único de la condición de pago',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -47,6 +54,6 @@ export const condicionPagoFields: INodeProperties[] = [
                 resource: ['condicionPago'] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar, o Filtros para Listas (ej: {"idCabecera": 123}).',
+        description: 'Cuerpo para Crear/Actualizar, o Filtros para Listas (ej: {"idCabecera": 123})',
     },
 ];

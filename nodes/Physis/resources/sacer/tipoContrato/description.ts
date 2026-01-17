@@ -8,11 +8,11 @@ export const tipoContratoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tipoContrato'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Devuelve todos los tipos de contrato.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Devuelve un tipo de contrato específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de contrato.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de contrato existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un tipo de contrato.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los tipos de contrato', action: 'Listar Todos a tipo contrato',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un tipo de contrato específico', action: 'Obtener por ID a tipo contrato',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de contrato', action: 'Crear a tipo contrato',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de contrato existente', action: 'Actualizar a tipo contrato',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un tipo de contrato', action: 'Eliminar a tipo contrato',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const tipoContratoFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador del tipo de contrato.',
+        description: 'Código identificador del tipo de contrato',
     },
     {
         displayName: 'JSON Body',
@@ -46,6 +46,6 @@ export const tipoContratoFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos del tipo de contrato (código, descripción, sigla, aFijar, etc.).',
+        description: 'Cuerpo con los datos del tipo de contrato (código, descripción, sigla, aFijar, etc.)',
     },
 ];

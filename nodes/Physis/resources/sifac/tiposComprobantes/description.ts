@@ -9,19 +9,22 @@ export const tiposComprobanteOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sifac'], resource: ['tiposComprobante'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Listado de tipos de comprobantes. Filtros JSON: { "idSubSistema": "V", "idClaseMovimiento": "ALTA" }.' 
+																action: 'Listar Todos a tipos comprobante',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Detalle de un tipo específico (ej: FAC, REM, PED).' 
+                description: 'GET Detalle de un tipo específico (ej: FAC, REM, PED)' 
+																action: 'Obtener por ID a tipos comprobante',
             },
             { 
                 name: 'Obtener Default Cobranza', 
                 value: 'getDefaultCobranza', 
-                description: 'GET Obtiene el tipo de comprobante predeterminado para recibos de cobro.' 
+                description: 'GET Obtiene el tipo de comprobante predeterminado para recibos de cobro' 
+																action: 'Obtener Default Cobranza a tipos comprobante',
             },
         ],
         default: 'getAll',
@@ -42,7 +45,7 @@ export const tiposComprobanteFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Código del tipo de comprobante (ej: FAC, REC, OP).',
+        description: 'Código del tipo de comprobante (ej: FAC, REC, OP)',
     },
     {
         displayName: 'JSON Filtros',

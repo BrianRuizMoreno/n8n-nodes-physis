@@ -9,29 +9,34 @@ export const comprobantePendienteOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['comprobantePendiente'] } },
         options: [
             { 
-                name: 'Listar Pendientes (Proceso)', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve comprobantes pendientes de autorización, envío a AFIP o procesamiento.' 
+                description: 'GET Devuelve comprobantes pendientes de autorización, envío a AFIP o procesamiento' 
+																action: 'Listar Pendientes (Proceso) a comprobante pendiente',
             },
             { 
                 name: 'Listar Detallado', 
                 value: 'getDetailed', 
-                description: 'GET Igual que Listar, pero incluye datos extendidos del tercero.' 
+                description: 'GET Igual que Listar, pero incluye datos extendidos del tercero' 
+																action: 'Listar Detallado a comprobante pendiente',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera un comprobante pendiente específico.' 
+                description: 'GET Recupera un comprobante pendiente específico' 
+																action: 'Obtener Detalle a comprobante pendiente',
             },
             { 
                 name: 'Obtener Resumen (Cantidades)', 
                 value: 'getSummary', 
-                description: 'GET Devuelve conteos agrupados de pendientes.' 
+                description: 'GET Devuelve conteos agrupados de pendientes' 
+																action: 'Obtener Resumen (Cantidades) a comprobante pendiente',
             },
             { 
                 name: 'Contar Errores', 
                 value: 'getErrorCounts', 
-                description: 'GET Devuelve cantidad de comprobantes con errores de validación.' 
+                description: 'GET Devuelve cantidad de comprobantes con errores de validación' 
+																action: 'Contar Errores a comprobante pendiente',
             },
         ],
         default: 'getAll',
@@ -53,7 +58,7 @@ export const comprobantePendienteFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador único del comprobante.',
+        description: 'Identificador único del comprobante',
     },
     {
         displayName: 'ID Usuario',
@@ -67,7 +72,7 @@ export const comprobantePendienteFields: INodeProperties[] = [
                 operation: ['get', 'getErrorCounts'] 
             } 
         },
-        description: 'Filtrar por usuario responsable.',
+        description: 'Filtrar por usuario responsable',
     },
     {
         displayName: 'ID Plan Principal',
@@ -81,7 +86,7 @@ export const comprobantePendienteFields: INodeProperties[] = [
                 operation: ['getErrorCounts'] 
             } 
         },
-        description: 'Contexto del plan contable (Generalmente 1).',
+        description: 'Contexto del plan contable (Generalmente 1)',
     },
     {
         displayName: 'Filtros (JSON)',
@@ -95,6 +100,6 @@ export const comprobantePendienteFields: INodeProperties[] = [
                 operation: ['getAll', 'getDetailed', 'getSummary'] 
             } 
         },
-        description: 'Filtros de fecha, tipo de comprobante, estado de autorización, etc. Ej: { "fechaDesde": "...", "pendienteEnvio": true }',
+        description: 'Filtros de fecha, tipo de comprobante, estado de autorización, etc. Ej: { "fechaDesde": "...", "pendienteEnvio": true }.',
     },
 ];

@@ -5,8 +5,8 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     const operation = this.getNodeParameter('operation', index) as string;
     const transport = new PhysisTransport(this);
     let endpoint = '/phy2service/api/siges/dominios';
-    let method = 'GET';
-    let body: IDataObject = {};
+    const method = 'GET';
+    const body: IDataObject = {};
     let qs: IDataObject = {};
     let id = '';
 

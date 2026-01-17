@@ -9,15 +9,24 @@ export const reporteCompartidoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['reporteCompartido'] } },
         options: [
 
-            { name: 'Listar Reportes', value: 'getAll', description: 'GET Lista reportes compartidos (filtros opcionales).' },
-            { name: 'Obtener Reporte', value: 'get', description: 'GET Detalle de un reporte compartido.' },
-            { name: 'Descargar PDF (Reporte)', value: 'getPdf', description: 'GET Binario PDF de reporte compartido.' },
-            { name: 'Eliminar Reporte', value: 'delete', description: 'DELETE Elimina un reporte compartido.' },
-            { name: 'Listar Grupos', value: 'getGrupos', description: 'GET Grupos de PDFs publicados.' },
-            { name: 'Usuarios con Acceso', value: 'getUsuarios', description: 'GET Usuarios asignados a un reporte.' },
-            { name: 'PDF de Comprobante', value: 'getComprobantePdf', description: 'GET PDF por Ejercicio/Comprobante.' },
-            { name: 'PDF por Link', value: 'getDocumentoPdfByLink', description: 'GET PDF usando un link hash.' },
-            { name: 'Generar PDFs en Lote', value: 'generateDocumentosPdf', description: 'PUT Genera archivos PDF en servidor (Desde/Hasta).' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista reportes compartidos (filtros opcionales)' 
+																																																								action: 'Listar Reportes a reporte compartido',},
+            { name: 'Obtener Reporte', value: 'get', description: 'GET Detalle de un reporte compartido' 
+																																																					action: 'Obtener Reporte a reporte compartido',},
+            { name: 'Descargar PDF (Reporte)', value: 'getPdf', description: 'GET Binario PDF de reporte compartido' 
+																																																																action: 'Descargar PDF (Reporte) a reporte compartido',},
+            { name: 'Eliminar Reporte', value: 'delete', description: 'DELETE Elimina un reporte compartido' 
+																																																									action: 'Eliminar Reporte a reporte compartido',},
+            { name: 'Listar Grupos', value: 'getGrupos', description: 'GET Grupos de PDFs publicados' 
+																																																									action: 'Listar Grupos a reporte compartido',},
+            { name: 'Usuarios Con Acceso', value: 'getUsuarios', description: 'GET Usuarios asignados a un reporte' 
+																																																																	action: 'Usuarios con Acceso a reporte compartido',},
+            { name: 'PDF De Comprobante', value: 'getComprobantePdf', description: 'GET PDF por Ejercicio/Comprobante' 
+																																																																						action: 'PDF de Comprobante a reporte compartido',},
+            { name: 'PDF Por Link', value: 'getDocumentoPdfByLink', description: 'GET PDF usando un link hash' 
+																																																																				action: 'PDF por Link a reporte compartido',},
+            { name: 'Generar PDFs en Lote', value: 'generateDocumentosPdf', description: 'PUT Genera archivos PDF en servidor (Desde/Hasta)' 
+																																																																												action: 'Generar PDFs en Lote a reporte compartido',},
         ],
         default: 'getAll',
     },
@@ -37,7 +46,7 @@ export const reporteCompartidoFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getPdf', 'getUsuarios'] 
             } 
         },
-        description: 'Identificador del reporte compartido.',
+        description: 'Identificador del reporte compartido',
     },
     {
         displayName: 'Link Documento',
@@ -52,7 +61,7 @@ export const reporteCompartidoFields: INodeProperties[] = [
                 operation: ['getDocumentoPdfByLink'] 
             } 
         },
-        description: 'Hash o link del documento PDF.',
+        description: 'Hash o link del documento PDF',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -65,6 +74,6 @@ export const reporteCompartidoFields: INodeProperties[] = [
                 resource: ['reporteCompartido'] 
             } 
         },
-        description: 'Filtros (fechaDesde, grupo, idUsuario) o Parámetros (IdEjercicio, IdComprobante, idDesde, idHasta).',
+        description: 'Filtros (fechaDesde, grupo, idUsuario) o Parámetros (IdEjercicio, IdComprobante, idDesde, idHasta)',
     },
 ];

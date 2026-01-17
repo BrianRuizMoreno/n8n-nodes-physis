@@ -9,19 +9,22 @@ export const laborOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['labor'] } },
         options: [
             { 
-                name: 'Listar Todas', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de labores. Opcional: formatoRespuesta.' 
+																action: 'Listar Todas a labor',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de una labor específica (IdLabor).' 
+                description: 'GET Datos de una labor específica (IdLabor)' 
+																action: 'Obtener por ID a labor',
             },
             { 
-                name: 'Obtener por Actividad', 
+                name: 'Obtener Por Actividad', 
                 value: 'getByActividad', 
-                description: 'GET Labores asociadas a una actividad (IdActividad).' 
+                description: 'GET Labores asociadas a una actividad (IdActividad)' 
+																action: 'Obtener por Actividad a labor',
             },
         ],
         default: 'getAll',
@@ -42,7 +45,7 @@ export const laborFields: INodeProperties[] = [
                 operation: ['get', 'getByActividad'] 
             } 
         },
-        description: 'Ingrese el IdLabor (para "Obtener por ID") o el IdActividad (para "Obtener por Actividad").',
+        description: 'Ingrese el IdLabor (para "Obtener por ID") o el IdActividad (para "Obtener por Actividad")',
     },
     {
         displayName: 'Filtros (JSON)',

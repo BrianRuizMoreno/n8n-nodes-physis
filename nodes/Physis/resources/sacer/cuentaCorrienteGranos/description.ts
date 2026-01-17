@@ -8,9 +8,9 @@ export const cuentaCorrienteGranosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['cuentaCorrienteGranos'] } },
         options: [
-            { name: 'Listar Movimientos', value: 'getMovimientos', description: 'GET Devuelve el listado detallado de movimientos.' },
-            { name: 'Obtener Totales', value: 'getTotales', description: 'GET Devuelve los totales acumulados de la cuenta.' },
-            { name: 'Informe de Totales', value: 'getInformeTotales', description: 'GET Devuelve un informe estructurado de totales.' },
+            { name: 'Listar Movimientos', value: 'getMovimientos', description: 'GET Devuelve el listado detallado de movimientos', action: 'Listar Movimientos a cuenta corriente granos',},
+            { name: 'Obtener Totales', value: 'getTotales', description: 'GET Devuelve los totales acumulados de la cuenta', action: 'Obtener Totales a cuenta corriente granos',},
+            { name: 'Informe De Totales', value: 'getInformeTotales', description: 'GET Devuelve un informe estructurado de totales', action: 'Informe de Totales a cuenta corriente granos',},
         ],
         default: 'getMovimientos',
     },
@@ -28,6 +28,6 @@ export const cuentaCorrienteGranosFields: INodeProperties[] = [
                 resource: ['cuentaCorrienteGranos']
             } 
         },
-        description: 'Parámetros de consulta: idAuxi, idCtaAuxi, fechaDesde, fechaHasta, codCampania, codCereal, codPlanta, nroContrato, etc.',
+        description: 'Parámetros de consulta: idAuxi, idCtaAuxi, fechaDesde, fechaHasta, codCampania, codCereal, codPlanta, nroContrato, etc',
     },
 ];

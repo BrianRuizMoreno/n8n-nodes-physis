@@ -9,29 +9,34 @@ export const cartaPorteOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sacer'], resource: ['cartaPorte'] } },
         options: [
             { 
-                name: 'Listar', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Busca por fechas, contratos, cereal, productor, etc.' 
+                description: 'GET Busca por fechas, contratos, cereal, productor, etc', 
+				action: 'Listar a carta porte',
             },
             { 
                 name: 'Listar (Vista Grilla)', 
                 value: 'getGrid', 
-                description: 'GET Endpoint V2. Permite ver anulados y usar filtros de grilla.' 
+                description: 'GET Endpoint V2. Permite ver anulados y usar filtros de grilla.', 
+				action: 'Listar (Vista Grilla) a carta porte',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Detalle de una Carta de Porte.' 
+                description: 'GET Detalle de una Carta de Porte', 
+				action: 'Obtener por ID a carta porte',
             },
             { 
                 name: 'Crear', 
                 value: 'create', 
-                description: 'POST Crea una nueva Carta de Porte.' 
+                description: 'POST Crea una nueva Carta de Porte', 
+				action: 'Crear a carta porte',
             },
             { 
                 name: 'Obtener PDF', 
                 value: 'getPdf', 
-                description: 'GET Devuelve el link de descarga del PDF.' 
+                description: 'GET Devuelve el link de descarga del PDF',
+				action: 'Obtener PDF a carta porte',
             },
         ],
         default: 'getAll',
@@ -52,7 +57,7 @@ export const cartaPorteFields: INodeProperties[] = [
                 operation: ['get', 'getPdf'] 
             } 
         },
-        description: 'Identificador único de la carta de porte.',
+        description: 'Identificador único de la carta de porte',
     },
     {
         displayName: 'Incluir Anulados',
@@ -66,7 +71,7 @@ export const cartaPorteFields: INodeProperties[] = [
                 operation: ['getGrid'] 
             } 
         },
-        description: 'Si se activa, incluye registros anulados (Endpoint V2).',
+        description: 'Si se activa, incluye registros anulados (Endpoint V2)',
     },
     {
         displayName: 'JSON Body / Filtros',

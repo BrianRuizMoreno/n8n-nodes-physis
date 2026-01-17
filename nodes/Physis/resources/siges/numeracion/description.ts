@@ -8,14 +8,22 @@ export const numeracionOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['numeracion'] } },
         options: [
-            { name: 'Listar Numeradores', value: 'getAll', description: 'GET Lista numeradores (por ejercicio u origen).' },
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Detalle y último número de un numerador.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo numerador.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un numerador existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un numerador.' },
-            { name: 'Listar por Tipo Prefijo', value: 'getByPrefixType', description: 'GET Filtra numeradores con o sin prefijo.' },
-            { name: 'Obtener Origen', value: 'getOrigin', description: 'GET Obtiene el origen de un numerador.' },
-            { name: 'Último Nro (Sin Prefijo)', value: 'getLastNumberNoPrefix', description: 'GET Último número para comprobantes sin prefijo.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista numeradores (por ejercicio u origen)' 
+																																																											action: 'Listar Numeradores a numeracion',},
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Detalle y último número de un numerador' 
+																																																					action: 'Obtener Detalle a numeracion',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo numerador' 
+																																														action: 'Crear a numeracion',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un numerador existente' 
+																																																			action: 'Actualizar a numeracion',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un numerador' 
+																																																	action: 'Eliminar a numeracion',},
+            { name: 'Listar Por Tipo Prefijo', value: 'getByPrefixType', description: 'GET Filtra numeradores con o sin prefijo' 
+																																																																									action: 'Listar por Tipo Prefijo a numeracion',},
+            { name: 'Obtener Origen', value: 'getOrigin', description: 'GET Obtiene el origen de un numerador' 
+																																																										action: 'Obtener Origen a numeracion',},
+            { name: 'Último Nro (Sin Prefijo)', value: 'getLastNumberNoPrefix', description: 'GET Último número para comprobantes sin prefijo' 
+																																																																																action: 'Último Nro (Sin Prefijo) a numeracion',},
         ],
         default: 'getAll',
     },
@@ -35,7 +43,7 @@ export const numeracionFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getOrigin', 'getLastNumberNoPrefix'] 
             } 
         },
-        description: 'Identificador del numerador.',
+        description: 'Identificador del numerador',
     },
     {
         displayName: 'ID Ejercicio',
@@ -62,6 +70,6 @@ export const numeracionFields: INodeProperties[] = [
                 resource: ['numeracion'] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar o Filtros (origen, prefijo).',
+        description: 'Cuerpo para Crear/Actualizar o Filtros (origen, prefijo)',
     },
 ];

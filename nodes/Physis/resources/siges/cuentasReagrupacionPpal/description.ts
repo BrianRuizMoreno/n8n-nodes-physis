@@ -8,14 +8,22 @@ export const cuentasReagrupacionPpalOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['cuentasReagrupacionPpal'] } },
         options: [
-            { name: 'Listar Cuentas', value: 'getAll', description: 'GET Lista plana de cuentas. Filtro req: { idReagPpal }.' },
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura de árbol.' },
-            { name: 'Ver TreeList', value: 'getTreeList', description: 'GET Estructura TreeList.' },
-            { name: 'Obtener Cuenta', value: 'get', description: 'GET Detalle de una cuenta.' },
-            { name: 'Obtener Siguiente', value: 'getNext', description: 'GET Próximo código disponible.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una cuenta.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una cuenta.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una cuenta (Req: JSON Body completo).' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista plana de cuentas. Filtro req: { idReagPpal }.' 
+																																																							action: 'Listar Cuentas a cuentas reagrupacion ppal',},
+            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura de árbol' 
+																																																				action: 'Ver Árbol a cuentas reagrupacion ppal',},
+            { name: 'Ver TreeList', value: 'getTreeList', description: 'GET Estructura TreeList' 
+																																																										action: 'Ver TreeList a cuentas reagrupacion ppal',},
+            { name: 'Obtener Cuenta', value: 'get', description: 'GET Detalle de una cuenta' 
+																																																				action: 'Obtener Cuenta a cuentas reagrupacion ppal',},
+            { name: 'Obtener Siguiente', value: 'getNext', description: 'GET Próximo código disponible' 
+																																																											action: 'Obtener Siguiente a cuentas reagrupacion ppal',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una cuenta' 
+																																														action: 'Crear a cuentas reagrupacion ppal',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una cuenta' 
+																																																			action: 'Actualizar a cuentas reagrupacion ppal',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una cuenta (Req: JSON Body completo)' 
+																																																	action: 'Eliminar a cuentas reagrupacion ppal',},
         ],
         default: 'getAll',
     },
@@ -34,7 +42,7 @@ export const cuentasReagrupacionPpalFields: INodeProperties[] = [
                 operation: ['get', 'getNext'] 
             } 
         },
-        description: 'Código de la cuenta de reagrupación (ej: "1.01").',
+        description: 'Código de la cuenta de reagrupación (ej: "1.01")',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -47,6 +55,6 @@ export const cuentasReagrupacionPpalFields: INodeProperties[] = [
                 resource: ['cuentasReagrupacionPpal'] 
             } 
         },
-        description: 'Filtros (idReagPpal) o Cuerpo para Crear/Actualizar/Borrar.',
+        description: 'Filtros (idReagPpal) o Cuerpo para Crear/Actualizar/Borrar',
     },
 ];

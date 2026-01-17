@@ -8,11 +8,16 @@ export const partidaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['partida'] } },
         options: [
-            { name: 'Listar Partidas (Producto)', value: 'getByProducto', description: 'GET Partidas de un producto.' },
-            { name: 'Listar Partidas (General)', value: 'getAll', description: 'GET Búsqueda de partidas.' },
-            { name: 'Crear Partida', value: 'create', description: 'POST Inserta nueva partida.' },
-            { name: 'Actualizar Partida', value: 'update', description: 'PUT Modifica partida existente.' },
-            { name: 'Eliminar Partida', value: 'delete', description: 'DELETE Elimina una partida.' },
+            { name: 'Listar Partidas (Producto)', value: 'getByProducto', description: 'GET Partidas de un producto' 
+																																																																										action: 'Listar Partidas (Producto) a partida',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Búsqueda de partidas' 
+																																																																		action: 'Listar Partidas (General) a partida',},
+            { name: 'Crear Partida', value: 'create', description: 'POST Inserta nueva partida' 
+																																																						action: 'Crear Partida a partida',},
+            { name: 'Actualizar Partida', value: 'update', description: 'PUT Modifica partida existente' 
+																																																											action: 'Actualizar Partida a partida',},
+            { name: 'Eliminar Partida', value: 'delete', description: 'DELETE Elimina una partida' 
+																																																									action: 'Eliminar Partida a partida',},
         ],
         default: 'getAll',
     },
@@ -20,7 +25,7 @@ export const partidaOperations: INodeProperties[] = [
 
 export const partidaFields: INodeProperties[] = [
     {
-        displayName: 'ID (Producto o Partida)',
+        displayName: 'ID (Producto O Partida)',
         name: 'id',
         type: 'string',
         default: '',
@@ -29,7 +34,7 @@ export const partidaFields: INodeProperties[] = [
             show: { service: ['sifac'], resource: ['partida'] },
             hide: { operation: ['getAll', 'create', 'update'] }
         },
-        description: 'ID Producto (para "Listar Partidas Producto") o ID Partida (para Delete).',
+        description: 'ID Producto (para "Listar Partidas Producto") o ID Partida (para Delete)',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -37,6 +42,6 @@ export const partidaFields: INodeProperties[] = [
         type: 'json',
         default: '{}',
         displayOptions: { show: { service: ['sifac'], resource: ['partida'] } },
-        description: 'Cuerpo para POST/PUT (incluir parámetros flags como "ingresoTropa": true aquí) o Filtros GET.',
+        description: 'Cuerpo para POST/PUT (incluir parámetros flags como "ingresoTropa": true aquí) o Filtros GET',
     },
 ];

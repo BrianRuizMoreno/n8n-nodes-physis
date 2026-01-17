@@ -11,37 +11,44 @@ export const interdepositosOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Interdepósito', 
                 value: 'get', 
-                description: 'GET Devuelve los datos de un interdepósito específico por comprobante.' 
+                description: 'GET Devuelve los datos de un interdepósito específico por comprobante' 
+																action: 'Obtener Interdepósito an interdepositos',
             },
             { 
                 name: 'Obtener Próximo ID', 
                 value: 'getNextId', 
-                description: 'GET Obtiene el siguiente número disponible para generar un interdepósito.' 
+                description: 'GET Obtiene el siguiente número disponible para generar un interdepósito' 
+																action: 'Obtener Próximo ID an interdepositos',
             },
             { 
                 name: 'Listar Medios (Filtrado)', 
                 value: 'getMeans', 
-                description: 'GET Busca medios de interdepósito con filtro de exportable.' 
+                description: 'GET Busca medios de interdepósito con filtro de exportable' 
+																action: 'Listar Medios (Filtrado) an interdepositos',
             },
             { 
                 name: 'Listar Medios (Todos)', 
                 value: 'getAllMeans', 
-                description: 'GET Busca todos los medios de interdepósito por código.' 
+                description: 'GET Busca todos los medios de interdepósito por código' 
+																action: 'Listar Medios (Todos) an interdepositos',
             },
             { 
                 name: 'Última Fecha Exportable', 
                 value: 'getLastExportDate', 
-                description: 'GET Devuelve la fecha del último depósito marcado como exportable.' 
+                description: 'GET Devuelve la fecha del último depósito marcado como exportable' 
+																action: 'Última Fecha Exportable an interdepositos',
             },
             { 
-                name: 'Listar Números de Envío', 
+                name: 'Listar Números De Envío', 
                 value: 'getShipmentNumbers', 
-                description: 'GET Obtiene los números de envío registrados en una fecha específica.' 
+                description: 'GET Obtiene los números de envío registrados en una fecha específica' 
+																action: 'Listar Números de Envío an interdepositos',
             },
             { 
-                name: 'Buscar por Fecha y Envío', 
+                name: 'Buscar Por Fecha Y Envío', 
                 value: 'getByDateAndShipment', 
-                description: 'GET Recupera interdepósitos filtrando por fecha y número de lote/envío.' 
+                description: 'GET Recupera interdepósitos filtrando por fecha y número de lote/envío' 
+																action: 'Buscar por Fecha y Envío an interdepositos',
             },
         ],
         default: 'get',
@@ -63,7 +70,7 @@ export const interdepositosFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Ejercicio contable del comprobante.',
+        description: 'Ejercicio contable del comprobante',
     },
     {
         displayName: 'ID Comprobante',
@@ -78,7 +85,7 @@ export const interdepositosFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador único del comprobante de interdepósito.',
+        description: 'Identificador único del comprobante de interdepósito',
     },
     {
         displayName: 'Código Medio',
@@ -92,7 +99,7 @@ export const interdepositosFields: INodeProperties[] = [
                 operation: ['getMeans', 'getAllMeans'] 
             } 
         },
-        description: 'Código del medio o canal de depósito.',
+        description: 'Código del medio o canal de depósito',
     },
     {
         displayName: 'Es Exportable',
@@ -106,7 +113,7 @@ export const interdepositosFields: INodeProperties[] = [
                 operation: ['getMeans'] 
             } 
         },
-        description: 'Filtrar si el medio permite exportación de datos.',
+        description: 'Filtrar si el medio permite exportación de datos',
     },
     {
         displayName: 'Fecha',
@@ -121,10 +128,10 @@ export const interdepositosFields: INodeProperties[] = [
                 operation: ['getShipmentNumbers', 'getByDateAndShipment'] 
             } 
         },
-        description: 'Fecha del envío o depósito.',
+        description: 'Fecha del envío o depósito',
     },
     {
-        displayName: 'Número de Envío',
+        displayName: 'Número De Envío',
         name: 'numeroEnvio',
         type: 'number',
         default: 0,
@@ -136,6 +143,6 @@ export const interdepositosFields: INodeProperties[] = [
                 operation: ['getByDateAndShipment'] 
             } 
         },
-        description: 'Número de lote o secuencia del envío.',
+        description: 'Número de lote o secuencia del envío',
     },
 ];

@@ -11,22 +11,26 @@ export const utilidadesOperations: INodeProperties[] = [
             { 
                 name: 'Listar Firmantes', 
                 value: 'listSignatories', 
-                description: 'GET Devuelve la lista de personas habilitadas para firmar.' 
+                description: 'GET Devuelve la lista de personas habilitadas para firmar' 
+																action: 'Listar Firmantes an utilidades',
             },
             { 
                 name: 'Controlar Fecha Subdiario', 
                 value: 'checkSubjournalDate', 
-                description: 'GET Valida si una fecha es permitida para un tipo de comprobante en un ejercicio.' 
+                description: 'GET Valida si una fecha es permitida para un tipo de comprobante en un ejercicio' 
+																action: 'Controlar Fecha Subdiario an utilidades',
             },
             { 
                 name: 'Verificar Devolución IVA', 
                 value: 'checkIvaRefundStatus', 
-                description: 'GET Consulta si un comprobante de devolución de IVA ya está registrado.' 
+                description: 'GET Consulta si un comprobante de devolución de IVA ya está registrado' 
+																action: 'Verificar Devolución IVA an utilidades',
             },
             { 
                 name: 'Insertar Comprobante Tercero', 
                 value: 'createThirdPartyVoucher', 
-                description: 'POST Inserta un comprobante simplificado de tercero con sus imputaciones.' 
+                description: 'POST Inserta un comprobante simplificado de tercero con sus imputaciones' 
+																action: 'Insertar Comprobante Tercero an utilidades',
             },
         ],
         default: 'listSignatories',
@@ -48,7 +52,7 @@ export const utilidadesFields: INodeProperties[] = [
                 operation: ['checkSubjournalDate', 'checkIvaRefundStatus'] 
             } 
         },
-        description: 'Año contable.',
+        description: 'Año contable',
     },
     {
         displayName: 'ID Plan Principal',
@@ -76,7 +80,7 @@ export const utilidadesFields: INodeProperties[] = [
                 operation: ['checkSubjournalDate'] 
             } 
         },
-        description: 'Código del comprobante (ej: FAC).',
+        description: 'Código del comprobante (ej: FAC)',
     },
     {
         displayName: 'Fecha',
@@ -91,7 +95,7 @@ export const utilidadesFields: INodeProperties[] = [
                 operation: ['checkSubjournalDate'] 
             } 
         },
-        description: 'Fecha a validar.',
+        description: 'Fecha a validar',
     },
     {
         displayName: 'ID Comprobante',
@@ -119,6 +123,6 @@ export const utilidadesFields: INodeProperties[] = [
                 operation: ['createThirdPartyVoucher'] 
             } 
         },
-        description: 'Array de objetos con la definición del comprobante y sus detalles.',
+        description: 'Array de objetos con la definición del comprobante y sus detalles',
     },
 ];

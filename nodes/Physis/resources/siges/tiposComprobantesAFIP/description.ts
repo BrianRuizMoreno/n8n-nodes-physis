@@ -9,29 +9,34 @@ export const tiposComprobantesAfipOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['tiposComprobantesAfip'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de tipos de comprobantes AFIP configurados.' 
+                description: 'GET Devuelve la lista de tipos de comprobantes AFIP configurados' 
+																action: 'Listar Todos a tipos comprobantes afip',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Obtiene un tipo específico usando su clave compuesta (ID + IVA).' 
+                description: 'GET Obtiene un tipo específico usando su clave compuesta (ID + IVA)' 
+																action: 'Obtener Detalle a tipos comprobantes afip',
             },
             { 
                 name: 'Crear Tipo', 
                 value: 'create', 
-                description: 'POST Crea una nueva configuración de comprobante AFIP.' 
+                description: 'POST Crea una nueva configuración de comprobante AFIP' 
+																action: 'Crear Tipo a tipos comprobantes afip',
             },
             { 
                 name: 'Modificar Tipo', 
                 value: 'update', 
-                description: 'PUT Actualiza un tipo existente.' 
+                description: 'PUT Actualiza un tipo existente' 
+																action: 'Modificar Tipo a tipos comprobantes afip',
             },
             { 
                 name: 'Eliminar Tipo', 
                 value: 'delete', 
-                description: 'DELETE Elimina una configuración de comprobante AFIP.' 
+                description: 'DELETE Elimina una configuración de comprobante AFIP' 
+																action: 'Eliminar Tipo a tipos comprobantes afip',
             },
         ],
         default: 'getAll',
@@ -53,7 +58,7 @@ export const tiposComprobantesAfipFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código interno del comprobante (ej: "FAC-A").',
+        description: 'Código interno del comprobante (ej: "FAC-A")',
     },
     {
         displayName: 'Tipo IVA (Ámbito)',
@@ -72,10 +77,10 @@ export const tiposComprobantesAfipFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Define si el comprobante se usa en Compras o Ventas.',
+        description: 'Define si el comprobante se usa en Compras o Ventas',
     },
     {
-        displayName: 'Filtro por Ámbito',
+        displayName: 'Filtro Por Ámbito',
         name: 'ivaFilter',
         type: 'options',
         options: [
@@ -91,7 +96,7 @@ export const tiposComprobantesAfipFields: INodeProperties[] = [
                 operation: ['getAll'] 
             } 
         },
-        description: 'Filtra la lista según si son de compra o venta.',
+        description: 'Filtra la lista según si son de compra o venta',
     },
     {
         displayName: 'JSON Body',
@@ -105,6 +110,6 @@ export const tiposComprobantesAfipFields: INodeProperties[] = [
                 operation: ['create', 'update'] 
             } 
         },
-        description: 'Objeto con la definición del comprobante (codigoAFIP, nombre, letra, etc.).',
+        description: 'Objeto con la definición del comprobante (codigoAFIP, nombre, letra, etc.)',
     },
 ];

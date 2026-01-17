@@ -8,12 +8,12 @@ export const fijacionOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['fijacion'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista fijaciones globales con filtros.' },
-            { name: 'Listar por Contrato', value: 'getByContract', description: 'GET Lista fijaciones de un contrato específico.' },
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Detalle de una fijación (Req: Campaña, Contrato, NroFijación).' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva fijación.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una fijación existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una fijación (Req: ID Interno).' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista fijaciones globales con filtros', action: 'Listar Todas a fijacion',},
+            { name: 'Listar Por Contrato', value: 'getByContract', description: 'GET Lista fijaciones de un contrato específico', action: 'Listar por Contrato a fijacion',},
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Detalle de una fijación (Req: Campaña, Contrato, NroFijación)', action: 'Obtener Detalle a fijacion',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva fijación', action: 'Crear a fijacion',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una fijación existente', action: 'Actualizar a fijacion',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una fijación (Req: ID Interno)', action: 'Eliminar a fijacion',},
         ],
         default: 'getAll',
     },
@@ -34,7 +34,7 @@ export const fijacionFields: INodeProperties[] = [
                 operation: ['get', 'getByContract'] 
             } 
         },
-        description: 'Código de la campaña.',
+        description: 'Código de la campaña',
     },
     {
         displayName: 'Nro Contrato',
@@ -49,7 +49,7 @@ export const fijacionFields: INodeProperties[] = [
                 operation: ['get', 'getByContract'] 
             } 
         },
-        description: 'Número del contrato asociado.',
+        description: 'Número del contrato asociado',
     },
     {
         displayName: 'Nro Fijación',
@@ -64,7 +64,7 @@ export const fijacionFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Número secuencial de la fijación.',
+        description: 'Número secuencial de la fijación',
     },
     
     {
@@ -80,7 +80,7 @@ export const fijacionFields: INodeProperties[] = [
                 operation: ['delete'] 
             } 
         },
-        description: 'ID interno numérico de la fijación (necesario para eliminar).',
+        description: 'ID interno numérico de la fijación (necesario para eliminar)',
     },
 
     {
@@ -94,6 +94,6 @@ export const fijacionFields: INodeProperties[] = [
                 resource: ['fijacion']
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar (kilos, precio, fecha) o Filtros para Listar.',
+        description: 'Cuerpo para Crear/Actualizar (kilos, precio, fecha) o Filtros para Listar',
     },
 ];

@@ -8,10 +8,14 @@ export const usuarioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['usuario'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Devuelve el listado básico de usuarios.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Devuelve los datos completos de un usuario.' },
-            { name: 'Terceros Relacionados', value: 'getTerceros', description: 'GET Devuelve las cuentas auxiliares asociadas a un usuario.' },
-            { name: 'Relacionar Terceros', value: 'linkTercero', description: 'POST Asigna cuentas auxiliares a un usuario.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado básico de usuarios' 
+																																																					action: 'Listar Todos an usuario',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve los datos completos de un usuario' 
+																																																				action: 'Obtener por ID an usuario',},
+            { name: 'Terceros Relacionados', value: 'getTerceros', description: 'GET Devuelve las cuentas auxiliares asociadas a un usuario' 
+																																																																			action: 'Terceros Relacionados an usuario',},
+            { name: 'Relacionar Terceros', value: 'linkTercero', description: 'POST Asigna cuentas auxiliares a un usuario' 
+																																																																	action: 'Relacionar Terceros an usuario',},
         ],
         default: 'getAll',
     },
@@ -31,7 +35,7 @@ export const usuarioFields: INodeProperties[] = [
                 operation: ['get', 'getTerceros', 'linkTercero'] 
             } 
         },
-        description: 'Identificador numérico del usuario.',
+        description: 'Identificador numérico del usuario',
     },
     {
         displayName: 'ID Plan Auxiliar (idAuxi)',
@@ -46,7 +50,7 @@ export const usuarioFields: INodeProperties[] = [
                 operation: ['getTerceros', 'linkTercero'] 
             } 
         },
-        description: 'Identificador del Plan Auxiliar (ej: 1 para Clientes, 2 para Proveedores).',
+        description: 'Identificador del Plan Auxiliar (ej: 1 para Clientes, 2 para Proveedores)',
     },
     {
         displayName: 'JSON Body',

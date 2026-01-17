@@ -8,12 +8,12 @@ export const razaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['raza'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista razas (filtro opcional por Especie).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene una raza específica.' },
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Lista jerárquica Especie -> Raza para Tree View.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva raza.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una raza existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una raza.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista razas (filtro opcional por Especie)', action: 'Listar Todas a raza',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una raza específica', action: 'Obtener por ID a raza',},
+            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Lista jerárquica Especie -> Raza para Tree View', action: 'Ver Árbol a raza',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva raza', action: 'Crear a raza',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una raza existente', action: 'Actualizar a raza',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una raza', action: 'Eliminar a raza',},
         ],
         default: 'getAll',
     },
@@ -33,7 +33,7 @@ export const razaFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador numérico de la raza.',
+        description: 'Identificador numérico de la raza',
     },
     {
         displayName: 'ID Especie',
@@ -61,6 +61,6 @@ export const razaFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos de la raza (descripción, especie, códigos AFIP, etc.).',
+        description: 'Cuerpo con los datos de la raza (descripción, especie, códigos AFIP, etc.)',
     },
 ];

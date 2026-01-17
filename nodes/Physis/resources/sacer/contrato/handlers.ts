@@ -2,65 +2,65 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/sacer/contratos';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    
-    let id = ''; 
-    let codCampania = '';
-    let nroContrato = '';
-    let idAuxi = '';
-    let idCtaAuxi = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	let endpoint = '/phy2service/api/sacer/contratos';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { codCampania = this.getNodeParameter('codCampania', index) as string; } catch (e) {}
-    try { nroContrato = this.getNodeParameter('nroContrato', index) as string; } catch (e) {}
-    try { idAuxi = this.getNodeParameter('idAuxi', index) as string; } catch (e) {}
-    try { idCtaAuxi = this.getNodeParameter('idCtaAuxi', index) as string; } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
+	const codCampania = this.getNodeParameter('codCampania', index, '') as string;
+	const nroContrato = this.getNodeParameter('nroContrato', index, '') as string;
+	const idAuxi = this.getNodeParameter('idAuxi', index, '') as string;
+	const idCtaAuxi = this.getNodeParameter('idCtaAuxi', index, '') as string;
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        if (['create', 'update', 'tableSearch'].includes(operation)) {
-            body = json as IDataObject;
-        } else {
-            qs = json as IDataObject;
-        }
-    } catch (e) {}
+	switch (operation) {
+		case 'getAll':
+			break;
+		case 'getByTercero':
+			endpoint = `/phy2service/api/sacer/terceros/${idAuxi}/${idCtaAuxi}/contratos`;
+			break;
+		case 'get':
+			endpoint = `/phy2service/api/sacer/campanias/${codCampania}/contratos/${nroContrato}`;
+			break;
+		case 'create':
+			method = 'POST';
+			break;
+		case 'update':
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${endpoint}/${id}`;
+			method = 'DELETE';
+			break;
+		case 'tableSearch':
+			endpoint = `${endpoint}/consultas`;
+			method = 'POST';
+			break;
+	}
 
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    if (operation === 'getAll') {
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+			
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-        endpoint = endpoint;
-    }
-    else if (operation === 'getByTercero') {
-        endpoint = `/phy2service/api/sacer/terceros/${idAuxi}/${idCtaAuxi}/contratos`;
-    }
-    else if (operation === 'get') {
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
 
-        endpoint = `/phy2service/api/sacer/campanias/${codCampania}/contratos/${nroContrato}`;
-    }
-    else if (operation === 'create') {
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = `${endpoint}/${id}`;
-        method = 'DELETE';
-    }
-    else if (operation === 'tableSearch') {
-        endpoint = `${endpoint}/consultas`;
-        method = 'POST';
-    }
-
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

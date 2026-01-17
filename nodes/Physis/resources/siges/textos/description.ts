@@ -9,29 +9,34 @@ export const textosOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['textos'] } },
         options: [
             { 
-                name: 'Listar Textos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de textos predefinidos, filtrados por categoría.' 
+                description: 'GET Devuelve la lista de textos predefinidos, filtrados por categoría' 
+																action: 'Listar Textos a textos',
             },
             { 
                 name: 'Obtener Texto', 
                 value: 'get', 
-                description: 'GET Recupera el contenido de una plantilla específica.' 
+                description: 'GET Recupera el contenido de una plantilla específica' 
+																action: 'Obtener Texto a textos',
             },
             { 
                 name: 'Crear Texto', 
                 value: 'create', 
-                description: 'POST Agrega una nueva leyenda o plantilla al sistema.' 
+                description: 'POST Agrega una nueva leyenda o plantilla al sistema' 
+																action: 'Crear Texto a textos',
             },
             { 
                 name: 'Modificar Texto', 
                 value: 'update', 
-                description: 'PUT Actualiza el contenido de un texto existente.' 
+                description: 'PUT Actualiza el contenido de un texto existente' 
+																action: 'Modificar Texto a textos',
             },
             { 
                 name: 'Eliminar Texto', 
                 value: 'delete', 
-                description: 'DELETE Borra un texto predefinido.' 
+                description: 'DELETE Borra un texto predefinido' 
+																action: 'Eliminar Texto a textos',
             },
         ],
         default: 'getAll',
@@ -53,10 +58,10 @@ export const textosFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador único de la plantilla de texto.',
+        description: 'Identificador único de la plantilla de texto',
     },
     {
-        displayName: 'Tipo de Texto (ID)',
+        displayName: 'Tipo De Texto (ID)',
         name: 'tipoTexto',
         type: 'number',
         default: 0,
@@ -67,7 +72,7 @@ export const textosFields: INodeProperties[] = [
                 operation: ['getAll'] 
             } 
         },
-        description: '0 para traer todos, o el ID de la categoría (ej: 1=Observaciones Factura, 5=Mail Cobranzas).',
+        description: '0 para traer todos, o el ID de la categoría (ej: 1=Observaciones Factura, 5=Mail Cobranzas)',
     },
     {
         displayName: 'JSON Body',
@@ -81,6 +86,6 @@ export const textosFields: INodeProperties[] = [
                 operation: ['create', 'update'] 
             } 
         },
-        description: 'Estructura del texto a guardar.',
+        description: 'Estructura del texto a guardar',
     },
 ];

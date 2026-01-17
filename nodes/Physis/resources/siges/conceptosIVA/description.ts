@@ -9,29 +9,34 @@ export const conceptosIVAOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['conceptosIVA'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de alícuotas de IVA configuradas.' 
+                description: 'GET Devuelve la lista de alícuotas de IVA configuradas' 
+																action: 'Listar Todos a conceptos i v a',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera los datos de un concepto de IVA específico.' 
+                description: 'GET Recupera los datos de un concepto de IVA específico' 
+																action: 'Obtener Detalle a conceptos i v a',
             },
             { 
                 name: 'Crear Concepto', 
                 value: 'create', 
-                description: 'POST Crea una nueva alícuota o categoría de IVA.' 
+                description: 'POST Crea una nueva alícuota o categoría de IVA' 
+																action: 'Crear Concepto a conceptos i v a',
             },
             { 
                 name: 'Modificar Concepto', 
                 value: 'update', 
-                description: 'PUT Actualiza un concepto de IVA existente.' 
+                description: 'PUT Actualiza un concepto de IVA existente' 
+																action: 'Modificar Concepto a conceptos i v a',
             },
             { 
                 name: 'Eliminar Concepto', 
                 value: 'delete', 
-                description: 'DELETE Elimina un concepto de IVA.' 
+                description: 'DELETE Elimina un concepto de IVA' 
+																action: 'Eliminar Concepto a conceptos i v a',
             },
         ],
         default: 'getAll',
@@ -52,7 +57,7 @@ export const conceptosIVAFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador numérico de la alícuota.',
+        description: 'Identificador numérico de la alícuota',
     },
     {
         displayName: 'JSON Body',
@@ -66,6 +71,6 @@ export const conceptosIVAFields: INodeProperties[] = [
                 operation: ['create', 'update'] 
             } 
         },
-        description: 'Objeto con la definición de la alícuota (nombre, porcentaje, tipo Gravado/Exento).',
+        description: 'Objeto con la definición de la alícuota (nombre, porcentaje, tipo Gravado/Exento)',
     },
 ];

@@ -10,52 +10,61 @@ export const comprobanteOperations: INodeProperties[] = [
         options: [
             // --- CONSULTAS ---
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Listado general de comprobantes con filtros básicos.' 
+                description: 'GET Listado general de comprobantes con filtros básicos' 
+																action: 'Listar Todos a comprobante',
             },
             { 
                 name: 'Listar Paginado', 
                 value: 'getAllPaginated', 
-                description: 'GET Listado optimizado para grandes volúmenes de datos.' 
+                description: 'GET Listado optimizado para grandes volúmenes de datos' 
+																action: 'Listar Paginado a comprobante',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Recupera un comprobante completo (Requiere idEjercicio en JSON Body).' 
+                description: 'GET Recupera un comprobante completo (Requiere idEjercicio en JSON Body)' 
+																action: 'Obtener por ID a comprobante',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Crear Comprobante', 
                 value: 'create', 
-                description: 'POST Crea un nuevo comprobante completo (Factura, Recibo, etc.).' 
+                description: 'POST Crea un nuevo comprobante completo (Factura, Recibo, etc.)' 
+																action: 'Crear Comprobante a comprobante',
             },
             { 
                 name: 'Actualizar Comprobante', 
                 value: 'update', 
-                description: 'PUT Modifica un comprobante existente.' 
+                description: 'PUT Modifica un comprobante existente' 
+																action: 'Actualizar Comprobante a comprobante',
             },
             { 
                 name: 'Eliminar Comprobante', 
                 value: 'delete', 
-                description: 'DELETE Borra un comprobante (Requiere estructura mínima en JSON Body).' 
+                description: 'DELETE Borra un comprobante (Requiere estructura mínima en JSON Body)' 
+																action: 'Eliminar Comprobante a comprobante',
             },
             // --- TESORERÍA / PAGOS ---
             { 
                 name: 'Generar OP Masivas', 
                 value: 'createOPMasivas', 
-                description: 'POST Genera Órdenes de Pago automáticas a partir de una lista de deudas.' 
+                description: 'POST Genera Órdenes de Pago automáticas a partir de una lista de deudas' 
+																action: 'Generar OP Masivas a comprobante',
             },
             { 
-                name: 'Pendientes de Pago', 
+                name: 'Pendientes De Pago', 
                 value: 'getPendientesPago', 
-                description: 'GET Lista comprobantes pendientes de cancelación.' 
+                description: 'GET Lista comprobantes pendientes de cancelación' 
+																action: 'Pendientes de Pago a comprobante',
             },
             // --- VALIDACIONES ---
             { 
                 name: 'Validar Existencia Externa', 
                 value: 'checkExternalExists', 
-                description: 'GET Verifica si ya existe una factura externa (Duplicados).' 
+                description: 'GET Verifica si ya existe una factura externa (Duplicados)' 
+																action: 'Validar Existencia Externa a comprobante',
             },
         ],
         default: 'getAllPaginated',
@@ -76,7 +85,7 @@ export const comprobanteFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Número identificador del comprobante.',
+        description: 'Número identificador del comprobante',
     },
     {
         displayName: 'Advertencia (Force Delete)',
@@ -90,7 +99,7 @@ export const comprobanteFields: INodeProperties[] = [
                 operation: ['delete'] 
             } 
         },
-        description: 'Si es True, fuerza el borrado ignorando advertencias no críticas.',
+        description: 'Si es True, fuerza el borrado ignorando advertencias no críticas',
     },
     {
         displayName: 'JSON Parámetros / Body',
@@ -103,6 +112,6 @@ export const comprobanteFields: INodeProperties[] = [
                 resource: ['comprobante']
             } 
         },
-        description: 'Cuerpo de la solicitud o parámetros de filtrado (ej: idEjercicio, fechas, estructura del comprobante).',
+        description: 'Cuerpo de la solicitud o parámetros de filtrado (ej: idEjercicio, fechas, estructura del comprobante)',
     },
 ];

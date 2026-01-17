@@ -8,7 +8,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['liquidacion'] } },
         options: [
-            { name: 'Obtener PDF', value: 'getPdf', description: 'GET PDF de Liquidación.' },
+            { name: 'Obtener PDF', value: 'getPdf', description: 'GET PDF de Liquidación', action: 'Obtener PDF a liquidacion',},
         ],
         default: 'getPdf',
     },
@@ -19,7 +19,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['localidad'] } },
         options: [
-            { name: 'Listar Localidades', value: 'getAll', description: 'GET Lista localidades con filtros.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista localidades con filtros', action: 'Listar Localidades a localidad',},
         ],
         default: 'getAll',
     },
@@ -30,8 +30,8 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['lote'] } },
         options: [
-            { name: 'Obtener por Código', value: 'get', description: 'GET Un lote por su código.' },
-            { name: 'Obtener por Tercero', value: 'getByTercero', description: 'GET Lotes de un tercero.' },
+            { name: 'Obtener Por Código', value: 'get', description: 'GET Un lote por su código', action: 'Obtener por Código a lote',},
+            { name: 'Obtener Por Tercero', value: 'getByTercero', description: 'GET Lotes de un tercero', action: 'Obtener por Tercero a lote',},
         ],
         default: 'get',
     },
@@ -42,8 +42,8 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['muestra'] } },
         options: [
-            { name: 'Listar Muestras', value: 'getAll', description: 'GET Lista de muestras filtradas.' },
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Una muestra específica.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista de muestras filtradas', action: 'Listar Muestras a muestra',},
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Una muestra específica', action: 'Obtener Detalle a muestra',},
         ],
         default: 'getAll',
     },
@@ -54,7 +54,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['sucursal'] } },
         options: [
-            { name: 'Listar Sucursales', value: 'getAll', description: 'GET Todas las sucursales.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Todas las sucursales', action: 'Listar Sucursales a sucursal',},
         ],
         default: 'getAll',
     },
@@ -65,7 +65,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tipoTercero'] } },
         options: [
-            { name: 'Tipos Tercero', value: 'getTercero', description: 'GET Devuelve todas las tarifas de Tercero'}
+            { name: 'Tipos Tercero', value: 'getTercero', description: 'GET Devuelve todas las tarifas de Tercero', action: 'Tipos Tercero a tipo tercero',},
         ],
         default: 'getTercero',
     },
@@ -81,7 +81,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['liquidacion'] } },
-        description: 'ID del ejercicio contable.',
+        description: 'ID del ejercicio contable',
     },
     {
         displayName: 'ID Comprobante',
@@ -90,7 +90,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['liquidacion'] } },
-        description: 'ID del comprobante.',
+        description: 'ID del comprobante',
     },
     {
         displayName: 'Cód Lote',
@@ -99,7 +99,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['lote'], operation: ['get'] } },
-        description: 'Código del lote.',
+        description: 'Código del lote',
     },
     {
         displayName: 'ID Auxiliar',
@@ -108,7 +108,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['lote'], operation: ['getByTercero'] } },
-        description: 'Tipo de auxiliar.',
+        description: 'Tipo de auxiliar',
     },
     {
         displayName: 'ID Cuenta Auxiliar',
@@ -117,7 +117,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['lote'], operation: ['getByTercero'] } },
-        description: 'Cuenta auxiliar.',
+        description: 'Cuenta auxiliar',
     },
     {
         displayName: 'ID Carta Porte',
@@ -126,7 +126,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['muestra'], operation: ['get'] } },
-        description: 'ID de la Carta de Porte.',
+        description: 'ID de la Carta de Porte',
     },
     {
         displayName: 'Nro Muestra',
@@ -135,7 +135,7 @@ export const variosFields: INodeProperties[] = [
         default: '',
         required: true,
         displayOptions: { show: { service: ['sacer'], resource: ['muestra'], operation: ['get'] } },
-        description: 'Número de la muestra.',
+        description: 'Número de la muestra',
     },
     {
         displayName: 'Filtros (JSON)',

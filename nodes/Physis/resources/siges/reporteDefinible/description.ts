@@ -8,9 +8,12 @@ export const reporteDefinibleOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['reporteDefinible'] } },
         options: [
-            { name: 'Listar Reportes', value: 'getAll', description: 'GET Lista reportes definibles.' },
-            { name: 'Descargar PDF', value: 'getPdf', description: 'GET Genera y descarga PDF de reporte.' },
-            { name: 'Obtener Resumen', value: 'getResumen', description: 'GET Resumen de reporte generado.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista reportes definibles' 
+																																																								action: 'Listar Reportes a reporte definible',},
+            { name: 'Descargar PDF', value: 'getPdf', description: 'GET Genera y descarga PDF de reporte' 
+																																																						action: 'Descargar PDF a reporte definible',},
+            { name: 'Obtener Resumen', value: 'getResumen', description: 'GET Resumen de reporte generado' 
+																																																												action: 'Obtener Resumen a reporte definible',},
         ],
         default: 'getAll',
     },
@@ -23,6 +26,6 @@ export const reporteDefinibleFields: INodeProperties[] = [
         type: 'json',
         default: '{}',
         displayOptions: { show: { service: ['siges'], resource: ['reporteDefinible'] } },
-        description: 'Filtros (IdDefinido, idtipoformato, idformato, etc).',
+        description: 'Filtros (IdDefinido, idtipoformato, idformato, etc)',
     },
 ];

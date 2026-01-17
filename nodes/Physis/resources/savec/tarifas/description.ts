@@ -8,13 +8,12 @@ export const tarifasOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: { show: { service: ['savec'], resource: ['tarifas'] } },
 		options: [
-			{ name: 'Listar Tarifas Cosechero', value: 'getCosechero', description: 'GET Lista tarifas de cosechero por campo y cereal.' },
-			{ name: 'Crear Tarifas Cosechero', value: 'createCosechero', description: 'POST Inserta una lista de tarifas de cosechero.' },
-			{ name: 'Eliminar Tarifas Cosechero', value: 'deleteCosechero', description: 'DELETE Elimina tarifas de cosechero.' },
-			
-			{ name: 'Listar Tarifas Secado', value: 'getSecado', description: 'GET Lista tarifas de secado por planta y cereal.' },
-			{ name: 'Crear Tarifas Secado', value: 'createSecado', description: 'POST Inserta una lista de tarifas de secado.' },
-			{ name: 'Eliminar Tarifas Secado', value: 'deleteSecado', description: 'DELETE Elimina tarifas de secado.' },
+			{ name: 'Listar Tarifas Cosechero', value: 'getCosechero', description: 'GET Lista tarifas de cosechero por campo y cereal', action: 'Listar Tarifas Cosechero a tarifas',},
+			{ name: 'Crear Tarifas Cosechero', value: 'createCosechero', description: 'POST Inserta una lista de tarifas de cosechero', action: 'Crear Tarifas Cosechero a tarifas',},
+			{ name: 'Eliminar Tarifas Cosechero', value: 'deleteCosechero', description: 'DELETE Elimina tarifas de cosechero', action: 'Eliminar Tarifas Cosechero a tarifas',},
+			{ name: 'Listar Tarifas Secado', value: 'getSecado', description: 'GET Lista tarifas de secado por planta y cereal', action: 'Listar Tarifas Secado a tarifas',},
+			{ name: 'Crear Tarifas Secado', value: 'createSecado', description: 'POST Inserta una lista de tarifas de secado', action: 'Crear Tarifas Secado a tarifas',},
+			{ name: 'Eliminar Tarifas Secado', value: 'deleteSecado', description: 'DELETE Elimina tarifas de secado', action: 'Eliminar Tarifas Secado a tarifas',},
 		],
 		default: 'getCosechero',
 	},
@@ -33,7 +32,7 @@ export const tarifasFields: INodeProperties[] = [
 				operation: ['getCosechero', 'deleteCosechero', 'getSecado', 'deleteSecado']
 			} 
 		},
-		description: 'Código del cereal para filtrar las tarifas.',
+		description: 'Código del cereal para filtrar las tarifas',
 	},
 	{
 		displayName: 'Código Campo',
@@ -47,7 +46,7 @@ export const tarifasFields: INodeProperties[] = [
 				operation: ['getCosechero', 'deleteCosechero']
 			} 
 		},
-		description: 'Código del campo asociado a la tarifa de cosecha.',
+		description: 'Código del campo asociado a la tarifa de cosecha',
 	},
 	{
 		displayName: 'Código Planta',
@@ -61,7 +60,7 @@ export const tarifasFields: INodeProperties[] = [
 				operation: ['getSecado', 'deleteSecado']
 			} 
 		},
-		description: 'Código de la planta asociada a la tarifa de secado.',
+		description: 'Código de la planta asociada a la tarifa de secado',
 	},
 	{
 		displayName: 'JSON Body (Array)',

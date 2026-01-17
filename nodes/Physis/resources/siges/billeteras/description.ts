@@ -10,41 +10,48 @@ export const billeterasOperations: INodeProperties[] = [
         options: [
             // --- CONSULTAS ---
             { 
-                name: 'Listar Billeteras', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve el listado de billeteras configuradas.' 
+                description: 'GET Devuelve el listado de billeteras configuradas' 
+																action: 'Listar Billeteras a billeteras',
             },
             { 
                 name: 'Obtener Billetera', 
                 value: 'get', 
-                description: 'GET Obtiene datos de una billetera específica por ID Auxiliar.' 
+                description: 'GET Obtiene datos de una billetera específica por ID Auxiliar' 
+																action: 'Obtener Billetera a billeteras',
             },
             // --- SINCRONIZACIÓN ---
             { 
                 name: 'Listar Movimientos Pendientes', 
                 value: 'getPendingMovements', 
-                description: 'GET Obtiene movimientos de Physis no informados a la billetera.' 
+                description: 'GET Obtiene movimientos de Physis no informados a la billetera' 
+																action: 'Listar Movimientos Pendientes a billeteras',
             },
             { 
                 name: 'Actualizar Estado Movimiento', 
                 value: 'updateMovementStatus', 
-                description: 'PUT Marca un movimiento como informado o procesado.' 
+                description: 'PUT Marca un movimiento como informado o procesado' 
+																action: 'Actualizar Estado Movimiento a billeteras',
             },
             // --- OPERACIONES ---
             { 
                 name: 'Insertar Operación (QR)', 
                 value: 'createOperation', 
-                description: 'POST Ingresa una compra o transacción desde la Billetera a Physis.' 
+                description: 'POST Ingresa una compra o transacción desde la Billetera a Physis' 
+																action: 'Insertar Operación (QR) a billeteras',
             },
             { 
                 name: 'Procesar Balance Diario', 
                 value: 'processDailyBalance', 
-                description: 'POST Procesa el resumen diario del banco para conciliación.' 
+                description: 'POST Procesa el resumen diario del banco para conciliación' 
+																action: 'Procesar Balance Diario a billeteras',
             },
             { 
                 name: 'Refrescar Saldos', 
                 value: 'refreshBalances', 
-                description: 'POST Fuerza la actualización de saldos para cuentas con movimientos del día.' 
+                description: 'POST Fuerza la actualización de saldos para cuentas con movimientos del día' 
+																action: 'Refrescar Saldos a billeteras',
             },
         ],
         default: 'getAll',
@@ -66,7 +73,7 @@ export const billeterasFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'ID del rubro de la billetera.',
+        description: 'ID del rubro de la billetera',
     },
     {
         displayName: 'ID Cuenta Auxiliar',
@@ -81,7 +88,7 @@ export const billeterasFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Código de la cuenta billetera.',
+        description: 'Código de la cuenta billetera',
     },
     {
         displayName: 'ID Movimiento',
@@ -96,7 +103,7 @@ export const billeterasFields: INodeProperties[] = [
                 operation: ['updateMovementStatus'] 
             } 
         },
-        description: 'Identificador del movimiento a actualizar.',
+        description: 'Identificador del movimiento a actualizar',
     },
     {
         displayName: 'Posición / Acción',
@@ -116,7 +123,7 @@ export const billeterasFields: INodeProperties[] = [
                 operation: ['updateMovementStatus'] 
             } 
         },
-        description: 'Qué flag de sincronización actualizar.',
+        description: 'Qué flag de sincronización actualizar',
     },
     {
         displayName: 'JSON Body (Operaciones)',
@@ -130,6 +137,6 @@ export const billeterasFields: INodeProperties[] = [
                 operation: ['createOperation', 'processDailyBalance'] 
             } 
         },
-        description: 'Array de objetos con los movimientos a insertar (idMovimiento, operationGroupId, importe, etc).',
+        description: 'Array de objetos con los movimientos a insertar (idMovimiento, operationGroupId, importe, etc)',
     },
 ];

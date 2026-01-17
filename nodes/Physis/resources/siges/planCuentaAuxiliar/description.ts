@@ -9,15 +9,24 @@ export const planCuentaAuxiliarOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['planCuentaAuxiliar'] } },
         options: [
 
-			{ name: 'Listar Todos', value: 'getAll', description: 'GET Lista todos los planes auxiliares.' },
-            { name: 'Listar Combo', value: 'getCombo', description: 'GET Lista simplificada para combos (con reagrupaciones).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Detalle de un plan auxiliar.' },
-            { name: 'Ver Niveles', value: 'getNiveles', description: 'GET Niveles y estructura del plan.' },
-            { name: 'Ver Tamaño Total', value: 'getTamano', description: 'GET Tamaño total definido.' },
-            { name: 'Por Origen', value: 'getByOrigen', description: 'GET Plan por origen y código. Req: { "Origen": 1, "Plan": "..." }.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo plan auxiliar.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un plan auxiliar existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un plan auxiliar por ID.' },
+			{ name: 'Get Many', value: 'getAll', description: 'GET Lista todos los planes auxiliares' 
+																																												action: 'Listar Todos a plan cuenta auxiliar',},
+            { name: 'Listar Combo', value: 'getCombo', description: 'GET Lista simplificada para combos (con reagrupaciones)' 
+																																																							action: 'Listar Combo a plan cuenta auxiliar',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de un plan auxiliar' 
+																																																				action: 'Obtener por ID a plan cuenta auxiliar',},
+            { name: 'Ver Niveles', value: 'getNiveles', description: 'GET Niveles y estructura del plan' 
+																																																								action: 'Ver Niveles a plan cuenta auxiliar',},
+            { name: 'Ver Tamaño Total', value: 'getTamano', description: 'GET Tamaño total definido' 
+																																																												action: 'Ver Tamaño Total a plan cuenta auxiliar',},
+            { name: 'Por Origen', value: 'getByOrigen', description: 'GET Plan por origen y código. Req: { "Origen": 1, "Plan": "..." }.' 
+																																																								action: 'Por Origen a plan cuenta auxiliar',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo plan auxiliar' 
+																																														action: 'Crear a plan cuenta auxiliar',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un plan auxiliar existente' 
+																																																			action: 'Actualizar a plan cuenta auxiliar',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un plan auxiliar por ID' 
+																																																	action: 'Eliminar a plan cuenta auxiliar',},
         ],
         default: 'getAll',
     },
@@ -37,7 +46,7 @@ export const planCuentaAuxiliarFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getNiveles', 'getTamano'] 
             } 
         },
-        description: 'Identificador numérico del Plan Auxiliar (idAuxi).',
+        description: 'Identificador numérico del Plan Auxiliar (idAuxi)',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -50,6 +59,6 @@ export const planCuentaAuxiliarFields: INodeProperties[] = [
                 resource: ['planCuentaAuxiliar'] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar, o Filtros para "Por Origen".',
+        description: 'Cuerpo para Crear/Actualizar, o Filtros para "Por Origen"',
     },
 ];

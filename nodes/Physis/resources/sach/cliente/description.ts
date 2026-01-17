@@ -8,12 +8,12 @@ export const clienteOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['cliente'] } },
         options: [
-            { name: 'Buscar Clientes', value: 'getAll', description: 'GET Busca clientes por nombre, código o alias.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene datos de un cliente específico.' },
-            { name: 'Pendientes de Emisión', value: 'getPendientesEmision', description: 'GET Lista clientes con liquidaciones pendientes.' },
-            { name: 'SubCuentas', value: 'getSubcuentas', description: 'GET Obtiene subcuentas de un cliente.' },
-            { name: 'Categorías RFOCB (Cliente)', value: 'getCategoriasRfocb', description: 'GET Categorías RFOCB de un cliente específico.' },
-            { name: 'Categorías RFOCB (Todas)', value: 'getAllCategoriasRfocb', description: 'GET Todas las categorías RFOCB para un tipo de hacienda.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Busca clientes por nombre, código o alias', action: 'Buscar Clientes a cliente',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene datos de un cliente específico', action: 'Obtener por ID a cliente',},
+            { name: 'Pendientes De Emisión', value: 'getPendientesEmision', description: 'GET Lista clientes con liquidaciones pendientes', action: 'Pendientes de Emisión a cliente',},
+            { name: 'SubCuentas', value: 'getSubcuentas', description: 'GET Obtiene subcuentas de un cliente', action: 'SubCuentas a cliente',},
+            { name: 'Categorías RFOCB (Cliente)', value: 'getCategoriasRfocb', description: 'GET Categorías RFOCB de un cliente específico', action: 'Categorías RFOCB (Cliente) a cliente',},
+            { name: 'Categorías RFOCB (Todas)', value: 'getAllCategoriasRfocb', description: 'GET Todas las categorías RFOCB para un tipo de hacienda', action: 'Categorías RFOCB (Todas) a cliente',},
         ],
         default: 'getAll',
     },
@@ -33,7 +33,7 @@ export const clienteFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Código de la cuenta auxiliar del cliente.',
+        description: 'Código de la cuenta auxiliar del cliente',
     },
     {
         displayName: 'Filtros / Parámetros (JSON)',
@@ -46,6 +46,6 @@ export const clienteFields: INodeProperties[] = [
                 resource: ['cliente']
             } 
         },
-        description: 'Parámetros Query String (ej: {"filtro": "juan"}, {"IdTipoHacienda": "VAC"}, {"IdCtaAuxi": "..."}).',
+        description: 'Parámetros Query String (ej: {"filtro": "juan"}, {"IdTipoHacienda": "VAC"}, {"IdCtaAuxi": "..."})',
     },
 ];

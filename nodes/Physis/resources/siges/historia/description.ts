@@ -11,7 +11,8 @@ export const historiaOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Historia Clínica', 
                 value: 'get', 
-                description: 'GET Recupera los datos de una historia clínica específica.' 
+                description: 'GET Recupera los datos de una historia clínica específica' 
+																action: 'Obtener Historia Clínica a historia',
             },
         ],
         default: 'get',
@@ -20,7 +21,7 @@ export const historiaOperations: INodeProperties[] = [
 
 export const historiaFields: INodeProperties[] = [
     {
-        displayName: 'Código de Historia',
+        displayName: 'Código De Historia',
         name: 'codigohistoria',
         type: 'string',
         default: '',
@@ -32,7 +33,7 @@ export const historiaFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador único del paciente o expediente.',
+        description: 'Identificador único del paciente o expediente',
     },
     {
         displayName: 'Key (Clave)',
@@ -46,7 +47,7 @@ export const historiaFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Clave de seguridad o token de acceso específico para la historia.',
+        description: 'Clave de seguridad o token de acceso específico para la historia',
     },
     {
         displayName: 'Servidor (Opcional)',
@@ -60,6 +61,6 @@ export const historiaFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Nombre o IP del servidor de datos si la arquitectura es distribuida.',
+        description: 'Nombre o IP del servidor de datos si la arquitectura es distribuida',
     },
 ];

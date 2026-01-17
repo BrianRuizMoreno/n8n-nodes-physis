@@ -8,11 +8,11 @@ export const sueloOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['suelo'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista todos los suelos configurados.' },
-            { name: 'Obtener por Código', value: 'get', description: 'GET Obtiene un suelo específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo suelo.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un suelo existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un suelo.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los suelos configurados', action: 'Listar Todos a suelo',},
+            { name: 'Obtener Por Código', value: 'get', description: 'GET Obtiene un suelo específico', action: 'Obtener por Código a suelo',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo suelo', action: 'Crear a suelo',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un suelo existente', action: 'Actualizar a suelo',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un suelo', action: 'Eliminar a suelo',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const sueloFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador del suelo.',
+        description: 'Código identificador del suelo',
     },
     {
         displayName: 'JSON Body',
@@ -46,6 +46,6 @@ export const sueloFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos del suelo (codSuelo, descripcion, observaciones).',
+        description: 'Cuerpo con los datos del suelo (codSuelo, descripcion, observaciones)',
     },
 ];

@@ -9,15 +9,24 @@ export const ejercicioOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['ejercicio'] } },
         options: [
 
-			{ name: 'Listar Todos', value: 'getAll', description: 'GET Lista ejercicios. Filtro: { "fecha": "YYYY-MM-DD" }.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Datos de un ejercicio.' },
-            { name: 'Crear', value: 'create', description: 'POST Crea un nuevo ejercicio.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un ejercicio.' },
-            { name: 'Ejercicio Actual (Get)', value: 'getActual', description: 'GET Ejercicio seleccionado por el usuario.' },
-            { name: 'Ejercicio Actual (Set)', value: 'setActual', description: 'PUT Cambia el ejercicio actual del usuario.' },
-            { name: 'Diarios: Parámetros', value: 'getDiariosParametros', description: 'GET Parámetros de libro diario.' },
-            { name: 'Diarios: Comprobantes', value: 'getDiariosComprobantes', description: 'GET Lista comprobantes para libro diario.' },
-            { name: 'Diarios: Primer Comprobante', value: 'getDiarioPrimero', description: 'GET Primer comprobante del libro.' },
+			{ name: 'Get Many', value: 'getAll', description: 'GET Lista ejercicios. Filtro: { "fecha": "YYYY-MM-DD" }.' 
+																																												action: 'Listar Todos an ejercicio',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de un ejercicio' 
+																																																				action: 'Obtener por ID an ejercicio',},
+            { name: 'Crear', value: 'create', description: 'POST Crea un nuevo ejercicio' 
+																																														action: 'Crear an ejercicio',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un ejercicio' 
+																																																			action: 'Actualizar an ejercicio',},
+            { name: 'Ejercicio Actual (Get)', value: 'getActual', description: 'GET Ejercicio seleccionado por el usuario' 
+																																																																		action: 'Ejercicio Actual (Get) an ejercicio',},
+            { name: 'Ejercicio Actual (Set)', value: 'setActual', description: 'PUT Cambia el ejercicio actual del usuario' 
+																																																																		action: 'Ejercicio Actual (Set) an ejercicio',},
+            { name: 'Diarios: Parámetros', value: 'getDiariosParametros', description: 'GET Parámetros de libro diario' 
+																																																																										action: 'Diarios: Parámetros an ejercicio',},
+            { name: 'Diarios: Comprobantes', value: 'getDiariosComprobantes', description: 'GET Lista comprobantes para libro diario' 
+																																																																														action: 'Diarios: Comprobantes an ejercicio',},
+            { name: 'Diarios: Primer Comprobante', value: 'getDiarioPrimero', description: 'GET Primer comprobante del libro' 
+																																																																														action: 'Diarios: Primer Comprobante an ejercicio',},
         ],
         default: 'getAll',
     },
@@ -37,7 +46,7 @@ export const ejercicioFields: INodeProperties[] = [
                 operation: ['get', 'setActual'] 
             } 
         },
-        description: 'Identificador del ejercicio contable.',
+        description: 'Identificador del ejercicio contable',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -50,6 +59,6 @@ export const ejercicioFields: INodeProperties[] = [
                 resource: ['ejercicio'] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar, o Filtros para Listas (ej: {"idLibro": 1}).',
+        description: 'Cuerpo para Crear/Actualizar, o Filtros para Listas (ej: {"idLibro": 1})',
     },
 ];

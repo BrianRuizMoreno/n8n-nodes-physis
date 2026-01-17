@@ -9,14 +9,16 @@ export const modeloOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['modelo'] } },
         options: [
             { 
-                name: 'Listar Modelos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de modelos o plantillas de comprobantes disponibles.' 
+                description: 'GET Devuelve la lista de modelos o plantillas de comprobantes disponibles' 
+																action: 'Listar Modelos a modelo',
             },
             { 
                 name: 'Obtener Modelo', 
                 value: 'get', 
-                description: 'GET Recupera la configuración detallada de un modelo específico.' 
+                description: 'GET Recupera la configuración detallada de un modelo específico' 
+																action: 'Obtener Modelo a modelo',
             },
         ],
         default: 'getAll',
@@ -38,7 +40,7 @@ export const modeloFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador numérico de la plantilla.',
+        description: 'Identificador numérico de la plantilla',
     },
     {
         displayName: 'ID Plan Principal',
@@ -51,7 +53,7 @@ export const modeloFields: INodeProperties[] = [
                 resource: ['modelo']
             } 
         },
-        description: 'Contexto del plan contable (Generalmente 1).',
+        description: 'Contexto del plan contable (Generalmente 1)',
     },
     {
         displayName: 'Tipo Comprobante (Filtro)',
@@ -65,6 +67,6 @@ export const modeloFields: INodeProperties[] = [
                 operation: ['getAll'] 
             } 
         },
-        description: 'Filtrar modelos asociados a un tipo de documento específico (ej: FAC, REM).',
+        description: 'Filtrar modelos asociados a un tipo de documento específico (ej: FAC, REM)',
     },
 ];

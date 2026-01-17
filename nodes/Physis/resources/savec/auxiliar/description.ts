@@ -9,10 +9,10 @@ export const auxiliarOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['savec'], resource: ['auxiliar'] } },
         options: [
 
-            { name: 'Listar Campañas', value: 'getCampanias', description: 'GET Lista todas las campañas disponibles.' },
-            { name: 'Listar Campañas por Usuario', value: 'getCampaniasUsuario', description: 'GET Lista campañas habilitadas para un usuario específico.' },
-            { name: 'Listar Cereales', value: 'getCereales', description: 'GET Lista todos los cereales.' },
-            { name: 'Consultar Stock de Cereales', value: 'getCerealesStock', description: 'GET Stock de cereales por campaña y fecha.' },
+            { name: 'Listar Campañas', value: 'getCampanias', description: 'GET Lista todas las campañas disponibles', action: 'Listar Campañas an auxiliar',},
+            { name: 'Listar Campañas Por Usuario', value: 'getCampaniasUsuario', description: 'GET Lista campañas habilitadas para un usuario específico', action: 'Listar Campañas por Usuario an auxiliar',},
+            { name: 'Listar Cereales', value: 'getCereales', description: 'GET Lista todos los cereales', action: 'Listar Cereales an auxiliar',},
+            { name: 'Consultar Stock De Cereales', value: 'getCerealesStock', description: 'GET Stock de cereales por campaña y fecha', action: 'Consultar Stock de Cereales an auxiliar',},
         ],
         default: 'getCampanias',
     },
@@ -33,7 +33,7 @@ export const auxiliarFields: INodeProperties[] = [
                 operation: ['getCampaniasUsuario'] 
             } 
         },
-        description: 'Identificador del usuario.',
+        description: 'Identificador del usuario',
     },
         {
         displayName: 'Incluir Opción "Todos"',
@@ -47,7 +47,7 @@ export const auxiliarFields: INodeProperties[] = [
                 operation: ['getCampanias', 'getCereales'] 
             } 
         },
-        description: 'Si es verdadero, incluye un registro inicial representando "Todos".',
+        description: 'Si es verdadero, incluye un registro inicial representando "Todos"',
     },
     {
         displayName: 'Código Campaña',
@@ -62,7 +62,7 @@ export const auxiliarFields: INodeProperties[] = [
                 operation: ['getCerealesStock'] 
             } 
         },
-        description: 'Código de la campaña a consultar.',
+        description: 'Código de la campaña a consultar',
     },
     {
         displayName: 'Fecha',
@@ -77,6 +77,6 @@ export const auxiliarFields: INodeProperties[] = [
                 operation: ['getCerealesStock'] 
             } 
         },
-        description: 'Fecha de corte para el stock.',
+        description: 'Fecha de corte para el stock',
     },
 ];

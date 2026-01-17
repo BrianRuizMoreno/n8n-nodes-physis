@@ -9,13 +9,13 @@ export const contratoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sacer'], resource: ['contrato'] } },
         options: [
 
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista contratos con múltiples filtros.' },
-            { name: 'Listar por Tercero', value: 'getByTercero', description: 'GET Contratos de un cliente/proveedor específico.' },
-            { name: 'Consulta Tabla', value: 'tableSearch', description: 'POST Búsqueda avanzada con paginado y orden.' }, 
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Obtiene un contrato por Campaña y Número.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo contrato.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un contrato existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un contrato por su ID interno.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista contratos con múltiples filtros', action: 'Listar Todos a contrato',},
+            { name: 'Listar Por Tercero', value: 'getByTercero', description: 'GET Contratos de un cliente/proveedor específico', action: 'Listar por Tercero a contrato',},
+            { name: 'Consulta Tabla', value: 'tableSearch', description: 'POST Búsqueda avanzada con paginado y orden', action: 'Consulta Tabla a contrato',}, 
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Obtiene un contrato por Campaña y Número', action: 'Obtener Detalle a contrato',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo contrato', action: 'Crear a contrato',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un contrato existente', action: 'Actualizar a contrato',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un contrato por su ID interno', action: 'Eliminar a contrato',},
         ],
         default: 'getAll',
     },
@@ -36,7 +36,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['delete'] 
             } 
         },
-        description: 'ID interno numérico del contrato para eliminación.',
+        description: 'ID interno numérico del contrato para eliminación',
     },
 
     {
@@ -52,7 +52,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Código de la campaña del contrato.',
+        description: 'Código de la campaña del contrato',
     },
     {
         displayName: 'Nro Contrato',
@@ -67,7 +67,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Número visible del contrato (string).',
+        description: 'Número visible del contrato (string)',
     },
 
     {
@@ -83,7 +83,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['getByTercero'] 
             } 
         },
-        description: 'Tipo de auxiliar (ej: 1 para Clientes).',
+        description: 'Tipo de auxiliar (ej: 1 para Clientes)',
     },
     {
         displayName: 'ID Cuenta Auxiliar',
@@ -98,7 +98,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['getByTercero'] 
             } 
         },
-        description: 'Código de la cuenta auxiliar.',
+        description: 'Código de la cuenta auxiliar',
     },
 
     {
@@ -112,6 +112,6 @@ export const contratoFields: INodeProperties[] = [
                 resource: ['contrato']
             } 
         },
-        description: 'Cuerpo para Crear/Editar o Filtros para Listados (fechaDesde, codCereal, estadoContrato, etc).',
+        description: 'Cuerpo para Crear/Editar o Filtros para Listados (fechaDesde, codCereal, estadoContrato, etc)',
     },
 ];

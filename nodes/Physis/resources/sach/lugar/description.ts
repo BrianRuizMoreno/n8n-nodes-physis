@@ -8,14 +8,14 @@ export const lugarOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['lugar'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista todos los lugares.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene un lugar específico.' },
-            { name: 'Consulta Avanzada', value: 'searchV2', description: 'GET Búsqueda avanzada con filtros, orden y paginado (vía JSON).' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo lugar.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un lugar existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un lugar.' },
-            { name: 'Listar Prefijos', value: 'getPrefijos', description: 'GET Lista prefijos disponibles para lugares.' },
-            { name: 'Listar Partidos', value: 'getPartidos', description: 'GET Lista partidos (departamentos/distritos).' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los lugares', action: 'Listar Todos a lugar',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un lugar específico', action: 'Obtener por ID a lugar',},
+            { name: 'Consulta Avanzada', value: 'searchV2', description: 'GET Búsqueda avanzada con filtros, orden y paginado (vía JSON)', action: 'Consulta Avanzada a lugar',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo lugar', action: 'Crear a lugar',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un lugar existente', action: 'Actualizar a lugar',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un lugar', action: 'Eliminar a lugar',},
+            { name: 'Listar Prefijos', value: 'getPrefijos', description: 'GET Lista prefijos disponibles para lugares', action: 'Listar Prefijos a lugar',},
+            { name: 'Listar Partidos', value: 'getPartidos', description: 'GET Lista partidos (departamentos/distritos)', action: 'Listar Partidos a lugar',},
         ],
         default: 'getAll',
     },
@@ -35,7 +35,7 @@ export const lugarFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador del lugar (string).',
+        description: 'Identificador del lugar (string)',
     },
     {
         displayName: 'JSON Body',
@@ -49,6 +49,6 @@ export const lugarFields: INodeProperties[] = [
                 operation: ['create', 'update', 'searchV2']
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar (Objeto Lugar) o Filtro complejo para SearchV2.',
+        description: 'Cuerpo para Crear/Actualizar (Objeto Lugar) o Filtro complejo para SearchV2',
     },
 ];

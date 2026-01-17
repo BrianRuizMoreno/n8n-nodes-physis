@@ -8,11 +8,11 @@ export const marcaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['marca'] } },
         options: [
-            { name: 'Listar Marcas (Cliente)', value: 'getAll', description: 'GET Lista marcas de un cliente específico.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene una marca específica de un cliente.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva marca.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Actualiza una marca existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una marca (Parámetros en JSON Body).' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista marcas de un cliente específico', action: 'Listar Marcas (Cliente) a marca',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una marca específica de un cliente', action: 'Obtener por ID a marca',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva marca', action: 'Crear a marca',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Actualiza una marca existente', action: 'Actualizar a marca',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una marca (Parámetros en JSON Body)', action: 'Eliminar a marca',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const marcaFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador numérico de la marca.',
+        description: 'Identificador numérico de la marca',
     },
     {
         displayName: 'JSON Body / Filtros',

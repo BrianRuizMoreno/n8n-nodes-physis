@@ -8,12 +8,18 @@ export const precioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['precio'] } },
         options: [
-            { name: 'Listar Listas de Precios', value: 'getListas', description: 'GET Listas de precios disponibles.' },
-            { name: 'Productos en Lista', value: 'getProductosLista', description: 'GET Productos pertenecientes a una lista.' },
-            { name: 'Precios de Producto', value: 'getPreciosProducto', description: 'GET Todos los precios de un producto.' },
-            { name: 'Precio en Lista Específica', value: 'getPrecioProductoEnLista', description: 'GET Precio de un producto en una lista.' },
-            { name: 'Precios y Existencia', value: 'getPreciosExistencia', description: 'GET Reporte combinado.' },
-            { name: 'Actualizar Precios', value: 'upsertListaPrecios', description: 'POST Inserta/Modifica/Elimina precios.' },
+            { name: 'Listar Listas De Precios', value: 'getListas', description: 'GET Listas de precios disponibles' 
+																																																																				action: 'Listar Listas de Precios a precio',},
+            { name: 'Productos en Lista', value: 'getProductosLista', description: 'GET Productos pertenecientes a una lista' 
+																																																																						action: 'Productos en Lista a precio',},
+            { name: 'Precios De Producto', value: 'getPreciosProducto', description: 'GET Todos los precios de un producto' 
+																																																																								action: 'Precios de Producto a precio',},
+            { name: 'Precio en Lista Específica', value: 'getPrecioProductoEnLista', description: 'GET Precio de un producto en una lista' 
+																																																																																					action: 'Precio en Lista Específica a precio',},
+            { name: 'Precios Y Existencia', value: 'getPreciosExistencia', description: 'GET Reporte combinado' 
+																																																																											action: 'Precios y Existencia a precio',},
+            { name: 'Actualizar Precios', value: 'upsertListaPrecios', description: 'POST Inserta/Modifica/Elimina precios' 
+																																																																							action: 'Actualizar Precios a precio',},
         ],
         default: 'getListas',
     },
@@ -21,7 +27,7 @@ export const precioOperations: INodeProperties[] = [
 
 export const precioFields: INodeProperties[] = [
     {
-        displayName: 'ID (Producto o Lista)',
+        displayName: 'ID (Producto O Lista)',
         name: 'id',
         type: 'string',
         default: '',
@@ -30,7 +36,7 @@ export const precioFields: INodeProperties[] = [
             show: { service: ['sifac'], resource: ['precio'] },
             hide: { operation: ['getListas', 'getPreciosExistencia'] }
         },
-        description: 'ID de la Lista (para "Productos en Lista") o ID del Producto (para resto).',
+        description: 'ID de la Lista (para "Productos en Lista") o ID del Producto (para resto)',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -38,6 +44,6 @@ export const precioFields: INodeProperties[] = [
         type: 'json',
         default: '{}',
         displayOptions: { show: { service: ['sifac'], resource: ['precio'] } },
-        description: 'Params: texto, fecha, idLista (para "Precio en Lista Específica"), body array para POST.',
+        description: 'Params: texto, fecha, idLista (para "Precio en Lista Específica"), body array para POST',
     },
 ];

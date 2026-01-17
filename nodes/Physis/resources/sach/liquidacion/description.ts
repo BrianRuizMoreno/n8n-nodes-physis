@@ -9,14 +9,14 @@ export const liquidacionOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sach'], resource: ['liquidacion'] } },
         options: [
 
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista liquidaciones configuradas.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene una liquidación específica.' },
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de liquidaciones.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva liquidación.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una liquidación existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una liquidación.' },
-            { name: 'Obtener Comprobante', value: 'getComprobante', description: 'GET Consulta un comprobante específico.' },
-            { name: 'Obtener Comisiones (Comprobante)', value: 'getComisionesComprobante', description: 'GET Consulta comisiones de un comprobante.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista liquidaciones configuradas', action: 'Listar Todas a liquidacion',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una liquidación específica', action: 'Obtener por ID a liquidacion',},
+            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de liquidaciones', action: 'Ver Árbol a liquidacion',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva liquidación', action: 'Crear a liquidacion',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una liquidación existente', action: 'Actualizar a liquidacion',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una liquidación', action: 'Eliminar a liquidacion',},
+            { name: 'Obtener Comprobante', value: 'getComprobante', description: 'GET Consulta un comprobante específico', action: 'Obtener Comprobante a liquidacion',},
+            { name: 'Obtener Comisiones (Comprobante)', value: 'getComisionesComprobante', description: 'GET Consulta comisiones de un comprobante', action: 'Obtener Comisiones (Comprobante) a liquidacion',},
         ],
         default: 'getAll',
     },
@@ -37,7 +37,7 @@ export const liquidacionFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador de la liquidación.',
+        description: 'Identificador de la liquidación',
     },
     {
         displayName: 'ID Ejercicio',
@@ -52,7 +52,7 @@ export const liquidacionFields: INodeProperties[] = [
                 operation: ['getComprobante', 'getComisionesComprobante'] 
             } 
         },
-        description: 'Identificador del ejercicio contable.',
+        description: 'Identificador del ejercicio contable',
     },
     {
         displayName: 'ID Comprobante',
@@ -67,7 +67,7 @@ export const liquidacionFields: INodeProperties[] = [
                 operation: ['getComprobante', 'getComisionesComprobante'] 
             } 
         },
-        description: 'Identificador del comprobante.',
+        description: 'Identificador del comprobante',
     },
     {
         displayName: 'JSON Body',
@@ -81,6 +81,6 @@ export const liquidacionFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos de la liquidación (Configuración, Gastos, etc.).',
+        description: 'Cuerpo con los datos de la liquidación (Configuración, Gastos, etc.)',
     },
 ];

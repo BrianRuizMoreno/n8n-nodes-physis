@@ -8,8 +8,10 @@ export const tractorOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: { show: { service: ['silab'], resource: ['tractor'] } },
 		options: [
-			{ name: 'Obtener Todos', value: 'getAll', description: 'GET Devuelve lista de Tractores.' },
-			{ name: 'Obtener por ID', value: 'get', description: 'GET Devuelve datos de un Tractor.' },
+			{ name: 'Get Many', value: 'getAll', description: 'GET Devuelve lista de Tractores' 
+																																													action: 'Obtener Todos a tractor',},
+			{ name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve datos de un Tractor' 
+																																											action: 'Obtener por ID a tractor',},
 		],
 		default: 'getAll',
 	},

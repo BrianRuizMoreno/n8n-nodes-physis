@@ -6,8 +6,8 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     const transport = new PhysisTransport(this);    
     let endpoint = '';
     let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
+    const body: IDataObject = {};
+    const qs: IDataObject = {};
     let id = '';
 
     try {

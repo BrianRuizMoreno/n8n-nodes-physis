@@ -12,24 +12,28 @@ export const variosOperations: INodeProperties[] = [
             { 
                 name: 'Conceptos: Listar Todos', 
                 value: 'getConceptos', 
-                description: 'GET Obtiene el maestro de conceptos no stockeables.' 
+                description: 'GET Obtiene el maestro de conceptos no stockeables' 
+																action: 'Conceptos: Listar Todos a varios',
             },
             // --- REPORTES ---
             { 
                 name: 'Consultas: Terceros Dinámica', 
                 value: 'consultaTerceros', 
-                description: 'GET Ejecuta una consulta compleja sobre la vista de terceros (SQL-like vía JSON).' 
+                description: 'GET Ejecuta una consulta compleja sobre la vista de terceros (SQL-like vía JSON)' 
+																action: 'Consultas: Terceros Dinámica a varios',
             },
             // --- PERMISOS GRUPOS ---
             { 
                 name: 'Grupos: Listar Cuentas Permitidas', 
                 value: 'getGrupoCuentas', 
-                description: 'GET Cuentas auxiliares específicas visibles por un grupo.' 
+                description: 'GET Cuentas auxiliares específicas visibles por un grupo' 
+																action: 'Grupos: Listar Cuentas Permitidas a varios',
             },
             { 
                 name: 'Grupos: Asignar Cuentas Permitidas', 
                 value: 'updateGrupoCuentas', 
-                description: 'POST Define qué cuentas específicas puede ver un grupo (Row Level Security).' 
+                description: 'POST Define qué cuentas específicas puede ver un grupo (Row Level Security)' 
+																action: 'Grupos: Asignar Cuentas Permitidas a varios',
             },
         ],
         default: 'getConceptos',
@@ -50,10 +54,10 @@ export const variosFields: INodeProperties[] = [
                 operation: ['getGrupoCuentas', 'updateGrupoCuentas']
             } 
         },
-        description: 'Identificador del Grupo de Usuarios.',
+        description: 'Identificador del Grupo de Usuarios',
     },
     {
-        displayName: 'Tipo de Auxiliar (idAuxi)',
+        displayName: 'Tipo De Auxiliar (idAuxi)',
         name: 'idAuxi',
         type: 'number',
         default: 1,
@@ -65,7 +69,7 @@ export const variosFields: INodeProperties[] = [
                 operation: ['getGrupoCuentas', 'updateGrupoCuentas']
             } 
         },
-        description: '1 = Clientes, 2 = Proveedores.',
+        description: '1 = Clientes, 2 = Proveedores',
     },
     {
         displayName: 'JSON Body / Filtros / Consulta',

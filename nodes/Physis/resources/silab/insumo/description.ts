@@ -9,19 +9,22 @@ export const insumoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['insumo'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Lista de insumos con múltiples filtros opcionales.' 
+                description: 'GET Lista de insumos con múltiples filtros opcionales' 
+																action: 'Listar Todos an insumo',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de un insumo específico (IdProducto).' 
+                description: 'GET Datos de un insumo específico (IdProducto)' 
+																action: 'Obtener por ID an insumo',
             },
             { 
                 name: 'Obtener por Labor', 
                 value: 'getByLabor', 
-                description: 'GET Insumos asociados a una labor (IdLabor).' 
+                description: 'GET Insumos asociados a una labor (IdLabor)' 
+																action: 'Obtener por Labor an insumo',
             },
         ],
         default: 'getAll',
@@ -42,7 +45,7 @@ export const insumoFields: INodeProperties[] = [
                 operation: ['get', 'getByLabor'] 
             } 
         },
-        description: 'Ingrese el IdProducto (para "Obtener por ID") o el IdLabor (para "Obtener por Labor").',
+        description: 'Ingrese el IdProducto (para "Obtener por ID") o el IdLabor (para "Obtener por Labor")',
     },
     {
         displayName: 'Filtros (JSON)',

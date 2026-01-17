@@ -10,50 +10,59 @@ export const tiposComprobanteOperations: INodeProperties[] = [
         options: [
             // --- CRUD ---
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve el catálogo de documentos disponibles.' 
+                description: 'GET Devuelve el catálogo de documentos disponibles' 
+																action: 'Listar Todos a tipos comprobante',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera la configuración completa de un tipo de comprobante.' 
+                description: 'GET Recupera la configuración completa de un tipo de comprobante' 
+																action: 'Obtener Detalle a tipos comprobante',
             },
             { 
                 name: 'Crear Tipo', 
                 value: 'create', 
-                description: 'POST Configura un nuevo documento en el sistema.' 
+                description: 'POST Configura un nuevo documento en el sistema' 
+																action: 'Crear Tipo a tipos comprobante',
             },
             { 
                 name: 'Modificar Tipo', 
                 value: 'update', 
-                description: 'PUT Actualiza reglas de negocio de un documento.' 
+                description: 'PUT Actualiza reglas de negocio de un documento' 
+																action: 'Modificar Tipo a tipos comprobante',
             },
             { 
                 name: 'Eliminar Tipo', 
                 value: 'delete', 
-                description: 'DELETE Elimina un tipo de comprobante.' 
+                description: 'DELETE Elimina un tipo de comprobante' 
+																action: 'Eliminar Tipo a tipos comprobante',
             },
             // --- UTILIDADES ---
             { 
                 name: 'Obtener Numeradores', 
                 value: 'getNumerators', 
-                description: 'GET Devuelve los talonarios/puntos de venta asociados a un documento.' 
+                description: 'GET Devuelve los talonarios/puntos de venta asociados a un documento' 
+																action: 'Obtener Numeradores a tipos comprobante',
             },
             { 
-                name: 'Listar por Afectación (Debe/Haber)', 
+                name: 'Listar Por Afectación (Debe/Haber)', 
                 value: 'getByAffectation', 
-                description: 'GET Filtra comprobantes según si suman o restan en la cuenta corriente.' 
+                description: 'GET Filtra comprobantes según si suman o restan en la cuenta corriente' 
+																action: 'Listar por Afectación (Debe/Haber) a tipos comprobante',
             },
             { 
-                name: 'Listar por IVA (Compra/Venta)', 
+                name: 'Listar Por IVA (Compra/Venta)', 
                 value: 'getByIVA', 
-                description: 'GET Filtra comprobantes según su libro de IVA asociado.' 
+                description: 'GET Filtra comprobantes según su libro de IVA asociado' 
+																action: 'Listar por IVA (Compra/Venta) a tipos comprobante',
             },
             { 
                 name: 'Listar Clases', 
                 value: 'getClasses', 
-                description: 'GET Devuelve subtipos o clases para un módulo específico.' 
+                description: 'GET Devuelve subtipos o clases para un módulo específico' 
+																action: 'Listar Clases a tipos comprobante',
             },
         ],
         default: 'getAll',
@@ -75,7 +84,7 @@ export const tiposComprobanteFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getNumerators'] 
             } 
         },
-        description: 'Código interno del documento (ej: FAC, REM, OP).',
+        description: 'Código interno del documento (ej: FAC, REM, OP)',
     },
     {
         displayName: 'Usar Endpoint "All"',
@@ -116,7 +125,7 @@ export const tiposComprobanteFields: INodeProperties[] = [
                 operation: ['getByAffectation'] 
             } 
         },
-        description: '0: Debe (Cargos), 1: Haber (Descargos).',
+        description: '0: Debe (Cargos), 1: Haber (Descargos)',
     },
     {
         displayName: 'Tipo IVA (C/V)',
@@ -173,6 +182,6 @@ export const tiposComprobanteFields: INodeProperties[] = [
                 operation: ['create', 'update'] 
             } 
         },
-        description: 'Configuración completa del documento (nombre, signo, afectaStock, etc.).',
+        description: 'Configuración completa del documento (nombre, signo, afectaStock, etc.)',
     },
 ];

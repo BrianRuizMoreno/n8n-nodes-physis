@@ -13,12 +13,12 @@ export const imputacionContableOperations: INodeProperties[] = [
 			},
 		},
 		options: [
-			{ name: 'Listar Todas', value: 'getAll', description: 'GET Devuelve el listado de imputaciones contables.' },
-			{ name: 'Obtener por ID', value: 'get', description: 'GET Devuelve una imputación específica.' },
-			{ name: 'Crear', value: 'create', description: 'POST Inserta una nueva imputación contable.' },
-			{ name: 'Actualizar', value: 'update', description: 'PUT Modifica una imputación existente.' },
-			{ name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una imputación.' },
-			{ name: 'Listar Regímenes', value: 'getRegimenes', description: 'GET Devuelve una lista de regímenes de imputación.' },
+			{ name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de imputaciones contables', action: 'Listar Todas an imputacion contable',},
+			{ name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve una imputación específica', action: 'Obtener por ID an imputacion contable',},
+			{ name: 'Crear', value: 'create', description: 'POST Inserta una nueva imputación contable', action: 'Crear an imputacion contable',},
+			{ name: 'Actualizar', value: 'update', description: 'PUT Modifica una imputación existente', action: 'Actualizar an imputacion contable',},
+			{ name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una imputación', action: 'Eliminar an imputacion contable',},
+			{ name: 'Listar Regímenes', value: 'getRegimenes', description: 'GET Devuelve una lista de regímenes de imputación', action: 'Listar Regímenes an imputacion contable',},
 		],
 		default: 'getAll',
 	},
@@ -39,7 +39,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['get', 'delete'],
 			},
 		},
-		description: 'Identificador único de la imputación (codImputacion).',
+		description: 'Identificador único de la imputación (codImputacion)',
 	},
 	{
 		displayName: 'JSON Body',
@@ -54,7 +54,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['create', 'update'],
 			},
 		},
-		description: 'Cuerpo con los datos de la imputación (cuentas, códigos, descripción).',
+		description: 'Cuerpo con los datos de la imputación (cuentas, códigos, descripción)',
 	},
 	{
 		displayName: 'Cod Cereal',
@@ -68,7 +68,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Filtra por código de cereal (0 para todos).',
+		description: 'Filtra por código de cereal (0 para todos)',
 	},
 	{
 		displayName: 'Cod Planta',
@@ -82,7 +82,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Filtra por código de planta (0 para todas).',
+		description: 'Filtra por código de planta (0 para todas)',
 	},
 	{
 		displayName: 'Cod Tipo Formulario',
@@ -96,7 +96,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Filtra por tipo de formulario.',
+		description: 'Filtra por tipo de formulario',
 	},
 	{
 		displayName: 'Cod Clase',
@@ -110,7 +110,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Filtra por clase de operación.',
+		description: 'Filtra por clase de operación',
 	},
 	{
 		displayName: 'Reten/Percep',
@@ -124,7 +124,7 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['getAll'],
 			},
 		},
-		description: 'Filtra por tipo de retención o percepción.',
+		description: 'Filtra por tipo de retención o percepción',
 	},
 	{
 		displayName: 'ID Cta Ppal',
@@ -138,6 +138,6 @@ export const imputacionContableFields: INodeProperties[] = [
 				operation: ['getRegimenes'],
 			},
 		},
-		description: 'Filtra regímenes por cuenta principal.',
+		description: 'Filtra regímenes por cuenta principal',
 	},
 ];

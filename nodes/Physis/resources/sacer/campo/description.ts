@@ -11,19 +11,19 @@ export const campoOperations: INodeProperties[] = [
             { 
                 name: 'Árbol: Estructura Completa', 
                 value: 'getArbol', 
-                description: 'GET Estructura Zonas > Establecimientos > Campos > Lotes. Requiere ID Auxi y Cta Auxi.' 
+                description: 'GET Estructura Zonas > Establecimientos > Campos > Lotes. Requiere ID Auxi y Cta Auxi.', action: 'Árbol: Estructura Completa a campo',
             },
-            { name: 'Campos: Listar', value: 'getCampos', description: 'GET Lista campos. Filtro opcional: {"CodZona": 1}.' },
-            { name: 'Campos: Obtener', value: 'getCampo', description: 'GET Obtiene un campo por Código.' },
-            { name: 'Campos: Crear', value: 'createCampo', description: 'POST Crea un nuevo campo.' },
-            { name: 'Campos: Actualizar', value: 'updateCampo', description: 'PUT Modifica un campo existente.' },
-            { name: 'Campos: Eliminar', value: 'deleteCampo', description: 'DELETE Elimina un campo por Código.' },
-            { name: 'Establecimientos: Listar Todos', value: 'getEstablecimientos', description: 'GET Lista todos los establecimientos.' },
-            { name: 'Establecimientos: Por ID', value: 'getEstablecimiento', description: 'GET Obtiene un establecimiento específico.' },
-            { name: 'Establecimientos: Por Tercero', value: 'getEstablecimientosTercero', description: 'GET Lista establecimientos de un productor (Req: ID Auxi/CtaAuxi).' },
-            { name: 'Establecimientos: Crear', value: 'createEstablecimiento', description: 'POST Crea un establecimiento.' },
-            { name: 'Establecimientos: Actualizar', value: 'updateEstablecimiento', description: 'PUT Actualiza un establecimiento.' },
-            { name: 'Establecimientos: Eliminar', value: 'deleteEstablecimiento', description: 'DELETE Elimina un establecimiento.' },
+            { name: 'Campos: Listar', value: 'getCampos', description: 'GET Lista campos. Filtro opcional: {"CodZona": 1}.', action: 'Campos: Listar a campo',},
+            { name: 'Campos: Obtener', value: 'getCampo', description: 'GET Obtiene un campo por Código', action: 'Campos: Obtener a campo',},
+            { name: 'Campos: Crear', value: 'createCampo', description: 'POST Crea un nuevo campo', action: 'Campos: Crear a campo',},
+            { name: 'Campos: Actualizar', value: 'updateCampo', description: 'PUT Modifica un campo existente', action: 'Campos: Actualizar a campo',},
+            { name: 'Campos: Eliminar', value: 'deleteCampo', description: 'DELETE Elimina un campo por Código', action: 'Campos: Eliminar a campo',},
+            { name: 'Establecimientos: Listar Todos', value: 'getEstablecimientos', description: 'GET Lista todos los establecimientos', action: 'Establecimientos: Listar Todos a campo',},
+            { name: 'Establecimientos: Por ID', value: 'getEstablecimiento', description: 'GET Obtiene un establecimiento específico', action: 'Establecimientos: Por ID a campo',},
+            { name: 'Establecimientos: Por Tercero', value: 'getEstablecimientosTercero', description: 'GET Lista establecimientos de un productor (Req: ID Auxi/CtaAuxi)', action: 'Establecimientos: Por Tercero a campo',},
+            { name: 'Establecimientos: Crear', value: 'createEstablecimiento', description: 'POST Crea un establecimiento', action: 'Establecimientos: Crear a campo',},
+            { name: 'Establecimientos: Actualizar', value: 'updateEstablecimiento', description: 'PUT Actualiza un establecimiento', action: 'Establecimientos: Actualizar a campo',},
+            { name: 'Establecimientos: Eliminar', value: 'deleteEstablecimiento', description: 'DELETE Elimina un establecimiento', action: 'Establecimientos: Eliminar a campo',},
         ],
         default: 'getCampos',
     },
@@ -47,7 +47,7 @@ export const campoFields: INodeProperties[] = [
                 ] 
             } 
         },
-        description: 'Dependiendo de la operación: Código de Campo, ID de Establecimiento o ID Auxi (Productor).',
+        description: 'Dependiendo de la operación: Código de Campo, ID de Establecimiento o ID Auxi (Productor)',
     },
     {
         displayName: 'ID Cta Auxi',
@@ -61,7 +61,7 @@ export const campoFields: INodeProperties[] = [
                 operation: ['getArbol', 'getEstablecimientosTercero'] 
             } 
         },
-        description: 'Identificador de cuenta auxiliar (Requerido para búsquedas por Productor/Tercero).',
+        description: 'Identificador de cuenta auxiliar (Requerido para búsquedas por Productor/Tercero)',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -79,6 +79,6 @@ export const campoFields: INodeProperties[] = [
                 ] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar o Filtros para Listar (ej: {"CodZona": 5}).',
+        description: 'Cuerpo para Crear/Actualizar o Filtros para Listar (ej: {"CodZona": 5})',
     },
 ];

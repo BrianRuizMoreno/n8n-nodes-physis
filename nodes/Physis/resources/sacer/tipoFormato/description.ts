@@ -8,11 +8,11 @@ export const tipoFormatoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tipoFormato'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Devuelve todos los tipos de formato.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Devuelve un tipo de formato específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de formato.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de formato existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un tipo de formato.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los tipos de formato', action: 'Listar Todos a tipo formato',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un tipo de formato específico', action: 'Obtener por ID a tipo formato',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de formato', action: 'Crear a tipo formato',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de formato existente', action: 'Actualizar a tipo formato',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un tipo de formato', action: 'Eliminar a tipo formato',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const tipoFormatoFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador del tipo de formato.',
+        description: 'Identificador del tipo de formato',
     },
     {
         displayName: 'JSON Body',
@@ -46,6 +46,6 @@ export const tipoFormatoFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos del tipo de formato (nombre, expresión lógica, vista, etc.).',
+        description: 'Cuerpo con los datos del tipo de formato (nombre, expresión lógica, vista, etc.)',
     },
 ];

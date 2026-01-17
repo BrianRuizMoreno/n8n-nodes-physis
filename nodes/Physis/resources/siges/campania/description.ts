@@ -8,9 +8,12 @@ export const campaniaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['campania'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Listado de campañas.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Detalle de campaña.' },
-            { name: 'Campaña Activa', value: 'getActive', description: 'GET Campaña actual del usuario o sistema.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Listado de campañas' 
+																																																					action: 'Listar Todas a campania',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de campaña' 
+																																																				action: 'Obtener por ID a campania',},
+            { name: 'Campaña Activa', value: 'getActive', description: 'GET Campaña actual del usuario o sistema' 
+																																																										action: 'Campaña Activa a campania',},
         ],
         default: 'getAll',
     },

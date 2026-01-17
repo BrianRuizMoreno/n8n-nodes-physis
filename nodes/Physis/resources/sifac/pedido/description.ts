@@ -8,11 +8,16 @@ export const pedidoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['pedido'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista pedidos. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Datos de un pedido (idCabecera).' },
-            { name: 'Crear', value: 'create', description: 'POST Crea un nuevo pedido.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un pedido existente.' },
-            { name: 'Comprobantes Asociados', value: 'getComprobantesAsociados', description: 'GET Comprobantes relacionados. Req: Body con comprobante base.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista pedidos. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.' 
+																																																					action: 'Listar Todos a pedido',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de un pedido (idCabecera)' 
+																																																				action: 'Obtener por ID a pedido',},
+            { name: 'Crear', value: 'create', description: 'POST Crea un nuevo pedido' 
+																																														action: 'Crear a pedido',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un pedido existente' 
+																																																			action: 'Actualizar a pedido',},
+            { name: 'Comprobantes Asociados', value: 'getComprobantesAsociados', description: 'GET Comprobantes relacionados. Req: Body con comprobante base.' 
+																																																																																	action: 'Comprobantes Asociados a pedido',},
         ],
         default: 'getAll',
     },
@@ -32,7 +37,7 @@ export const pedidoFields: INodeProperties[] = [
                 operation: ['get', 'update', 'getComprobantesAsociados'] 
             } 
         },
-        description: 'Identificador único de la cabecera del pedido.',
+        description: 'Identificador único de la cabecera del pedido',
     },
     {
         displayName: 'JSON Body / Filtros',

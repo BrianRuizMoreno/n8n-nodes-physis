@@ -9,15 +9,15 @@ export const contratoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['savec'], resource: ['contrato'] } },
         options: [
 
-            { name: 'Listar Contratos', value: 'getAll', description: 'GET Lista contratos con filtros opcionales.' },
-            { name: 'Obtener Contrato', value: 'get', description: 'GET Obtiene un contrato específico por Número y Campaña.' },
-            { name: 'Crear/Actualizar Contrato', value: 'create', description: 'POST Inserta o modifica un contrato.' },
-            { name: 'Listar Contratos Terceros', value: 'getContratosTerceros', description: 'GET Lista contratos de terceros.' },
-            { name: 'Listar Corredores', value: 'getCorredores', description: 'GET Lista de corredores disponibles.' },
-            { name: 'Listar Entregadores', value: 'getEntregadores', description: 'GET Lista de entregadores.' },
-            { name: 'Listar Transportistas', value: 'getTransportistas', description: 'GET Lista de transportistas.' },
-            { name: 'Listar Terceros', value: 'getTerceros', description: 'GET Lista de terceros genéricos.' },
-            { name: 'Listar Monedas', value: 'getMonedas', description: 'GET Lista de monedas.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista contratos con filtros opcionales', action: 'Listar Contratos a contrato',},
+            { name: 'Obtener Contrato', value: 'get', description: 'GET Obtiene un contrato específico por Número y Campaña', action: 'Obtener Contrato a contrato',},
+            { name: 'Crear/Actualizar Contrato', value: 'create', description: 'POST Inserta o modifica un contrato', action: 'Crear/Actualizar Contrato a contrato',},
+            { name: 'Listar Contratos Terceros', value: 'getContratosTerceros', description: 'GET Lista contratos de terceros', action: 'Listar Contratos Terceros a contrato',},
+            { name: 'Listar Corredores', value: 'getCorredores', description: 'GET Lista de corredores disponibles', action: 'Listar Corredores a contrato',},
+            { name: 'Listar Entregadores', value: 'getEntregadores', description: 'GET Lista de entregadores', action: 'Listar Entregadores a contrato',},
+            { name: 'Listar Transportistas', value: 'getTransportistas', description: 'GET Lista de transportistas', action: 'Listar Transportistas a contrato',},
+            { name: 'Listar Terceros', value: 'getTerceros', description: 'GET Lista de terceros genéricos', action: 'Listar Terceros a contrato',},
+            { name: 'Listar Monedas', value: 'getMonedas', description: 'GET Lista de monedas', action: 'Listar Monedas a contrato',},
         ],
         default: 'getAll',
     },
@@ -38,7 +38,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Código de la campaña del contrato.',
+        description: 'Código de la campaña del contrato',
     },
     {
         displayName: 'Nro. Contrato',
@@ -53,7 +53,7 @@ export const contratoFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Número identificador del contrato.',
+        description: 'Número identificador del contrato',
     },
     {
         displayName: 'JSON Body / Filtros',

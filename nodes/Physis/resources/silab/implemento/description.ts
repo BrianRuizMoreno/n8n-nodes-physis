@@ -9,39 +9,46 @@ export const implementoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['implemento'] } },
         options: [
             { 
-                name: 'Obtener Implementos', 
+                name: 'Get Many', 
                 value: 'getAll',  
                 description: 'GET Lista de implementos. Opcional: formatoRespuesta.'
+																action: 'Obtener Implementos an implemento',
             },
             { 
                 name: 'Obtener Maquinarias', 
                 value: 'getAllMaq', 
                 description: 'GET Lista de maquinarias. Opcional: formatoRespuesta.'
+																action: 'Obtener Maquinarias an implemento',
             },
             { 
-                name: 'Obtener Implemento por ID', 
+                name: 'Obtener Implemento Por ID', 
                 value: 'get', 
-                description: 'GET Datos de un implemento por IdImplemento.'
+                description: 'GET Datos de un implemento por IdImplemento'
+																action: 'Obtener Implemento por ID an implemento',
             },
             { 
-                name: 'Obtener Implemento por Nombre', 
+                name: 'Obtener Implemento Por Nombre', 
                 value: 'getByName', 
-                description: 'GET Buscar implemento por nombre.'
+                description: 'GET Buscar implemento por nombre'
+																action: 'Obtener Implemento por Nombre an implemento',
             },
             { 
-                name: 'Obtener Maquinaria por Nombre', 
+                name: 'Obtener Maquinaria Por Nombre', 
                 value: 'getMaqByName', 
-                description: 'GET Buscar maquinaria por nombre.'
+                description: 'GET Buscar maquinaria por nombre'
+																action: 'Obtener Maquinaria por Nombre an implemento',
             },
             { 
                 name: 'Obtener Implementos por Labor', 
                 value: 'getByLabor', 
                 description: 'GET Implementos de una labor. Opcional: SinOtraMaquinaria.'
+																action: 'Obtener Implementos por Labor an implemento',
             },
             { 
                 name: 'Obtener Maquinarias por Labor', 
                 value: 'getMaqByLabor', 
-                description: 'GET Maquinarias de una labor.'
+                description: 'GET Maquinarias de una labor'
+																action: 'Obtener Maquinarias por Labor an implemento',
             },
         ],
         default: 'getAll',
@@ -62,7 +69,7 @@ export const implementoFields: INodeProperties[] = [
                 operation: ['get', 'getByName', 'getMaqByName', 'getByLabor', 'getMaqByLabor'] 
             } 
         },
-        description: 'Ingrese el IdImplemento, Nombre o IdLabor según corresponda a la operación.',
+        description: 'Ingrese el IdImplemento, Nombre o IdLabor según corresponda a la operación',
     },
     {
         displayName: 'Filtros (JSON)',

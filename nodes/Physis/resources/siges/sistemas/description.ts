@@ -9,14 +9,16 @@ export const sistemasOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['sistemas'] } },
         options: [
             { 
-                name: 'Listar Sistemas', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de sistemas o módulos configurados en el ERP.' 
+                description: 'GET Devuelve la lista de sistemas o módulos configurados en el ERP' 
+																action: 'Listar Sistemas a sistemas',
             },
             { 
                 name: 'Obtener Sistema', 
                 value: 'get', 
-                description: 'GET Recupera los datos de un sistema específico por ID.' 
+                description: 'GET Recupera los datos de un sistema específico por ID' 
+																action: 'Obtener Sistema a sistemas',
             },
         ],
         default: 'getAll',
@@ -37,6 +39,6 @@ export const sistemasFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador numérico del módulo o sistema.',
+        description: 'Identificador numérico del módulo o sistema',
     },
 ];

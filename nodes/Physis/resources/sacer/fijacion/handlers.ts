@@ -2,55 +2,59 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/sacer/fijaciones';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let codCampania = '';
-    let nroContrato = '';
-    let nroFijacion = '';
-    let idFijacion = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	let endpoint = '/phy2service/api/sacer/fijaciones';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
+	let codCampania = this.getNodeParameter('codCampania', index, '') as string;
+	let nroContrato = this.getNodeParameter('nroContrato', index, '') as string;
+	let nroFijacion = this.getNodeParameter('nroFijacion', index, '') as string;
+	let idFijacion = this.getNodeParameter('idFijacion', index, '') as string;
 
-    try { codCampania = this.getNodeParameter('codCampania', index) as string; } catch (e) {}
-    try { nroContrato = this.getNodeParameter('nroContrato', index) as string; } catch (e) {}
-    try { nroFijacion = this.getNodeParameter('nroFijacion', index) as string; } catch (e) {}
-    try { idFijacion = this.getNodeParameter('idFijacion', index) as string; } catch (e) {}
+	switch (operation) {
+		case 'getAll':
+			break;
+		case 'getByContract':
+			endpoint = `/phy2service/api/sacer/campanias/${codCampania}/contratos/${nroContrato}/fijaciones`;
+			break;
+		case 'get':
+			endpoint = `${endpoint}/${nroContrato}/${codCampania}/${nroFijacion}`;
+			break;
+		case 'create':
+			method = 'POST';
+			break;
+		case 'update':
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${endpoint}/${idFijacion}`;
+			method = 'DELETE';
+			break;
+	}
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        if (['create', 'update'].includes(operation)) {
-            body = json as IDataObject;
-        } else {
-            qs = json as IDataObject;
-        }
-    } catch (e) {}
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    if (operation === 'getAll') {
-        endpoint = endpoint;
-    }
-    else if (operation === 'getByContract') {
-        endpoint = `/phy2service/api/sacer/campanias/${codCampania}/contratos/${nroContrato}/fijaciones`;
-    }
-    else if (operation === 'get') {
-        endpoint = `${endpoint}/${nroContrato}/${codCampania}/${nroFijacion}`;
-    }
-    else if (operation === 'create') {
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = `${endpoint}/${idFijacion}`;
-        method = 'DELETE';
-    }
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

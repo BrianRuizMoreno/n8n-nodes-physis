@@ -11,42 +11,50 @@ export const terceroOperations: INodeProperties[] = [
             { 
                 name: 'Buscar (Autocomplete)', 
                 value: 'search', 
-                description: 'GET Busca terceros por nombre, código o documento.' 
+                description: 'GET Busca terceros por nombre, código o documento' 
+																action: 'Buscar (Autocomplete) a tercero',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera los datos completos de un tercero específico.' 
+                description: 'GET Recupera los datos completos de un tercero específico' 
+																action: 'Obtener Detalle a tercero',
             },
             { 
-                name: 'Buscar por Documento', 
+                name: 'Buscar Por Documento', 
                 value: 'getByDocument', 
-                description: 'GET Busca terceros coincidentes por CUIT o DNI.' 
+                description: 'GET Busca terceros coincidentes por CUIT o DNI' 
+																action: 'Buscar por Documento a tercero',
             },
             { 
                 name: 'Consulta Avanzada', 
                 value: 'query', 
-                description: 'POST Ejecuta una consulta con filtros complejos, ordenamiento y paginación.' 
+                description: 'POST Ejecuta una consulta con filtros complejos, ordenamiento y paginación' 
+																action: 'Consulta Avanzada a tercero',
             },
             { 
                 name: 'Listar Domicilios', 
                 value: 'getAddresses', 
-                description: 'GET Obtiene las direcciones registradas de un tercero.' 
+                description: 'GET Obtiene las direcciones registradas de un tercero' 
+																action: 'Listar Domicilios a tercero',
             },
             { 
                 name: 'Crear Domicilio', 
                 value: 'createAddress', 
-                description: 'POST Agrega una nueva dirección a un tercero.' 
+                description: 'POST Agrega una nueva dirección a un tercero' 
+																action: 'Crear Domicilio a tercero',
             },
             { 
                 name: 'Listar Cuentas Bancarias', 
                 value: 'getBankAccounts', 
-                description: 'GET Devuelve las cuentas bancarias asociadas para transferencias.' 
+                description: 'GET Devuelve las cuentas bancarias asociadas para transferencias' 
+																action: 'Listar Cuentas Bancarias a tercero',
             },
             { 
                 name: 'Listar Contactos', 
                 value: 'getContacts', 
-                description: 'GET Obtiene la lista de personas de contacto.' 
+                description: 'GET Obtiene la lista de personas de contacto' 
+																action: 'Listar Contactos a tercero',
             },
         ],
         default: 'search',
@@ -68,7 +76,7 @@ export const terceroFields: INodeProperties[] = [
                 operation: ['get', 'getAddresses', 'createAddress'] 
             } 
         },
-        description: 'Identificador del rubro (ej: 100=Clientes).',
+        description: 'Identificador del rubro (ej: 100=Clientes)',
     },
     {
         displayName: 'ID Cuenta Auxiliar',
@@ -83,10 +91,10 @@ export const terceroFields: INodeProperties[] = [
                 operation: ['get', 'getAddresses', 'createAddress'] 
             } 
         },
-        description: 'Código del tercero (ej: "CLI-001").',
+        description: 'Código del tercero (ej: "CLI-001")',
     },
     {
-        displayName: 'Texto de Búsqueda',
+        displayName: 'Texto De Búsqueda',
         name: 'texto',
         type: 'string',
         default: '',
@@ -97,7 +105,7 @@ export const terceroFields: INodeProperties[] = [
                 operation: ['search'] 
             } 
         },
-        description: 'Nombre, razón social o parte del documento a buscar.',
+        description: 'Nombre, razón social o parte del documento a buscar',
     },
     {
         displayName: 'Filtro ID Plan (Opcional)',
@@ -111,10 +119,10 @@ export const terceroFields: INodeProperties[] = [
                 operation: ['search'] 
             } 
         },
-        description: 'Restringe la búsqueda a un solo rubro (ej: Solo buscar en Clientes).',
+        description: 'Restringe la búsqueda a un solo rubro (ej: Solo buscar en Clientes)',
     },
     {
-        displayName: 'Número de Documento',
+        displayName: 'Número De Documento',
         name: 'nroDoc',
         type: 'string',
         default: '',
@@ -126,7 +134,7 @@ export const terceroFields: INodeProperties[] = [
                 operation: ['getByDocument'] 
             } 
         },
-        description: 'CUIT o DNI exacto a buscar.',
+        description: 'CUIT o DNI exacto a buscar',
     },
     {
         displayName: 'JSON Parámetros / Body',
@@ -139,6 +147,6 @@ export const terceroFields: INodeProperties[] = [
                 resource: ['tercero']
             } 
         },
-        description: 'Filtros adicionales, datos del domicilio o estructura de consulta avanzada.',
+        description: 'Filtros adicionales, datos del domicilio o estructura de consulta avanzada',
     },
 ];

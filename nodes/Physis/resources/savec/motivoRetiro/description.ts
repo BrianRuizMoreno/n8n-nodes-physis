@@ -8,11 +8,11 @@ export const motivoRetiroOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['savec'], resource: ['motivoRetiro'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Lista motivos de retiro.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene un motivo específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo motivo de retiro.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un motivo existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un motivo.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista motivos de retiro', action: 'Listar Todos a motivo retiro',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un motivo específico', action: 'Obtener por ID a motivo retiro',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo motivo de retiro', action: 'Crear a motivo retiro',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un motivo existente', action: 'Actualizar a motivo retiro',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un motivo', action: 'Eliminar a motivo retiro',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const motivoRetiroFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código numérico del motivo de retiro (codMotivo).',
+        description: 'Código numérico del motivo de retiro (codMotivo)',
     },
     {
         displayName: 'JSON Body',

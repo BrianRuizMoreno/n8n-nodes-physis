@@ -8,11 +8,16 @@ export const unidadOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['unidad'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista unidades de medida.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Obtiene una unidad específica.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva unidad.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una unidad existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una unidad.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista unidades de medida' 
+																																																					action: 'Listar Todas an unidad',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una unidad específica' 
+																																																				action: 'Obtener por ID an unidad',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva unidad' 
+																																														action: 'Crear an unidad',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una unidad existente' 
+																																																			action: 'Actualizar an unidad',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una unidad' 
+																																																	action: 'Eliminar an unidad',},
         ],
         default: 'getAll',
     },
@@ -32,7 +37,7 @@ export const unidadFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador de la unidad (ej: KG, LT).',
+        description: 'Código identificador de la unidad (ej: KG, LT)',
     },
     {
         displayName: 'JSON Body / Parámetros',

@@ -9,14 +9,16 @@ export const numeradorOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['numerador'] } },
         options: [
             { 
-                name: 'Listar Todos', 
+                name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve todos los numeradores disponibles.' 
+                description: 'GET Devuelve todos los numeradores disponibles' 
+																action: 'Listar Todos a numerador',
             },
             { 
-                name: 'Listar por Tipo (Prefijo)', 
+                name: 'Listar Por Tipo (Prefijo)', 
                 value: 'getByPrefijo', 
-                description: 'GET Filtra numeradores según si usan prefijo (Punto de Venta) o no.' 
+                description: 'GET Filtra numeradores según si usan prefijo (Punto de Venta) o no' 
+																action: 'Listar por Tipo (Prefijo) a numerador',
             },
         ],
         default: 'getAll',

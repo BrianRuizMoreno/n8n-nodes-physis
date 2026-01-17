@@ -11,12 +11,14 @@ export const combosOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Lista (Combo)', 
                 value: 'getCombo', 
-                description: 'GET Obtiene una lista simple de opciones (ID/Nombre) para poblar selectores.' 
+                description: 'GET Obtiene una lista simple de opciones (ID/Nombre) para poblar selectores' 
+																action: 'Obtener Lista (Combo) a combos',
             },
             { 
                 name: 'Listar Tipos Disponibles', 
                 value: 'getSearchTypes', 
-                description: 'GET Devuelve los metadatos de qué tipos de búsqueda están disponibles.' 
+                description: 'GET Devuelve los metadatos de qué tipos de búsqueda están disponibles' 
+																action: 'Listar Tipos Disponibles a combos',
             },
         ],
         default: 'getCombo',
@@ -25,7 +27,7 @@ export const combosOperations: INodeProperties[] = [
 
 export const combosFields: INodeProperties[] = [
     {
-        displayName: 'Tipo de Lista',
+        displayName: 'Tipo De Lista',
         name: 'comboType',
         type: 'options',
         required: true,
@@ -37,19 +39,19 @@ export const combosFields: INodeProperties[] = [
             } 
         },
         options: [
-            { name: 'Condiciones de Pago', value: 'condiciones-pago' },
-            { name: 'Condiciones de Venta', value: 'condiciones-venta' },
+            { name: 'Condiciones De Pago', value: 'condiciones-pago' },
+            { name: 'Condiciones De Venta', value: 'condiciones-venta' },
             { name: 'Vendedores', value: 'vendedores' },
             { name: 'Compradores', value: 'compradores' },
             { name: 'Transportes', value: 'transportes' },
             { name: 'Descuentos', value: 'descuentos' },
             { name: 'Observaciones', value: 'observaciones' },
-            { name: 'Listas de Compras', value: 'listas-compras' },
-            { name: 'Listas de Ventas', value: 'listas-ventas' },
+            { name: 'Listas De Compras', value: 'listas-compras' },
+            { name: 'Listas De Ventas', value: 'listas-ventas' },
             { name: 'Listas VNR (Valor Neto Realiz)', value: 'listas-vnr' },
         ],
         default: 'vendedores',
-        description: 'Seleccione qué entidad desea listar.',
+        description: 'Seleccione qué entidad desea listar',
     },
     {
         displayName: 'ID Plan Principal',
@@ -63,7 +65,7 @@ export const combosFields: INodeProperties[] = [
                 operation: ['getCombo'] 
             } 
         },
-        description: 'Contexto del plan principal (Generalmente 1).',
+        description: 'Contexto del plan principal (Generalmente 1)',
     },
     {
         displayName: 'ID Auxiliar (Filtro)',

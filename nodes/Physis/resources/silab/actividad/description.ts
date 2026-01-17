@@ -9,19 +9,22 @@ export const actividadOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['silab'], resource: ['actividad'] } },
         options: [
             { 
-                name: 'Listar Todas', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de actividades. Filtros: Aplicacion, reducido, etc.' 
+																action: 'Listar Todas an actividad',
             },
             { 
-                name: 'Obtener por ID', 
+                name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de una actividad específica (IdActividad).' 
+                description: 'GET Datos de una actividad específica (IdActividad)' 
+																action: 'Obtener por ID an actividad',
             },
             { 
                 name: 'Obtener Lotes Asociados', 
                 value: 'getLotes', 
                 description: 'GET Lotes asociados a una actividad y fecha. Filtros: CodCampania, CodCampo.' 
+																action: 'Obtener Lotes Asociados an actividad',
             },
         ],
         default: 'getAll',
@@ -42,7 +45,7 @@ export const actividadFields: INodeProperties[] = [
                 operation: ['get', 'getLotes'] 
             } 
         },
-        description: 'Identificador de la actividad (String).',
+        description: 'Identificador de la actividad (String)',
     },
     {
         displayName: 'Fecha',
@@ -57,7 +60,7 @@ export const actividadFields: INodeProperties[] = [
                 operation: ['getLotes'] 
             } 
         },
-        description: 'Fecha asociada a la búsqueda de lotes.',
+        description: 'Fecha asociada a la búsqueda de lotes',
     },
     {
         displayName: 'Filtros (JSON)',

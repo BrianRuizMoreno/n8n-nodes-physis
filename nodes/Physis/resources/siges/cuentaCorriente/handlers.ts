@@ -6,7 +6,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     const transport = new PhysisTransport(this);
     let endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias';
     let method = 'GET';
-    let body: IDataObject = {};
+    const body: IDataObject = {};
     let qs: IDataObject = {};
     let id = '';
 

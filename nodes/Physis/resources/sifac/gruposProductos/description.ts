@@ -11,17 +11,20 @@ export const grupoPermisosOperations: INodeProperties[] = [
             { 
                 name: 'Productos: Listar Asignados', 
                 value: 'getProductos', 
-                description: 'GET Obtiene productos visibles por el grupo.' 
+                description: 'GET Obtiene productos visibles por el grupo' 
+																action: 'Productos: Listar Asignados a grupo permisos',
             },
             { 
                 name: 'Productos: Detalle Restricciones', 
                 value: 'getProductosRestricciones', 
-                description: 'GET Detalle técnico de restricciones de productos.' 
+                description: 'GET Detalle técnico de restricciones de productos' 
+																action: 'Productos: Detalle Restricciones a grupo permisos',
             },
             { 
                 name: 'Productos: Asignar/Actualizar', 
                 value: 'updateProductos', 
                 description: 'POST Asigna restricciones de productos. Body JSON con array de restricciones.' 
+																action: 'Productos: Asignar/Actualizar a grupo permisos',
             },
         ],
         default: 'getProductos',
@@ -41,7 +44,7 @@ export const grupoPermisosFields: INodeProperties[] = [
                 resource: ['grupoPermisos'] 
             } 
         },
-        description: 'Identificador numérico del Grupo de Usuarios (idGrupo).',
+        description: 'Identificador numérico del Grupo de Usuarios (idGrupo)',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -54,6 +57,6 @@ export const grupoPermisosFields: INodeProperties[] = [
                 resource: ['grupoPermisos'] 
             } 
         },
-        description: 'Cuerpo para POST (Asignaciones) o Filtros para GET.',
+        description: 'Cuerpo para POST (Asignaciones) o Filtros para GET',
     },
 ];

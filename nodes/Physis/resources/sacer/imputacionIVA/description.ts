@@ -8,11 +8,11 @@ export const imputacionIVAOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['imputacionIVA'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Devuelve el listado de imputaciones contables de IVA.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Devuelve una imputación específica.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva imputación de IVA.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una imputación existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una imputación de IVA.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de imputaciones contables de IVA', action: 'Listar Todas an imputacion IVA',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve una imputación específica', action: 'Obtener por ID an imputacion IVA',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva imputación de IVA', action: 'Crear an imputacion IVA',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una imputación existente', action: 'Actualizar an imputacion IVA',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una imputación de IVA', action: 'Eliminar an imputacion IVA',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const imputacionIVAFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador de la imputación (idIva).',
+        description: 'Identificador de la imputación (idIva)',
     },
     {
         displayName: 'JSON Body',
@@ -46,6 +46,6 @@ export const imputacionIVAFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos de la imputación (alícuotas, cuentas contables, descripción, etc.).',
+        description: 'Cuerpo con los datos de la imputación (alícuotas, cuentas contables, descripción, etc.)',
     },
 ];

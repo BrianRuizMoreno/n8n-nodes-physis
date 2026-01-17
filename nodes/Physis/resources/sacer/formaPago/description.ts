@@ -8,11 +8,11 @@ export const formaPagoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['formaPago'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Devuelve el listado de formas de pago.' },
-            { name: 'Obtener por Código', value: 'get', description: 'GET Devuelve una forma de pago específica.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva forma de pago.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una forma de pago existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una forma de pago.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de formas de pago', action: 'Listar Todas a forma pago',},
+            { name: 'Obtener Por Código', value: 'get', description: 'GET Devuelve una forma de pago específica', action: 'Obtener por Código a forma pago',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva forma de pago', action: 'Crear a forma pago',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una forma de pago existente', action: 'Actualizar a forma pago',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una forma de pago', action: 'Eliminar a forma pago',},
         ],
         default: 'getAll',
     },
@@ -32,7 +32,7 @@ export const formaPagoFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador de la forma de pago.',
+        description: 'Código identificador de la forma de pago',
     },
     {
         displayName: 'JSON Body',
@@ -46,6 +46,6 @@ export const formaPagoFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos de la forma de pago (descripción, días, cuotas, etc.).',
+        description: 'Cuerpo con los datos de la forma de pago (descripción, días, cuotas, etc.)',
     },
 ];

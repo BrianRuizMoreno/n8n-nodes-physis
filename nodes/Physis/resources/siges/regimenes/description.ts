@@ -9,13 +9,20 @@ export const tipoOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['tipo'] } },
         options: [
 
-			{ name: 'Listar Todos', value: 'getAll', description: 'GET Devuelve todos los regímenes.' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Devuelve un régimen específico.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo régimen.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un régimen existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un régimen por ID.' },
-            { name: 'Obtener por Cta Ppal', value: 'getByPpal', description: 'GET Devuelve régimen asociado a una Cuenta Principal.' },
-            { name: 'Asociar a Cta Ppal', value: 'associatePpal', description: 'POST Asocia un régimen a una cuenta principal.' },
+			{ name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los regímenes' 
+																																												action: 'Listar Todos a tipo',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un régimen específico' 
+																																																				action: 'Obtener por ID a tipo',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo régimen' 
+																																														action: 'Crear a tipo',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica un régimen existente' 
+																																																			action: 'Actualizar a tipo',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un régimen por ID' 
+																																																	action: 'Eliminar a tipo',},
+            { name: 'Obtener Por Cta Ppal', value: 'getByPpal', description: 'GET Devuelve régimen asociado a una Cuenta Principal' 
+																																																																action: 'Obtener por Cta Ppal a tipo',},
+            { name: 'Asociar a Cta Ppal', value: 'associatePpal', description: 'POST Asocia un régimen a una cuenta principal' 
+																																																																		action: 'Asociar a Cta Ppal a tipo',},
         ],
         default: 'getAll',
     },
@@ -35,7 +42,7 @@ export const tipoFields: INodeProperties[] = [
                 operation: ['get', 'delete', 'getByPpal'] 
             } 
         },
-        description: 'ID del Régimen (para Get/Delete) o ID de Cuenta Principal (para GetByPpal).',
+        description: 'ID del Régimen (para Get/Delete) o ID de Cuenta Principal (para GetByPpal)',
     },
     {
         displayName: 'JSON Body',
@@ -49,6 +56,6 @@ export const tipoFields: INodeProperties[] = [
                 operation: ['create', 'update', 'associatePpal']
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar o para la Asociación.',
+        description: 'Cuerpo para Crear/Actualizar o para la Asociación',
     },
 ];

@@ -9,15 +9,15 @@ export const calidadOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sacer'], resource: ['calidad'] } },
         options: [
 
-            { name: 'Listar Calidades', value: 'getAll', description: 'GET Lista calidades (filtro opcional por Cereal).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Detalle de una calidad.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva calidad.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una calidad.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una calidad.' },
-            { name: 'Consulta Tabla', value: 'tableSearch', description: 'POST Consulta avanzada con filtros y paginado.' },
-            { name: 'Listar por Cereal', value: 'getByCereal', description: 'GET Lista calidades asociadas a un cereal específico.' },
-            { name: 'Listar Agrupaciones por Cereal', value: 'getAgrupacionesByCereal', description: 'GET Agrupaciones de calidades de un cereal.' },
-            { name: 'Obtener Agrupación', value: 'getAgrupacion', description: 'GET Detalle de una agrupación por código.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista calidades (filtro opcional por Cereal)', action: 'Listar Calidades a calidad',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de una calidad', action: 'Obtener por ID a calidad',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva calidad', action: 'Crear a calidad',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una calidad', action: 'Actualizar a calidad',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una calidad', action: 'Eliminar a calidad',},
+            { name: 'Consulta Tabla', value: 'tableSearch', description: 'POST Consulta avanzada con filtros y paginado', action: 'Consulta Tabla a calidad',},
+            { name: 'Listar Por Cereal', value: 'getByCereal', description: 'GET Lista calidades asociadas a un cereal específico', action: 'Listar por Cereal a calidad',},
+            { name: 'Listar Agrupaciones Por Cereal', value: 'getAgrupacionesByCereal', description: 'GET Agrupaciones de calidades de un cereal', action: 'Listar Agrupaciones por Cereal a calidad',},
+            { name: 'Obtener Agrupación', value: 'getAgrupacion', description: 'GET Detalle de una agrupación por código', action: 'Obtener Agrupación a calidad',},
         ],
         default: 'getAll',
     },
@@ -37,7 +37,7 @@ export const calidadFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador de la calidad.',
+        description: 'Código identificador de la calidad',
     },
     {
         displayName: 'Cód Cereal',
@@ -66,7 +66,7 @@ export const calidadFields: INodeProperties[] = [
                 operation: ['getAgrupacion'] 
             } 
         },
-        description: 'Código de la agrupación de calidades.',
+        description: 'Código de la agrupación de calidades',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -80,6 +80,6 @@ export const calidadFields: INodeProperties[] = [
                 operation: ['create', 'update', 'tableSearch']
             } 
         },
-        description: 'Cuerpo del objeto Calidad o filtros de consulta.',
+        description: 'Cuerpo del objeto Calidad o filtros de consulta',
     },
 ];

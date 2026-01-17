@@ -8,8 +8,10 @@ export const dominioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['dominio'] } },
         options: [
-            { name: 'Listar Todos', value: 'getAll', description: 'GET Devuelve lista de dominios (máscaras, configuraciones).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Devuelve un dominio específico.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve lista de dominios (máscaras, configuraciones)' 
+																																																					action: 'Listar Todos a dominio',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un dominio específico' 
+																																																				action: 'Obtener por ID a dominio',},
         ],
         default: 'getAll',
     },
@@ -29,7 +31,7 @@ export const dominioFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Identificador numérico del dominio.',
+        description: 'Identificador numérico del dominio',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -42,6 +44,6 @@ export const dominioFields: INodeProperties[] = [
                 resource: ['dominio'] 
             } 
         },
-        description: 'Filtros opcionales para el listado.',
+        description: 'Filtros opcionales para el listado',
     },
 ];

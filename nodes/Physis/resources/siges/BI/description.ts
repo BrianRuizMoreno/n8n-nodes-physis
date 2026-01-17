@@ -12,33 +12,39 @@ export const biOperations: INodeProperties[] = [
             { 
                 name: 'Listar Tableros Disponibles', 
                 value: 'listDashboards', 
-                description: 'GET Devuelve los tableros de análisis multidimensional configurados.' 
+                description: 'GET Devuelve los tableros de análisis multidimensional configurados' 
+																action: 'Listar Tableros Disponibles a bi',
             },
             { 
-                name: 'Obtener Datos de Tablero', 
+                name: 'Obtener Datos De Tablero', 
                 value: 'getDashboardData', 
-                description: 'GET Obtiene la configuración y datos de un tablero específico.' 
+                description: 'GET Obtiene la configuración y datos de un tablero específico' 
+																action: 'Obtener Datos de Tablero a bi',
             },
             { 
                 name: 'Crear Tablero', 
                 value: 'createDashboard', 
-                description: 'POST Configura un nuevo análisis multidimensional.' 
+                description: 'POST Configura un nuevo análisis multidimensional' 
+																action: 'Crear Tablero a bi',
             },
             { 
                 name: 'Actualizar Tablero', 
                 value: 'updateDashboard', 
-                description: 'PUT Modifica un análisis existente.' 
+                description: 'PUT Modifica un análisis existente' 
+																action: 'Actualizar Tablero a bi',
             },
             // --- UI / GRILLAS ---
             { 
                 name: 'Obtener Configuración Grilla', 
                 value: 'getGridConfig', 
-                description: 'GET Recupera el estado guardado (columnas, orden) de una grilla AgGrid.' 
+                description: 'GET Recupera el estado guardado (columnas, orden) de una grilla AgGrid' 
+																action: 'Obtener Configuración Grilla a bi',
             },
             { 
                 name: 'Guardar Configuración Grilla', 
                 value: 'updateGridConfig', 
-                description: 'PUT Guarda el estado visual de una grilla.' 
+                description: 'PUT Guarda el estado visual de una grilla' 
+																action: 'Guardar Configuración Grilla a bi',
             },
         ],
         default: 'listDashboards',
@@ -58,7 +64,7 @@ export const biFields: INodeProperties[] = [
                 resource: ['bi']
             } 
         },
-        description: 'ID del módulo origen de datos (0=Todos).',
+        description: 'ID del módulo origen de datos (0=Todos)',
     },
     {
         displayName: 'ID Grupo',
@@ -73,7 +79,7 @@ export const biFields: INodeProperties[] = [
                 operation: ['getDashboardData'] 
             } 
         },
-        description: 'Grupo al que pertenece el tablero.',
+        description: 'Grupo al que pertenece el tablero',
     },
     {
         displayName: 'ID Tablero',
@@ -88,7 +94,7 @@ export const biFields: INodeProperties[] = [
                 operation: ['getDashboardData'] 
             } 
         },
-        description: 'Identificador único del tablero.',
+        description: 'Identificador único del tablero',
     },
     {
         displayName: 'Fecha Desde',
@@ -116,7 +122,7 @@ export const biFields: INodeProperties[] = [
                 operation: ['getDashboardData'] 
             } 
         },
-        description: 'Fin del rango de análisis.',
+        description: 'Fin del rango de análisis',
     },
     {
         displayName: 'Nombre Grilla',
@@ -131,7 +137,7 @@ export const biFields: INodeProperties[] = [
                 operation: ['getGridConfig', 'updateGridConfig'] 
             } 
         },
-        description: 'Identificador de cadena de la grilla (ej: "frmComprobantes").',
+        description: 'Identificador de cadena de la grilla (ej: "frmComprobantes")',
     },
     {
         displayName: 'ID Usuario (Opcional)',
@@ -145,7 +151,7 @@ export const biFields: INodeProperties[] = [
                 operation: ['getGridConfig'] 
             } 
         },
-        description: 'Filtrar configuración por usuario específico.',
+        description: 'Filtrar configuración por usuario específico',
     },
     {
         displayName: 'JSON Body',
@@ -159,6 +165,6 @@ export const biFields: INodeProperties[] = [
                 operation: ['createDashboard', 'updateDashboard', 'updateGridConfig'] 
             } 
         },
-        description: 'Configuración de columnas, gráficos o estado de la grilla.',
+        description: 'Configuración de columnas, gráficos o estado de la grilla',
     },
 ];

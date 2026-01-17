@@ -12,42 +12,50 @@ export const tiposOperations: INodeProperties[] = [
 			{ 
                 name: 'Tipos Orden: Listar Todos', 
                 value: 'getAllTipos', 
-                description: 'GET Listado de tipos de órdenes de trabajo.' 
+                description: 'GET Listado de tipos de órdenes de trabajo' 
+																action: 'Tipos Orden: Listar Todos a tipos',
             },
             { 
-                name: 'Tipos Orden: Obtener por Sigla', 
+                name: 'Tipos Orden: Obtener Por Sigla', 
                 value: 'getTipo', 
-                description: 'GET Detalle de un tipo de orden específico.' 
+                description: 'GET Detalle de un tipo de orden específico' 
+																action: 'Tipos Orden: Obtener por Sigla a tipos',
             },
             { 
                 name: 'Tipos Orden: Crear', 
                 value: 'createTipo', 
                 description: 'POST Alta de nuevo tipo de orden. Requiere JSON Body.' 
+																action: 'Tipos Orden: Crear a tipos',
             },
             { 
                 name: 'Tipos Orden: Modificar', 
                 value: 'updateTipo', 
                 description: 'PUT Modificación de tipo de orden. Requiere JSON Body.' 
+																action: 'Tipos Orden: Modificar a tipos',
             },
             { 
                 name: 'Tipos Orden: Eliminar', 
                 value: 'deleteTipo', 
-                description: 'DELETE Elimina un tipo de orden por su Sigla.' 
+                description: 'DELETE Elimina un tipo de orden por su Sigla' 
+																action: 'Tipos Orden: Eliminar a tipos',
             },
             { 
                 name: 'Tipos Formulario: Listar Todos', 
                 value: 'getAllTiposFormulario', 
-                description: 'GET Listado de tipos de formulario (Configuración contable).' 
+                description: 'GET Listado de tipos de formulario (Configuración contable)' 
+																action: 'Tipos Formulario: Listar Todos a tipos',
             },
             { 
-                name: 'Tipos Formulario: Obtener por ID', 
+                name: 'Tipos Formulario: Obtener Por ID', 
                 value: 'getTipoFormulario', 
-                description: 'GET Detalle de un tipo de formulario.' 
+                description: 'GET Detalle de un tipo de formulario' 
+																action: 'Tipos Formulario: Obtener por ID a tipos',
             },
             { 
                 name: 'Tipos Formulario: Modificar', 
                 value: 'updateTipoFormulario', 
                 description: 'PUT Modificación de configuración de formulario. Requiere JSON Body.' 
+																action: 'Tipos Formulario: Modificar a tipos',
             },
         ],
         default: 'getAllTipos',
@@ -72,7 +80,7 @@ export const tiposFields: INodeProperties[] = [
                 ] 
             } 
         },
-        description: 'Sigla para Tipos de Orden (ej: "SJO") o ID Numérico para Tipos de Formulario.',
+        description: 'Sigla para Tipos de Orden (ej: "SJO") o ID Numérico para Tipos de Formulario',
     },
     {
         displayName: 'JSON Body',
@@ -86,6 +94,6 @@ export const tiposFields: INodeProperties[] = [
                 operation: ['createTipo', 'updateTipo', 'updateTipoFormulario']
             } 
         },
-        description: 'Cuerpo de la petición con la configuración del tipo.',
+        description: 'Cuerpo de la petición con la configuración del tipo',
     },
 ];

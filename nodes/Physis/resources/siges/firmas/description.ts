@@ -11,12 +11,14 @@ export const firmasOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Firma', 
                 value: 'get', 
-                description: 'GET Recupera una firma digitalizada y sus adjuntos.' 
+                description: 'GET Recupera una firma digitalizada y sus adjuntos' 
+																action: 'Obtener Firma a firmas',
             },
             { 
                 name: 'Guardar Firma', 
                 value: 'create', 
-                description: 'POST Guarda una nueva firma junto con hasta 2 imágenes de respaldo (DNI/Lugar).' 
+                description: 'POST Guarda una nueva firma junto con hasta 2 imágenes de respaldo (DNI/Lugar)' 
+																action: 'Guardar Firma a firmas',
             },
         ],
         default: 'get',
@@ -26,7 +28,7 @@ export const firmasOperations: INodeProperties[] = [
 export const firmasFields: INodeProperties[] = [
 
     {
-        displayName: 'Código de Firma',
+        displayName: 'Código De Firma',
         name: 'codFirma',
         type: 'number',
         default: 0,
@@ -38,7 +40,7 @@ export const firmasFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'ID único de la firma a consultar.',
+        description: 'ID único de la firma a consultar',
     },
     {
         displayName: 'Incluir Archivos',
@@ -52,7 +54,7 @@ export const firmasFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Si es true, devuelve el contenido binario (Base64) de las imágenes.',
+        description: 'Si es true, devuelve el contenido binario (Base64) de las imágenes',
     },
     {
         displayName: 'Nombre Firmante',
@@ -92,10 +94,10 @@ export const firmasFields: INodeProperties[] = [
                 operation: ['create'] 
             } 
         },
-        description: 'Metadatos adicionales como ubicación GPS o documento.',
+        description: 'Metadatos adicionales como ubicación GPS o documento',
     },
     {
-        displayName: 'Propiedad Binaria: Firma (imagen)',
+        displayName: 'Propiedad Binaria: Firma (Imagen)',
         name: 'binaryPropertyFirma',
         type: 'string',
         default: 'data',
@@ -107,10 +109,10 @@ export const firmasFields: INodeProperties[] = [
                 operation: ['create'] 
             } 
         },
-        description: 'Campo que contiene la imagen principal de la firma.',
+        description: 'Campo que contiene la imagen principal de la firma',
     },
     {
-        displayName: 'Propiedad Binaria: Extra 1 (imagen2)',
+        displayName: 'Propiedad Binaria: Extra 1 (Imagen2)',
         name: 'binaryPropertyImg2',
         type: 'string',
         default: '',
@@ -124,7 +126,7 @@ export const firmasFields: INodeProperties[] = [
         description: 'Opcional. Campo para foto del lugar o DNI Frente.',
     },
     {
-        displayName: 'Propiedad Binaria: Extra 2 (imagen3)',
+        displayName: 'Propiedad Binaria: Extra 2 (Imagen3)',
         name: 'binaryPropertyImg3',
         type: 'string',
         default: '',

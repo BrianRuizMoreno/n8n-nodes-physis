@@ -8,13 +8,20 @@ export const chequeraOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['chequera'] } },
         options: [
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista chequeras. Filtros en JSON (ej: IdBanco).' },
-            { name: 'Obtener por ID', value: 'get', description: 'GET Datos de una chequera (Requiere clave compuesta).' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta chequera.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica chequera.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina chequera (Requiere clave compuesta).' },
-            { name: 'Próximo ID', value: 'getNext', description: 'GET Próximo número disponible. Filtros en JSON.' },
-            { name: 'Filtro Electrónico', value: 'getByFiltroElectronico', description: 'GET Chequeras por defecto/electrónicas.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista chequeras. Filtros en JSON (ej: IdBanco).' 
+																																																					action: 'Listar Todas a chequera',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una chequera (Requiere clave compuesta)' 
+																																																				action: 'Obtener por ID a chequera',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta chequera' 
+																																														action: 'Crear a chequera',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica chequera' 
+																																																			action: 'Actualizar a chequera',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina chequera (Requiere clave compuesta)' 
+																																																	action: 'Eliminar a chequera',},
+            { name: 'Próximo ID', value: 'getNext', description: 'GET Próximo número disponible. Filtros en JSON.' 
+																																																				action: 'Próximo ID a chequera',},
+            { name: 'Filtro Electrónico', value: 'getByFiltroElectronico', description: 'GET Chequeras por defecto/electrónicas' 
+																																																																											action: 'Filtro Electrónico a chequera',},
         ],
         default: 'getAll',
     },
@@ -34,7 +41,7 @@ export const chequeraFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Número identificador de la chequera.',
+        description: 'Número identificador de la chequera',
     },
     {
         displayName: 'ID Banco',
@@ -49,7 +56,7 @@ export const chequeraFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador del banco.',
+        description: 'Identificador del banco',
     },
     {
         displayName: 'ID Cuenta Bancaria',
@@ -64,7 +71,7 @@ export const chequeraFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Identificador de la cuenta bancaria (o idCuentaCte).',
+        description: 'Identificador de la cuenta bancaria (o idCuentaCte)',
     },
 
     {
@@ -78,6 +85,6 @@ export const chequeraFields: INodeProperties[] = [
                 resource: ['chequera'] 
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar, o Filtros para Listas (ej: {"IdBanco": "001", "TodosLosBancos": true}).',
+        description: 'Cuerpo para Crear/Actualizar, o Filtros para Listas (ej: {"IdBanco": "001", "TodosLosBancos": true})',
     },
 ];

@@ -9,14 +9,16 @@ export const afectacionOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['afectacion'] } },
         options: [
             { 
-                name: 'Listar Pendientes de Afectar', 
+                name: 'Listar Pendientes De Afectar', 
                 value: 'getPending', 
-                description: 'GET Busca comprobantes (facturas o pagos) que tienen saldo disponible para ser imputado.' 
+                description: 'GET Busca comprobantes (facturas o pagos) que tienen saldo disponible para ser imputado' 
+																action: 'Listar Pendientes de Afectar an afectacion',
             },
             { 
-                name: 'Ver Detalle de Afectación', 
+                name: 'Ver Detalle De Afectación', 
                 value: 'getAffectedDetails', 
-                description: 'GET Consulta cómo fue aplicado/imputado un comprobante específico.' 
+                description: 'GET Consulta cómo fue aplicado/imputado un comprobante específico' 
+																action: 'Ver Detalle de Afectación an afectacion',
             },
         ],
         default: 'getPending',
@@ -36,7 +38,7 @@ export const afectacionFields: INodeProperties[] = [
                 resource: ['afectacion']
             } 
         },
-        description: 'Identificador o número del comprobante a consultar (ej: "0001-12345678").',
+        description: 'Identificador o número del comprobante a consultar (ej: "0001-12345678")',
     },
     {
         displayName: 'Estado',
@@ -55,7 +57,7 @@ export const afectacionFields: INodeProperties[] = [
                 resource: ['afectacion']
             } 
         },
-        description: 'Filtra por el estado de imputación del documento.',
+        description: 'Filtra por el estado de imputación del documento',
     },
     {
         displayName: 'Signo (Debe/Haber)',
@@ -72,7 +74,7 @@ export const afectacionFields: INodeProperties[] = [
                 resource: ['afectacion']
             } 
         },
-        description: 'Define si se buscan comprobantes que suman (Facturas) o restan (Recibos).',
+        description: 'Define si se buscan comprobantes que suman (Facturas) o restan (Recibos)',
     },
     {
         displayName: 'JSON Parámetros Adicionales',
@@ -85,6 +87,6 @@ export const afectacionFields: INodeProperties[] = [
                 resource: ['afectacion']
             } 
         },
-        description: 'Filtros extra soportados por la API.',
+        description: 'Filtros extra soportados por la API',
     },
 ];

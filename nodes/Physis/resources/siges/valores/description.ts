@@ -11,27 +11,32 @@ export const valoresOperations: INodeProperties[] = [
             { 
                 name: 'Verificar Disponibilidad', 
                 value: 'checkAvailability', 
-                description: 'GET Consulta si un valor (cheque) está en cartera disponible.' 
+                description: 'GET Consulta si un valor (cheque) está en cartera disponible' 
+																action: 'Verificar Disponibilidad a valores',
             },
             { 
                 name: 'Verificar Negociado', 
                 value: 'checkNegotiated', 
-                description: 'GET Consulta si un valor ya fue entregado o negociado.' 
+                description: 'GET Consulta si un valor ya fue entregado o negociado' 
+																action: 'Verificar Negociado a valores',
             },
             { 
                 name: 'Último Nro Cheque', 
                 value: 'getLastCheckNumber', 
-                description: 'GET Obtiene el último número emitido de una chequera específica.' 
+                description: 'GET Obtiene el último número emitido de una chequera específica' 
+																action: 'Último Nro Cheque a valores',
             },
             { 
                 name: 'Listar Valores Recibidos', 
                 value: 'getReceivedValues', 
-                description: 'GET Devuelve la lista de cheques/valores asociados a un recibo.' 
+                description: 'GET Devuelve la lista de cheques/valores asociados a un recibo' 
+																action: 'Listar Valores Recibidos a valores',
             },
             { 
                 name: 'Listar Envíos Electrónicos', 
                 value: 'getElectronicBatches', 
-                description: 'GET Consulta lotes de E-Cheqs enviados al banco.' 
+                description: 'GET Consulta lotes de E-Cheqs enviados al banco' 
+																action: 'Listar Envíos Electrónicos a valores',
             },
         ],
         default: 'getReceivedValues',
@@ -53,7 +58,7 @@ export const valoresFields: INodeProperties[] = [
                 operation: ['checkAvailability', 'checkNegotiated', 'getReceivedValues'] 
             } 
         },
-        description: 'Año contable.',
+        description: 'Año contable',
     },
     {
         displayName: 'ID Comprobante (Cabecera)',
@@ -68,7 +73,7 @@ export const valoresFields: INodeProperties[] = [
                 operation: ['checkAvailability', 'checkNegotiated', 'getReceivedValues'] 
             } 
         },
-        description: 'Identificador del comprobante que contiene los valores.',
+        description: 'Identificador del comprobante que contiene los valores',
     },
     {
         displayName: 'ID Banco (Código)',
@@ -82,7 +87,7 @@ export const valoresFields: INodeProperties[] = [
                 operation: ['getLastCheckNumber', 'getElectronicBatches'] 
             } 
         },
-        description: 'Código del banco (ej: "011" Galicia, "072" Santander).',
+        description: 'Código del banco (ej: "011" Galicia, "072" Santander)',
     },
     {
         displayName: 'ID Cuenta Bancaria',
@@ -122,7 +127,7 @@ export const valoresFields: INodeProperties[] = [
                 operation: ['getReceivedValues'] 
             } 
         },
-        description: 'Si es true busca valores entregados, si es false busca recibidos.',
+        description: 'Si es true busca valores entregados, si es false busca recibidos',
     },
     {
         displayName: 'Es Electrónico',
@@ -154,6 +159,6 @@ export const valoresFields: INodeProperties[] = [
                 operation: ['getElectronicBatches'] 
             } 
         },
-        description: 'Código de filtro para el banco (ej: "ENVIADOS", "PENDIENTES").',
+        description: 'Código de filtro para el banco (ej: "ENVIADOS", "PENDIENTES")',
     },
 ];

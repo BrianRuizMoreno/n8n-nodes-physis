@@ -9,12 +9,12 @@ export const campaniaOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sacer'], resource: ['campania'] } },
         options: [
 
-            { name: 'Listar Todas', value: 'getAll', description: 'GET Lista todas las campañas definidas.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva campaña.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una campaña existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una campaña.' },
-            { name: 'Campañas de Usuario', value: 'getByUser', description: 'GET Lista campañas de un usuario específico.' },
-            { name: 'Detalle por Usuario', value: 'getDetailByUser', description: 'GET Detalle de campaña y estado para un usuario.' },
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todas las campañas definidas', action: 'Listar Todas a campania',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva campaña', action: 'Crear a campania',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una campaña existente', action: 'Actualizar a campania',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una campaña', action: 'Eliminar a campania',},
+            { name: 'Campañas De Usuario', value: 'getByUser', description: 'GET Lista campañas de un usuario específico', action: 'Campañas de Usuario a campania',},
+            { name: 'Detalle Por Usuario', value: 'getDetailByUser', description: 'GET Detalle de campaña y estado para un usuario', action: 'Detalle por Usuario a campania',},
         ],
         default: 'getAll',
     },
@@ -34,7 +34,7 @@ export const campaniaFields: INodeProperties[] = [
                 operation: ['delete', 'getDetailByUser'] 
             } 
         },
-        description: 'Identificador numérico de la campaña.',
+        description: 'Identificador numérico de la campaña',
     },
     {
         displayName: 'ID Usuario',
@@ -49,7 +49,7 @@ export const campaniaFields: INodeProperties[] = [
                 operation: ['getByUser', 'getDetailByUser'] 
             } 
         },
-        description: 'Identificador del usuario.',
+        description: 'Identificador del usuario',
     },
     {
         displayName: 'JSON Body',
@@ -63,6 +63,6 @@ export const campaniaFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo para Crear/Actualizar la campaña.',
+        description: 'Cuerpo para Crear/Actualizar la campaña',
     },
 ];

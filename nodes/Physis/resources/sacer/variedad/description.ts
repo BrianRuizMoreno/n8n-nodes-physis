@@ -8,10 +8,10 @@ export const variedadOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['variedad'] } },
         options: [
-            { name: 'Obtener por Código', value: 'get', description: 'GET Devuelve una variedad de cereal.' },
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva variedad.' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una variedad existente.' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una variedad.' },
+            { name: 'Obtener Por Código', value: 'get', description: 'GET Devuelve una variedad de cereal', action: 'Obtener por Código a variedad',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva variedad', action: 'Crear a variedad',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una variedad existente', action: 'Actualizar a variedad',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una variedad', action: 'Eliminar a variedad',},
         ],
         default: 'get',
     },
@@ -31,7 +31,7 @@ export const variedadFields: INodeProperties[] = [
                 operation: ['get', 'delete'] 
             } 
         },
-        description: 'Código identificador de la variedad.',
+        description: 'Código identificador de la variedad',
     },
     {
         displayName: 'JSON Body',
@@ -45,6 +45,6 @@ export const variedadFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Cuerpo con los datos de la variedad (código, descripción, codCereal, etc.).',
+        description: 'Cuerpo con los datos de la variedad (código, descripción, codCereal, etc.)',
     },
 ];

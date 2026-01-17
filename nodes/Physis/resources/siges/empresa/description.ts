@@ -8,10 +8,14 @@ export const empresaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['empresa'] } },
         options: [
-            { name: 'Empresa Actual', value: 'getCurrent', description: 'GET Datos de la empresa en contexto.' },
-            { name: 'Nombre Actual', value: 'getCurrentName', description: 'GET Nombre de la empresa actual.' },
-            { name: 'Aplicaciones', value: 'getApps', description: 'GET Apps habilitadas.' },
-            { name: 'Buscar por CUIT', value: 'getByCuit', description: 'GET Busca empresa por CUIT.' },
+            { name: 'Empresa Actual', value: 'getCurrent', description: 'GET Datos de la empresa en contexto' 
+																																																											action: 'Empresa Actual an empresa',},
+            { name: 'Nombre Actual', value: 'getCurrentName', description: 'GET Nombre de la empresa actual' 
+																																																														action: 'Nombre Actual an empresa',},
+            { name: 'Aplicaciones', value: 'getApps', description: 'GET Apps habilitadas' 
+																																																						action: 'Aplicaciones an empresa',},
+            { name: 'Buscar Por CUIT', value: 'getByCuit', description: 'GET Busca empresa por CUIT' 
+																																																											action: 'Buscar por CUIT an empresa',},
         ],
         default: 'getCurrent',
     },

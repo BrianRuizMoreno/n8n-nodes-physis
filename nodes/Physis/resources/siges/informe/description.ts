@@ -9,14 +9,22 @@ export const informeOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['informe'] } },
         options: [
 
-			{ name: 'Listar Informes', value: 'getAll', description: 'GET Lista facturas/prefacturas. Filtros en JSON.' },
-            { name: 'PDF Valores', value: 'getPdfValores', description: 'GET Genera PDF de valores de un comprobante.' },
-            { name: 'PDF Afectaciones', value: 'getPdfAfectaciones', description: 'GET Genera PDF de afectaciones de un comprobante.' },
-            { name: 'Resumen de Cuenta', value: 'getResumenCuenta', description: 'GET Resumen de cuenta corriente. Req: idAuxi, idCtaAuxi.' },
-            { name: 'Detalle Afectación', value: 'getDetalleAfectacion', description: 'GET Detalle de afectación de un comprobante (ID).' },
-            { name: 'Info Comercial', value: 'getInfoComercial', description: 'GET Información comercial de cliente (Consignatario).' },
-            { name: 'Composición Saldos', value: 'getComposicionSaldos', description: 'GET Composición de saldos detallada.' },
-            { name: 'Composición Saldos (Reagrupados)', value: 'getComposicionSaldosReagrupados', description: 'GET Composición de saldos reagrupada.' },
+			{ name: 'Get Many', value: 'getAll', description: 'GET Lista facturas/prefacturas. Filtros en JSON.' 
+																																															action: 'Listar Informes an informe',},
+            { name: 'PDF Valores', value: 'getPdfValores', description: 'GET Genera PDF de valores de un comprobante' 
+																																																											action: 'PDF Valores an informe',},
+            { name: 'PDF Afectaciones', value: 'getPdfAfectaciones', description: 'GET Genera PDF de afectaciones de un comprobante' 
+																																																																					action: 'PDF Afectaciones an informe',},
+            { name: 'Resumen De Cuenta', value: 'getResumenCuenta', description: 'GET Resumen de cuenta corriente. Req: idAuxi, idCtaAuxi.' 
+																																																																				action: 'Resumen de Cuenta an informe',},
+            { name: 'Detalle Afectación', value: 'getDetalleAfectacion', description: 'GET Detalle de afectación de un comprobante (ID)' 
+																																																																									action: 'Detalle Afectación an informe',},
+            { name: 'Info Comercial', value: 'getInfoComercial', description: 'GET Información comercial de cliente (Consignatario)' 
+																																																																	action: 'Info Comercial an informe',},
+            { name: 'Composición Saldos', value: 'getComposicionSaldos', description: 'GET Composición de saldos detallada' 
+																																																																									action: 'Composición Saldos an informe',},
+            { name: 'Composición Saldos (Reagrupados)', value: 'getComposicionSaldosReagrupados', description: 'GET Composición de saldos reagrupada' 
+																																																																																																		action: 'Composición Saldos (Reagrupados) an informe',},
         ],
         default: 'getAll',
     },
@@ -36,7 +44,7 @@ export const informeFields: INodeProperties[] = [
                 operation: ['getDetalleAfectacion'] 
             } 
         },
-        description: 'Identificador del comprobante para ver detalle de afectación.',
+        description: 'Identificador del comprobante para ver detalle de afectación',
     },
     {
         displayName: 'JSON Body / Filtros',
@@ -49,6 +57,6 @@ export const informeFields: INodeProperties[] = [
                 resource: ['informe'] 
             } 
         },
-        description: 'Filtros de reporte (fechas, idAuxi, idCtaAuxi, idEjercicio, etc.).',
+        description: 'Filtros de reporte (fechas, idAuxi, idCtaAuxi, idEjercicio, etc.)',
     },
 ];

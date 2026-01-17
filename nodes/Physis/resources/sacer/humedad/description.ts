@@ -8,11 +8,11 @@ export const humedadOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['humedad'] } },
         options: [
-            { name: 'Listar por Cereal', value: 'getAll', description: 'GET Lista tabla de humedades de un cereal.' },
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Obtiene merma por cereal y porcentaje.' },
-            { name: 'Crear (Lista)', value: 'create', description: 'POST Inserta una lista de humedades (Array).' },
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una humedad específica (Objeto).' },
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una humedad por ID interno.' },
+            { name: 'Listar Por Cereal', value: 'getAll', description: 'GET Lista tabla de humedades de un cereal', action: 'Listar por Cereal a humedad',},
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Obtiene merma por cereal y porcentaje', action: 'Obtener Detalle a humedad',},
+            { name: 'Crear (Lista)', value: 'create', description: 'POST Inserta una lista de humedades (Array)', action: 'Crear (Lista) a humedad',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una humedad específica (Objeto)', action: 'Actualizar a humedad',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una humedad por ID interno', action: 'Eliminar a humedad',},
         ],
         default: 'getAll',
     },
@@ -33,7 +33,7 @@ export const humedadFields: INodeProperties[] = [
                 operation: ['getAll', 'get'] 
             } 
         },
-        description: 'Código del cereal.',
+        description: 'Código del cereal',
     },
     {
         displayName: 'Porcentaje Humedad',
@@ -48,7 +48,7 @@ export const humedadFields: INodeProperties[] = [
                 operation: ['get'] 
             } 
         },
-        description: 'Valor del porcentaje de humedad para consultar.',
+        description: 'Valor del porcentaje de humedad para consultar',
     },
     {
         displayName: 'ID Humedad (Interno)',
@@ -63,7 +63,7 @@ export const humedadFields: INodeProperties[] = [
                 operation: ['delete'] 
             } 
         },
-        description: 'Identificador interno del registro de humedad.',
+        description: 'Identificador interno del registro de humedad',
     },
     {
         displayName: 'JSON Body',
@@ -77,6 +77,6 @@ export const humedadFields: INodeProperties[] = [
                 operation: ['create', 'update']
             } 
         },
-        description: 'Array de objetos para Crear, Objeto simple para Actualizar.',
+        description: 'Array de objetos para Crear, Objeto simple para Actualizar',
     },
 ];

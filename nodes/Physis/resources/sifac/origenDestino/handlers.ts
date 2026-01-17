@@ -3,7 +3,7 @@ import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
     const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/sifac/origen-destino-sugeridos';
+    const endpoint = '/phy2service/api/sifac/origen-destino-sugeridos';
     let qs: IDataObject = {};
 
     try { 
