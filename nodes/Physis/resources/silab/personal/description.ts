@@ -8,12 +8,9 @@ export const personalOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: { show: { service: ['silab'], resource: ['personal'] } },
 		options: [
-			{ name: 'Get Many', value: 'getAll', description: 'GET Devuelve lista de Personal' 
-																																													action: 'Obtener Todos a personal',},
-			{ name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve datos de un Empleado por su Id' 
-																																											action: 'Obtener por ID a personal',},
-			{ name: 'Obtener por Labor', value: 'getByLabor', description: 'GET Devuelve Personal asociado a una Labor' 
-																																																					action: 'Obtener por Labor a personal',},
+			{ name: 'Get Many', value: 'getAll', description: 'GET Devuelve lista de Personal', action: 'Obtener Todos a personal',},
+			{ name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve datos de un Empleado por su Id', action: 'Obtener por ID a personal',},
+			{ name: 'Obtener por Labor', value: 'getByLabor', description: 'GET Devuelve Personal asociado a una Labor', action: 'Obtener por Labor a personal',},
 		],
 		default: 'getAll',
 	},

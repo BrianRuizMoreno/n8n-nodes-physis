@@ -1,30 +1,49 @@
-import { IExecuteFunctions, INodeExecutionData, IDataObject } from 'n8n-workflow';
+import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow';
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let id = '';
-    let qs: IDataObject = {};
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/silab/tambo';
+	let endpoint = '';
+	let method = 'GET'; 
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { qs = JSON.parse(this.getNodeParameter('jsonBody', index) as string); } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    if (operation === 'getCampos') {
-        endpoint = '/phy2service/api/silab/tambo/campos';
-    } else if (operation === 'getActividades') {
-        endpoint = '/phy2service/api/silab/tambo/actividades';
-    } else if (operation === 'getProduccionDiaria') {
-        endpoint = `/phy2service/api/silab/tambo/campos/${id}/produccion-diaria`;
-    } else if (operation === 'getProduccionIndividual') {
-        endpoint = `/phy2service/api/silab/tambo/campos/${id}/produccion-individual`;
-    }
+	switch (operation) {
+		case 'getCampos':
+			endpoint = `${baseUrl}/campos`;
+			break;
+		case 'getActividades':
+			endpoint = `${baseUrl}/actividades`;
+			break;
+		case 'getProduccionDiaria':
+			endpoint = `${baseUrl}/campos/${id}/produccion-diaria`;
+			break;
+		case 'getProduccionIndividual':
+			endpoint = `${baseUrl}/campos/${id}/produccion-individual`;
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request('GET', endpoint, {}, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data)
-        ? data.map((item) => ({ json: item }))
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+			qs = { ...qs, ...json };
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, {}, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

@@ -11,32 +11,32 @@ export const loteOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Lista de lotes. Filtros: CodCampo, formatoRespuesta.' 
-																action: 'Listar Todos a lote',
+                description: 'GET Lista de lotes. Filtros: CodCampo, formatoRespuesta.',
+                action: 'Listar Todos a lote',
             },
             { 
                 name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de un lote específico (CodLote)' 
-																action: 'Obtener por ID a lote',
+                description: 'GET Datos de un lote específico (CodLote)',
+                action: 'Obtener por ID a lote',
             },
             { 
                 name: 'Lotes Por Actividad', 
                 value: 'getByActivity', 
-                description: 'GET Lotes asociados a una actividad. Filtros: CodCampania, CodCampo.' 
-																action: 'Lotes por Actividad a lote',
+                description: 'GET Lotes asociados a una actividad. Filtros: CodCampania, CodCampo.',
+                action: 'Lotes por Actividad a lote',
             },
             { 
                 name: 'Obtener Árbol', 
                 value: 'getTree', 
-                description: 'GET Estructura de árbol de lotes (sin parámetros)' 
-																action: 'Obtener Árbol a lote',
+                description: 'GET Estructura de árbol de lotes (sin parámetros)',
+                action: 'Obtener Árbol a lote',
             },
             { 
                 name: 'Obtener Árbol Con Actividades', 
                 value: 'getTreeActivities', 
-                description: 'GET Estructura de árbol con actividades asignadas. Filtro: CodCampania.' 
-																action: 'Obtener Árbol con Actividades a lote',
+                description: 'GET Estructura de árbol con actividades asignadas. Filtro: CodCampania.',
+                action: 'Obtener Árbol con Actividades a lote',
             },
         ],
         default: 'getAll',

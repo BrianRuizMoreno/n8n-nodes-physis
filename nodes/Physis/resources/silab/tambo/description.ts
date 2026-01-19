@@ -8,14 +8,10 @@ export const tamboOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: { show: { service: ['silab'], resource: ['tambo'] } },
 		options: [
-			{ name: 'Obtener Campos', value: 'getCampos', description: 'GET Obtener datos de Campos' 
-																																																	action: 'Obtener Campos a tambo',},
-			{ name: 'Obtener Actividades', value: 'getActividades', description: 'GET Obtener datos de Actividades' 
-																																																											action: 'Obtener Actividades a tambo',},
-			{ name: 'Producción Diaria', value: 'getProduccionDiaria', description: 'GET Obtener datos de Producción Diaria por Campo' 
-																																																														action: 'Producción Diaria a tambo',},
-			{ name: 'Producción Individual', value: 'getProduccionIndividual', description: 'GET Obtener datos de Producción Individual por Campo' 
-																																																																						action: 'Producción Individual a tambo',},
+			{ name: 'Obtener Campos', value: 'getCampos', description: 'GET Obtener datos de Campos', action: 'Obtener Campos a tambo',},
+			{ name: 'Obtener Actividades', value: 'getActividades', description: 'GET Obtener datos de Actividades', action: 'Obtener Actividades a tambo',},
+			{ name: 'Producción Diaria', value: 'getProduccionDiaria', description: 'GET Obtener datos de Producción Diaria por Campo', action: 'Producción Diaria a tambo',},
+			{ name: 'Producción Individual', value: 'getProduccionIndividual', description: 'GET Obtener datos de Producción Individual por Campo', action: 'Producción Individual a tambo',},
 		],
 		default: 'getCampos',
 	},

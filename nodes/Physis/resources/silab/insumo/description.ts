@@ -11,20 +11,20 @@ export const insumoOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Lista de insumos con múltiples filtros opcionales' 
-																action: 'Listar Todos an insumo',
+                description: 'GET Lista de insumos con múltiples filtros opcionales',
+                action: 'Listar Todos an insumo',
             },
             { 
                 name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de un insumo específico (IdProducto)' 
-																action: 'Obtener por ID an insumo',
+                description: 'GET Datos de un insumo específico (IdProducto)',
+                action: 'Obtener por ID an insumo',
             },
             { 
                 name: 'Obtener por Labor', 
                 value: 'getByLabor', 
-                description: 'GET Insumos asociados a una labor (IdLabor)' 
-																action: 'Obtener por Labor an insumo',
+                description: 'GET Insumos asociados a una labor (IdLabor)',
+                action: 'Obtener por Labor an insumo',
             },
         ],
         default: 'getAll',

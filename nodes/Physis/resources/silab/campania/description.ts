@@ -11,14 +11,14 @@ export const campaniaOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Lista de campañas. Filtro opcional: idUsuario.' 
-																action: 'Listar Todas a campania',
+                description: 'GET Lista de campañas. Filtro opcional: idUsuario.',
+                action: 'Listar Todas a campania',
             },
             { 
                 name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de una campaña específica (CodCampania)' 
-																action: 'Obtener por ID a campania',
+                description: 'GET Datos de una campaña específica (CodCampania)',
+                action: 'Obtener por ID a campania',
             },
         ],
         default: 'getAll',

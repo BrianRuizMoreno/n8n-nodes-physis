@@ -2,50 +2,47 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let method = 'GET';
-    const body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/silab';
+	let endpoint = '';
+	let method = 'GET'; 
+	let qs: IDataObject = {};
 
-    try {
-        id = this.getNodeParameter('id', index) as string;
-    } catch (e) { }
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) { }
+	switch (operation) {
+		// --- CEREALES ---
+		case 'getCereal':
+			if (!id) throw new Error('El campo ID es obligatorio para obtener un Cereal.');
+			endpoint = `${baseUrl}/cereal/${id}`;
+			break;
 
-    const baseUrl = '/phy2service/api/silab';
+		// --- OTROS ---
+		case 'getCodigoIntercambio':
+			endpoint = `${baseUrl}/codigointercambio`;
+			break;
 
-    switch (operation) {
-        // ------------------------------------------
-        // CEREALES (CULTIVOS)
-        // ------------------------------------------
-        case 'getCereal':
-            if (!id) throw new Error('El campo ID es obligatorio para obtener un Cereal.');
-            method = 'GET';
-            endpoint = `${baseUrl}/cereal/${id}`;
-            break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-        case 'getCodigoIntercambio':
-            method = 'GET';
-            endpoint = `${baseUrl}/codigointercambio`;
-            qs = jsonParameters; 
-            break;
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+			qs = { ...qs, ...json };
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const response = await transport.request(method, endpoint, {}, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

@@ -11,20 +11,20 @@ export const laborOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Lista de labores. Opcional: formatoRespuesta.' 
-																action: 'Listar Todas a labor',
+                description: 'GET Lista de labores. Opcional: formatoRespuesta.',
+                action: 'Listar Todas a labor',
             },
             { 
                 name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Datos de una labor específica (IdLabor)' 
-																action: 'Obtener por ID a labor',
+                description: 'GET Datos de una labor específica (IdLabor)',
+                action: 'Obtener por ID a labor',
             },
             { 
                 name: 'Obtener Por Actividad', 
                 value: 'getByActividad', 
-                description: 'GET Labores asociadas a una actividad (IdActividad)' 
-																action: 'Obtener por Actividad a labor',
+                description: 'GET Labores asociadas a una actividad (IdActividad)',
+                action: 'Obtener por Actividad a labor',
             },
         ],
         default: 'getAll',
