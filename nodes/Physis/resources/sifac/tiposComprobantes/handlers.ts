@@ -2,51 +2,51 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);    
-    let endpoint = '';
-    let method = 'GET';
-    const body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrlSifac = '/phy2service/api/sifac';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try {
-        id = this.getNodeParameter('id', index) as string;
-    } catch (e) {
-    }
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) {
-    }
+	switch (operation) {
+		case 'getAll':
+			endpoint = `${baseUrlSifac}/tipos-comprobante`;
+			break;
+		case 'get':
+			endpoint = `${baseUrlSifac}/tipos-comprobante/${id}`;
+			break;
+		case 'getDefaultCobranza':
+			endpoint = `${baseUrlSifac}/tipo-comprobante-cobranza`;
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const baseUrlSifac = '/phy2service/api/sifac';
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    switch (operation) {
-        case 'getAll':
-            method = 'GET';
-            endpoint = `${baseUrlSifac}/tipos-comprobante`;
-            qs = jsonParameters; 
-            break;
-        case 'get':
-            method = 'GET';
-            endpoint = `${baseUrlSifac}/tipos-comprobante/${id}`;
-            break;
-        case 'getDefaultCobranza':
-            method = 'GET';
-            endpoint = `${baseUrlSifac}/tipo-comprobante-cobranza`;
-            break;
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
 
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

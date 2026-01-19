@@ -8,16 +8,11 @@ export const unidadOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['unidad'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista unidades de medida' 
-																																																					action: 'Listar Todas an unidad',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una unidad específica' 
-																																																				action: 'Obtener por ID an unidad',},
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva unidad' 
-																																														action: 'Crear an unidad',},
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una unidad existente' 
-																																																			action: 'Actualizar an unidad',},
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una unidad' 
-																																																	action: 'Eliminar an unidad',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista unidades de medida', action: 'Listar Todas an unidad',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una unidad específica', action: 'Obtener por ID an unidad',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva unidad', action: 'Crear an unidad',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una unidad existente', action: 'Actualizar an unidad',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una unidad', action: 'Eliminar an unidad',},
         ],
         default: 'getAll',
     },

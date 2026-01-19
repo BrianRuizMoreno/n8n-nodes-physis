@@ -2,60 +2,57 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);    
-    let endpoint = '';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/sifac/clientes/observaciones';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try {
-        id = this.getNodeParameter('id', index) as string;
-    } catch (e) {
-    }
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) {
-    }
+	switch (operation) {
+		case 'getArbol':
+			endpoint = `${baseUrl}/arbol`;
+			break;
+		case 'create':
+			endpoint = baseUrl;
+			method = 'POST';
+			break;
+		case 'update':
+			endpoint = baseUrl;
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${baseUrl}/${id}`;
+			method = 'DELETE';
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const baseUrl = '/phy2service/api/sifac/clientes/observaciones';
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    switch (operation) {
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
 
-        case 'getArbol':
-            method = 'GET';
-            endpoint = `${baseUrl}/arbol`;
-            qs = jsonParameters; 
-            break;
-        case 'create':
-            method = 'POST';
-            endpoint = `${baseUrl}`;
-            body = jsonParameters;
-            break;
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-        case 'update':
-            method = 'PUT';
-            endpoint = `${baseUrl}`;
-            body = jsonParameters;
-            break;
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
 
-        case 'delete':
-            method = 'DELETE';
-            endpoint = `${baseUrl}/${id}`;
-            break;
-
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
-
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

@@ -8,16 +8,11 @@ export const auxiliarSifacOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['auxiliarSifac'] } },
         options: [
-            { name: 'Listar Parámetros', value: 'getParametros', description: 'GET Lista todos los parámetros de configuración de SIFAC' 
-																																																																	action: 'Listar Parámetros an auxiliar sifac',},
-            { name: 'Obtener Parámetro', value: 'getParametro', description: 'GET Valor de un parámetro específico' 
-																																																																action: 'Obtener Parámetro an auxiliar sifac',},
-            { name: 'Parámetros Factura Mostrador', value: 'getParametrosFacturaMostrador', description: 'GET Defaults para facturación mostrador (opcional por tercero)' 
-																																																																																												action: 'Parámetros Factura Mostrador an auxiliar sifac',},
-            { name: 'Listar Módulos', value: 'getModulos', description: 'GET Módulos y vectores instalados' 
-																																																											action: 'Listar Módulos an auxiliar sifac',},
-            { name: 'Reagrupaciones Default (Terceros)', value: 'getReagrupacionesDefault', description: 'GET Reagrupaciones por defecto de un cliente/proveedor' 
-																																																																																												action: 'Reagrupaciones Default (Terceros) an auxiliar sifac',},
+            { name: 'Listar Parámetros', value: 'getParametros', description: 'GET Lista todos los parámetros de configuración de SIFAC', action: 'Listar Parámetros an auxiliar sifac',},
+            { name: 'Obtener Parámetro', value: 'getParametro', description: 'GET Valor de un parámetro específico', action: 'Obtener Parámetro an auxiliar sifac',},
+            { name: 'Parámetros Factura Mostrador', value: 'getParametrosFacturaMostrador', description: 'GET Defaults para facturación mostrador (opcional por tercero)', action: 'Parámetros Factura Mostrador an auxiliar sifac',},
+            { name: 'Listar Módulos', value: 'getModulos', description: 'GET Módulos y vectores instalados', action: 'Listar Módulos an auxiliar sifac',},
+            { name: 'Reagrupaciones Default (Terceros)', value: 'getReagrupacionesDefault', description: 'GET Reagrupaciones por defecto de un cliente/proveedor', action: 'Reagrupaciones Default (Terceros) an auxiliar sifac',},
         ],
         default: 'getParametros',
     },

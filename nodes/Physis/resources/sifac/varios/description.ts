@@ -12,28 +12,28 @@ export const variosOperations: INodeProperties[] = [
             { 
                 name: 'Conceptos: Listar Todos', 
                 value: 'getConceptos', 
-                description: 'GET Obtiene el maestro de conceptos no stockeables' 
-																action: 'Conceptos: Listar Todos a varios',
+                description: 'GET Obtiene el maestro de conceptos no stockeables',
+                action: 'Conceptos: Listar Todos a varios',
             },
             // --- REPORTES ---
             { 
                 name: 'Consultas: Terceros Dinámica', 
                 value: 'consultaTerceros', 
-                description: 'GET Ejecuta una consulta compleja sobre la vista de terceros (SQL-like vía JSON)' 
-																action: 'Consultas: Terceros Dinámica a varios',
+                description: 'GET Ejecuta una consulta compleja sobre la vista de terceros (SQL-like vía JSON)',
+                action: 'Consultas: Terceros Dinámica a varios',
             },
             // --- PERMISOS GRUPOS ---
             { 
                 name: 'Grupos: Listar Cuentas Permitidas', 
                 value: 'getGrupoCuentas', 
-                description: 'GET Cuentas auxiliares específicas visibles por un grupo' 
-																action: 'Grupos: Listar Cuentas Permitidas a varios',
+                description: 'GET Cuentas auxiliares específicas visibles por un grupo',
+                action: 'Grupos: Listar Cuentas Permitidas a varios',
             },
             { 
                 name: 'Grupos: Asignar Cuentas Permitidas', 
                 value: 'updateGrupoCuentas', 
-                description: 'POST Define qué cuentas específicas puede ver un grupo (Row Level Security)' 
-																action: 'Grupos: Asignar Cuentas Permitidas a varios',
+                description: 'POST Define qué cuentas específicas puede ver un grupo (Row Level Security)',
+                action: 'Grupos: Asignar Cuentas Permitidas a varios',
             },
         ],
         default: 'getConceptos',

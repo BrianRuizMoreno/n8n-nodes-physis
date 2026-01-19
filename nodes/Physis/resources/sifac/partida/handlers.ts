@@ -2,53 +2,80 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/sifac';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	let endpoint = '/phy2service/api/sifac';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index, '{}') as string);
-        if (['create', 'update'].includes(operation)) {
-            body = json as IDataObject;
-            const queryKeys = ['ingresoTropa', 'datosTropa', 'validoUso', 'vencimientoTropa', 'agregarRelacionPartidaProducto', 'idPlanProducto', 'idProducto', 'porComprobante', 'conParametrica', 'parametricaAnterior', 'crearAuxiliar'];
-            for (const key of queryKeys) {
-                if (key in body) {
-                    qs[key] = body[key];
-                    delete body[key];
-                }
-            }
-        } else {
-            qs = json as IDataObject;
-        }
-    } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    switch (operation) {
-        case 'getByProducto':
-            endpoint = `${endpoint}/productos/${id}/partidas`;
-            break;
-        case 'getAll':
-            endpoint = `${endpoint}/partidas`;
-            break;
-        case 'create':
-            endpoint = `${endpoint}/partidas`;
-            method = 'POST';
-            break;
-        case 'update':
-            endpoint = `${endpoint}/partidas`;
-            method = 'PUT';
-            break;
-        case 'delete':
-            endpoint = `${endpoint}/partidas/${id}`;
-            method = 'DELETE';
-            break;
-    }
+	switch (operation) {
+		case 'getByProducto':
+			endpoint = `${endpoint}/productos/${id}/partidas`;
+			break;
+		case 'getAll':
+			endpoint = `${endpoint}/partidas`;
+			break;
+		case 'create':
+			endpoint = `${endpoint}/partidas`;
+			method = 'POST';
+			break;
+		case 'update':
+			endpoint = `${endpoint}/partidas`;
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${endpoint}/partidas/${id}`;
+			method = 'DELETE';
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-    return Array.isArray(data) ? data.map(item => ({ json: item })) : [{ json: data as IDataObject }];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+
+				const queryKeys = [
+					'ingresoTropa', 
+					'datosTropa', 
+					'validoUso', 
+					'vencimientoTropa', 
+					'agregarRelacionPartidaProducto', 
+					'idPlanProducto', 
+					'idProducto', 
+					'porComprobante', 
+					'conParametrica', 
+					'parametricaAnterior', 
+					'crearAuxiliar'
+				];
+
+				for (const key of queryKeys) {
+					if (key in body) {
+						qs[key] = body[key];
+						delete body[key]; 
+					}
+				}
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

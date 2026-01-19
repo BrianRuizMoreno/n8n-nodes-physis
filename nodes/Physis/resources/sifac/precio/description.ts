@@ -8,18 +8,12 @@ export const precioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['precio'] } },
         options: [
-            { name: 'Listar Listas De Precios', value: 'getListas', description: 'GET Listas de precios disponibles' 
-																																																																				action: 'Listar Listas de Precios a precio',},
-            { name: 'Productos en Lista', value: 'getProductosLista', description: 'GET Productos pertenecientes a una lista' 
-																																																																						action: 'Productos en Lista a precio',},
-            { name: 'Precios De Producto', value: 'getPreciosProducto', description: 'GET Todos los precios de un producto' 
-																																																																								action: 'Precios de Producto a precio',},
-            { name: 'Precio en Lista Específica', value: 'getPrecioProductoEnLista', description: 'GET Precio de un producto en una lista' 
-																																																																																					action: 'Precio en Lista Específica a precio',},
-            { name: 'Precios Y Existencia', value: 'getPreciosExistencia', description: 'GET Reporte combinado' 
-																																																																											action: 'Precios y Existencia a precio',},
-            { name: 'Actualizar Precios', value: 'upsertListaPrecios', description: 'POST Inserta/Modifica/Elimina precios' 
-																																																																							action: 'Actualizar Precios a precio',},
+            { name: 'Listar Listas De Precios', value: 'getListas', description: 'GET Listas de precios disponibles', action: 'Listar Listas de Precios a precio',},
+            { name: 'Productos en Lista', value: 'getProductosLista', description: 'GET Productos pertenecientes a una lista', action: 'Productos en Lista a precio',},
+            { name: 'Precios De Producto', value: 'getPreciosProducto', description: 'GET Todos los precios de un producto', action: 'Precios de Producto a precio',},
+            { name: 'Precio en Lista Específica', value: 'getPrecioProductoEnLista', description: 'GET Precio de un producto en una lista', action: 'Precio en Lista Específica a precio',},
+            { name: 'Precios Y Existencia', value: 'getPreciosExistencia', description: 'GET Reporte combinado', action: 'Precios y Existencia a precio',},
+            { name: 'Actualizar Precios', value: 'upsertListaPrecios', description: 'POST Inserta/Modifica/Elimina precios', action: 'Actualizar Precios a precio',},
         ],
         default: 'getListas',
     },

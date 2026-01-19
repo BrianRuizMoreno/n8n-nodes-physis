@@ -2,120 +2,93 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    
-    let endpoint = '';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/sifac';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try {
-        id = this.getNodeParameter('id', index) as string;
-    } catch (e) {
-    }
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) {
-    }
+	switch (operation) {
+		// --- CATÁLOGO Y BÚSQUEDA ---
+		case 'getAll':
+			endpoint = `${baseUrl}/productos`;
+			break;
+		case 'getArbol':
+			endpoint = `${baseUrl}/productos/arbol`;
+			break;
+		case 'getConsultaGrid':
+			endpoint = `${baseUrl}/productos/consultar`;
+			method = 'POST';
+			break;
+		case 'getEstructura':
+			endpoint = `${baseUrl}/productos/estructura-de-productos`;
+			break;
 
-    const baseUrl = '/phy2service/api/sifac';
+		// --- STOCK Y EXISTENCIAS ---
+		case 'getStockDisponible':
+			endpoint = `${baseUrl}/productos/${id}/stock-disponible`;
+			break;
+		case 'getSaldos':
+			endpoint = `${baseUrl}/saldos/productos/${id}`;
+			break;
+		case 'getPesos':
+			endpoint = `${baseUrl}/productos/${id}/pesos`;
+			break;
 
-    switch (operation) {
-        // --- CATÁLOGO Y BÚSQUEDA ---
-        case 'getAll':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos`;
-            qs = jsonParameters; 
-            break;
+		// --- PRECIOS ---
+		case 'getPrecios':
+			endpoint = `${baseUrl}/precios/productos/${id}`;
+			break;
+		case 'updatePrecios':
+			endpoint = `${baseUrl}/productos/${id}/lista-precios`;
+			method = 'POST'; 
+			break;
+		case 'getPreciosExistencia':
+			endpoint = `${baseUrl}/productos/precios-existencia`;
+			break;
 
-        case 'getArbol':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos/arbol`;
-            qs = jsonParameters; 
-            break;
+		// --- CONFIGURACIÓN Y BLOQUEOS ---
+		case 'getSettings':
+			endpoint = `${baseUrl}/productos/${id}/settings`;
+			break;
+		case 'blockProducto':
+			endpoint = `${baseUrl}/productos/piezas/bloqueo`;
+			method = 'POST';
+			break;
+		case 'unblockProducto':
+			endpoint = `${baseUrl}/productos/piezas/desbloqueo`;
+			method = 'POST';
+			break;
 
-        case 'getConsultaGrid':
-            method = 'POST';
-            endpoint = `${baseUrl}/productos/consultar`;
-            body = jsonParameters; 
-            break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-        case 'getEstructura':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos/estructura-de-productos`;
-            qs = jsonParameters;
-            break;
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-        // --- STOCK Y EXISTENCIAS ---
-        case 'getStockDisponible':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos/${id}/stock-disponible`;
-            qs = jsonParameters;
-            break;
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
 
-        case 'getSaldos':
-            method = 'GET';
-            endpoint = `${baseUrl}/saldos/productos/${id}`;
-            qs = jsonParameters; 
-            break;
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-        case 'getPesos':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos/${id}/pesos`;
-            qs = jsonParameters;
-            break;
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
 
-        // --- PRECIOS ---
-        case 'getPrecios':
-            method = 'GET';
-            endpoint = `${baseUrl}/precios/productos/${id}`;
-            qs = jsonParameters; 
-            break;
-
-        case 'updatePrecios':
-            method = 'POST';
-            endpoint = `${baseUrl}/productos/${id}/lista-precios`;
-            body = jsonParameters; 
-            break;
-
-        case 'getPreciosExistencia':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos/precios-existencia`;
-            qs = jsonParameters;
-            break;
-
-        // --- CONFIGURACIÓN Y BLOQUEOS ---
-        case 'getSettings':
-            method = 'GET';
-            endpoint = `${baseUrl}/productos/${id}/settings`;
-            break;
-
-        case 'blockProducto':
-            method = 'POST';
-            endpoint = `${baseUrl}/productos/piezas/bloqueo`;
-            body = jsonParameters;
-            break;
-
-        case 'unblockProducto':
-            method = 'POST';
-            endpoint = `${baseUrl}/productos/piezas/desbloqueo`;
-            body = jsonParameters;
-            break;
-
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
-
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

@@ -11,20 +11,20 @@ export const grupoPermisosOperations: INodeProperties[] = [
             { 
                 name: 'Productos: Listar Asignados', 
                 value: 'getProductos', 
-                description: 'GET Obtiene productos visibles por el grupo' 
-																action: 'Productos: Listar Asignados a grupo permisos',
+                description: 'GET Obtiene productos visibles por el grupo',
+                action: 'Productos: Listar Asignados a grupo permisos',
             },
             { 
                 name: 'Productos: Detalle Restricciones', 
                 value: 'getProductosRestricciones', 
-                description: 'GET Detalle técnico de restricciones de productos' 
-																action: 'Productos: Detalle Restricciones a grupo permisos',
+                description: 'GET Detalle técnico de restricciones de productos',
+                action: 'Productos: Detalle Restricciones a grupo permisos',
             },
             { 
                 name: 'Productos: Asignar/Actualizar', 
                 value: 'updateProductos', 
-                description: 'POST Asigna restricciones de productos. Body JSON con array de restricciones.' 
-																action: 'Productos: Asignar/Actualizar a grupo permisos',
+                description: 'POST Asigna restricciones de productos. Body JSON con array de restricciones.',
+                action: 'Productos: Asignar/Actualizar a grupo permisos',
             },
         ],
         default: 'getProductos',

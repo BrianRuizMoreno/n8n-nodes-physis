@@ -2,122 +2,106 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);    
-    let endpoint = '';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	let id = this.getNodeParameter('id', index) as string;
 
-    try {
-        id = this.getNodeParameter('id', index) as string;
-    } catch (e) {
-        throw new Error('El ID del Grupo es obligatorio para estas operaciones.');
-    }
+	const baseUrl = `/phy2service/api/sifac/grupos/${id}/proveedores`;
+	
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) {
-    }
+	switch (operation) {
+		// --- CONDICIONES DE PAGO ---
+		case 'getCondicionesPago':
+			endpoint = `${baseUrl}/condiciones-de-pagos`;
+			break;
+		case 'updateCondicionesPago':
+			endpoint = `${baseUrl}/condiciones-de-pagos`;
+			method = 'POST';
+			break;
 
-    const baseUrl = `/phy2service/api/sifac/grupos/${id}/proveedores`;
+		// --- DESCUENTOS ---
+		case 'getDescuentos':
+			endpoint = `${baseUrl}/descuentos`;
+			break;
+		case 'updateDescuentos':
+			endpoint = `${baseUrl}/descuentos`;
+			method = 'POST';
+			break;
 
-    switch (operation) {
-        // --- CONDICIONES DE PAGO ---
-        case 'getCondicionesPago':
-            method = 'GET';
-            endpoint = `${baseUrl}/condiciones-de-pagos`;
-            qs = jsonParameters;
-            break;
-        case 'updateCondicionesPago':
-            method = 'POST';
-            endpoint = `${baseUrl}/condiciones-de-pagos`;
-            body = jsonParameters;
-            break;
+		// --- CONEXIONES CONTABLES ---
+		case 'getConexionesContables':
+			endpoint = `${baseUrl}/conexiones-contables`;
+			break;
+		case 'updateConexionesContables':
+			endpoint = `${baseUrl}/conexiones-contables`;
+			method = 'POST';
+			break;
 
-        // --- DESCUENTOS ---
-        case 'getDescuentos':
-            method = 'GET';
-            endpoint = `${baseUrl}/descuentos`;
-            qs = jsonParameters;
-            break;
-        case 'updateDescuentos':
-            method = 'POST';
-            endpoint = `${baseUrl}/descuentos`;
-            body = jsonParameters;
-            break;
+		// --- TOPES DE CRÉDITO ---
+		case 'getTopesCredito':
+			endpoint = `${baseUrl}/topes-de-creditos`;
+			break;
+		case 'updateTopesCredito':
+			endpoint = `${baseUrl}/topes-de-creditos`;
+			method = 'POST';
+			break;
 
-        // --- CONEXIONES CONTABLES ---
-        case 'getConexionesContables':
-            method = 'GET';
-            endpoint = `${baseUrl}/conexiones-contables`;
-            qs = jsonParameters;
-            break;
-        case 'updateConexionesContables':
-            method = 'POST';
-            endpoint = `${baseUrl}/conexiones-contables`;
-            body = jsonParameters;
-            break;
+		// --- VENDEDORES (COMPRADORES) ---
+		case 'getVendedores':
+			endpoint = `${baseUrl}/vendedores`;
+			break;
+		case 'updateVendedores':
+			endpoint = `${baseUrl}/vendedores`;
+			method = 'POST';
+			break;
 
-        // --- TOPES DE CRÉDITO ---
-        case 'getTopesCredito':
-            method = 'GET';
-            endpoint = `${baseUrl}/topes-de-creditos`;
-            qs = jsonParameters;
-            break;
-        case 'updateTopesCredito':
-            method = 'POST';
-            endpoint = `${baseUrl}/topes-de-creditos`;
-            body = jsonParameters;
-            break;
+		// --- OBSERVACIONES ---
+		case 'getObservaciones':
+			endpoint = `${baseUrl}/observaciones`;
+			break;
+		case 'updateObservaciones':
+			endpoint = `${baseUrl}/observaciones`;
+			method = 'POST';
+			break;
 
-        // --- VENDEDORES (COMPRADORES) ---
-        case 'getVendedores':
-            method = 'GET';
-            endpoint = `${baseUrl}/vendedores`;
-            qs = jsonParameters;
-            break;
-        case 'updateVendedores':
-            method = 'POST';
-            endpoint = `${baseUrl}/vendedores`;
-            body = jsonParameters;
-            break;
+		// --- TRANSPORTES ---
+		case 'getTransportes':
+			endpoint = `${baseUrl}/transportes`;
+			break;
+		case 'updateTransportes':
+			endpoint = `${baseUrl}/transportes`;
+			method = 'POST';
+			break;
 
-        // --- OBSERVACIONES ---
-        case 'getObservaciones':
-            method = 'GET';
-            endpoint = `${baseUrl}/observaciones`;
-            qs = jsonParameters;
-            break;
-        case 'updateObservaciones':
-            method = 'POST';
-            endpoint = `${baseUrl}/observaciones`;
-            body = jsonParameters;
-            break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-        // --- TRANSPORTES ---
-        case 'getTransportes':
-            method = 'GET';
-            endpoint = `${baseUrl}/transportes`;
-            qs = jsonParameters;
-            break;
-        case 'updateTransportes':
-            method = 'POST';
-            endpoint = `${baseUrl}/transportes`;
-            body = jsonParameters;
-            break;
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

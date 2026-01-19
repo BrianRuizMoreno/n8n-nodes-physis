@@ -2,49 +2,61 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/sifac/zonas';
+	
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['POST', 'PUT'].includes(method) || 
-            ['create', 'update'].includes(operation)) {
-            body = json;
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    if (operation === 'getArbol') {
-        endpoint = '/phy2service/api/sifac/zonas/arbol';
-    }
-    else if (operation === 'get') {
-        endpoint = `/phy2service/api/sifac/zonas/${id}`;
-    }
-    else if (operation === 'create') {
-        endpoint = '/phy2service/api/sifac/zonas';
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        endpoint = '/phy2service/api/sifac/zonas';
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = `/phy2service/api/sifac/zonas/${id}`;
-        method = 'DELETE';
-    }
+	switch (operation) {
+		case 'getArbol':
+			endpoint = `${baseUrl}/arbol`;
+			break;
+		case 'get':
+			endpoint = `${baseUrl}/${id}`;
+			break;
+		case 'create':
+			endpoint = baseUrl;
+			method = 'POST';
+			break;
+		case 'update':
+			endpoint = baseUrl;
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${baseUrl}/${id}`;
+			method = 'DELETE';
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

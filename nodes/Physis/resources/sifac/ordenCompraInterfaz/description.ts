@@ -8,12 +8,9 @@ export const ordenCompraInterfazOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['ordenCompraInterfaz'] } },
         options: [
-            { name: 'Obtener Cabecera', value: 'getCabecera', description: 'GET Datos de cabecera de OC' 
-																																																														action: 'Obtener Cabecera an orden compra interfaz',},
-            { name: 'Obtener Detalle', value: 'getDetalle', description: 'GET Items de una OC' 
-																																																												action: 'Obtener Detalle an orden compra interfaz',},
-            { name: 'Consultar Listado', value: 'getConsulta', description: 'GET Listado de OCs por fecha' 
-																																																															action: 'Consultar Listado an orden compra interfaz',},
+            { name: 'Obtener Cabecera', value: 'getCabecera', description: 'GET Datos de cabecera de OC', action: 'Obtener Cabecera an orden compra interfaz',},
+            { name: 'Obtener Detalle', value: 'getDetalle', description: 'GET Items de una OC', action: 'Obtener Detalle an orden compra interfaz',},
+            { name: 'Consultar Listado', value: 'getConsulta', description: 'GET Listado de OCs por fecha', action: 'Consultar Listado an orden compra interfaz',},
         ],
         default: 'getConsulta',
     },

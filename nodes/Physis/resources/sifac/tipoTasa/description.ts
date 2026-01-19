@@ -8,10 +8,8 @@ export const tipoTasaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['tipoTasa'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista tipos de tasas' 
-																																																					action: 'Listar Todos a tipo tasa',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un tipo de tasa específico' 
-																																																				action: 'Obtener por ID a tipo tasa',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista tipos de tasas', action: 'Listar Todos a tipo tasa',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un tipo de tasa específico', action: 'Obtener por ID a tipo tasa',},
         ],
         default: 'getAll',
     },

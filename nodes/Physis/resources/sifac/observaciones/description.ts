@@ -12,26 +12,26 @@ export const observacionesOperations: INodeProperties[] = [
             { 
                 name: 'Listar Árbol', 
                 value: 'getArbol', 
-                description: 'GET Estructura jerárquica de observaciones. Filtros JSON: { "imputables": true }.' 
-																action: 'Listar Árbol an observaciones',
+                description: 'GET Estructura jerárquica de observaciones. Filtros JSON: { "imputables": true }.',
+                action: 'Listar Árbol an observaciones',
             },
             { 
                 name: 'Crear', 
                 value: 'create', 
-                description: 'POST Crear nueva observación/nota. Body JSON requerido.' 
-																action: 'Crear an observaciones',
+                description: 'POST Crear nueva observación/nota. Body JSON requerido.',
+                action: 'Crear an observaciones',
             },
             { 
                 name: 'Modificar', 
                 value: 'update', 
-                description: 'PUT Modificar observación existente. Body JSON requerido.' 
-																action: 'Modificar an observaciones',
+                description: 'PUT Modificar observación existente. Body JSON requerido.',
+                action: 'Modificar an observaciones',
             },
             { 
                 name: 'Eliminar', 
                 value: 'delete', 
-                description: 'DELETE Eliminar observación por su ID' 
-																action: 'Eliminar an observaciones',
+                description: 'DELETE Eliminar observación por su ID',
+                action: 'Eliminar an observaciones',
             },
         ],
         default: 'getArbol',

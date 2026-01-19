@@ -8,16 +8,11 @@ export const maestroGeneralOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['maestroGeneral'] } },
         options: [
-            { name: 'Contables: Árbol', value: 'getContablesArbol' 
-																																								action: 'Contables: Árbol a maestro general',},
-            { name: 'Dominios: Listar', value: 'getDominios' 
-																																								action: 'Dominios: Listar a maestro general',},
-            { name: 'Dominios: Obtener', value: 'getDominio' 
-																																									action: 'Dominios: Obtener a maestro general',},
-            { name: 'Dominios: Listar PLA', value: 'getDominiosPLA' 
-																																												action: 'Dominios: Listar PLA a maestro general',},
-            { name: 'Cabeceras: Buscar', value: 'searchCabeceras' 
-																																									action: 'Cabeceras: Buscar a maestro general',},
+            { name: 'Contables: Árbol', value: 'getContablesArbol', description: 'GET Árbol de contables', action: 'Contables: Árbol a maestro general',},
+            { name: 'Dominios: Listar', value: 'getDominios', description: 'GET Listado de dominios', action: 'Dominios: Listar a maestro general',},
+            { name: 'Dominios: Obtener', value: 'getDominio', description: 'GET Obtener un dominio por su ID', action: 'Dominios: Obtener a maestro general',},
+            { name: 'Dominios: Listar PLA', value: 'getDominiosPLA', description: 'GET Listado de dominios PLA', action: 'Dominios: Listar PLA a maestro general',},
+            { name: 'Cabeceras: Buscar', value: 'searchCabeceras', description: 'GET Buscar cabeceras', action: 'Cabeceras: Buscar a maestro general',},
         ],
         default: 'getContablesArbol',
     },

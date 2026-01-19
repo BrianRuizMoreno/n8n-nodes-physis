@@ -12,39 +12,33 @@ export const conductorOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Listar conductores (SIFAC). Filtros JSON: { "consulta": "..." }.' 
-																action: 'Listar (Búsqueda) a conductor',
+                description: 'GET Listar conductores (SIFAC). Filtros JSON: { "consulta": "..." }.', action: 'Listar (Búsqueda) a conductor',
             },
             { 
                 name: 'Listar Grilla (Kendo)', 
                 value: 'getGrid', 
-                description: 'GET Vista para grilla Kendo (SACER)' 
-																action: 'Listar Grilla (Kendo) a conductor',
+                description: 'GET Vista para grilla Kendo (SACER)', action: 'Listar Grilla (Kendo) a conductor',
             },
             { 
                 name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Detalle de un conductor. Filtros JSON opcionales: { "idTransportista": 123 }.' 
-																action: 'Obtener por ID a conductor',
+                description: 'GET Detalle de un conductor. Filtros JSON opcionales: { "idTransportista": 123 }.', action: 'Obtener por ID a conductor',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Crear', 
                 value: 'create', 
-                description: 'POST Crear nuevo conductor. Body JSON requerido.' 
-																action: 'Crear a conductor',
+                description: 'POST Crear nuevo conductor. Body JSON requerido.', action: 'Crear a conductor',
             },
             { 
                 name: 'Modificar', 
                 value: 'update', 
-                description: 'PUT Modificar conductor existente. Body JSON requerido.' 
-																action: 'Modificar a conductor',
+                description: 'PUT Modificar conductor existente. Body JSON requerido.', action: 'Modificar a conductor',
             },
             { 
                 name: 'Eliminar', 
                 value: 'delete', 
-                description: 'DELETE Eliminar un conductor por su ID' 
-																action: 'Eliminar a conductor',
+                description: 'DELETE Eliminar un conductor por su ID', action: 'Eliminar a conductor',
             },
         ],
         default: 'getAll',

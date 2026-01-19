@@ -8,16 +8,11 @@ export const depositoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['deposito'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Buscar depósitos con filtros' 
-																																																						action: 'Listar/Buscar a deposito',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Depósito específico' 
-																																																				action: 'Obtener por ID a deposito',},
-            { name: 'Crear', value: 'create', description: 'POST Nuevo depósito' 
-																																														action: 'Crear a deposito',},
-            { name: 'Actualizar', value: 'update', description: 'PUT Modificar depósito' 
-																																																			action: 'Actualizar a deposito',},
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Eliminar depósito' 
-																																																	action: 'Eliminar a deposito',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Buscar depósitos con filtros', action: 'Listar/Buscar a deposito',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Depósito específico', action: 'Obtener por ID a deposito',},
+            { name: 'Crear', value: 'create', description: 'POST Nuevo depósito', action: 'Crear a deposito',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modificar depósito', action: 'Actualizar a deposito',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Eliminar depósito', action: 'Eliminar a deposito',},
         ],
         default: 'getAll',
     },

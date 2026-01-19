@@ -12,33 +12,33 @@ export const imagenOperations: INodeProperties[] = [
             { 
                 name: 'Listar Por Documento', 
                 value: 'getAll', 
-                description: 'GET Listar imágenes de una cabecera. Filtros JSON: { "IdCabecera": 123, "origen": 1 }.' 
-																action: 'Listar por Documento an imagen',
+                description: 'GET Listar imágenes de una cabecera. Filtros JSON: { "IdCabecera": 123, "origen": 1 }.',
+                action: 'Listar por Documento an imagen',
             },
             { 
                 name: 'Obtener Una', 
                 value: 'get', 
-                description: 'GET Obtener imagen específica. ID=IdImagen. Filtros JSON: { "IdCabecera": 123, "origen": 1 }.' 
-																action: 'Obtener Una an imagen',
+                description: 'GET Obtener imagen específica. ID=IdImagen. Filtros JSON: { "IdCabecera": 123, "origen": 1 }.',
+                action: 'Obtener Una an imagen',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Subir (Insertar)', 
                 value: 'create', 
-                description: 'POST Subir imagen. JSON debe incluir "payload" con la data y params: { "IdCabecera": 1, "extension": "jpg", "payload": "..." }.' 
-																action: 'Subir (Insertar) an imagen',
+                description: 'POST Subir imagen. JSON debe incluir "payload" con la data y params: { "IdCabecera": 1, "extension": "jpg", "payload": "..." }.',
+                action: 'Subir (Insertar) an imagen',
             },
             { 
                 name: 'Actualizar', 
                 value: 'update', 
-                description: 'PUT Actualizar imagen. JSON con "payload" y params: { "IdCabecera": 1, "IdImagen": 5, "payload": "..." }.' 
-																action: 'Actualizar an imagen',
+                description: 'PUT Actualizar imagen. JSON con "payload" y params: { "IdCabecera": 1, "IdImagen": 5, "payload": "..." }.',
+                action: 'Actualizar an imagen',
             },
             { 
                 name: 'Eliminar', 
                 value: 'delete', 
-                description: 'DELETE Eliminar imagen. Filtros JSON: { "IdCabecera": 123, "IdImagen": 5, "origen": 1 }.' 
-																action: 'Eliminar an imagen',
+                description: 'DELETE Eliminar imagen. Filtros JSON: { "IdCabecera": 123, "IdImagen": 5, "origen": 1 }.',
+                action: 'Eliminar an imagen',
             },
         ],
         default: 'getAll',

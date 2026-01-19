@@ -2,52 +2,62 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/sifac/clientes/condiciones-de-pagos';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	let endpoint = '/phy2service/api/sifac/clientes/condiciones-de-pagos';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['POST', 'PUT'].includes(method) || 
-            ['create', 'update'].includes(operation)) {
-            body = json;
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    if (operation === 'getAll') {
-    }
-    else if (operation === 'get') {
-        endpoint = `${endpoint}/${id}`;
-    }
-    else if (operation === 'create') {
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = `${endpoint}/${id}`;
-        method = 'DELETE';
-    }
-    else if (operation === 'getArbol') {
-        endpoint = `${endpoint}/arbol`;
-    }
-    else if (operation === 'getVencimientosManuales') {
-        endpoint = `${endpoint}/vencimientos-manuales/${id}`;
-    }
+	switch (operation) {
+		case 'getAll':
+			break;
+		case 'get':
+			endpoint = `${endpoint}/${id}`;
+			break;
+		case 'create':
+			method = 'POST';
+			break;
+		case 'update':
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${endpoint}/${id}`;
+			method = 'DELETE';
+			break;
+		case 'getArbol':
+			endpoint = `${endpoint}/arbol`;
+			break;
+		case 'getVencimientosManuales':
+			endpoint = `${endpoint}/vencimientos-manuales/${id}`;
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

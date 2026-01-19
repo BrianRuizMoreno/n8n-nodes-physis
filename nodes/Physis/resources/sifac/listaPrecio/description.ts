@@ -8,18 +8,12 @@ export const listaPrecioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['listaPrecio'] } },
         options: [
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica' 
-																																																							action: 'Listar Árbol a lista precio',},
-            { name: 'Get Many', value: 'getAll', description: 'GET Listas de precios planas' 
-																																																						action: 'Listar Planas a lista precio',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Una lista específica' 
-																																																				action: 'Obtener por ID a lista precio',},
-            { name: 'Crear', value: 'create', description: 'POST Nueva lista de precios' 
-																																														action: 'Crear a lista precio',},
-            { name: 'Actualizar', value: 'update', description: 'PUT Modificar lista existente' 
-																																																			action: 'Actualizar a lista precio',},
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Eliminar lista' 
-																																																	action: 'Eliminar a lista precio',},
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica', action: 'Listar Árbol a lista precio',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Listas de precios planas', action: 'Listar Planas a lista precio',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Una lista específica', action: 'Obtener por ID a lista precio',},
+            { name: 'Crear', value: 'create', description: 'POST Nueva lista de precios', action: 'Crear a lista precio',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modificar lista existente', action: 'Actualizar a lista precio',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Eliminar lista', action: 'Eliminar a lista precio',},
         ],
         default: 'getArbol',
     },

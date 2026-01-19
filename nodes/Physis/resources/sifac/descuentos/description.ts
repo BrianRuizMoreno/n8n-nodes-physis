@@ -12,39 +12,33 @@ export const descuentosClientesOperations: INodeProperties[] = [
             { 
                 name: 'Listar Árbol', 
                 value: 'getArbol', 
-                description: 'GET Estructura jerárquica. Filtros JSON: { "imputables": true }.' 
-																action: 'Listar Árbol a descuentos clientes',
+                description: 'GET Estructura jerárquica. Filtros JSON: { "imputables": true }.', action: 'Listar Árbol a descuentos clientes',
             },
             { 
                 name: 'Obtener Por ID', 
                 value: 'get', 
-                description: 'GET Detalle de un descuento por su código' 
-																action: 'Obtener por ID a descuentos clientes',
+                description: 'GET Detalle de un descuento por su código', action: 'Obtener por ID a descuentos clientes',
             },
             { 
                 name: 'Obtener Por Alias', 
                 value: 'getByAlias', 
-                description: 'GET Detalle por Sigla/Alias. JSON: { "alias": "DTO10" }.' 
-																action: 'Obtener por Alias a descuentos clientes',
+                description: 'GET Detalle por Sigla/Alias. JSON: { "alias": "DTO10" }.', action: 'Obtener por Alias a descuentos clientes',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Crear', 
                 value: 'create', 
-                description: 'POST Crear descuento. Body JSON requerido.' 
-																action: 'Crear a descuentos clientes',
+                description: 'POST Crear descuento. Body JSON requerido.', action: 'Crear a descuentos clientes',
             },
             { 
                 name: 'Modificar', 
                 value: 'update', 
-                description: 'PUT Modificar descuento. Body JSON requerido.' 
-																action: 'Modificar a descuentos clientes',
+                description: 'PUT Modificar descuento. Body JSON requerido.', action: 'Modificar a descuentos clientes',
             },
             { 
                 name: 'Eliminar', 
                 value: 'delete', 
-                description: 'DELETE Eliminar descuento por su ID' 
-																action: 'Eliminar a descuentos clientes',
+                description: 'DELETE Eliminar descuento por su ID', action: 'Eliminar a descuentos clientes',
             },
         ],
         default: 'getArbol',
