@@ -56,7 +56,6 @@ export class Physis implements INodeType {
 					{ name: 'SIFAC (Facturación)', value: 'sifac' },
 					{ name: 'SIGES (Gestión)', value: 'siges' },
 					{ name: 'SILAB (Agro)', value: 'silab' },
-					{ name: 'Physis Tool (AI)', value: 'physis_tool' },
 				],
 				default: 'siges',
 			},
