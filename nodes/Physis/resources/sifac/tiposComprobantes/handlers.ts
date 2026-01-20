@@ -7,7 +7,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	
 	const baseUrlSifac = '/phy2service/api/sifac';
 	let endpoint = '';
-	const method = 'GET';
+	let method = 'GET';
 	let body: IDataObject = {};
 	let qs: IDataObject = {};
 
