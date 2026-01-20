@@ -19,7 +19,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['localidad'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista localidades con filtros', action: 'Listar Localidades a localidad',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista localidades con filtros', action: 'Listar localidades a localidad',},
         ],
         default: 'getAll',
     },
@@ -30,8 +30,8 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['lote'] } },
         options: [
-            { name: 'Obtener Por Código', value: 'get', description: 'GET Un lote por su código', action: 'Obtener por Código a lote',},
-            { name: 'Obtener Por Tercero', value: 'getByTercero', description: 'GET Lotes de un tercero', action: 'Obtener por Tercero a lote',},
+            { name: 'Obtener Por Código', value: 'get', description: 'GET Un lote por su código', action: 'Obtener por c digo a lote',},
+            { name: 'Obtener Por Tercero', value: 'getByTercero', description: 'GET Lotes de un tercero', action: 'Obtener por tercero a lote',},
         ],
         default: 'get',
     },
@@ -42,8 +42,8 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['muestra'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista de muestras filtradas', action: 'Listar Muestras a muestra',},
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Una muestra específica', action: 'Obtener Detalle a muestra',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista de muestras filtradas', action: 'Listar muestras a muestra',},
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Una muestra específica', action: 'Obtener detalle a muestra',},
         ],
         default: 'getAll',
     },
@@ -54,7 +54,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['sucursal'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Todas las sucursales', action: 'Listar Sucursales a sucursal',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Todas las sucursales', action: 'Listar sucursales a sucursal',},
         ],
         default: 'getAll',
     },
@@ -65,7 +65,7 @@ export const variosOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tipoTercero'] } },
         options: [
-            { name: 'Tipos Tercero', value: 'getTercero', description: 'GET Devuelve todas las tarifas de Tercero', action: 'Tipos Tercero a tipo tercero',},
+            { name: 'Tipos Tercero', value: 'getTercero', description: 'GET Devuelve todas las tarifas de Tercero', action: 'Tipos tercero a tipo tercero',},
         ],
         default: 'getTercero',
     },

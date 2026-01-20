@@ -13,7 +13,7 @@ export const observacionesOperations: INodeProperties[] = [
                 name: 'Listar Árbol', 
                 value: 'getArbol', 
                 description: 'GET Estructura jerárquica de observaciones. Filtros JSON: { "imputables": true }.',
-                action: 'Listar Árbol an observaciones',
+                action: 'Listar rbol an observaciones',
             },
             { 
                 name: 'Crear', 

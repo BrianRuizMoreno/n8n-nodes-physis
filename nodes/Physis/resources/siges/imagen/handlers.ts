@@ -8,13 +8,13 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const baseUrlImages = '/phy2service/api/siges/comprobantes/imagenes';
 	let endpoint = '';
 	let method = 'GET';
-	let body: IDataObject = {}; 
+	const body: IDataObject = {}; 
 	let qs: IDataObject = {};
 
-	let idImagen = this.getNodeParameter('id', index, '') as string;
-	let idEjercicio = this.getNodeParameter('idEjercicio', index, '') as string;
-	let idComprobante = this.getNodeParameter('idComprobante', index, '') as string;
-	let idSecuencia = this.getNodeParameter('idSecuencia', index, '') as string;
+	const idImagen = this.getNodeParameter('id', index, '') as string;
+	const idEjercicio = this.getNodeParameter('idEjercicio', index, '') as string;
+	const idComprobante = this.getNodeParameter('idComprobante', index, '') as string;
+	const idSecuencia = this.getNodeParameter('idSecuencia', index, '') as string;
 
 	switch (operation) {
 		// --- CRUD IMÁGENES ---

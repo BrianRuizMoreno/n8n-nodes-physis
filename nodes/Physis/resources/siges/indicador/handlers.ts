@@ -10,9 +10,9 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	let method = 'GET';
 	let qs: IDataObject = {};
 
-	let idIndicador = this.getNodeParameter('idIndicador', index, '') as string;
-	let idSerie = this.getNodeParameter('idSerie', index, '') as string;
-	let tasa = this.getNodeParameter('tasa', index, '') as string;
+	const idIndicador = this.getNodeParameter('idIndicador', index, '') as string;
+	const idSerie = this.getNodeParameter('idSerie', index, '') as string;
+	const tasa = this.getNodeParameter('tasa', index, '') as string;
 
 	switch (operation) {
 		case 'getTasaDefault':

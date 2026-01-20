@@ -6,7 +6,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const transport = new PhysisTransport(this);
 	
 	let endpoint = '/phy2service/api/sifac';
-	let method = 'GET'; 
+	const method = 'GET'; 
 	let qs: IDataObject = {};
 
 	const id = this.getNodeParameter('id', index, '') as string;

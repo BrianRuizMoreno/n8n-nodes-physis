@@ -6,8 +6,8 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const transport = new PhysisTransport(this);
 	
 	const baseUrl = '/phy2service/api/siges/historia';
-	let endpoint = baseUrl;
-	let method = 'GET'; 
+	const endpoint = baseUrl;
+	const method = 'GET'; 
 	let qs: IDataObject = {};
 
 	switch (operation) {

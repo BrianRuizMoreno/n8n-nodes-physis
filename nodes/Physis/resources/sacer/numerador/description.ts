@@ -8,10 +8,10 @@ export const numeradorOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['numerador'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los numeradores', action: 'Listar Todos a numerador',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los numeradores', action: 'Listar todos a numerador',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un numerador específico', action: 'Obtener por ID a numerador',},
-            { name: 'Obtener De Contratos', value: 'getContratos', description: 'GET Devuelve el numerador específico para Contratos', action: 'Obtener de Contratos a numerador',},
-            { name: 'Listar Por Planta', value: 'getByPlanta', description: 'GET Numeradores asociados a una planta (filtros opcionales)', action: 'Listar por Planta a numerador',},
+            { name: 'Obtener De Contratos', value: 'getContratos', description: 'GET Devuelve el numerador específico para Contratos', action: 'Obtener de contratos a numerador',},
+            { name: 'Listar Por Planta', value: 'getByPlanta', description: 'GET Numeradores asociados a una planta (filtros opcionales)', action: 'Listar por planta a numerador',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo numerador', action: 'Crear a numerador',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un numerador (Parámetros en JSON Body se envían como Query String)', action: 'Actualizar a numerador',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un numerador', action: 'Eliminar a numerador',},

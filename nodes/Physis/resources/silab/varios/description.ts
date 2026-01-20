@@ -13,14 +13,14 @@ export const variosOperations: INodeProperties[] = [
                 name: 'Cereal: Obtener por ID', 
                 value: 'getCereal', 
                 description: 'GET Detalle de un cultivo (Cereal) por su código',
-                action: 'Cereal: Obtener por ID a varios',
+                action: 'Cereal obtener por id a varios',
             },
             // --- CÓDIGO INTERCAMBIO ---
             { 
                 name: 'Intercambio: Consultar Mapeo', 
                 value: 'getCodigoIntercambio', 
                 description: 'GET Busca equivalencias en tablas de intercambio',
-                action: 'Intercambio: Consultar Mapeo a varios',
+                action: 'Intercambio consultar mapeo a varios',
             },
         ],
         default: 'getCereal',

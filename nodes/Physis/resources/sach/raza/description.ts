@@ -8,9 +8,9 @@ export const razaOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['raza'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista razas (filtro opcional por Especie)', action: 'Listar Todas a raza',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista razas (filtro opcional por Especie)', action: 'Listar todas a raza',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una raza específica', action: 'Obtener por ID a raza',},
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Lista jerárquica Especie -> Raza para Tree View', action: 'Ver Árbol a raza',},
+            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Lista jerárquica Especie -> Raza para Tree View', action: 'Ver rbol a raza',},
             { name: 'Crear', value: 'create', description: 'POST Inserta una nueva raza', action: 'Crear a raza',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una raza existente', action: 'Actualizar a raza',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una raza', action: 'Eliminar a raza',},

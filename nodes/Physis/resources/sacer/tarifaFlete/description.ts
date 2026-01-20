@@ -8,7 +8,7 @@ export const tarifaFleteOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tarifaFlete'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista las tablas de tarifas (Cabeceras)', action: 'Listar Tablas a tarifa flete',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista las tablas de tarifas (Cabeceras)', action: 'Listar tablas a tarifa flete',},
             { name: 'Consultar Por KM', value: 'getByKm', description: 'GET Obtiene la tarifa específica para una distancia y tabla', action: 'Consultar por KM a tarifa flete',},
             { name: 'Crear', value: 'create', description: 'POST Inserta una nueva tabla de tarifas con sus rangos', action: 'Crear a tarifa flete',},
         ],

@@ -13,27 +13,27 @@ export const variosOperations: INodeProperties[] = [
                 name: 'Conceptos: Listar Todos', 
                 value: 'getConceptos', 
                 description: 'GET Obtiene el maestro de conceptos no stockeables',
-                action: 'Conceptos: Listar Todos a varios',
+                action: 'Conceptos listar todos a varios',
             },
             // --- REPORTES ---
             { 
                 name: 'Consultas: Terceros Dinámica', 
                 value: 'consultaTerceros', 
                 description: 'GET Ejecuta una consulta compleja sobre la vista de terceros (SQL-like vía JSON)',
-                action: 'Consultas: Terceros Dinámica a varios',
+                action: 'Consultas terceros din mica a varios',
             },
             // --- PERMISOS GRUPOS ---
             { 
                 name: 'Grupos: Listar Cuentas Permitidas', 
                 value: 'getGrupoCuentas', 
                 description: 'GET Cuentas auxiliares específicas visibles por un grupo',
-                action: 'Grupos: Listar Cuentas Permitidas a varios',
+                action: 'Grupos listar cuentas permitidas a varios',
             },
             { 
                 name: 'Grupos: Asignar Cuentas Permitidas', 
                 value: 'updateGrupoCuentas', 
                 description: 'POST Define qué cuentas específicas puede ver un grupo (Row Level Security)',
-                action: 'Grupos: Asignar Cuentas Permitidas a varios',
+                action: 'Grupos asignar cuentas permitidas a varios',
             },
         ],
         default: 'getConceptos',

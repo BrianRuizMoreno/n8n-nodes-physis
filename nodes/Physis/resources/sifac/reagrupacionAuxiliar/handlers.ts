@@ -8,7 +8,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const idCtaAuxi = this.getNodeParameter('idCtaAuxi', index) as string;
 	
 	const endpoint = `/phy2service/api/sifac/reagrupaciones-auxiliares/${idAuxi}/${idCtaAuxi}/default`;
-	let method = 'GET';
+	const method = 'GET';
 
 	const response = await transport.request(method, endpoint, {}, {}) as IDataObject;
 	const data = (response.Datos || response) as IDataObject | IDataObject[];

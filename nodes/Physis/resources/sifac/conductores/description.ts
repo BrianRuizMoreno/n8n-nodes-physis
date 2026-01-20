@@ -12,12 +12,12 @@ export const conductorOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Listar conductores (SIFAC). Filtros JSON: { "consulta": "..." }.', action: 'Listar (Búsqueda) a conductor',
+                description: 'GET Listar conductores (SIFAC). Filtros JSON: { "consulta": "..." }.', action: 'Listar b squeda a conductor',
             },
             { 
                 name: 'Listar Grilla (Kendo)', 
                 value: 'getGrid', 
-                description: 'GET Vista para grilla Kendo (SACER)', action: 'Listar Grilla (Kendo) a conductor',
+                description: 'GET Vista para grilla Kendo (SACER)', action: 'Listar grilla kendo a conductor',
             },
             { 
                 name: 'Obtener Por ID', 

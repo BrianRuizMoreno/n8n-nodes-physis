@@ -9,10 +9,10 @@ export const auxiliarOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['savec'], resource: ['auxiliar'] } },
         options: [
 
-            { name: 'Listar Campañas', value: 'getCampanias', description: 'GET Lista todas las campañas disponibles', action: 'Listar Campañas an auxiliar',},
-            { name: 'Listar Campañas Por Usuario', value: 'getCampaniasUsuario', description: 'GET Lista campañas habilitadas para un usuario específico', action: 'Listar Campañas por Usuario an auxiliar',},
-            { name: 'Listar Cereales', value: 'getCereales', description: 'GET Lista todos los cereales', action: 'Listar Cereales an auxiliar',},
-            { name: 'Consultar Stock De Cereales', value: 'getCerealesStock', description: 'GET Stock de cereales por campaña y fecha', action: 'Consultar Stock de Cereales an auxiliar',},
+            { name: 'Listar Campañas', value: 'getCampanias', description: 'GET Lista todas las campañas disponibles', action: 'Listar campa as an auxiliar',},
+            { name: 'Listar Campañas Por Usuario', value: 'getCampaniasUsuario', description: 'GET Lista campañas habilitadas para un usuario específico', action: 'Listar campa as por usuario an auxiliar',},
+            { name: 'Listar Cereales', value: 'getCereales', description: 'GET Lista todos los cereales', action: 'Listar cereales an auxiliar',},
+            { name: 'Consultar Stock De Cereales', value: 'getCerealesStock', description: 'GET Stock de cereales por campaña y fecha', action: 'Consultar stock de cereales an auxiliar',},
         ],
         default: 'getCampanias',
     },

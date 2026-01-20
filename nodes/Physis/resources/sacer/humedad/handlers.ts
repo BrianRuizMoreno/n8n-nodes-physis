@@ -9,9 +9,9 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	let method = 'GET';
 	let body: IDataObject | IDataObject[] = {};
 	let qs: IDataObject = {};
-	let codCereal = this.getNodeParameter('codCereal', index, '') as string;
-	let porcHumedad = this.getNodeParameter('porcHumedad', index, '') as string;
-	let idHumedad = this.getNodeParameter('id', index, '') as string;
+	const codCereal = this.getNodeParameter('codCereal', index, '') as string;
+	const porcHumedad = this.getNodeParameter('porcHumedad', index, '') as string;
+	const idHumedad = this.getNodeParameter('id', index, '') as string;
 
 	switch (operation) {
 		case 'getAll':
@@ -32,7 +32,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 			break;
 	}
 
-	let rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
 	if (rawJson) {
 		try {

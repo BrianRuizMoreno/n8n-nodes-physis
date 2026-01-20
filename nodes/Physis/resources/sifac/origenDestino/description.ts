@@ -8,7 +8,7 @@ export const origenDestinoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['origenDestino'] } },
         options: [
-            { name: 'Obtener Sugeridos', value: 'getSugeridos', description: 'GET Origen y Destino sugeridos', action: 'Obtener Sugeridos an origen destino',},
+            { name: 'Obtener Sugeridos', value: 'getSugeridos', description: 'GET Origen y Destino sugeridos', action: 'Obtener sugeridos an origen destino',},
         ],
         default: 'getSugeridos',
     },

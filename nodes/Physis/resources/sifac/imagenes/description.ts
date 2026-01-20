@@ -10,23 +10,23 @@ export const imagenOperations: INodeProperties[] = [
         options: [
             // --- CONSULTAS ---
             { 
-                name: 'Listar Por Documento', 
+                name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Listar imágenes de una cabecera. Filtros JSON: { "IdCabecera": 123, "origen": 1 }.',
-                action: 'Listar por Documento an imagen',
+                action: 'Listar por documento an imagen',
             },
             { 
                 name: 'Obtener Una', 
                 value: 'get', 
                 description: 'GET Obtener imagen específica. ID=IdImagen. Filtros JSON: { "IdCabecera": 123, "origen": 1 }.',
-                action: 'Obtener Una an imagen',
+                action: 'Obtener una an imagen',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Subir (Insertar)', 
                 value: 'create', 
                 description: 'POST Subir imagen. JSON debe incluir "payload" con la data y params: { "IdCabecera": 1, "extension": "jpg", "payload": "..." }.',
-                action: 'Subir (Insertar) an imagen',
+                action: 'Subir insertar an imagen',
             },
             { 
                 name: 'Actualizar', 

@@ -12,7 +12,7 @@ export const descuentosClientesOperations: INodeProperties[] = [
             { 
                 name: 'Listar Árbol', 
                 value: 'getArbol', 
-                description: 'GET Estructura jerárquica. Filtros JSON: { "imputables": true }.', action: 'Listar Árbol a descuentos clientes',
+                description: 'GET Estructura jerárquica. Filtros JSON: { "imputables": true }.', action: 'Listar rbol a descuentos clientes',
             },
             { 
                 name: 'Obtener Por ID', 
@@ -22,7 +22,7 @@ export const descuentosClientesOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Por Alias', 
                 value: 'getByAlias', 
-                description: 'GET Detalle por Sigla/Alias. JSON: { "alias": "DTO10" }.', action: 'Obtener por Alias a descuentos clientes',
+                description: 'GET Detalle por Sigla/Alias. JSON: { "alias": "DTO10" }.', action: 'Obtener por alias a descuentos clientes',
             },
             // --- GESTIÓN ---
             { 

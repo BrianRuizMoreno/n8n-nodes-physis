@@ -5,13 +5,13 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const operation = this.getNodeParameter('operation', index) as string;
 	const transport = new PhysisTransport(this);
 	
-	let baseUrl = '/phy2service/api/sifac/imagenes';
+	const baseUrl = '/phy2service/api/sifac/imagenes';
 	let endpoint = '';
 	let method = 'GET';
 	let body: IDataObject = {};
 	let qs: IDataObject = {};
 
-	let id = this.getNodeParameter('id', index, '') as string;
+	const id = this.getNodeParameter('id', index, '') as string;
 
 	switch (operation) {
 		case 'getAll':

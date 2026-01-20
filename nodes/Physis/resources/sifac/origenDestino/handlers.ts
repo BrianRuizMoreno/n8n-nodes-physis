@@ -4,7 +4,7 @@ import { PhysisTransport } from '../../../transport/transport';
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
 	const transport = new PhysisTransport(this);
 	const endpoint = '/phy2service/api/sifac/origen-destino-sugeridos';
-	let method = 'GET';
+	const method = 'GET';
 	let qs: IDataObject = {};
 
 	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;

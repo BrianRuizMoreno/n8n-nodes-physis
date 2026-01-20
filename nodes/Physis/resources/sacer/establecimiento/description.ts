@@ -8,8 +8,8 @@ export const establecimientoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['establecimiento'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los establecimientos', action: 'Listar Todos an establecimiento',},
-            { name: 'Listar Por Tercero', value: 'getByTercero', description: 'GET Lista establecimientos de un tercero específico', action: 'Listar por Tercero an establecimiento',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los establecimientos', action: 'Listar todos an establecimiento',},
+            { name: 'Listar Por Tercero', value: 'getByTercero', description: 'GET Lista establecimientos de un tercero específico', action: 'Listar por tercero an establecimiento',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de un establecimiento específico', action: 'Obtener por ID an establecimiento',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo establecimiento', action: 'Crear an establecimiento',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un establecimiento existente', action: 'Actualizar an establecimiento',},

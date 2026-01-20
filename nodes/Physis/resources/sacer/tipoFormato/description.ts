@@ -8,7 +8,7 @@ export const tipoFormatoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tipoFormato'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los tipos de formato', action: 'Listar Todos a tipo formato',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los tipos de formato', action: 'Listar todos a tipo formato',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un tipo de formato específico', action: 'Obtener por ID a tipo formato',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de formato', action: 'Crear a tipo formato',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de formato existente', action: 'Actualizar a tipo formato',},

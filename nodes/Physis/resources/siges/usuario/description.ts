@@ -8,10 +8,10 @@ export const usuarioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['usuario'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado básico de usuarios', action: 'Listar Todos an usuario',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado básico de usuarios', action: 'Listar todos an usuario',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve los datos completos de un usuario', action: 'Obtener por ID an usuario',},
-            { name: 'Terceros Relacionados', value: 'getTerceros', description: 'GET Devuelve las cuentas auxiliares asociadas a un usuario', action: 'Terceros Relacionados an usuario',},
-            { name: 'Relacionar Terceros', value: 'linkTercero', description: 'POST Asigna cuentas auxiliares a un usuario', action: 'Relacionar Terceros an usuario',},
+            { name: 'Terceros Relacionados', value: 'getTerceros', description: 'GET Devuelve las cuentas auxiliares asociadas a un usuario', action: 'Terceros relacionados an usuario',},
+            { name: 'Relacionar Terceros', value: 'linkTercero', description: 'POST Asigna cuentas auxiliares a un usuario', action: 'Relacionar terceros an usuario',},
         ],
         default: 'getAll',
     },

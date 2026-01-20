@@ -8,9 +8,9 @@ export const libroOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['libro'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista libros contables', action: 'Listar Libros a libro',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista libros contables', action: 'Listar libros a libro',},
             { name: 'Obtener Por ID', value: 'getById', description: 'GET Detalle de libro', action: 'Obtener por ID a libro',},
-            { name: 'Obtener Por Fecha', value: 'getByDate', description: 'GET Libro por fecha', action: 'Obtener por Fecha a libro',},
+            { name: 'Obtener Por Fecha', value: 'getByDate', description: 'GET Libro por fecha', action: 'Obtener por fecha a libro',},
         ],
         default: 'getAll',
     },

@@ -9,12 +9,12 @@ export const campaniaOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sacer'], resource: ['campania'] } },
         options: [
 
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista todas las campañas definidas', action: 'Listar Todas a campania',},
-            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva campaña', action: 'Crear a campania',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una campaña existente', action: 'Actualizar a campania',},
+            { name: 'Campañas De Usuario', value: 'getByUser', description: 'GET Lista campañas de un usuario específico', action: 'Campa as de usuario a campania',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una nueva campaña', action: 'Crear a campania',},
+            { name: 'Detalle Por Usuario', value: 'getDetailByUser', description: 'GET Detalle de campaña y estado para un usuario', action: 'Detalle por usuario a campania',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una campaña', action: 'Eliminar a campania',},
-            { name: 'Campañas De Usuario', value: 'getByUser', description: 'GET Lista campañas de un usuario específico', action: 'Campañas de Usuario a campania',},
-            { name: 'Detalle Por Usuario', value: 'getDetailByUser', description: 'GET Detalle de campaña y estado para un usuario', action: 'Detalle por Usuario a campania',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todas las campañas definidas', action: 'Listar todas a campania',},
         ],
         default: 'getAll',
     },

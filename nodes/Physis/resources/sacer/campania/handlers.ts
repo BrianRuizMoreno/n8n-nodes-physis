@@ -8,7 +8,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
     let endpoint = '/phy2service/api/sacer/campanias';
     let method = 'GET';
     let body: IDataObject = {};
-    let qs: IDataObject = {}; 
+    const qs: IDataObject = {}; 
 
     const id = this.getNodeParameter('id', index, '') as string;
     const idUsuario = this.getNodeParameter('idUsuario', index, '') as string;

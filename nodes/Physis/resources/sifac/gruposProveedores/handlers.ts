@@ -5,7 +5,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const operation = this.getNodeParameter('operation', index) as string;
 	const transport = new PhysisTransport(this);
 	
-	let id = this.getNodeParameter('id', index) as string;
+	const id = this.getNodeParameter('id', index) as string;
 
 	const baseUrl = `/phy2service/api/sifac/grupos/${id}/proveedores`;
 	

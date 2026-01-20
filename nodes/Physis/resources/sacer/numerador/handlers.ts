@@ -9,7 +9,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	let method = 'GET';
 	let body: IDataObject = {};
 	let qs: IDataObject = {};
-	let id = this.getNodeParameter('id', index, '') as string;
+	const id = this.getNodeParameter('id', index, '') as string;
 
 	switch (operation) {
 		case 'getAll':

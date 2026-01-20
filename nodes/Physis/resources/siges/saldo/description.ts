@@ -8,8 +8,8 @@ export const saldoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['saldo'] } },
         options: [
-            { name: 'Saldo Cuenta', value: 'getSaldo', description: 'GET Saldo estándar de cuenta', action: 'Saldo Cuenta a saldo',},
-            { name: 'Saldo Multimoneda', value: 'getSaldoMM', description: 'GET Saldo bimonetario', action: 'Saldo Multimoneda a saldo',},
+            { name: 'Saldo Cuenta', value: 'getSaldo', description: 'GET Saldo estándar de cuenta', action: 'Saldo cuenta a saldo',},
+            { name: 'Saldo Multimoneda', value: 'getSaldoMM', description: 'GET Saldo bimonetario', action: 'Saldo multimoneda a saldo',},
         ],
         default: 'getSaldo',
     },

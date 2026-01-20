@@ -8,7 +8,7 @@ export const remitoCompraOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['remitoCompra'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista remitos. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.', action: 'Listar Todos a remito compra',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista remitos. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.', action: 'Listar todos a remito compra',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de un remito de compra (idCabecera)', action: 'Obtener por ID a remito compra',},
             { name: 'Crear', value: 'create', description: 'POST Crea un nuevo remito de compra', action: 'Crear a remito compra',},
         ],

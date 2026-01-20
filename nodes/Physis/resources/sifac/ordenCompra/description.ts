@@ -8,7 +8,7 @@ export const ordenCompraOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['ordenCompra'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista órdenes. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.', action: 'Listar Todas an orden compra',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista órdenes. Filtros: { "fechaDesde": "YYYY-MM-DD", "top": 10 }.', action: 'Listar todas an orden compra',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una orden de compra (idCabecera)', action: 'Obtener por ID an orden compra',},
             { name: 'Crear', value: 'create', description: 'POST Crea una nueva orden de compra', action: 'Crear an orden compra',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una orden existente', action: 'Actualizar an orden compra',},

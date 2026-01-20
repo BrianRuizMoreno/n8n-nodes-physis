@@ -12,7 +12,7 @@ export const campoOperations: INodeProperties[] = [
                 name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de campos. Filtros: CodZona, formatoRespuesta.',
-                action: 'Listar Todos a campo',
+                action: 'Listar todos a campo',
             },
             { 
                 name: 'Obtener Por ID', 
@@ -24,7 +24,7 @@ export const campoOperations: INodeProperties[] = [
                 name: 'Obtener Depósitos', 
                 value: 'getDepositos', 
                 description: 'GET Lista de campos depósitos (Campos Lotes)',
-                action: 'Obtener Depósitos a campo',
+                action: 'Obtener dep sitos a campo',
             },
         ],
         default: 'getAll',

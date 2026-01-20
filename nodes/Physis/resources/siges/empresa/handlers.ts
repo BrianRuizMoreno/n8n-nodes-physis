@@ -7,7 +7,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	
 	const baseUrl = '/phy2service/api/siges/empresas';
 	let endpoint = '';
-	let method = 'GET'; 
+	const method = 'GET'; 
 	let qs: IDataObject = {};
 
 	const id = this.getNodeParameter('id', index, '') as string;

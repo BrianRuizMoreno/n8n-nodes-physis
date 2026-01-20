@@ -8,8 +8,8 @@ export const transporteOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['transporte'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista transportes (filtro por subsistema)', action: 'Listar Todos a transporte',},
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de transportes', action: 'Listar Árbol a transporte',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista transportes (filtro por subsistema)', action: 'Listar todos a transporte',},
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de transportes', action: 'Listar rbol a transporte',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un transporte específico', action: 'Obtener por ID a transporte',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo transporte', action: 'Crear a transporte',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un transporte existente', action: 'Actualizar a transporte',},

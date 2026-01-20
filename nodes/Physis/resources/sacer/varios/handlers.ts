@@ -7,9 +7,9 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const transport = new PhysisTransport(this);
 	
 	let endpoint = '';
-	let method = 'GET';
+	const method = 'GET';
 	let qs: IDataObject = {};
-	let body: IDataObject = {};
+	const body: IDataObject = {};
 
 	switch (resource) {
 		case 'liquidacion':

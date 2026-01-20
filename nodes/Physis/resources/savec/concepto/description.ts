@@ -8,7 +8,7 @@ export const conceptoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['savec'], resource: ['concepto'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista conceptos (permite filtro por clase)', action: 'Listar Todos a concepto',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista conceptos (permite filtro por clase)', action: 'Listar todos a concepto',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un concepto específico', action: 'Obtener por ID a concepto',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo concepto', action: 'Crear a concepto',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un concepto existente', action: 'Actualizar a concepto',},

@@ -9,10 +9,10 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	let method = 'GET';
 	let body: IDataObject = {};
 	let qs: IDataObject = {};
-	let codCampania = this.getNodeParameter('codCampania', index, '') as string;
-	let nroContrato = this.getNodeParameter('nroContrato', index, '') as string;
-	let nroFijacion = this.getNodeParameter('nroFijacion', index, '') as string;
-	let idFijacion = this.getNodeParameter('idFijacion', index, '') as string;
+	const codCampania = this.getNodeParameter('codCampania', index, '') as string;
+	const nroContrato = this.getNodeParameter('nroContrato', index, '') as string;
+	const nroFijacion = this.getNodeParameter('nroFijacion', index, '') as string;
+	const idFijacion = this.getNodeParameter('idFijacion', index, '') as string;
 
 	switch (operation) {
 		case 'getAll':

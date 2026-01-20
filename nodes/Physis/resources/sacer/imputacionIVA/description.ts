@@ -8,7 +8,7 @@ export const imputacionIVAOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['imputacionIVA'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de imputaciones contables de IVA', action: 'Listar Todas an imputacion IVA',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de imputaciones contables de IVA', action: 'Listar todas an imputacion iva',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve una imputación específica', action: 'Obtener por ID an imputacion IVA',},
             { name: 'Crear', value: 'create', description: 'POST Inserta una nueva imputación de IVA', action: 'Crear an imputacion IVA',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una imputación existente', action: 'Actualizar an imputacion IVA',},

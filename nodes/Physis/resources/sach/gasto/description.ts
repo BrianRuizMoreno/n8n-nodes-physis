@@ -8,10 +8,10 @@ export const gastoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['gasto'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los gastos configurados', action: 'Listar Todos a gasto',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los gastos configurados', action: 'Listar todos a gasto',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un gasto específico', action: 'Obtener por ID a gasto',},
-            { name: 'Consulta Avanzada', value: 'searchV2', description: 'GET Búsqueda avanzada con filtros, orden y paginado (vía JSON)', action: 'Consulta Avanzada a gasto',},
-            { name: 'Gastos Para Lote', value: 'getForLot', description: 'GET Lista gastos aplicables manualmente a un lote según contexto', action: 'Gastos para Lote a gasto',},
+            { name: 'Consulta Avanzada', value: 'searchV2', description: 'GET Búsqueda avanzada con filtros, orden y paginado (vía JSON)', action: 'Consulta avanzada a gasto',},
+            { name: 'Gastos Para Lote', value: 'getForLot', description: 'GET Lista gastos aplicables manualmente a un lote según contexto', action: 'Gastos para lote a gasto',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo gasto', action: 'Crear a gasto',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un gasto existente', action: 'Actualizar a gasto',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un gasto', action: 'Eliminar a gasto',},

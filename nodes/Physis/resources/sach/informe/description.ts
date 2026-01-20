@@ -8,9 +8,9 @@ export const informeOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['informe'] } },
         options: [
-            { name: 'Comisiones Por Comprobante', value: 'getComisionesComprobante', description: 'GET Devuelve las comisiones asociadas a un comprobante específico', action: 'Comisiones por Comprobante an informe',},
-            { name: 'Reporte Comisiones Devengadas', value: 'getComisionesDevengadas', description: 'GET Reporte detallado de comisiones devengadas con múltiples filtros', action: 'Reporte Comisiones Devengadas an informe',},
-            { name: 'Resumen De Operaciones', value: 'getResumenOperaciones', description: 'GET Informe de resumen de operaciones por fecha', action: 'Resumen de Operaciones an informe',},
+            { name: 'Comisiones Por Comprobante', value: 'getComisionesComprobante', description: 'GET Devuelve las comisiones asociadas a un comprobante específico', action: 'Comisiones por comprobante an informe',},
+            { name: 'Reporte Comisiones Devengadas', value: 'getComisionesDevengadas', description: 'GET Reporte detallado de comisiones devengadas con múltiples filtros', action: 'Reporte comisiones devengadas an informe',},
+            { name: 'Resumen De Operaciones', value: 'getResumenOperaciones', description: 'GET Informe de resumen de operaciones por fecha', action: 'Resumen de operaciones an informe',},
         ],
         default: 'getComisionesComprobante',
     },

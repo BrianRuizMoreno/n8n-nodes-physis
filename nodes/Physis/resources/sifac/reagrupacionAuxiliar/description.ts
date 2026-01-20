@@ -8,7 +8,7 @@ export const reagrupacionAuxiliarOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['reagrupacionAuxiliar'] } },
         options: [
-            { name: 'Obtener Default', value: 'getDefault', description: 'GET Reagrupaciones por defecto de un tercero', action: 'Obtener Default a reagrupacion auxiliar',},
+            { name: 'Obtener Default', value: 'getDefault', description: 'GET Reagrupaciones por defecto de un tercero', action: 'Obtener default a reagrupacion auxiliar',},
         ],
         default: 'getDefault',
     },

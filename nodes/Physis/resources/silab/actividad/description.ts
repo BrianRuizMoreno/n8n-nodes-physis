@@ -12,7 +12,7 @@ export const actividadOperations: INodeProperties[] = [
                 name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Lista de actividades. Filtros: Aplicacion, reducido, etc.',
-                action: 'Listar Todas an actividad',
+                action: 'Listar todas an actividad',
             },
             { 
                 name: 'Obtener Por ID', 
@@ -24,7 +24,7 @@ export const actividadOperations: INodeProperties[] = [
                 name: 'Obtener Lotes Asociados', 
                 value: 'getLotes', 
                 description: 'GET Lotes asociados a una actividad y fecha. Filtros: CodCampania, CodCampo.',
-                action: 'Obtener Lotes Asociados an actividad',
+                action: 'Obtener lotes asociados an actividad',
             },
         ],
         default: 'getAll',

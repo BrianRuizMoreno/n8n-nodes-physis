@@ -6,7 +6,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const transport = new PhysisTransport(this);
 	
 	const baseUrl = '/phy2service/api/siges/informe-control-diario-billetera';
-	let endpoint = baseUrl;
+	const endpoint = baseUrl;
 	let method = 'GET';
 	let body: IDataObject = {};
 	let qs: IDataObject = {};

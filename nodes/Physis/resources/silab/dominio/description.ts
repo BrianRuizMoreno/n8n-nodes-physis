@@ -12,7 +12,7 @@ export const dominioOperations: INodeProperties[] = [
                 name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Devuelve todos los dominios configurados (máscaras y grupos de datos)',
-                action: 'Listar Todos a dominio',
+                action: 'Listar todos a dominio',
             },
             { 
                 name: 'Obtener Por ID', 

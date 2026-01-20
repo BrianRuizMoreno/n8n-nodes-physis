@@ -8,9 +8,9 @@ export const cartelOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sach'], resource: ['cartel'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los carteles', action: 'Listar Todos a cartel',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista todos los carteles', action: 'Listar todos a cartel',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un cartel específico', action: 'Obtener por ID a cartel',},
-            { name: 'Consulta Avanzada', value: 'search', description: 'POST Búsqueda con filtros y paginado', action: 'Consulta Avanzada a cartel',},
+            { name: 'Consulta Avanzada', value: 'search', description: 'POST Búsqueda con filtros y paginado', action: 'Consulta avanzada a cartel',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo cartel', action: 'Crear a cartel',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un cartel existente', action: 'Actualizar a cartel',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina un cartel', action: 'Eliminar a cartel',},

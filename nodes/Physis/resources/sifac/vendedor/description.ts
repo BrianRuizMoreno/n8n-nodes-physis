@@ -8,7 +8,7 @@ export const vendedorOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sifac'], resource: ['vendedor'] } },
         options: [
-            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Lista jerárquica de vendedores', action: 'Listar Árbol a vendedor',},
+            { name: 'Listar Árbol', value: 'getArbol', description: 'GET Lista jerárquica de vendedores', action: 'Listar rbol a vendedor',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un vendedor específico', action: 'Obtener por ID a vendedor',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo vendedor', action: 'Crear a vendedor',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un vendedor existente', action: 'Actualizar a vendedor',},

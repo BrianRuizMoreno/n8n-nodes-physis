@@ -8,9 +8,9 @@ export const reporteDefinibleOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['reporteDefinible'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista reportes definibles', action: 'Listar Reportes a reporte definible',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista reportes definibles', action: 'Listar reportes a reporte definible',},
             { name: 'Descargar PDF', value: 'getPdf', description: 'GET Genera y descarga PDF de reporte', action: 'Descargar PDF a reporte definible',},
-            { name: 'Obtener Resumen', value: 'getResumen', description: 'GET Resumen de reporte generado', action: 'Obtener Resumen a reporte definible',},
+            { name: 'Obtener Resumen', value: 'getResumen', description: 'GET Resumen de reporte generado', action: 'Obtener resumen a reporte definible',},
         ],
         default: 'getAll',
     },

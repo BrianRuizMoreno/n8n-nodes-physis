@@ -7,16 +7,16 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const transport = new PhysisTransport(this);
 	
 	const baseUrl = '/phy2service/api/siges/vencimientos-reagrupados';
-	let endpoint = baseUrl;
-	let method = 'GET'; 
+	const endpoint = baseUrl;
+	const method = 'GET'; 
 	let qs: IDataObject = {};
 
 	switch (operation) {
 		case 'getGroupedMaturities':
-			let idAuxi = this.getNodeParameter('idAuxi', index) as number;
-			let idReagAuxi = this.getNodeParameter('idReagAuxi', index) as number;
-			let idCtaReagAuxi = this.getNodeParameter('idCtaReagAuxi', index, '') as string;
-			let fechaInput = this.getNodeParameter('fechaDesde', index) as string;
+			const idAuxi = this.getNodeParameter('idAuxi', index) as number;
+			const idReagAuxi = this.getNodeParameter('idReagAuxi', index) as number;
+			const idCtaReagAuxi = this.getNodeParameter('idCtaReagAuxi', index, '') as string;
+			const fechaInput = this.getNodeParameter('fechaDesde', index) as string;
 
 			let fechaFormatted = fechaInput;
 			if (fechaInput && fechaInput.includes('-')) {

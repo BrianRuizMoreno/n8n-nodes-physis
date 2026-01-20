@@ -12,14 +12,14 @@ export const numeradorOperations: INodeProperties[] = [
                 name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Devuelve todos los numeradores disponibles',
-                action: 'Listar Todos a numerador',
+                action: 'Listar todos a numerador',
             },
             
             { 
                 name: 'Listar Por Tipo (Prefijo)', 
                 value: 'getByPrefijo', 
                 description: 'GET Filtra numeradores según si usan prefijo (Punto de Venta) o no',
-                action: 'Listar por Tipo (Prefijo) a numerador',
+                action: 'Listar por tipo prefijo a numerador',
             },
         ],
         default: 'getAll',

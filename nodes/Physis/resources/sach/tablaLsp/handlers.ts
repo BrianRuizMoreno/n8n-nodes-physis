@@ -6,7 +6,7 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	const transport = new PhysisTransport(this);
 	
 	let endpoint = '/phy2service/api/sach/tablasLsp';
-	let method = 'GET';
+	const method = 'GET';
 	let qs: IDataObject = {}; 
 
 	const idEspecie = this.getNodeParameter('idEspecie', index, '') as string;

@@ -8,9 +8,9 @@ export const indicadorOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['indicador'] } },
         options: [
-            { name: 'Tasa Default', value: 'getTasaDefault', description: 'GET Última tasa moneda funcional', action: 'Tasa Default an indicador',},
-            { name: 'Tasa Serie', value: 'getTasaSerie', description: 'GET Tasa de indicador específico', action: 'Tasa Serie an indicador',},
-            { name: 'Guardar Tasa', value: 'setTasa', description: 'POST Inserta o actualiza tasa', action: 'Guardar Tasa an indicador',},
+            { name: 'Tasa Default', value: 'getTasaDefault', description: 'GET Última tasa moneda funcional', action: 'Tasa default an indicador',},
+            { name: 'Tasa Serie', value: 'getTasaSerie', description: 'GET Tasa de indicador específico', action: 'Tasa serie an indicador',},
+            { name: 'Guardar Tasa', value: 'setTasa', description: 'POST Inserta o actualiza tasa', action: 'Guardar tasa an indicador',},
         ],
         default: 'getTasaDefault',
     },

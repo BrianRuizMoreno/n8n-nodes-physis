@@ -8,9 +8,9 @@ export const humedadOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['humedad'] } },
         options: [
-            { name: 'Listar Por Cereal', value: 'getAll', description: 'GET Lista tabla de humedades de un cereal', action: 'Listar por Cereal a humedad',},
-            { name: 'Obtener Detalle', value: 'get', description: 'GET Obtiene merma por cereal y porcentaje', action: 'Obtener Detalle a humedad',},
-            { name: 'Crear (Lista)', value: 'create', description: 'POST Inserta una lista de humedades (Array)', action: 'Crear (Lista) a humedad',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista tabla de humedades de un cereal', action: 'Listar por cereal a humedad',},
+            { name: 'Obtener Detalle', value: 'get', description: 'GET Obtiene merma por cereal y porcentaje', action: 'Obtener detalle a humedad',},
+            { name: 'Crear (Lista)', value: 'create', description: 'POST Inserta una lista de humedades (Array)', action: 'Crear lista a humedad',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una humedad específica (Objeto)', action: 'Actualizar a humedad',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una humedad por ID interno', action: 'Eliminar a humedad',},
         ],

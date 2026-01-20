@@ -9,8 +9,8 @@ export async function execute(this: IExecuteFunctions, index: number): Promise<I
 	let method = 'GET';
 	let body: IDataObject = {};
 	let qs: IDataObject = {};
-	let idFormato = this.getNodeParameter('id', index, '') as string;
-	let idTipoFormato = this.getNodeParameter('idTipoFormato', index, '') as string;
+	const idFormato = this.getNodeParameter('id', index, '') as string;
+	const idTipoFormato = this.getNodeParameter('idTipoFormato', index, '') as string;
 
 	switch (operation) {
 		case 'getAll':

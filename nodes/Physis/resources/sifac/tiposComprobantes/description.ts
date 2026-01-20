@@ -12,7 +12,7 @@ export const tiposComprobanteOperations: INodeProperties[] = [
                 name: 'Get Many', 
                 value: 'getAll', 
                 description: 'GET Listado de tipos de comprobantes. Filtros JSON: { "idSubSistema": "V", "idClaseMovimiento": "ALTA" }.',
-                action: 'Listar Todos a tipos comprobante',
+                action: 'Listar todos a tipos comprobante',
             },
             { 
                 name: 'Obtener Por ID', 
@@ -24,7 +24,7 @@ export const tiposComprobanteOperations: INodeProperties[] = [
                 name: 'Obtener Default Cobranza', 
                 value: 'getDefaultCobranza', 
                 description: 'GET Obtiene el tipo de comprobante predeterminado para recibos de cobro',
-                action: 'Obtener Default Cobranza a tipos comprobante',
+                action: 'Obtener default cobranza a tipos comprobante',
             },
         ],
         default: 'getAll',

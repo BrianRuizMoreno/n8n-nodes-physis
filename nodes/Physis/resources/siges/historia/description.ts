@@ -12,7 +12,7 @@ export const historiaOperations: INodeProperties[] = [
                 name: 'Obtener Historia Clínica', 
                 value: 'get', 
                 description: 'GET Recupera los datos de una historia clínica específica',
-                action: 'Obtener Historia Clínica a historia',
+                action: 'Obtener historia cl nica a historia',
             },
         ],
         default: 'get',

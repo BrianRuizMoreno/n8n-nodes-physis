@@ -8,7 +8,7 @@ export const tipoContratoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['tipoContrato'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los tipos de contrato', action: 'Listar Todos a tipo contrato',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve todos los tipos de contrato', action: 'Listar todos a tipo contrato',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un tipo de contrato específico', action: 'Obtener por ID a tipo contrato',},
             { name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de contrato', action: 'Crear a tipo contrato',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de contrato existente', action: 'Actualizar a tipo contrato',},

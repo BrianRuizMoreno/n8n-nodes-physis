@@ -8,7 +8,7 @@ export const tiposFormularioOperations: INodeProperties[] = [
 		noDataExpression: true,
 		displayOptions: { show: { service: ['savec'], resource: ['tiposFormulario'] } },
 		options: [
-			{ name: 'Get Many', value: 'getAll', description: 'GET Lista tipos de formulario', action: 'Listar Todos a tipos formulario',},
+			{ name: 'Get Many', value: 'getAll', description: 'GET Lista tipos de formulario', action: 'Listar todos a tipos formulario',},
 			{ name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene un tipo de formulario específico', action: 'Obtener por ID a tipos formulario',},
 			{ name: 'Crear', value: 'create', description: 'POST Inserta un nuevo tipo de formulario', action: 'Crear a tipos formulario',},
 			{ name: 'Actualizar', value: 'update', description: 'PUT Modifica un tipo de formulario existente', action: 'Actualizar a tipos formulario',},

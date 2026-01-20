@@ -8,8 +8,8 @@ export const formaPagoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['sacer'], resource: ['formaPago'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de formas de pago', action: 'Listar Todas a forma pago',},
-            { name: 'Obtener Por Código', value: 'get', description: 'GET Devuelve una forma de pago específica', action: 'Obtener por Código a forma pago',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve el listado de formas de pago', action: 'Listar todas a forma pago',},
+            { name: 'Obtener Por Código', value: 'get', description: 'GET Devuelve una forma de pago específica', action: 'Obtener por c digo a forma pago',},
             { name: 'Crear', value: 'create', description: 'POST Inserta una nueva forma de pago', action: 'Crear a forma pago',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una forma de pago existente', action: 'Actualizar a forma pago',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una forma de pago', action: 'Eliminar a forma pago',},

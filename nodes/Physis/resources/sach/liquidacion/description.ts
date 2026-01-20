@@ -9,14 +9,14 @@ export const liquidacionOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['sach'], resource: ['liquidacion'] } },
         options: [
 
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista liquidaciones configuradas', action: 'Listar Todas a liquidacion',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista liquidaciones configuradas', action: 'Listar todas a liquidacion',},
             { name: 'Obtener Por ID', value: 'get', description: 'GET Obtiene una liquidación específica', action: 'Obtener por ID a liquidacion',},
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de liquidaciones', action: 'Ver Árbol a liquidacion',},
+            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura jerárquica de liquidaciones', action: 'Ver rbol a liquidacion',},
             { name: 'Crear', value: 'create', description: 'POST Inserta una nueva liquidación', action: 'Crear a liquidacion',},
             { name: 'Actualizar', value: 'update', description: 'PUT Modifica una liquidación existente', action: 'Actualizar a liquidacion',},
             { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una liquidación', action: 'Eliminar a liquidacion',},
-            { name: 'Obtener Comprobante', value: 'getComprobante', description: 'GET Consulta un comprobante específico', action: 'Obtener Comprobante a liquidacion',},
-            { name: 'Obtener Comisiones (Comprobante)', value: 'getComisionesComprobante', description: 'GET Consulta comisiones de un comprobante', action: 'Obtener Comisiones (Comprobante) a liquidacion',},
+            { name: 'Obtener Comprobante', value: 'getComprobante', description: 'GET Consulta un comprobante específico', action: 'Obtener comprobante a liquidacion',},
+            { name: 'Obtener Comisiones (Comprobante)', value: 'getComisionesComprobante', description: 'GET Consulta comisiones de un comprobante', action: 'Obtener comisiones comprobante a liquidacion',},
         ],
         default: 'getAll',
     },
