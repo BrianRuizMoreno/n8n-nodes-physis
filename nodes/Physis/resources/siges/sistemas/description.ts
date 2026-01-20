@@ -11,14 +11,14 @@ export const sistemasOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de sistemas o módulos configurados en el ERP' 
-																action: 'Listar Sistemas a sistemas',
+                description: 'GET Devuelve la lista de sistemas o módulos configurados en el ERP', 
+                action: 'Listar Sistemas a sistemas',
             },
             { 
                 name: 'Obtener Sistema', 
                 value: 'get', 
-                description: 'GET Recupera los datos de un sistema específico por ID' 
-																action: 'Obtener Sistema a sistemas',
+                description: 'GET Recupera los datos de un sistema específico por ID', 
+                action: 'Obtener Sistema a sistemas',
             },
         ],
         default: 'getAll',

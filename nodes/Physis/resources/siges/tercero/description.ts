@@ -11,50 +11,50 @@ export const terceroOperations: INodeProperties[] = [
             { 
                 name: 'Buscar (Autocomplete)', 
                 value: 'search', 
-                description: 'GET Busca terceros por nombre, código o documento' 
-																action: 'Buscar (Autocomplete) a tercero',
+                description: 'GET Busca terceros por nombre, código o documento',                
+                action: 'Buscar (Autocomplete) a tercero',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera los datos completos de un tercero específico' 
-																action: 'Obtener Detalle a tercero',
+                description: 'GET Recupera los datos completos de un tercero específico',                
+                action: 'Obtener Detalle a tercero',
             },
             { 
                 name: 'Buscar Por Documento', 
                 value: 'getByDocument', 
-                description: 'GET Busca terceros coincidentes por CUIT o DNI' 
-																action: 'Buscar por Documento a tercero',
+                description: 'GET Busca terceros coincidentes por CUIT o DNI',               
+                action: 'Buscar por Documento a tercero',
             },
             { 
                 name: 'Consulta Avanzada', 
                 value: 'query', 
-                description: 'POST Ejecuta una consulta con filtros complejos, ordenamiento y paginación' 
-																action: 'Consulta Avanzada a tercero',
+                description: 'POST Ejecuta una consulta con filtros complejos, ordenamiento y paginación',               
+                action: 'Consulta Avanzada a tercero',
             },
             { 
                 name: 'Listar Domicilios', 
                 value: 'getAddresses', 
-                description: 'GET Obtiene las direcciones registradas de un tercero' 
-																action: 'Listar Domicilios a tercero',
+                description: 'GET Obtiene las direcciones registradas de un tercero',                
+                action: 'Listar Domicilios a tercero',
             },
             { 
                 name: 'Crear Domicilio', 
                 value: 'createAddress', 
-                description: 'POST Agrega una nueva dirección a un tercero' 
-																action: 'Crear Domicilio a tercero',
+                description: 'POST Agrega una nueva dirección a un tercero',                 
+                action: 'Crear Domicilio a tercero',
             },
             { 
                 name: 'Listar Cuentas Bancarias', 
                 value: 'getBankAccounts', 
-                description: 'GET Devuelve las cuentas bancarias asociadas para transferencias' 
-																action: 'Listar Cuentas Bancarias a tercero',
+                description: 'GET Devuelve las cuentas bancarias asociadas para transferencias',                 
+                action: 'Listar Cuentas Bancarias a tercero',
             },
             { 
                 name: 'Listar Contactos', 
                 value: 'getContacts', 
-                description: 'GET Obtiene la lista de personas de contacto' 
-																action: 'Listar Contactos a tercero',
+                description: 'GET Obtiene la lista de personas de contacto',                 
+                action: 'Listar Contactos a tercero',
             },
         ],
         default: 'search',

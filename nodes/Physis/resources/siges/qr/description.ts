@@ -11,8 +11,8 @@ export const qrOperations: INodeProperties[] = [
             { 
                 name: 'Leer QR De Comprobante', 
                 value: 'readQr', 
-                description: 'POST Sube un archivo (PDF/Imagen), detecta el QR de AFIP y devuelve los datos decodificados' 
-																action: 'Leer QR de Comprobante a qr',
+                description: 'POST Sube un archivo (PDF/Imagen), detecta el QR de AFIP y devuelve los datos decodificados', 
+				action: 'Leer QR de Comprobante a qr',
             },
         ],
         default: 'readQr',

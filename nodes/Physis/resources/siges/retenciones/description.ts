@@ -11,14 +11,14 @@ export const retencionesOperations: INodeProperties[] = [
             { 
                 name: 'Listar Regímenes De Retención', 
                 value: 'getRegimes', 
-                description: 'GET Obtiene los regímenes fiscales configurados, opcionalmente filtrados por cuenta contable' 
-																action: 'Listar Regímenes de Retención a retenciones',
+                description: 'GET Obtiene los regímenes fiscales configurados, opcionalmente filtrados por cuenta contable' ,
+                action: 'Listar Regímenes de Retención a retenciones',
             },
             { 
                 name: 'Verificar Estado Certificado', 
                 value: 'checkCertificateStatus', 
-                description: 'GET Consulta si el certificado de retención de un comprobante está emitido o anulado' 
-																action: 'Verificar Estado Certificado a retenciones',
+                description: 'GET Consulta si el certificado de retención de un comprobante está emitido o anulado' ,
+                action: 'Verificar Estado Certificado a retenciones',
             },
         ],
         default: 'getRegimes',

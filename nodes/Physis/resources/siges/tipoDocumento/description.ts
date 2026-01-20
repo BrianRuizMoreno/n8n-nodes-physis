@@ -8,16 +8,11 @@ export const tipoDocumentoOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['tipoDocumento'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista tipos de documento. Filtros en JSON.' 
-																																																					action: 'Listar Todos a tipo documento',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de un tipo de documento' 
-																																																				action: 'Obtener por ID a tipo documento',},
-            { name: 'Crear', value: 'create', description: 'POST Inserta nuevo tipo de documento' 
-																																														action: 'Crear a tipo documento',},
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica tipo de documento existente' 
-																																																			action: 'Actualizar a tipo documento',},
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina tipo de documento' 
-																																																	action: 'Eliminar a tipo documento',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista tipos de documento. Filtros en JSON.', action: 'Listar Todos a tipo documento',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Detalle de un tipo de documento', action: 'Obtener por ID a tipo documento',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta nuevo tipo de documento', action: 'Crear a tipo documento',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica tipo de documento existente' , action: 'Actualizar a tipo documento',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina tipo de documento', action: 'Eliminar a tipo documento',},
         ],
         default: 'getAll',
     },

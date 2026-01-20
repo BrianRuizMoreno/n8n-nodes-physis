@@ -11,26 +11,26 @@ export const utilidadesOperations: INodeProperties[] = [
             { 
                 name: 'Listar Firmantes', 
                 value: 'listSignatories', 
-                description: 'GET Devuelve la lista de personas habilitadas para firmar' 
-																action: 'Listar Firmantes an utilidades',
+                description: 'GET Devuelve la lista de personas habilitadas para firmar', 
+                action: 'Listar Firmantes an utilidades',
             },
             { 
                 name: 'Controlar Fecha Subdiario', 
                 value: 'checkSubjournalDate', 
-                description: 'GET Valida si una fecha es permitida para un tipo de comprobante en un ejercicio' 
-																action: 'Controlar Fecha Subdiario an utilidades',
+                description: 'GET Valida si una fecha es permitida para un tipo de comprobante en un ejercicio', 
+                action: 'Controlar Fecha Subdiario an utilidades',
             },
             { 
                 name: 'Verificar Devolución IVA', 
                 value: 'checkIvaRefundStatus', 
-                description: 'GET Consulta si un comprobante de devolución de IVA ya está registrado' 
-																action: 'Verificar Devolución IVA an utilidades',
+                description: 'GET Consulta si un comprobante de devolución de IVA ya está registrado' ,
+                action: 'Verificar Devolución IVA an utilidades',
             },
             { 
                 name: 'Insertar Comprobante Tercero', 
                 value: 'createThirdPartyVoucher', 
-                description: 'POST Inserta un comprobante simplificado de tercero con sus imputaciones' 
-																action: 'Insertar Comprobante Tercero an utilidades',
+                description: 'POST Inserta un comprobante simplificado de tercero con sus imputaciones', 
+                action: 'Insertar Comprobante Tercero an utilidades',
             },
         ],
         default: 'listSignatories',

@@ -11,32 +11,32 @@ export const valoresOperations: INodeProperties[] = [
             { 
                 name: 'Verificar Disponibilidad', 
                 value: 'checkAvailability', 
-                description: 'GET Consulta si un valor (cheque) está en cartera disponible' 
-																action: 'Verificar Disponibilidad a valores',
+                description: 'GET Consulta si un valor (cheque) está en cartera disponible', 
+                action: 'Verificar Disponibilidad a valores',
             },
             { 
                 name: 'Verificar Negociado', 
                 value: 'checkNegotiated', 
-                description: 'GET Consulta si un valor ya fue entregado o negociado' 
-																action: 'Verificar Negociado a valores',
+                description: 'GET Consulta si un valor ya fue entregado o negociado', 
+                action: 'Verificar Negociado a valores',
             },
             { 
                 name: 'Último Nro Cheque', 
                 value: 'getLastCheckNumber', 
-                description: 'GET Obtiene el último número emitido de una chequera específica' 
-																action: 'Último Nro Cheque a valores',
+                description: 'GET Obtiene el último número emitido de una chequera específica', 
+                action: 'Último Nro Cheque a valores',
             },
             { 
                 name: 'Listar Valores Recibidos', 
                 value: 'getReceivedValues', 
-                description: 'GET Devuelve la lista de cheques/valores asociados a un recibo' 
-																action: 'Listar Valores Recibidos a valores',
+                description: 'GET Devuelve la lista de cheques/valores asociados a un recibo', 
+                action: 'Listar Valores Recibidos a valores',
             },
             { 
                 name: 'Listar Envíos Electrónicos', 
                 value: 'getElectronicBatches', 
-                description: 'GET Consulta lotes de E-Cheqs enviados al banco' 
-																action: 'Listar Envíos Electrónicos a valores',
+                description: 'GET Consulta lotes de E-Cheqs enviados al banco', 
+                action: 'Listar Envíos Electrónicos a valores',
             },
         ],
         default: 'getReceivedValues',

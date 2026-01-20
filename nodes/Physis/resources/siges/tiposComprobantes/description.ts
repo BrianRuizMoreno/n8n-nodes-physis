@@ -12,57 +12,57 @@ export const tiposComprobanteOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve el catálogo de documentos disponibles' 
-																action: 'Listar Todos a tipos comprobante',
+                description: 'GET Devuelve el catálogo de documentos disponibles', 
+                action: 'Listar Todos a tipos comprobante',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera la configuración completa de un tipo de comprobante' 
-																action: 'Obtener Detalle a tipos comprobante',
+                description: 'GET Recupera la configuración completa de un tipo de comprobante', 
+                action: 'Obtener Detalle a tipos comprobante',
             },
             { 
                 name: 'Crear Tipo', 
                 value: 'create', 
-                description: 'POST Configura un nuevo documento en el sistema' 
-																action: 'Crear Tipo a tipos comprobante',
+                description: 'POST Configura un nuevo documento en el sistema', 
+                action: 'Crear Tipo a tipos comprobante',
             },
             { 
                 name: 'Modificar Tipo', 
                 value: 'update', 
-                description: 'PUT Actualiza reglas de negocio de un documento' 
-																action: 'Modificar Tipo a tipos comprobante',
+                description: 'PUT Actualiza reglas de negocio de un documento', 
+                action: 'Modificar Tipo a tipos comprobante',
             },
             { 
                 name: 'Eliminar Tipo', 
                 value: 'delete', 
-                description: 'DELETE Elimina un tipo de comprobante' 
-																action: 'Eliminar Tipo a tipos comprobante',
+                description: 'DELETE Elimina un tipo de comprobante', 
+                action: 'Eliminar Tipo a tipos comprobante',
             },
             // --- UTILIDADES ---
             { 
                 name: 'Obtener Numeradores', 
                 value: 'getNumerators', 
-                description: 'GET Devuelve los talonarios/puntos de venta asociados a un documento' 
-																action: 'Obtener Numeradores a tipos comprobante',
+                description: 'GET Devuelve los talonarios/puntos de venta asociados a un documento' ,
+                action: 'Obtener Numeradores a tipos comprobante',
             },
             { 
                 name: 'Listar Por Afectación (Debe/Haber)', 
                 value: 'getByAffectation', 
-                description: 'GET Filtra comprobantes según si suman o restan en la cuenta corriente' 
-																action: 'Listar por Afectación (Debe/Haber) a tipos comprobante',
+                description: 'GET Filtra comprobantes según si suman o restan en la cuenta corriente' ,
+                action: 'Listar por Afectación (Debe/Haber) a tipos comprobante',
             },
             { 
                 name: 'Listar Por IVA (Compra/Venta)', 
                 value: 'getByIVA', 
-                description: 'GET Filtra comprobantes según su libro de IVA asociado' 
-																action: 'Listar por IVA (Compra/Venta) a tipos comprobante',
+                description: 'GET Filtra comprobantes según su libro de IVA asociado' ,
+                action: 'Listar por IVA (Compra/Venta) a tipos comprobante',
             },
             { 
                 name: 'Listar Clases', 
                 value: 'getClasses', 
-                description: 'GET Devuelve subtipos o clases para un módulo específico' 
-																action: 'Listar Clases a tipos comprobante',
+                description: 'GET Devuelve subtipos o clases para un módulo específico' ,
+                action: 'Listar Clases a tipos comprobante',
             },
         ],
         default: 'getAll',

@@ -2,85 +2,82 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let idAuxi = 0;
-    let idCtaAuxi = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    if (['get', 'getAddresses', 'createAddress'].includes(operation)) {
-        idAuxi = this.getNodeParameter('idAuxi', index) as number;
-        idCtaAuxi = this.getNodeParameter('idCtaAuxi', index) as string;
-    }
+	switch (operation) {
+		case 'search':
+			endpoint = `${baseUrl}/terceros`;
+			const texto = this.getNodeParameter('texto', index, '') as string;
+			const idAuxiFilter = this.getNodeParameter('idAuxiFilter', index, 0) as number;
+			
+			if (texto) qs.texto = texto;
+			if (idAuxiFilter) qs.idAuxi = idAuxiFilter;
+			break;
+		case 'get':
+			const idAuxiGet = this.getNodeParameter('idAuxi', index) as number;
+			const idCtaAuxiGet = this.getNodeParameter('idCtaAuxi', index) as string;
+			endpoint = `${baseUrl}/terceros/${idAuxiGet}/${idCtaAuxiGet}`;
+			break;
+		case 'getByDocument':
+			endpoint = `${baseUrl}/terceros-nrodoc`;
+			qs.NroDoc = this.getNodeParameter('nroDoc', index) as string;
+			break;
+		case 'query':
+			method = 'POST';
+			endpoint = `${baseUrl}/terceros/consulta`;
+			break;
+		case 'getAddresses':
+			const idAuxiAddr = this.getNodeParameter('idAuxi', index) as number;
+			const idCtaAuxiAddr = this.getNodeParameter('idCtaAuxi', index) as string;
+			endpoint = `${baseUrl}/terceros/${idAuxiAddr}/${idCtaAuxiAddr}/domicilios`;
+			break;
+		case 'createAddress':
+			method = 'POST';
+			const idAuxiCreate = this.getNodeParameter('idAuxi', index) as number;
+			const idCtaAuxiCreate = this.getNodeParameter('idCtaAuxi', index) as string;
+			endpoint = `${baseUrl}/terceros/${idAuxiCreate}/${idCtaAuxiCreate}/domicilios`;
+			
+			body.idAuxi = idAuxiCreate;
+			body.idCtaAuxi = idCtaAuxiCreate;
+			break;
+		case 'getBankAccounts':
+			endpoint = `${baseUrl}/terceroscuentasbancarias`;
+			break;
+		case 'getContacts':
+			endpoint = `${baseUrl}/terceros/contactosreagrupados`;
+			break;
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) { }
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const baseUrl = '/phy2service/api/siges';
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    switch (operation) {
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
 
-        case 'search':
-            method = 'GET';
-            endpoint = `${baseUrl}/terceros`;
-            qs = {
-                texto: this.getNodeParameter('texto', index, '') as string,
-                idAuxi: this.getNodeParameter('idAuxiFilter', index, 0) as number,
-                ...jsonParameters 
-            };
-            if (!qs.idAuxi) delete qs.idAuxi;
-            break;
-        case 'get':
-            method = 'GET';
-            endpoint = `${baseUrl}/terceros/${idAuxi}/${idCtaAuxi}`;
-            break;
-        case 'getByDocument':
-            method = 'GET';
-            endpoint = `${baseUrl}/terceros-nrodoc`;
-            qs = { NroDoc: this.getNodeParameter('nroDoc', index) as string };
-            break;
-        case 'query':
-            method = 'POST';
-            endpoint = `${baseUrl}/terceros/consulta`;
-            body = jsonParameters; 
-            break;
-        case 'getAddresses':
-            method = 'GET';
-            endpoint = `${baseUrl}/terceros/${idAuxi}/${idCtaAuxi}/domicilios`;
-            break;
-        case 'createAddress':
-            method = 'POST';
-            endpoint = `${baseUrl}/terceros/${idAuxi}/${idCtaAuxi}/domicilios`;
-            body = {
-                idAuxi,
-                idCtaAuxi,
-                ...jsonParameters 
-            };
-            break;
-        case 'getBankAccounts':
-            method = 'GET';
-            endpoint = `${baseUrl}/terceroscuentasbancarias`;
-            qs = jsonParameters; 
-            break;
-        case 'getContacts':
-            method = 'GET';
-            endpoint = `${baseUrl}/terceros/contactosreagrupados`;
-            break;
+			if (method === 'POST' || method === 'PUT') {
+				body = { ...body, ...json };
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
 
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

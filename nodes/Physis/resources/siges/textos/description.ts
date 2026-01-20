@@ -11,32 +11,32 @@ export const textosOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de textos predefinidos, filtrados por categoría' 
-																action: 'Listar Textos a textos',
+                description: 'GET Devuelve la lista de textos predefinidos, filtrados por categoría',                
+                action: 'Listar Textos a textos',
             },
             { 
                 name: 'Obtener Texto', 
                 value: 'get', 
-                description: 'GET Recupera el contenido de una plantilla específica' 
-																action: 'Obtener Texto a textos',
+                description: 'GET Recupera el contenido de una plantilla específica',                
+                action: 'Obtener Texto a textos',
             },
             { 
                 name: 'Crear Texto', 
                 value: 'create', 
-                description: 'POST Agrega una nueva leyenda o plantilla al sistema' 
-																action: 'Crear Texto a textos',
+                description: 'POST Agrega una nueva leyenda o plantilla al sistema',                 
+                action: 'Crear Texto a textos',
             },
             { 
                 name: 'Modificar Texto', 
                 value: 'update', 
-                description: 'PUT Actualiza el contenido de un texto existente' 
-																action: 'Modificar Texto a textos',
+                description: 'PUT Actualiza el contenido de un texto existente',                 
+                action: 'Modificar Texto a textos',
             },
             { 
                 name: 'Eliminar Texto', 
                 value: 'delete', 
-                description: 'DELETE Borra un texto predefinido' 
-																action: 'Eliminar Texto a textos',
+                description: 'DELETE Borra un texto predefinido',                
+                action: 'Eliminar Texto a textos',
             },
         ],
         default: 'getAll',

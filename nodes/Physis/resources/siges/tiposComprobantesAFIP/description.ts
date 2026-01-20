@@ -11,32 +11,32 @@ export const tiposComprobantesAfipOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de tipos de comprobantes AFIP configurados' 
-																action: 'Listar Todos a tipos comprobantes afip',
+                description: 'GET Devuelve la lista de tipos de comprobantes AFIP configurados', 
+                action: 'Listar Todos a tipos comprobantes afip',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Obtiene un tipo específico usando su clave compuesta (ID + IVA)' 
-																action: 'Obtener Detalle a tipos comprobantes afip',
+                description: 'GET Obtiene un tipo específico usando su clave compuesta (ID + IVA)' ,
+                action: 'Obtener Detalle a tipos comprobantes afip',
             },
             { 
                 name: 'Crear Tipo', 
                 value: 'create', 
-                description: 'POST Crea una nueva configuración de comprobante AFIP' 
-																action: 'Crear Tipo a tipos comprobantes afip',
+                description: 'POST Crea una nueva configuración de comprobante AFIP', 
+                action: 'Crear Tipo a tipos comprobantes afip',
             },
             { 
                 name: 'Modificar Tipo', 
                 value: 'update', 
-                description: 'PUT Actualiza un tipo existente' 
-																action: 'Modificar Tipo a tipos comprobantes afip',
+                description: 'PUT Actualiza un tipo existente', 
+                action: 'Modificar Tipo a tipos comprobantes afip',
             },
             { 
                 name: 'Eliminar Tipo', 
                 value: 'delete', 
-                description: 'DELETE Elimina una configuración de comprobante AFIP' 
-																action: 'Eliminar Tipo a tipos comprobantes afip',
+                description: 'DELETE Elimina una configuración de comprobante AFIP', 
+                action: 'Eliminar Tipo a tipos comprobantes afip',
             },
         ],
         default: 'getAll',

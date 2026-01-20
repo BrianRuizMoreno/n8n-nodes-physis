@@ -1,4 +1,4 @@
-import { IExecuteFunctions, IDataObject, INodeExecutionData, IBinaryData } from 'n8n-workflow';
+import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow';
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
