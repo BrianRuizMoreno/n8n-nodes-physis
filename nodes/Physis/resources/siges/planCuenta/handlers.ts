@@ -2,59 +2,72 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/planes-cuentas-ppal';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges/planes-cuentas-ppal';
+	let endpoint = baseUrl;
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['create', 'update'].includes(operation)) {
-            body = json;
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
+	switch (operation) {
+		case 'getAll':
+			break;
+		case 'get':
+			endpoint = `${baseUrl}/${id}`;
+			break;
+		case 'create':
+			method = 'POST';
+			break;
+		case 'update':
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${baseUrl}/${id}`;
+			method = 'DELETE';
+			break;
+		case 'getCombo':
+			endpoint = '/phy2service/api/siges/planes-cuentas/combo';
+			break;
+		case 'getFechas':
+			endpoint = `${baseUrl}-fechas`;
+			if (id) qs.idPpal = id;
+			break;
+		case 'getTamano':
+			endpoint = `${baseUrl}/tamaniototal`;
+			break;
+		case 'getEstructura':
+			endpoint = `${baseUrl}/cuentasestructura`;
+			if (id) qs.idPpal = id;
+			break;
 
-    if (operation === 'get') {
-        endpoint = `${endpoint}/${id}`;
-    }
-    else if (operation === 'delete') {
-        endpoint = `${endpoint}/${id}`;
-        method = 'DELETE';
-    }
-    else if (operation === 'create') {
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        method = 'PUT';
-    }
-    
-    else if (operation === 'getCombo') {
-        endpoint = '/phy2service/api/siges/planes-cuentas/combo';
-    }
-    else if (operation === 'getFechas') {
-        endpoint = `${endpoint}-fechas`;
-        if (id) qs.idPpal = id;
-    }
-    else if (operation === 'getTamano') {
-        endpoint = `${endpoint}/tamaniototal`;
-    }
-    else if (operation === 'getEstructura') {
-        endpoint = `${endpoint}/cuentasestructura`;
-        if (id) qs.idPpal = id;
-    }
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

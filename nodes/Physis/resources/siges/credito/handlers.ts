@@ -2,64 +2,84 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let method = 'GET';
-    const body: IDataObject = {};
-    let qs: IDataObject = {};
-    let idAuxi = '';
-    let idCtaAuxi = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try {
-        idAuxi = this.getNodeParameter('id', index) as string;
-        idCtaAuxi = this.getNodeParameter('idCta', index) as string;
-    } catch (e) {}
+	const idAuxi = this.getNodeParameter('id', index, '') as string;
+	const idCtaAuxi = this.getNodeParameter('idCta', index, '') as string;
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (operation === 'upsert') {
-            qs.creditoJson = JSON.stringify(json);
-        } else {
-            qs = { ...qs, ...json };
-        }
-    } catch (e) {}
+	switch (operation) {
+		case 'getAll':
+			endpoint = `${baseUrl}/creditos`;
+			break;
 
-    if (operation === 'getAll') {
-        endpoint = '/phy2service/api/siges/creditos';
-        if (idAuxi) qs.IdAuxi = idAuxi;
-        if (idCtaAuxi) qs.IdCtaAuxi = idCtaAuxi;
-    }
-    else if (operation === 'getTiposBienes') {
-        endpoint = '/phy2service/api/siges/tipobienes';
-    }
-    else if (operation === 'upsert') {
-        endpoint = '/phy2service/api/siges/creditos/insertupdate';
-        method = 'POST';
-    }
-    else if (operation === 'delete') {
-        endpoint = '/phy2service/api/siges/creditos/delete';
-        method = 'POST'; 
-        if (idAuxi) qs.IdAuxi = idAuxi;
-        if (idCtaAuxi) qs.IdCtaAuxi = idCtaAuxi;
-    }
-    else if (operation === 'getDisponible') {
-        endpoint = `/phy2service/api/siges/terceros/${idAuxi}/${idCtaAuxi}/credito-disponible`;
-    }
-    else if (operation === 'getDisponibleDetalle') {
-        const opcion = qs.opcion || '0';
-        endpoint = `/phy2service/api/siges/terceros/${idAuxi}/${idCtaAuxi}/${opcion}/credito-disponible-detalle`;
-        delete qs.opcion; 
-    }
-    else if (operation === 'getFormasCancelacion') {
-        endpoint = '/phy2service/api/siges/terceros/Creditos-Forma-Cancelacion';
-    }
+		case 'getTiposBienes':
+			endpoint = `${baseUrl}/tipobienes`;
+			break;
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+		case 'upsert':
+			endpoint = `${baseUrl}/creditos/insertupdate`;
+			method = 'POST';
+			break;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+		case 'delete':
+			endpoint = `${baseUrl}/creditos/delete`;
+			method = 'POST'; 
+			break;
+
+		case 'getDisponible':
+			endpoint = `${baseUrl}/terceros/${idAuxi}/${idCtaAuxi}/credito-disponible`;
+			break;
+
+		case 'getDisponibleDetalle':
+			endpoint = `${baseUrl}/terceros/${idAuxi}/${idCtaAuxi}/%OPCION%/credito-disponible-detalle`;
+			break;
+
+		case 'getFormasCancelacion':
+			endpoint = `${baseUrl}/terceros/Creditos-Forma-Cancelacion`;
+			break;
+
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
+
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (operation === 'upsert') {
+				qs.creditoJson = JSON.stringify(json);
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	if (['getAll', 'delete'].includes(operation)) {
+		if (idAuxi) qs.IdAuxi = idAuxi;
+		if (idCtaAuxi) qs.IdCtaAuxi = idCtaAuxi;
+	}
+
+	if (operation === 'getDisponibleDetalle') {
+		const opcion = (qs.opcion as string) || '0';
+		endpoint = endpoint.replace('%OPCION%', opcion);
+		if (qs.opcion) delete qs.opcion;
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

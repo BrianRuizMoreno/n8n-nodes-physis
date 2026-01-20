@@ -2,63 +2,73 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/cuentas-reagrupacion-auxi'; 
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrlConsultas = '/phy2service/api/siges/cuentas-reagrupacion-auxi';
+	const baseUrlABM = '/phy2service/api/siges/cuentas-reagrupaciones-auxiliares';
+	
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    try { 
-        const rawJson = JSON.parse(this.getNodeParameter('jsonBody', index) as string) as unknown;
-        
-        if (['create', 'update', 'delete'].includes(operation)) {
-            if (typeof rawJson === 'object' && rawJson !== null && !Array.isArray(rawJson)) {
-                body = rawJson as IDataObject;
-            }
-        } else {
-            if (typeof rawJson === 'object' && rawJson !== null && !Array.isArray(rawJson)) {
-                qs = rawJson as IDataObject;
-            }
-        }
-    } catch (e) {}
+	switch (operation) {
+		case 'getAll':
+			endpoint = baseUrlConsultas;
+			break;
+		case 'get':
+			endpoint = `${baseUrlConsultas}/${id}`;
+			break;
+		case 'getArbol':
+			endpoint = `${baseUrlConsultas}/arbol`;
+			break;
+		case 'getTreeList':
+			endpoint = `${baseUrlConsultas}/treelist`;
+			break;
+		case 'getNext':
+			endpoint = `${baseUrlConsultas}/Next`;
+			if (id) qs.sCuenta = id;
+			break;	
+		case 'create':
+			endpoint = baseUrlABM;
+			method = 'POST';
+			break;
+		case 'update':
+			endpoint = baseUrlABM;
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = baseUrlABM;
+			method = 'DELETE';
+			break;
 
-    if (operation === 'getAll') {
-        endpoint = endpoint;
-    }
-    else if (operation === 'get') {
-        endpoint = `${endpoint}/${id}`;
-    }
-    else if (operation === 'getArbol') {
-        endpoint = `${endpoint}/arbol`;
-    }
-    else if (operation === 'getTreeList') {
-        endpoint = `${endpoint}/treelist`;
-    }
-    else if (operation === 'getNext') {
-        endpoint = `${endpoint}/Next`;
-        if (id) qs.sCuenta = id;
-    }
-    else if (operation === 'create') {
-        endpoint = '/phy2service/api/siges/cuentas-reagrupaciones-auxiliares';
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        endpoint = '/phy2service/api/siges/cuentas-reagrupaciones-auxiliares';
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = '/phy2service/api/siges/cuentas-reagrupaciones-auxiliares';
-        method = 'DELETE';
-    }
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT' || method === 'DELETE') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

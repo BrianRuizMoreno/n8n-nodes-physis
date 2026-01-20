@@ -2,30 +2,52 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let method = 'GET';
-    let qs: IDataObject = {};
-    let idIndicador = '';
-    let idSerie = '';
-    let tasa = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges';
+	let endpoint = '';
+	let method = 'GET';
+	let qs: IDataObject = {};
 
-    try { idIndicador = this.getNodeParameter('idIndicador', index) as string; } catch (e) {}
-    try { idSerie = this.getNodeParameter('idSerie', index) as string; } catch (e) {}
-    try { tasa = this.getNodeParameter('tasa', index) as string; } catch (e) {}
-    try { qs = JSON.parse(this.getNodeParameter('jsonBody', index) as string); } catch (e) {}
+	let idIndicador = this.getNodeParameter('idIndicador', index, '') as string;
+	let idSerie = this.getNodeParameter('idSerie', index, '') as string;
+	let tasa = this.getNodeParameter('tasa', index, '') as string;
 
-    if (operation === 'getTasaDefault') {
-        endpoint = '/phy2service/api/siges/tasa';
-    } else if (operation === 'getTasaSerie') {
-        endpoint = `/phy2service/api/siges/indicadores/${idIndicador}/serie/${idSerie}`;
-    } else if (operation === 'setTasa') {
-        endpoint = `/phy2service/api/siges/indicadores/${idIndicador}/serie/${idSerie}/tasa/${tasa}`;
-        method = 'POST';
-    }
+	switch (operation) {
+		case 'getTasaDefault':
+			endpoint = `${baseUrl}/tasa`;
+			break;
 
-    const response = await transport.request(method, endpoint, {}, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-    return Array.isArray(data) ? data.map(item => ({ json: item })) : [{ json: data }];
+		case 'getTasaSerie':
+			endpoint = `${baseUrl}/indicadores/${idIndicador}/serie/${idSerie}`;
+			break;
+
+		case 'setTasa':
+			endpoint = `${baseUrl}/indicadores/${idIndicador}/serie/${idSerie}/tasa/${tasa}`;
+			method = 'POST';
+			break;
+
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
+
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+			// Merge  con qs
+			qs = { ...qs, ...json };
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, {}, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

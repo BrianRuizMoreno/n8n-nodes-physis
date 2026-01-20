@@ -8,22 +8,14 @@ export const cuentasReagrupacionAuxiOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['cuentasReagrupacionAuxi'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista plana de cuentas. Req filtros: { idAuxi, idReagAuxi }.' 
-																																																							action: 'Listar Cuentas a cuentas reagrupacion auxi',},
-            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura de árbol' 
-																																																				action: 'Ver Árbol a cuentas reagrupacion auxi',},
-            { name: 'Ver TreeList', value: 'getTreeList', description: 'GET Estructura TreeList' 
-																																																										action: 'Ver TreeList a cuentas reagrupacion auxi',},
-            { name: 'Obtener Cuenta', value: 'get', description: 'GET Detalle de una cuenta' 
-																																																				action: 'Obtener Cuenta a cuentas reagrupacion auxi',},
-            { name: 'Obtener Siguiente', value: 'getNext', description: 'GET Próximo código disponible para alta' 
-																																																											action: 'Obtener Siguiente a cuentas reagrupacion auxi',},
-            { name: 'Crear', value: 'create', description: 'POST Inserta una cuenta' 
-																																														action: 'Crear a cuentas reagrupacion auxi',},
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una cuenta' 
-																																																			action: 'Actualizar a cuentas reagrupacion auxi',},
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una cuenta (Req: JSON Body completo)' 
-																																																	action: 'Eliminar a cuentas reagrupacion auxi',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista plana de cuentas. Req filtros: { idAuxi, idReagAuxi }.', action: 'Listar Cuentas a cuentas reagrupacion auxi',},
+            { name: 'Ver Árbol', value: 'getArbol', description: 'GET Estructura de árbol', action: 'Ver Árbol a cuentas reagrupacion auxi',},
+            { name: 'Ver TreeList', value: 'getTreeList', description: 'GET Estructura TreeList', action: 'Ver TreeList a cuentas reagrupacion auxi',},
+            { name: 'Obtener Cuenta', value: 'get', description: 'GET Detalle de una cuenta', action: 'Obtener Cuenta a cuentas reagrupacion auxi',},
+            { name: 'Obtener Siguiente', value: 'getNext', description: 'GET Próximo código disponible para alta', action: 'Obtener Siguiente a cuentas reagrupacion auxi',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta una cuenta', action: 'Crear a cuentas reagrupacion auxi',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica una cuenta', action: 'Actualizar a cuentas reagrupacion auxi',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina una cuenta (Req: JSON Body completo)', action: 'Eliminar a cuentas reagrupacion auxi',},
         ],
         default: 'getAll',
     },

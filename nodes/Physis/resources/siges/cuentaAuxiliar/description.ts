@@ -12,51 +12,51 @@ export const cuentasAuxiOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve el listado completo de cuentas auxiliares' 
-																action: 'Listar Todas a cuentas auxi',
+                description: 'GET Devuelve el listado completo de cuentas auxiliares',
+                action: 'Listar Todas a cuentas auxi',
             },
             { 
                 name: 'Obtener Por Código', 
                 value: 'get', 
-                description: 'GET Recupera el detalle de una cuenta auxiliar por su código alfanumérico (idCtaAuxi)' 
-																action: 'Obtener por Código a cuentas auxi',
+                description: 'GET Recupera el detalle de una cuenta auxiliar por su código alfanumérico (idCtaAuxi)',
+                action: 'Obtener por Código a cuentas auxi',
             },
             { 
                 name: 'Listar Por Plan (Rubro)', 
                 value: 'getByPlan', 
-                description: 'GET Obtiene las cuentas pertenecientes a un Plan Auxiliar específico (ej: Clientes)' 
-																action: 'Listar por Plan (Rubro) a cuentas auxi',
+                description: 'GET Obtiene las cuentas pertenecientes a un Plan Auxiliar específico (ej: Clientes)',
+                action: 'Listar por Plan (Rubro) a cuentas auxi',
             },
             { 
                 name: 'Obtener Siguiente Código', 
                 value: 'getNextId', 
-                description: 'GET Sugiere el próximo código disponible para crear una cuenta nueva' 
-																action: 'Obtener Siguiente Código a cuentas auxi',
+                description: 'GET Sugiere el próximo código disponible para crear una cuenta nueva',
+                action: 'Obtener Siguiente Código a cuentas auxi',
             },
             { 
                 name: 'Vista Árbol (Tree)', 
                 value: 'getTree', 
-                description: 'GET Estructura jerárquica para selectores' 
-																action: 'Vista Árbol (Tree) a cuentas auxi',
+                description: 'GET Estructura jerárquica para selectores',
+                action: 'Vista Árbol (Tree) a cuentas auxi',
             },
             // --- GESTIÓN ---
             { 
                 name: 'Crear Cuenta Auxiliar', 
                 value: 'create', 
-                description: 'POST Alta de una nueva cuenta auxiliar (Requiere estructura completa en JSON)' 
-																action: 'Crear Cuenta Auxiliar a cuentas auxi',
+                description: 'POST Alta de una nueva cuenta auxiliar (Requiere estructura completa en JSON)',
+                action: 'Crear Cuenta Auxiliar a cuentas auxi',
             },
             { 
                 name: 'Actualizar Cuenta', 
                 value: 'update', 
-                description: 'PUT Modifica una cuenta existente' 
-																action: 'Actualizar Cuenta a cuentas auxi',
+                description: 'PUT Modifica una cuenta existente',
+                action: 'Actualizar Cuenta a cuentas auxi',
             },
             { 
                 name: 'Eliminar Cuenta', 
                 value: 'delete', 
-                description: 'DELETE Borra una cuenta auxiliar (Requiere parámetros de identificación)' 
-																action: 'Eliminar Cuenta a cuentas auxi',
+                description: 'DELETE Borra una cuenta auxiliar (Requiere parámetros de identificación)',
+                action: 'Eliminar Cuenta a cuentas auxi',
             },
         ],
         default: 'getAll',

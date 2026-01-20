@@ -11,32 +11,32 @@ export const comprobantePendienteOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve comprobantes pendientes de autorización, envío a AFIP o procesamiento' 
-																action: 'Listar Pendientes (Proceso) a comprobante pendiente',
+                description: 'GET Devuelve comprobantes pendientes de autorización, envío a AFIP o procesamiento',
+                action: 'Listar Pendientes (Proceso) a comprobante pendiente',
             },
             { 
                 name: 'Listar Detallado', 
                 value: 'getDetailed', 
-                description: 'GET Igual que Listar, pero incluye datos extendidos del tercero' 
-																action: 'Listar Detallado a comprobante pendiente',
+                description: 'GET Igual que Listar, pero incluye datos extendidos del tercero',
+                action: 'Listar Detallado a comprobante pendiente',
             },
             { 
                 name: 'Obtener Detalle', 
                 value: 'get', 
-                description: 'GET Recupera un comprobante pendiente específico' 
-																action: 'Obtener Detalle a comprobante pendiente',
+                description: 'GET Recupera un comprobante pendiente específico',
+                action: 'Obtener Detalle a comprobante pendiente',
             },
             { 
                 name: 'Obtener Resumen (Cantidades)', 
                 value: 'getSummary', 
-                description: 'GET Devuelve conteos agrupados de pendientes' 
-																action: 'Obtener Resumen (Cantidades) a comprobante pendiente',
+                description: 'GET Devuelve conteos agrupados de pendientes',
+                action: 'Obtener Resumen (Cantidades) a comprobante pendiente',
             },
             { 
                 name: 'Contar Errores', 
                 value: 'getErrorCounts', 
-                description: 'GET Devuelve cantidad de comprobantes con errores de validación' 
-																action: 'Contar Errores a comprobante pendiente',
+                description: 'GET Devuelve cantidad de comprobantes con errores de validación',
+                action: 'Contar Errores a comprobante pendiente',
             },
         ],
         default: 'getAll',

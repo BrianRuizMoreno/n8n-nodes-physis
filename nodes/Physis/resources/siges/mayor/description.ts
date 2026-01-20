@@ -8,10 +8,8 @@ export const mayorOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['mayor'] } },
         options: [
-            { name: 'Consultar Mayor', value: 'getMayor', description: 'GET Devuelve el Libro Mayor. Filtros en JSON.' 
-																																																										action: 'Consultar Mayor a mayor',},
-            { name: 'Comprobantes Referenciados', value: 'getReferenciados', description: 'GET Devuelve comprobantes relacionados a una línea del mayor' 
-																																																																													action: 'Comprobantes Referenciados a mayor',},
+            { name: 'Consultar Mayor', value: 'getMayor', description: 'GET Devuelve el Libro Mayor. Filtros en JSON.', action: 'Consultar Mayor a mayor',},
+            { name: 'Comprobantes Referenciados', value: 'getReferenciados', description: 'GET Devuelve comprobantes relacionados a una línea del mayor', action: 'Comprobantes Referenciados a mayor',},
         ],
         default: 'getMayor',
     },

@@ -11,8 +11,8 @@ export const vencimientosOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Vencimientos Reagrupados', 
                 value: 'getGroupedMaturities', 
-                description: 'GET Devuelve proyecciones de deuda agrupadas por criterios auxiliares (Zonas, Actividades)' 
-																action: 'Obtener Vencimientos Reagrupados a vencimientos',
+                description: 'GET Devuelve proyecciones de deuda agrupadas por criterios auxiliares (Zonas, Actividades)', 
+			    action: 'Obtener Vencimientos Reagrupados a vencimientos',
             },
         ],
         default: 'getGroupedMaturities',

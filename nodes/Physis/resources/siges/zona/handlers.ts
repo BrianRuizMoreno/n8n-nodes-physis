@@ -2,43 +2,60 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges';
+	let endpoint = '';
+	let method = 'GET'; 
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        qs = json;
-    } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    if (operation === 'getPaises') {
-        endpoint = '/phy2service/api/siges/paises';
-    }
-    else if (operation === 'getPais') {
-        endpoint = `/phy2service/api/siges/paises/${id}`;
-    }
-    else if (operation === 'getProvincias') {
-        endpoint = '/phy2service/api/siges/provincias';
-    }
-    else if (operation === 'getProvincia') {
-        endpoint = `/phy2service/api/siges/provincias/${id}`;
-    }
-    
-    else if (operation === 'getZonas') {
-        endpoint = '/phy2service/api/siges/zonas';
-    }
-    else if (operation === 'getLugares') {
-        endpoint = '/phy2service/api/siges/lugares';
-    }
+	switch (operation) {
+		// --- PAISES ---
+		case 'getPaises':
+			endpoint = `${baseUrl}/paises`;
+			break;
+		case 'getPais':
+			endpoint = `${baseUrl}/paises/${id}`;
+			break;
 
-    const response = await transport.request('GET', endpoint, {}, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+		// --- PROVINCIAS ---
+		case 'getProvincias':
+			endpoint = `${baseUrl}/provincias`;
+			break;
+		case 'getProvincia':
+			endpoint = `${baseUrl}/provincias/${id}`;
+			break;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+		// --- ZONAS Y LUGARES ---
+		case 'getZonas':
+			endpoint = `${baseUrl}/zonas`;
+			break;
+		case 'getLugares':
+			endpoint = `${baseUrl}/lugares`;
+			break;
+
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
+
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+			qs = { ...qs, ...json };
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, {}, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

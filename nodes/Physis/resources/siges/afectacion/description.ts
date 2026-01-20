@@ -11,14 +11,14 @@ export const afectacionOperations: INodeProperties[] = [
             { 
                 name: 'Listar Pendientes De Afectar', 
                 value: 'getPending', 
-                description: 'GET Busca comprobantes (facturas o pagos) que tienen saldo disponible para ser imputado' 
-																action: 'Listar Pendientes de Afectar an afectacion',
+                description: 'GET Busca comprobantes (facturas o pagos) que tienen saldo disponible para ser imputado',
+                action: 'Listar Pendientes de Afectar an afectacion',
             },
             { 
                 name: 'Ver Detalle De Afectación', 
                 value: 'getAffectedDetails', 
-                description: 'GET Consulta cómo fue aplicado/imputado un comprobante específico' 
-																action: 'Ver Detalle de Afectación an afectacion',
+                description: 'GET Consulta cómo fue aplicado/imputado un comprobante específico',
+                action: 'Ver Detalle de Afectación an afectacion',
             },
         ],
         default: 'getPending',

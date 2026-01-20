@@ -12,46 +12,46 @@ export const billeterasOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve el listado de billeteras configuradas' 
-																action: 'Listar Billeteras a billeteras',
+                description: 'GET Devuelve el listado de billeteras configuradas',
+                action: 'Listar Billeteras a billeteras',
             },
             { 
                 name: 'Obtener Billetera', 
                 value: 'get', 
-                description: 'GET Obtiene datos de una billetera específica por ID Auxiliar' 
-																action: 'Obtener Billetera a billeteras',
+                description: 'GET Obtiene datos de una billetera específica por ID Auxiliar',
+                action: 'Obtener Billetera a billeteras',
             },
             // --- SINCRONIZACIÓN ---
             { 
                 name: 'Listar Movimientos Pendientes', 
                 value: 'getPendingMovements', 
-                description: 'GET Obtiene movimientos de Physis no informados a la billetera' 
-																action: 'Listar Movimientos Pendientes a billeteras',
+                description: 'GET Obtiene movimientos de Physis no informados a la billetera',
+                action: 'Listar Movimientos Pendientes a billeteras',
             },
             { 
                 name: 'Actualizar Estado Movimiento', 
                 value: 'updateMovementStatus', 
-                description: 'PUT Marca un movimiento como informado o procesado' 
-																action: 'Actualizar Estado Movimiento a billeteras',
+                description: 'PUT Marca un movimiento como informado o procesado',
+                action: 'Actualizar Estado Movimiento a billeteras',
             },
             // --- OPERACIONES ---
             { 
                 name: 'Insertar Operación (QR)', 
                 value: 'createOperation', 
-                description: 'POST Ingresa una compra o transacción desde la Billetera a Physis' 
-																action: 'Insertar Operación (QR) a billeteras',
+                description: 'POST Ingresa una compra o transacción desde la Billetera a Physis',
+                action: 'Insertar Operación (QR) a billeteras',
             },
             { 
                 name: 'Procesar Balance Diario', 
                 value: 'processDailyBalance', 
-                description: 'POST Procesa el resumen diario del banco para conciliación' 
-																action: 'Procesar Balance Diario a billeteras',
+                description: 'POST Procesa el resumen diario del banco para conciliación',
+                action: 'Procesar Balance Diario a billeteras',
             },
             { 
                 name: 'Refrescar Saldos', 
                 value: 'refreshBalances', 
-                description: 'POST Fuerza la actualización de saldos para cuentas con movimientos del día' 
-																action: 'Refrescar Saldos a billeteras',
+                description: 'POST Fuerza la actualización de saldos para cuentas con movimientos del día',
+                action: 'Refrescar Saldos a billeteras',
             },
         ],
         default: 'getAll',

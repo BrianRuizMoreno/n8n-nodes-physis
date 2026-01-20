@@ -2,65 +2,85 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias';
-    let method = 'GET';
-    const body: IDataObject = {};
-    let qs: IDataObject = {};
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrlBancarias = '/phy2service/api/siges/cuentas-corrientes-bancarias';
+	const baseUrlGenerica = '/phy2service/api/siges/cuentas-corrientes';
+	
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    try { 
-        const json = JSON.parse(this.getNodeParameter('jsonBody', index) as string);
-        
-        if (['insert', 'update'].includes(operation)) {
-            qs.cuentaCte = JSON.stringify(json);
-        } else {
-            qs = json;
-        }
-    } catch (e) {}
+	switch (operation) {
+		case 'getAll':
+			endpoint = baseUrlBancarias;
+			break;
+		case 'get':
+			endpoint = `${baseUrlBancarias}/${id}`;
+			break;		
+		case 'insert':
+			endpoint = `${baseUrlGenerica}/insert`;
+			break;
+		case 'update':
+			endpoint = `${baseUrlGenerica}/update`;
+			break;
+		case 'delete':
+			endpoint = baseUrlGenerica;
+			method = 'DELETE';
+			break;
 
-    if (operation === 'getAll') {
-    }
-    else if (operation === 'get') {
-        endpoint = `${endpoint}/${id}`; 
-    }
-    else if (operation === 'insert') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes/insert';
-    }
-    else if (operation === 'update') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes/update';
-    }
-    else if (operation === 'delete') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes';
-        method = 'DELETE';
-    }
-        else if (operation === 'getArbol') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes/arbol';
-    }
-    else if (operation === 'getMedios') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias/medios';
-    }
-    else if (operation === 'getMediosDesc') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias-medios';
-    }
-    else if (operation === 'getMediosPorBanco') {
-        endpoint = `/phy2service/api/siges/cuentas-corrientes-bancarias-medios/${qs.IdBanco || ''}`;
-        delete qs.IdBanco; 
-    }
-    else if (operation === 'getExportaOP') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias-ExportaOP';
-    }
-    else if (operation === 'getFiltroElectronico') {
-        endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias-defecto-filtro-electronico';
-    }
+		case 'getArbol':
+			endpoint = `${baseUrlGenerica}/arbol`;
+			break;
+		case 'getMedios':
+			endpoint = `${baseUrlBancarias}/medios`;
+			break;
+		case 'getMediosDesc':
+			endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias-medios';
+			break;
+		case 'getMediosPorBanco':
+			endpoint = `/phy2service/api/siges/cuentas-corrientes-bancarias-medios/%IDBANCO%`;
+			break;
+		case 'getExportaOP':
+			endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias-ExportaOP';
+			break;
+		case 'getFiltroElectronico':
+			endpoint = '/phy2service/api/siges/cuentas-corrientes-bancarias-defecto-filtro-electronico';
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (['insert', 'update'].includes(operation)) {
+				qs.cuentaCte = JSON.stringify(json);
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+		if (operation === 'getMediosPorBanco') {
+		const idBanco = (qs.IdBanco as string) || '';
+		endpoint = endpoint.replace('%IDBANCO%', idBanco);
+		if (qs.IdBanco) delete qs.IdBanco;
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

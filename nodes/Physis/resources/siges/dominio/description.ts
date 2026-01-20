@@ -8,10 +8,8 @@ export const dominioOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['dominio'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve lista de dominios (máscaras, configuraciones)' 
-																																																					action: 'Listar Todos a dominio',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un dominio específico' 
-																																																				action: 'Obtener por ID a dominio',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Devuelve lista de dominios (máscaras, configuraciones)', action: 'Listar Todos a dominio',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Devuelve un dominio específico', action: 'Obtener por ID a dominio',},
         ],
         default: 'getAll',
     },

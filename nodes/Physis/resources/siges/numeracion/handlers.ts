@@ -2,74 +2,80 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '/phy2service/api/siges/numeradores';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
-    
-    let id = '';
-    let idEjercicio = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrlGlobal = '/phy2service/api/siges/numeradores';
+	const baseUrlEjercicio = '/phy2service/api/siges/ejercicios';
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
-    try { idEjercicio = this.getNodeParameter('idEjercicio', index) as string; } catch (e) {}
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    try { 
-        const rawJson = JSON.parse(this.getNodeParameter('jsonBody', index) as string) as unknown;
-        if (typeof rawJson === 'object' && rawJson !== null && !Array.isArray(rawJson)) {
-            if (['create', 'update'].includes(operation)) {
-                body = rawJson as IDataObject;
-            } else {
-                qs = rawJson as IDataObject;
-            }
-        }
-    } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
+	const idEjercicio = this.getNodeParameter('idEjercicio', index, '') as string;
 
+	switch (operation) {
+		case 'getAll':
+			endpoint = idEjercicio 
+				? `${baseUrlEjercicio}/${idEjercicio}/numeradores` 
+				: baseUrlGlobal;
+			break;
+		case 'get':
+			endpoint = idEjercicio 
+				? `${baseUrlEjercicio}/${idEjercicio}/numeradores/${id}` 
+				: `${baseUrlGlobal}/${id}`;
+			break;
+		case 'create':
+			endpoint = baseUrlGlobal;
+			method = 'POST';
+			break;
+		case 'update':
+			endpoint = baseUrlGlobal;
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = baseUrlGlobal;
+			method = 'DELETE';
+			qs.idNumerador = id;
+			break;
+		case 'getByPrefixType':
+			endpoint = '/phy2service/api/siges/numeradores-prefijos';
+			break;
+		case 'getOrigin':
+			endpoint = '/phy2service/api/siges/numeradores-origen';
+			qs.idNumerador = id;
+			break;
+		case 'getLastNumberNoPrefix':
+			endpoint = `/phy2service/api/siges/numeradores-sin-prefijo/${id}`;
+			if (idEjercicio) qs.IdEjercicio = idEjercicio;
+			break;
 
-    if (operation === 'getAll') {
-        if (idEjercicio) {
-            endpoint = `/phy2service/api/siges/ejercicios/${idEjercicio}/numeradores`;
-        } else {
-            endpoint = '/phy2service/api/siges/numeradores';
-        }
-    }
-    else if (operation === 'get') {
-        if (idEjercicio) {
-            endpoint = `/phy2service/api/siges/ejercicios/${idEjercicio}/numeradores/${id}`;
-        } else {
-            endpoint = `/phy2service/api/siges/numeradores/${id}`;
-        }
-    }
-    else if (operation === 'create') {
-        endpoint = '/phy2service/api/siges/numeradores';
-        method = 'POST';
-    }
-    else if (operation === 'update') {
-        endpoint = '/phy2service/api/siges/numeradores';
-        method = 'PUT';
-    }
-    else if (operation === 'delete') {
-        endpoint = '/phy2service/api/siges/numeradores';
-        method = 'DELETE';
-        qs.idNumerador = id; 
-    }
-    else if (operation === 'getByPrefixType') {
-        endpoint = '/phy2service/api/siges/numeradores-prefijos';
-    }
-    else if (operation === 'getOrigin') {
-        endpoint = '/phy2service/api/siges/numeradores-origen';
-        qs.idNumerador = id;
-    }
-    else if (operation === 'getLastNumberNoPrefix') {
-        endpoint = `/phy2service/api/siges/numeradores-sin-prefijo/${id}`;
-        if (idEjercicio) qs.IdEjercicio = idEjercicio;
-    }
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

@@ -2,89 +2,92 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let method = 'GET';
-    let body: IDataObject = {};
-    let qs: IDataObject = {};
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
 
-    const baseUrl = '/phy2service/api/siges';
-    const origen = this.getNodeParameter('origen', index, 0) as number;
+	const origen = this.getNodeParameter('origen', index, 0) as number;
 
-    let jsonParameters: IDataObject = {};
-    try {
-        const jsonString = this.getNodeParameter('jsonBody', index) as string;
-        jsonParameters = JSON.parse(jsonString);
-    } catch (e) { }
+	switch (operation) {
+		case 'listDashboards':
+			endpoint = `${baseUrl}/tableros`;
+			qs = { Origen: origen };
+			break;
 
-    switch (operation) {
-        case 'listDashboards':
-            method = 'GET';
-            endpoint = `${baseUrl}/tableros`;
-            qs = { Origen: origen };
-            break;
+		case 'getDashboardData':
+			endpoint = `${baseUrl}/tablero`;
+			const fechaDesde = this.getNodeParameter('fechaDesde', index, '') as string;
+			const fechaHasta = this.getNodeParameter('fechaHasta', index, '') as string;
 
-        case 'getDashboardData':
-            method = 'GET';
-            endpoint = `${baseUrl}/tablero`;
-            qs = {
-                Origen: origen,
-                IdGrupo: this.getNodeParameter('idGrupo', index) as number,
-                IdTablero: this.getNodeParameter('idTablero', index) as number,
-                FechaDesde: this.getNodeParameter('fechaDesde', index, '') as string,
-                FechaHasta: this.getNodeParameter('fechaHasta', index, '') as string
-            };
-            if (!qs.FechaDesde) delete qs.FechaDesde;
-            if (!qs.FechaHasta) delete qs.FechaHasta;
-            break;
+			qs = {
+				Origen: origen,
+				IdGrupo: this.getNodeParameter('idGrupo', index) as number,
+				IdTablero: this.getNodeParameter('idTablero', index) as number,
+			};
 
-        case 'createDashboard':
-            method = 'POST';
-            endpoint = `${baseUrl}/tablero`;
-            body = {
-                origen,
-                ...jsonParameters
-            };
-            break;
+			if (fechaDesde) qs.FechaDesde = fechaDesde;
+			if (fechaHasta) qs.FechaHasta = fechaHasta;
+			break;
 
-        case 'updateDashboard':
-            method = 'PUT';
-            endpoint = `${baseUrl}/tablero`;
-            body = {
-                origen,
-                ...jsonParameters
-            };
-            break;
+		case 'createDashboard':
+			endpoint = `${baseUrl}/tablero`;
+			method = 'POST';
+			body = { origen };
+			break;
 
-        case 'getGridConfig':
-            method = 'GET';
-            endpoint = `${baseUrl}/aggrid`;
-            qs = {
-                Origen: origen,
-                Grilla: this.getNodeParameter('grillaName', index) as string,
-                IdUsuario: this.getNodeParameter('idUsuario', index, 0) as number
-            };
-            break;
+		case 'updateDashboard':
+			endpoint = `${baseUrl}/tablero`;
+			method = 'PUT';
+			body = { origen };
+			break;
 
-        case 'updateGridConfig':
-            method = 'PUT';
-            endpoint = `${baseUrl}/aggrid`;
-            body = {
-                origen,
-                grilla: this.getNodeParameter('grillaName', index) as string,
-                ...jsonParameters
-            };
-            break;
+		case 'getGridConfig':
+			endpoint = `${baseUrl}/aggrid`;
+			qs = {
+				Origen: origen,
+				Grilla: this.getNodeParameter('grillaName', index) as string,
+				IdUsuario: this.getNodeParameter('idUsuario', index, 0) as number
+			};
+			break;
 
-        default:
-            throw new Error(`La operación "${operation}" no está soportada o no existe.`);
-    }
+		case 'updateGridConfig':
+			endpoint = `${baseUrl}/aggrid`;
+			method = 'PUT';
+			body = {
+				origen,
+				grilla: this.getNodeParameter('grillaName', index) as string
+			};
+			break;
 
-    const response = await transport.request(method, endpoint, body, qs) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    return Array.isArray(data) 
-        ? data.map((item) => ({ json: item })) 
-        : [{ json: data as IDataObject }];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = { ...body, ...json };
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

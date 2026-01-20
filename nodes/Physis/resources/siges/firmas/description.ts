@@ -11,14 +11,14 @@ export const firmasOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Firma', 
                 value: 'get', 
-                description: 'GET Recupera una firma digitalizada y sus adjuntos' 
-																action: 'Obtener Firma a firmas',
+                description: 'GET Recupera una firma digitalizada y sus adjuntos',
+                action: 'Obtener Firma a firmas',
             },
             { 
                 name: 'Guardar Firma', 
                 value: 'create', 
-                description: 'POST Guarda una nueva firma junto con hasta 2 imágenes de respaldo (DNI/Lugar)' 
-																action: 'Guardar Firma a firmas',
+                description: 'POST Guarda una nueva firma junto con hasta 2 imágenes de respaldo (DNI/Lugar)',
+                action: 'Guardar Firma a firmas',
             },
         ],
         default: 'get',

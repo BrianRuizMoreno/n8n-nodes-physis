@@ -11,38 +11,38 @@ export const cuentasTempOperations: INodeProperties[] = [
             { 
                 name: 'Iniciar/Limpiar Selección', 
                 value: 'clean', 
-                description: 'GET Inicializa una sesión temporal o limpia la existente' 
-																action: 'Iniciar/Limpiar Selección a cuentas temp',
+                description: 'GET Inicializa una sesión temporal o limpia la existente',
+                action: 'Iniciar/Limpiar Selección a cuentas temp',
             },
             { 
                 name: 'Seleccionar Cuentas Principales', 
                 value: 'insertPrincipal', 
-                description: 'GET Agrega cuentas contables principales a la selección temporal' 
-																action: 'Seleccionar Cuentas Principales a cuentas temp',
+                description: 'GET Agrega cuentas contables principales a la selección temporal',
+                action: 'Seleccionar Cuentas Principales a cuentas temp',
             },
             { 
                 name: 'Seleccionar Auxiliares (Terceros)', 
                 value: 'insertAuxiliary', 
-                description: 'GET Agrega clientes/proveedores específicos a la selección' 
-																action: 'Seleccionar Auxiliares (Terceros) a cuentas temp',
+                description: 'GET Agrega clientes/proveedores específicos a la selección',
+                action: 'Seleccionar Auxiliares (Terceros) a cuentas temp',
             },
             { 
                 name: 'Seleccionar Todos Los Auxiliares', 
                 value: 'insertAllAuxiliary', 
-                description: 'GET Agrega masivamente todos los terceros de un plan' 
-																action: 'Seleccionar Todos los Auxiliares a cuentas temp',
+                description: 'GET Agrega masivamente todos los terceros de un plan',
+                action: 'Seleccionar Todos los Auxiliares a cuentas temp',
             },
             { 
                 name: 'Seleccionar Reagrupación Principal', 
                 value: 'insertRegroupingPrincipal', 
-                description: 'GET Agrega centros de costo o rubros principales' 
-																action: 'Seleccionar Reagrupación Principal a cuentas temp',
+                description: 'GET Agrega centros de costo o rubros principales',
+                action: 'Seleccionar Reagrupación Principal a cuentas temp',
             },
             { 
                 name: 'Seleccionar Reagrupación Auxiliar', 
                 value: 'insertRegroupingAuxiliary', 
-                description: 'GET Agrega rubros de terceros (ej: Zonas, Actividades)' 
-																action: 'Seleccionar Reagrupación Auxiliar a cuentas temp',
+                description: 'GET Agrega rubros de terceros (ej: Zonas, Actividades)',
+                action: 'Seleccionar Reagrupación Auxiliar a cuentas temp',
             },
         ],
         default: 'clean',

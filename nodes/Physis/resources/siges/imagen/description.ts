@@ -9,26 +9,16 @@ export const imagenOperations: INodeProperties[] = [
         displayOptions: { show: { service: ['siges'], resource: ['imagen'] } },
         options: [
 
-			{ name: 'Get Many', value: 'getAll', description: 'GET Lista imágenes de un comprobante' 
-																																																action: 'Imágenes: Listar an imagen',},
-            { name: 'Imágenes: Obtener', value: 'get', description: 'GET Descarga una imagen específica' 
-																																																							action: 'Imágenes: Obtener an imagen',},
-            { name: 'Imágenes: Insertar', value: 'create', description: 'POST Sube una nueva imagen' 
-																																																											action: 'Imágenes: Insertar an imagen',},
-            { name: 'Imágenes: Actualizar', value: 'update', description: 'PUT Actualiza datos de una imagen' 
-																																																													action: 'Imágenes: Actualizar an imagen',},
-            { name: 'Imágenes: Eliminar', value: 'delete', description: 'DELETE Borra una imagen' 
-																																																											action: 'Imágenes: Eliminar an imagen',},
-            { name: 'PDF: Comprobante', value: 'getPdfComprobante', description: 'GET Descarga PDF del comprobante' 
-																																																																				action: 'PDF: Comprobante an imagen',},
-            { name: 'PDF: AFIP', value: 'getPdfAfip', description: 'GET Descarga PDF liquidación AFIP' 
-																																																						action: 'PDF: AFIP an imagen',},
-            { name: 'PDF: OPRC Detalle', value: 'getPdfOprc', description: 'GET Descarga PDF detalle OPRC' 
-																																																														action: 'PDF: OPRC Detalle an imagen',},
-            { name: 'Certificados: Listar', value: 'getCertificadosList', description: 'GET Lista certificados de retención' 
-																																																																										action: 'Certificados: Listar an imagen',},
-            { name: 'Certificados: PDF', value: 'getPdfCertificado', description: 'GET Descarga PDF de un certificado' 
-																																																																					action: 'Certificados: PDF an imagen',},
+			{ name: 'Get Many', value: 'getAll', description: 'GET Lista imágenes de un comprobante', action: 'Imágenes: Listar an imagen',},
+            { name: 'Imágenes: Obtener', value: 'get', description: 'GET Descarga una imagen específica', action: 'Imágenes: Obtener an imagen',},
+            { name: 'Imágenes: Insertar', value: 'create', description: 'POST Sube una nueva imagen', action: 'Imágenes: Insertar an imagen',},
+            { name: 'Imágenes: Actualizar', value: 'update', description: 'PUT Actualiza datos de una imagen', action: 'Imágenes: Actualizar an imagen',},
+            { name: 'Imágenes: Eliminar', value: 'delete', description: 'DELETE Borra una imagen', action: 'Imágenes: Eliminar an imagen',},
+            { name: 'PDF: Comprobante', value: 'getPdfComprobante', description: 'GET Descarga PDF del comprobante', action: 'PDF: Comprobante an imagen',},
+            { name: 'PDF: AFIP', value: 'getPdfAfip', description: 'GET Descarga PDF liquidación AFIP', action: 'PDF: AFIP an imagen',},
+            { name: 'PDF: OPRC Detalle', value: 'getPdfOprc', description: 'GET Descarga PDF detalle OPRC', action: 'PDF: OPRC Detalle an imagen',},
+            { name: 'Certificados: Listar', value: 'getCertificadosList', description: 'GET Lista certificados de retención', action: 'Certificados: Listar an imagen',},
+            { name: 'Certificados: PDF', value: 'getPdfCertificado', description: 'GET Descarga PDF de un certificado', action: 'Certificados: PDF an imagen',},
         ],
         default: 'getAll',
     },

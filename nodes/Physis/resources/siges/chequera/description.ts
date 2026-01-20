@@ -8,20 +8,13 @@ export const chequeraOperations: INodeProperties[] = [
         noDataExpression: true,
         displayOptions: { show: { service: ['siges'], resource: ['chequera'] } },
         options: [
-            { name: 'Get Many', value: 'getAll', description: 'GET Lista chequeras. Filtros en JSON (ej: IdBanco).' 
-																																																					action: 'Listar Todas a chequera',},
-            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una chequera (Requiere clave compuesta)' 
-																																																				action: 'Obtener por ID a chequera',},
-            { name: 'Crear', value: 'create', description: 'POST Inserta chequera' 
-																																														action: 'Crear a chequera',},
-            { name: 'Actualizar', value: 'update', description: 'PUT Modifica chequera' 
-																																																			action: 'Actualizar a chequera',},
-            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina chequera (Requiere clave compuesta)' 
-																																																	action: 'Eliminar a chequera',},
-            { name: 'Próximo ID', value: 'getNext', description: 'GET Próximo número disponible. Filtros en JSON.' 
-																																																				action: 'Próximo ID a chequera',},
-            { name: 'Filtro Electrónico', value: 'getByFiltroElectronico', description: 'GET Chequeras por defecto/electrónicas' 
-																																																																											action: 'Filtro Electrónico a chequera',},
+            { name: 'Get Many', value: 'getAll', description: 'GET Lista chequeras. Filtros en JSON (ej: IdBanco).', action: 'Listar Todas a chequera',},
+            { name: 'Obtener Por ID', value: 'get', description: 'GET Datos de una chequera (Requiere clave compuesta)', action: 'Obtener por ID a chequera',},
+            { name: 'Crear', value: 'create', description: 'POST Inserta chequera', action: 'Crear a chequera',},
+            { name: 'Actualizar', value: 'update', description: 'PUT Modifica chequera', action: 'Actualizar a chequera',},
+            { name: 'Eliminar', value: 'delete', description: 'DELETE Elimina chequera (Requiere clave compuesta)', action: 'Eliminar a chequera',},
+            { name: 'Próximo ID', value: 'getNext', description: 'GET Próximo número disponible. Filtros en JSON.', action: 'Próximo ID a chequera',},
+            { name: 'Filtro Electrónico', value: 'getByFiltroElectronico', description: 'GET Chequeras por defecto/electrónicas', action: 'Filtro Electrónico a chequera',},
         ],
         default: 'getAll',
     },

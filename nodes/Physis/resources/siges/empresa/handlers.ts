@@ -2,19 +2,48 @@ import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow
 import { PhysisTransport } from '../../../transport/transport';
 
 export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
-    const operation = this.getNodeParameter('operation', index) as string;
-    const transport = new PhysisTransport(this);
-    let endpoint = '';
-    let id = '';
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/siges/empresas';
+	let endpoint = '';
+	let method = 'GET'; 
+	let qs: IDataObject = {};
 
-    try { id = this.getNodeParameter('id', index) as string; } catch (e) {}
+	const id = this.getNodeParameter('id', index, '') as string;
 
-    if (operation === 'getCurrent') endpoint = '/phy2service/api/siges/empresas';
-    else if (operation === 'getCurrentName') endpoint = '/phy2service/api/siges/empresas/nombre';
-    else if (operation === 'getApps') endpoint = '/phy2service/api/siges/empresas/aplicaciones';
-    else if (operation === 'getByCuit') endpoint = `/phy2service/api/siges/empresas/${id}`; 
+	switch (operation) {
+		case 'getCurrent':
+			endpoint = baseUrl;
+			break;
+		case 'getCurrentName':
+			endpoint = `${baseUrl}/nombre`;
+			break;
+		case 'getApps':
+			endpoint = `${baseUrl}/aplicaciones`;
+			break;
+		case 'getByCuit':
+			endpoint = `${baseUrl}/${id}`;
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
 
-    const response = await transport.request('GET', endpoint) as IDataObject;
-    const data = (response.Datos || response) as IDataObject | IDataObject[];
-    return Array.isArray(data) ? data.map(item => ({ json: item })) : [{ json: data }];
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+			qs = { ...qs, ...json };
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, {}, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
 }

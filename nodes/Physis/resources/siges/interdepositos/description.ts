@@ -11,44 +11,44 @@ export const interdepositosOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Interdepósito', 
                 value: 'get', 
-                description: 'GET Devuelve los datos de un interdepósito específico por comprobante' 
-																action: 'Obtener Interdepósito an interdepositos',
+                description: 'GET Devuelve los datos de un interdepósito específico por comprobante',
+                action: 'Obtener Interdepósito an interdepositos',
             },
             { 
                 name: 'Obtener Próximo ID', 
                 value: 'getNextId', 
-                description: 'GET Obtiene el siguiente número disponible para generar un interdepósito' 
-																action: 'Obtener Próximo ID an interdepositos',
+                description: 'GET Obtiene el siguiente número disponible para generar un interdepósito',
+                action: 'Obtener Próximo ID an interdepositos',
             },
             { 
                 name: 'Listar Medios (Filtrado)', 
                 value: 'getMeans', 
-                description: 'GET Busca medios de interdepósito con filtro de exportable' 
-																action: 'Listar Medios (Filtrado) an interdepositos',
+                description: 'GET Busca medios de interdepósito con filtro de exportable',
+                action: 'Listar Medios (Filtrado) an interdepositos',
             },
             { 
                 name: 'Listar Medios (Todos)', 
                 value: 'getAllMeans', 
-                description: 'GET Busca todos los medios de interdepósito por código' 
-																action: 'Listar Medios (Todos) an interdepositos',
+                description: 'GET Busca todos los medios de interdepósito por código',
+                action: 'Listar Medios (Todos) an interdepositos',
             },
             { 
                 name: 'Última Fecha Exportable', 
                 value: 'getLastExportDate', 
-                description: 'GET Devuelve la fecha del último depósito marcado como exportable' 
-																action: 'Última Fecha Exportable an interdepositos',
+                description: 'GET Devuelve la fecha del último depósito marcado como exportable',
+                action: 'Última Fecha Exportable an interdepositos',
             },
             { 
                 name: 'Listar Números De Envío', 
                 value: 'getShipmentNumbers', 
-                description: 'GET Obtiene los números de envío registrados en una fecha específica' 
-																action: 'Listar Números de Envío an interdepositos',
+                description: 'GET Obtiene los números de envío registrados en una fecha específica',
+                action: 'Listar Números de Envío an interdepositos',
             },
             { 
                 name: 'Buscar Por Fecha Y Envío', 
                 value: 'getByDateAndShipment', 
-                description: 'GET Recupera interdepósitos filtrando por fecha y número de lote/envío' 
-																action: 'Buscar por Fecha y Envío an interdepositos',
+                description: 'GET Recupera interdepósitos filtrando por fecha y número de lote/envío',
+                action: 'Buscar por Fecha y Envío an interdepositos',
             },
         ],
         default: 'get',

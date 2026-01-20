@@ -11,14 +11,14 @@ export const combosOperations: INodeProperties[] = [
             { 
                 name: 'Obtener Lista (Combo)', 
                 value: 'getCombo', 
-                description: 'GET Obtiene una lista simple de opciones (ID/Nombre) para poblar selectores' 
-																action: 'Obtener Lista (Combo) a combos',
+                description: 'GET Obtiene una lista simple de opciones (ID/Nombre) para poblar selectores',
+                action: 'Obtener Lista (Combo) a combos',
             },
             { 
                 name: 'Listar Tipos Disponibles', 
                 value: 'getSearchTypes', 
-                description: 'GET Devuelve los metadatos de qué tipos de búsqueda están disponibles' 
-																action: 'Listar Tipos Disponibles a combos',
+                description: 'GET Devuelve los metadatos de qué tipos de búsqueda están disponibles',
+                action: 'Listar Tipos Disponibles a combos',
             },
         ],
         default: 'getCombo',

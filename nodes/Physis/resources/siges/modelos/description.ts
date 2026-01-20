@@ -11,14 +11,14 @@ export const modeloOperations: INodeProperties[] = [
             { 
                 name: 'Get Many', 
                 value: 'getAll', 
-                description: 'GET Devuelve la lista de modelos o plantillas de comprobantes disponibles' 
-																action: 'Listar Modelos a modelo',
+                description: 'GET Devuelve la lista de modelos o plantillas de comprobantes disponibles',
+                action: 'Listar Modelos a modelo',
             },
             { 
                 name: 'Obtener Modelo', 
                 value: 'get', 
-                description: 'GET Recupera la configuración detallada de un modelo específico' 
-																action: 'Obtener Modelo a modelo',
+                description: 'GET Recupera la configuración detallada de un modelo específico',
+                action: 'Obtener Modelo a modelo',
             },
         ],
         default: 'getAll',

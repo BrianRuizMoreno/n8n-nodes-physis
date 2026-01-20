@@ -11,14 +11,14 @@ export const controlDiarioOperations: INodeProperties[] = [
             { 
                 name: 'Subir Archivo Bancario', 
                 value: 'uploadFile', 
-                description: 'POST Sube el archivo diario del banco para iniciar la conciliación. Devuelve la ruta temporal.' 
-																action: 'Subir Archivo Bancario a control diario',
+                description: 'POST Sube el archivo diario del banco para iniciar la conciliación. Devuelve la ruta temporal.',
+                action: 'Subir Archivo Bancario a control diario',
             },
             { 
                 name: 'Obtener Informe De Control', 
                 value: 'getReport', 
-                description: 'GET Procesa el archivo previamente subido y devuelve las diferencias encontradas' 
-																action: 'Obtener Informe de Control a control diario',
+                description: 'GET Procesa el archivo previamente subido y devuelve las diferencias encontradas',
+                action: 'Obtener Informe de Control a control diario',
             },
         ],
         default: 'uploadFile',
