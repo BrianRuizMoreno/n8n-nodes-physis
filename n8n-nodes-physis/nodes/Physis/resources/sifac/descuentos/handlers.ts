@@ -1,0 +1,69 @@
+import { IExecuteFunctions, IDataObject, INodeExecutionData } from 'n8n-workflow';
+import { PhysisTransport } from '../../../transport/transport';
+
+export async function execute(this: IExecuteFunctions, index: number): Promise<INodeExecutionData[]> {
+	const operation = this.getNodeParameter('operation', index) as string;
+	const transport = new PhysisTransport(this);
+	
+	const baseUrl = '/phy2service/api/sifac/clientes/descuentos';
+	let endpoint = '';
+	let method = 'GET';
+	let body: IDataObject = {};
+	let qs: IDataObject = {};
+
+	const id = this.getNodeParameter('id', index, '') as string;
+
+	switch (operation) {
+		case 'getArbol':
+			endpoint = `${baseUrl}/arbol`;
+			break;
+		case 'get':
+			endpoint = `${baseUrl}/${id}`;
+			break;
+		case 'getByAlias': {
+			const alias = this.getNodeParameter('alias', index) as string;
+			if (!alias) {
+				throw new Error('El parámetro "alias" es obligatorio para esta operación.');
+			}
+			endpoint = `/phy2service/api/sifac/clientes/descuentos-by-alias/${alias}`;
+			break;
+		}
+		case 'create':
+			endpoint = baseUrl;
+			method = 'POST';
+			break;
+		case 'update':
+			endpoint = baseUrl;
+			method = 'PUT';
+			break;
+		case 'delete':
+			endpoint = `${baseUrl}/${id}`;
+			method = 'DELETE';
+			break;
+		default:
+			throw new Error(`Operación ${operation} no soportada.`);
+	}
+
+	const rawJson = this.getNodeParameter('jsonBody', index, '') as string;
+
+	if (rawJson) {
+		try {
+			const json = JSON.parse(rawJson) as IDataObject;
+
+			if (method === 'POST' || method === 'PUT') {
+				body = json;
+			} else {
+				qs = { ...qs, ...json };
+			}
+		} catch (error) {
+			throw new Error(`JSON body inválido: ${(error as Error).message}`);
+		}
+	}
+
+	const response = await transport.request(method, endpoint, body, qs) as IDataObject;
+	const data = (response.Datos || response) as IDataObject | IDataObject[];
+
+	return Array.isArray(data) 
+		? data.map((item) => ({ json: item })) 
+		: [{ json: data as IDataObject }];
+}

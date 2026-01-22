@@ -1,0 +1,77 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.conceptosIVAFields = exports.conceptosIVAOperations = void 0;
+exports.conceptosIVAOperations = [
+    {
+        displayName: 'Operación',
+        name: 'operation',
+        type: 'options',
+        noDataExpression: true,
+        displayOptions: { show: { service: ['siges'], resource: ['conceptosIVA'] } },
+        options: [
+            {
+                name: 'Get Many',
+                value: 'getAll',
+                description: 'GET Devuelve la lista de alícuotas de IVA configuradas',
+                action: 'Listar todos a conceptos i v a',
+            },
+            {
+                name: 'Obtener Detalle',
+                value: 'get',
+                description: 'GET Recupera los datos de un concepto de IVA específico',
+                action: 'Obtener detalle a conceptos i v a',
+            },
+            {
+                name: 'Crear Concepto',
+                value: 'create',
+                description: 'POST Crea una nueva alícuota o categoría de IVA',
+                action: 'Crear concepto a conceptos i v a',
+            },
+            {
+                name: 'Modificar Concepto',
+                value: 'update',
+                description: 'PUT Actualiza un concepto de IVA existente',
+                action: 'Modificar concepto a conceptos i v a',
+            },
+            {
+                name: 'Eliminar Concepto',
+                value: 'delete',
+                description: 'DELETE Elimina un concepto de IVA',
+                action: 'Eliminar concepto a conceptos i v a',
+            },
+        ],
+        default: 'getAll',
+    },
+];
+exports.conceptosIVAFields = [
+    {
+        displayName: 'ID Concepto IVA',
+        name: 'idConceptoIVA',
+        type: 'number',
+        default: 0,
+        required: true,
+        displayOptions: {
+            show: {
+                service: ['siges'],
+                resource: ['conceptosIVA'],
+                operation: ['get', 'delete']
+            }
+        },
+        description: 'Identificador numérico de la alícuota',
+    },
+    {
+        displayName: 'JSON Body',
+        name: 'jsonBody',
+        type: 'json',
+        default: '{\n  "nombre": "IVA 21%",\n  "alicuota": 21,\n  "tipo": "G",\n  "clase": "N"\n}',
+        displayOptions: {
+            show: {
+                service: ['siges'],
+                resource: ['conceptosIVA'],
+                operation: ['create', 'update']
+            }
+        },
+        description: 'Objeto con la definición de la alícuota (nombre, porcentaje, tipo Gravado/Exento)',
+    },
+];
+//# sourceMappingURL=description.js.map
